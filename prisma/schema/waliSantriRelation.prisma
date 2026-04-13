@@ -1,0 +1,16 @@
+// Tabel Pivot Wali Santri
+model WaliSantriRelation {
+  id         String             @id @default(uuid())
+  
+  wali_id    String
+  wali       User               @relation("WaliToRelation", fields: [wali_id], references: [id], onDelete: Cascade)
+  
+  santri_id  String
+  santri     User               @relation("SantriToRelation", fields: [santri_id], references: [id], onDelete: Cascade)
+  
+  category   WaliSantriCategory @default(OTHER)
+
+  // Memastikan satu kombinasi wali dan anak tidak duplikat
+  @@unique([wali_id, santri_id]) 
+  @@map("wali_santri_relations")
+}

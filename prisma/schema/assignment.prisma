@@ -1,0 +1,21 @@
+model Assignment {
+  id              String         @id @default(uuid())
+  
+  class_id        String
+  class           Class          @relation(fields: [class_id], references: [id], onDelete: Cascade)
+  
+  mentor_id       String
+  mentor          User           @relation("MentorAssignments", fields: [mentor_id], references: [id])
+  
+  title           String
+  description     String?        @db.Text
+  submission_type SubmissionType
+  attachment_url  String?        // Link soal (opsional)
+  due_date        DateTime
+  
+  created_at      DateTime       @default(now())
+
+  submissions     AssignmentContent[]
+
+  @@map("assignments")
+}

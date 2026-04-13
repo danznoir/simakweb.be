@@ -1,0 +1,17 @@
+model Class {
+  id          String   @id @default(uuid())
+  division_id String
+  division    Division @relation(fields: [division_id], references: [id], onDelete: Restrict)
+  
+  name        String
+  
+  mentor_id   String
+  mentor      User     @relation("MentorClasses", fields: [mentor_id], references: [id])
+  
+  created_at  DateTime @default(now())
+
+  attendances Attendance[]
+  assignments Assignment[]
+
+  @@map("classes")
+}

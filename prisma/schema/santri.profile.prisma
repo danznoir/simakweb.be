@@ -1,0 +1,12 @@
+model SantriProfile {
+  id         String   @id @default(uuid())
+  user_id    String   @unique
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  
+  nis        String   @unique
+  birth_date DateTime? @db.Date
+  address    String?   @db.Text
+  photo_url  String?
+
+  @@map("santri_profiles")
+}
