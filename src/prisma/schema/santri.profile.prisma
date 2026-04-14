@@ -8,5 +8,8 @@ model SantriProfile {
   address    String?   @db.Text
   photo_url  String?
 
+  class_id   String?
+  class      Class?    @relation(fields: [class_id], references: [id], onDelete: SetNull)
+
   @@map("santri_profiles")
 }

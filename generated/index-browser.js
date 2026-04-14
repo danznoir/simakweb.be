@@ -120,9 +120,153 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.VerificationScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  otpCode: 'otpCode',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AssignmentScalarFieldEnum = {
+  id: 'id',
+  class_id: 'class_id',
+  mentor_id: 'mentor_id',
+  title: 'title',
+  description: 'description',
+  submission_type: 'submission_type',
+  attachment_url: 'attachment_url',
+  due_date: 'due_date',
+  created_at: 'created_at'
+};
+
+exports.Prisma.AssignmentContentScalarFieldEnum = {
+  id: 'id',
+  assignment_id: 'assignment_id',
+  santri_id: 'santri_id',
+  content_type: 'content_type',
+  file_url: 'file_url',
+  score: 'score',
+  mentor_feedback: 'mentor_feedback',
+  status: 'status',
+  submitted_at: 'submitted_at'
+};
+
+exports.Prisma.AttendanceScalarFieldEnum = {
+  id: 'id',
+  class_id: 'class_id',
+  santri_id: 'santri_id',
+  mentor_id: 'mentor_id',
+  date: 'date',
+  status: 'status',
+  notes: 'notes',
+  image_url: 'image_url',
+  created_at: 'created_at'
+};
+
+exports.Prisma.ClassScalarFieldEnum = {
+  id: 'id',
+  division_id: 'division_id',
+  name: 'name',
+  mentor_id: 'mentor_id',
+  created_at: 'created_at'
+};
+
+exports.Prisma.DivisionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  created_at: 'created_at'
+};
+
+exports.Prisma.SantriProfileScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  nis: 'nis',
+  birth_date: 'birth_date',
+  address: 'address',
+  photo_url: 'photo_url',
+  class_id: 'class_id'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  full_name: 'full_name',
+  email: 'email',
+  password: 'password',
+  phone: 'phone',
+  role: 'role',
+  is_active: 'is_active',
+  created_at: 'created_at'
+};
+
+exports.Prisma.WaliSantriRelationScalarFieldEnum = {
+  id: 'id',
+  wali_id: 'wali_id',
+  santri_id: 'santri_id',
+  category: 'category'
+};
+
+exports.Prisma.SortOrder = {
+  asc: 'asc',
+  desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.SubmissionType = exports.$Enums.SubmissionType = {
+  TEXT: 'TEXT',
+  FILE: 'FILE'
+};
+
+exports.ContentType = exports.$Enums.ContentType = {
+  VIDEO: 'VIDEO',
+  FOTO: 'FOTO',
+  TEXT: 'TEXT'
+};
+
+exports.GradingStatus = exports.$Enums.GradingStatus = {
+  PENDING: 'PENDING',
+  GRADED: 'GRADED'
+};
+
+exports.AttendanceStatus = exports.$Enums.AttendanceStatus = {
+  HADIR: 'HADIR',
+  SAKIT: 'SAKIT',
+  IZIN: 'IZIN',
+  ALFA: 'ALFA'
+};
+
+exports.Role = exports.$Enums.Role = {
+  ADMIN: 'ADMIN',
+  MENTOR: 'MENTOR',
+  SANTRI: 'SANTRI',
+  WALI_SANTRI: 'WALI_SANTRI'
+};
+
+exports.WaliSantriCategory = exports.$Enums.WaliSantriCategory = {
+  AYAH: 'AYAH',
+  IBU: 'IBU',
+  OTHER: 'OTHER'
+};
 
 exports.Prisma.ModelName = {
-
+  Verification: 'Verification',
+  Assignment: 'Assignment',
+  AssignmentContent: 'AssignmentContent',
+  Attendance: 'Attendance',
+  Class: 'Class',
+  Division: 'Division',
+  SantriProfile: 'SantriProfile',
+  User: 'User',
+  WaliSantriRelation: 'WaliSantriRelation'
 };
 
 /**

@@ -12,6 +12,7 @@ model Class {
 
   attendances Attendance[]
   assignments Assignment[]
+  santri_profiles SantriProfile[]
 
   @@map("classes")
 }
