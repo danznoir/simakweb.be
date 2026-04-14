@@ -130,81 +130,88 @@ exports.Prisma.VerificationScalarFieldEnum = {
 
 exports.Prisma.AssignmentScalarFieldEnum = {
   id: 'id',
-  class_id: 'class_id',
-  mentor_id: 'mentor_id',
+  classId: 'classId',
+  mentorId: 'mentorId',
   title: 'title',
   description: 'description',
-  submission_type: 'submission_type',
-  attachment_url: 'attachment_url',
+  submissionType: 'submissionType',
+  attachmentUrl: 'attachmentUrl',
   due_date: 'due_date',
-  created_at: 'created_at'
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.AssignmentContentScalarFieldEnum = {
   id: 'id',
-  assignment_id: 'assignment_id',
-  santri_id: 'santri_id',
-  content_type: 'content_type',
-  file_url: 'file_url',
+  assignmentId: 'assignmentId',
+  santriId: 'santriId',
+  contentType: 'contentType',
+  fileUrl: 'fileUrl',
   score: 'score',
-  mentor_feedback: 'mentor_feedback',
+  mentorFeedback: 'mentorFeedback',
   status: 'status',
-  submitted_at: 'submitted_at'
+  submittedAt: 'submittedAt'
 };
 
 exports.Prisma.AttendanceScalarFieldEnum = {
   id: 'id',
-  class_id: 'class_id',
-  santri_id: 'santri_id',
-  mentor_id: 'mentor_id',
+  classId: 'classId',
+  santriId: 'santriId',
+  mentorId: 'mentorId',
   date: 'date',
   status: 'status',
   notes: 'notes',
-  image_url: 'image_url',
-  created_at: 'created_at'
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.ClassScalarFieldEnum = {
   id: 'id',
-  division_id: 'division_id',
+  divisiId: 'divisiId',
   name: 'name',
-  mentor_id: 'mentor_id',
-  created_at: 'created_at'
+  mentorId: 'mentorId',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.DivisionScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
-  created_at: 'created_at'
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SantriProfileScalarFieldEnum = {
   id: 'id',
-  user_id: 'user_id',
-  nis: 'nis',
-  birth_date: 'birth_date',
+  userId: 'userId',
+  waliId: 'waliId',
+  phone: 'phone',
+  birthDate: 'birthDate',
   address: 'address',
-  photo_url: 'photo_url',
-  class_id: 'class_id'
+  photoUrl: 'photoUrl',
+  classId: 'classId'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  full_name: 'full_name',
+  nis: 'nis',
+  fullName: 'fullName',
   email: 'email',
   password: 'password',
   phone: 'phone',
   role: 'role',
-  is_active: 'is_active',
-  created_at: 'created_at'
+  isActive: 'isActive',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.WaliSantriRelationScalarFieldEnum = {
   id: 'id',
-  wali_id: 'wali_id',
-  santri_id: 'santri_id',
-  category: 'category'
+  waliId: 'waliId',
+  santriId: 'santriId',
+  name: 'name',
+  phone: 'phone',
+  photoUrl: 'photoUrl',
+  category: 'category',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {

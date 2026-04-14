@@ -1,25 +1,28 @@
 model User {
-  id         String   @id @default(uuid())
-  full_name  String
-  email      String   @unique
-  password   String
-  phone      String?  // Dibuat opsional (bisa null) karena mungkin tidak semua punya HP
-  role       Role
-  is_active  Boolean  @default(true)
-  created_at DateTime @default(now())
+  id        String   @id @default(uuid())
+  nis       String?  @unique
+  fullName  String
+  email     String   @unique
+  password  String
+  phone     String?  // Dibuat opsional (bisa null) karena mungkin tidak semua punya HP
+  role      Role
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
 
   // Relasi (Ini otomatis dibuat oleh Prisma untuk back-reference)
-  verifications        Verification[]        
-  santri_profile       SantriProfile?
-  mentor_classes       Class[]               @relation("MentorClasses")
-  mentor_attendances   Attendance[]          @relation("MentorAttendances")
-  santri_attendances   Attendance[]          @relation("SantriAttendances")
-  mentor_assignments   Assignment[]          @relation("MentorAssignments")
-  santri_submissions   AssignmentContent[]   @relation("SantriSubmissions")
-  
+  verifications      Verification[]
+  santriProfile      SantriProfile?
+  mentorClasses      Class[]             @relation("MentorClasses")
+  mentorAttendances  Attendance[]        @relation("MentorAttendances")
+  santriAttendances  Attendance[]        @relation("SantriAttendances")
+  mentorAssignments  Assignment[]        @relation("MentorAssignments")
+  santriSubmissions  AssignmentContent[] @relation("SantriSubmissions")
+
   // Relasi Wali Santri
-  wali_relations       WaliSantriRelation[]  @relation("WaliToRelation")
-  santri_relations     WaliSantriRelation[]  @relation("SantriToRelation")
+  waliRelations     WaliSantriRelation[] @relation("WaliToRelation")
+  santriRelations   WaliSantriRelation[] @relation("SantriToRelation")
+  santriUnderWali   SantriProfile[]      @relation("WaliToSantri")
 
   @@map("users")
 }
+

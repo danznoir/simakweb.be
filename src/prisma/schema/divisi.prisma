@@ -2,9 +2,9 @@ model Division {
   id          String   @id @default(uuid())
   name        String   // Misal: SD, SMP, SMA, Tahfidz
   description String?  @db.Text
-  created_at  DateTime @default(now())
+  createdAt   DateTime @default(now())
 
   classes     Class[]
 
   @@map("divisions")
-}
+}

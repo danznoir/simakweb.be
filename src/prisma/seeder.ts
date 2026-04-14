@@ -47,11 +47,11 @@ async function main() {
   const passwordHash = await bcrypt.hash('password123', 10);
   const mentor = await prisma.user.create({
     data: {
-      full_name: 'Ustadz Ahmad Mentor',
+      fullName: 'Ustadz Ahmad Mentor',
       email: 'mentor@simak.com',
       password: passwordHash,
       role: 'MENTOR' as Role,
-      is_active: true,
+      isActive: true,
     },
   });
 
@@ -62,22 +62,22 @@ async function main() {
     prisma.class.create({
       data: {
         name: '2-A',
-        division_id: divisions[0]!.id,
-        mentor_id: mentor.id,
+        divisiId: divisions[0]!.id,
+        mentorId: mentor.id,
       },
     }),
     prisma.class.create({
       data: {
         name: '3',
-        division_id: divisions[1]!.id,
-        mentor_id: mentor.id,
+        divisiId: divisions[1]!.id,
+        mentorId: mentor.id,
       },
     }),
     prisma.class.create({
       data: {
         name: '2',
-        division_id: divisions[2]!.id,
-        mentor_id: mentor.id,
+        divisiId: divisions[2]!.id,
+        mentorId: mentor.id,
       },
     }),
   ]);
@@ -94,23 +94,24 @@ async function main() {
   for (const s of santriData) {
     const user = await prisma.user.create({
       data: {
-        full_name: s.name,
+        fullName: s.name,
         email: s.email,
+        nis: s.nis,
         password: passwordHash,
         role: 'SANTRI' as Role,
-        is_active: true,
+        isActive: true,
       },
     });
 
     await prisma.santriProfile.create({
       data: {
-        user_id: user.id,
-        nis: s.nis,
+        userId: user.id,
         address: 'Jl. Contoh Alamat No. ' + s.nis,
-        class_id: classes[s.classIdx]!.id,
+        classId: classes[s.classIdx]!.id,
       },
     });
   }
+
 
   console.log('✔ 3 Santri dummy berhasil dibuat');
   console.log('--- Seeding Selesai ---');

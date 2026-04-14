@@ -1710,13 +1710,13 @@ export namespace Prisma {
   export type ClassCountOutputType = {
     attendances: number
     assignments: number
-    santri_profiles: number
+    santriProfiles: number
   }
 
   export type ClassCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     attendances?: boolean | ClassCountOutputTypeCountAttendancesArgs
     assignments?: boolean | ClassCountOutputTypeCountAssignmentsArgs
-    santri_profiles?: boolean | ClassCountOutputTypeCountSantri_profilesArgs
+    santriProfiles?: boolean | ClassCountOutputTypeCountSantriProfilesArgs
   }
 
   // Custom InputTypes
@@ -1747,7 +1747,7 @@ export namespace Prisma {
   /**
    * ClassCountOutputType without action
    */
-  export type ClassCountOutputTypeCountSantri_profilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassCountOutputTypeCountSantriProfilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SantriProfileWhereInput
   }
 
@@ -1789,24 +1789,26 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     verifications: number
-    mentor_classes: number
-    mentor_attendances: number
-    santri_attendances: number
-    mentor_assignments: number
-    santri_submissions: number
-    wali_relations: number
-    santri_relations: number
+    mentorClasses: number
+    mentorAttendances: number
+    santriAttendances: number
+    mentorAssignments: number
+    santriSubmissions: number
+    waliRelations: number
+    santriRelations: number
+    santriUnderWali: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     verifications?: boolean | UserCountOutputTypeCountVerificationsArgs
-    mentor_classes?: boolean | UserCountOutputTypeCountMentor_classesArgs
-    mentor_attendances?: boolean | UserCountOutputTypeCountMentor_attendancesArgs
-    santri_attendances?: boolean | UserCountOutputTypeCountSantri_attendancesArgs
-    mentor_assignments?: boolean | UserCountOutputTypeCountMentor_assignmentsArgs
-    santri_submissions?: boolean | UserCountOutputTypeCountSantri_submissionsArgs
-    wali_relations?: boolean | UserCountOutputTypeCountWali_relationsArgs
-    santri_relations?: boolean | UserCountOutputTypeCountSantri_relationsArgs
+    mentorClasses?: boolean | UserCountOutputTypeCountMentorClassesArgs
+    mentorAttendances?: boolean | UserCountOutputTypeCountMentorAttendancesArgs
+    santriAttendances?: boolean | UserCountOutputTypeCountSantriAttendancesArgs
+    mentorAssignments?: boolean | UserCountOutputTypeCountMentorAssignmentsArgs
+    santriSubmissions?: boolean | UserCountOutputTypeCountSantriSubmissionsArgs
+    waliRelations?: boolean | UserCountOutputTypeCountWaliRelationsArgs
+    santriRelations?: boolean | UserCountOutputTypeCountSantriRelationsArgs
+    santriUnderWali?: boolean | UserCountOutputTypeCountSantriUnderWaliArgs
   }
 
   // Custom InputTypes
@@ -1830,50 +1832,57 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountMentor_classesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountMentorClassesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ClassWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountMentor_attendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountMentorAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AttendanceWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSantri_attendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountSantriAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AttendanceWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountMentor_assignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountMentorAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AssignmentWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSantri_submissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountSantriSubmissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AssignmentContentWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountWali_relationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountWaliRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: WaliSantriRelationWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSantri_relationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountSantriRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: WaliSantriRelationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSantriUnderWaliArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SantriProfileWhereInput
   }
 
 
@@ -2956,76 +2965,76 @@ export namespace Prisma {
 
   export type AssignmentMinAggregateOutputType = {
     id: string | null
-    class_id: string | null
-    mentor_id: string | null
+    classId: string | null
+    mentorId: string | null
     title: string | null
     description: string | null
-    submission_type: $Enums.SubmissionType | null
-    attachment_url: string | null
+    submissionType: $Enums.SubmissionType | null
+    attachmentUrl: string | null
     due_date: Date | null
-    created_at: Date | null
+    createdAt: Date | null
   }
 
   export type AssignmentMaxAggregateOutputType = {
     id: string | null
-    class_id: string | null
-    mentor_id: string | null
+    classId: string | null
+    mentorId: string | null
     title: string | null
     description: string | null
-    submission_type: $Enums.SubmissionType | null
-    attachment_url: string | null
+    submissionType: $Enums.SubmissionType | null
+    attachmentUrl: string | null
     due_date: Date | null
-    created_at: Date | null
+    createdAt: Date | null
   }
 
   export type AssignmentCountAggregateOutputType = {
     id: number
-    class_id: number
-    mentor_id: number
+    classId: number
+    mentorId: number
     title: number
     description: number
-    submission_type: number
-    attachment_url: number
+    submissionType: number
+    attachmentUrl: number
     due_date: number
-    created_at: number
+    createdAt: number
     _all: number
   }
 
 
   export type AssignmentMinAggregateInputType = {
     id?: true
-    class_id?: true
-    mentor_id?: true
+    classId?: true
+    mentorId?: true
     title?: true
     description?: true
-    submission_type?: true
-    attachment_url?: true
+    submissionType?: true
+    attachmentUrl?: true
     due_date?: true
-    created_at?: true
+    createdAt?: true
   }
 
   export type AssignmentMaxAggregateInputType = {
     id?: true
-    class_id?: true
-    mentor_id?: true
+    classId?: true
+    mentorId?: true
     title?: true
     description?: true
-    submission_type?: true
-    attachment_url?: true
+    submissionType?: true
+    attachmentUrl?: true
     due_date?: true
-    created_at?: true
+    createdAt?: true
   }
 
   export type AssignmentCountAggregateInputType = {
     id?: true
-    class_id?: true
-    mentor_id?: true
+    classId?: true
+    mentorId?: true
     title?: true
     description?: true
-    submission_type?: true
-    attachment_url?: true
+    submissionType?: true
+    attachmentUrl?: true
     due_date?: true
-    created_at?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -3103,14 +3112,14 @@ export namespace Prisma {
 
   export type AssignmentGroupByOutputType = {
     id: string
-    class_id: string
-    mentor_id: string
+    classId: string
+    mentorId: string
     title: string
     description: string | null
-    submission_type: $Enums.SubmissionType
-    attachment_url: string | null
+    submissionType: $Enums.SubmissionType
+    attachmentUrl: string | null
     due_date: Date
-    created_at: Date
+    createdAt: Date
     _count: AssignmentCountAggregateOutputType | null
     _min: AssignmentMinAggregateOutputType | null
     _max: AssignmentMaxAggregateOutputType | null
@@ -3132,14 +3141,14 @@ export namespace Prisma {
 
   export type AssignmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_id?: boolean
-    mentor_id?: boolean
+    classId?: boolean
+    mentorId?: boolean
     title?: boolean
     description?: boolean
-    submission_type?: boolean
-    attachment_url?: boolean
+    submissionType?: boolean
+    attachmentUrl?: boolean
     due_date?: boolean
-    created_at?: boolean
+    createdAt?: boolean
     class?: boolean | ClassDefaultArgs<ExtArgs>
     mentor?: boolean | UserDefaultArgs<ExtArgs>
     submissions?: boolean | Assignment$submissionsArgs<ExtArgs>
@@ -3148,45 +3157,45 @@ export namespace Prisma {
 
   export type AssignmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_id?: boolean
-    mentor_id?: boolean
+    classId?: boolean
+    mentorId?: boolean
     title?: boolean
     description?: boolean
-    submission_type?: boolean
-    attachment_url?: boolean
+    submissionType?: boolean
+    attachmentUrl?: boolean
     due_date?: boolean
-    created_at?: boolean
+    createdAt?: boolean
     class?: boolean | ClassDefaultArgs<ExtArgs>
     mentor?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignment"]>
 
   export type AssignmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_id?: boolean
-    mentor_id?: boolean
+    classId?: boolean
+    mentorId?: boolean
     title?: boolean
     description?: boolean
-    submission_type?: boolean
-    attachment_url?: boolean
+    submissionType?: boolean
+    attachmentUrl?: boolean
     due_date?: boolean
-    created_at?: boolean
+    createdAt?: boolean
     class?: boolean | ClassDefaultArgs<ExtArgs>
     mentor?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignment"]>
 
   export type AssignmentSelectScalar = {
     id?: boolean
-    class_id?: boolean
-    mentor_id?: boolean
+    classId?: boolean
+    mentorId?: boolean
     title?: boolean
     description?: boolean
-    submission_type?: boolean
-    attachment_url?: boolean
+    submissionType?: boolean
+    attachmentUrl?: boolean
     due_date?: boolean
-    created_at?: boolean
+    createdAt?: boolean
   }
 
-  export type AssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "class_id" | "mentor_id" | "title" | "description" | "submission_type" | "attachment_url" | "due_date" | "created_at", ExtArgs["result"]["assignment"]>
+  export type AssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "classId" | "mentorId" | "title" | "description" | "submissionType" | "attachmentUrl" | "due_date" | "createdAt", ExtArgs["result"]["assignment"]>
   export type AssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     class?: boolean | ClassDefaultArgs<ExtArgs>
     mentor?: boolean | UserDefaultArgs<ExtArgs>
@@ -3211,14 +3220,14 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      class_id: string
-      mentor_id: string
+      classId: string
+      mentorId: string
       title: string
       description: string | null
-      submission_type: $Enums.SubmissionType
-      attachment_url: string | null
+      submissionType: $Enums.SubmissionType
+      attachmentUrl: string | null
       due_date: Date
-      created_at: Date
+      createdAt: Date
     }, ExtArgs["result"]["assignment"]>
     composites: {}
   }
@@ -3646,14 +3655,14 @@ export namespace Prisma {
    */
   interface AssignmentFieldRefs {
     readonly id: FieldRef<"Assignment", 'String'>
-    readonly class_id: FieldRef<"Assignment", 'String'>
-    readonly mentor_id: FieldRef<"Assignment", 'String'>
+    readonly classId: FieldRef<"Assignment", 'String'>
+    readonly mentorId: FieldRef<"Assignment", 'String'>
     readonly title: FieldRef<"Assignment", 'String'>
     readonly description: FieldRef<"Assignment", 'String'>
-    readonly submission_type: FieldRef<"Assignment", 'SubmissionType'>
-    readonly attachment_url: FieldRef<"Assignment", 'String'>
+    readonly submissionType: FieldRef<"Assignment", 'SubmissionType'>
+    readonly attachmentUrl: FieldRef<"Assignment", 'String'>
     readonly due_date: FieldRef<"Assignment", 'DateTime'>
-    readonly created_at: FieldRef<"Assignment", 'DateTime'>
+    readonly createdAt: FieldRef<"Assignment", 'DateTime'>
   }
     
 
@@ -4119,36 +4128,36 @@ export namespace Prisma {
 
   export type AssignmentContentMinAggregateOutputType = {
     id: string | null
-    assignment_id: string | null
-    santri_id: string | null
-    content_type: $Enums.ContentType | null
+    assignmentId: string | null
+    santriId: string | null
+    contentType: $Enums.ContentType | null
     score: number | null
-    mentor_feedback: string | null
+    mentorFeedback: string | null
     status: $Enums.GradingStatus | null
-    submitted_at: Date | null
+    submittedAt: Date | null
   }
 
   export type AssignmentContentMaxAggregateOutputType = {
     id: string | null
-    assignment_id: string | null
-    santri_id: string | null
-    content_type: $Enums.ContentType | null
+    assignmentId: string | null
+    santriId: string | null
+    contentType: $Enums.ContentType | null
     score: number | null
-    mentor_feedback: string | null
+    mentorFeedback: string | null
     status: $Enums.GradingStatus | null
-    submitted_at: Date | null
+    submittedAt: Date | null
   }
 
   export type AssignmentContentCountAggregateOutputType = {
     id: number
-    assignment_id: number
-    santri_id: number
-    content_type: number
-    file_url: number
+    assignmentId: number
+    santriId: number
+    contentType: number
+    fileUrl: number
     score: number
-    mentor_feedback: number
+    mentorFeedback: number
     status: number
-    submitted_at: number
+    submittedAt: number
     _all: number
   }
 
@@ -4163,36 +4172,36 @@ export namespace Prisma {
 
   export type AssignmentContentMinAggregateInputType = {
     id?: true
-    assignment_id?: true
-    santri_id?: true
-    content_type?: true
+    assignmentId?: true
+    santriId?: true
+    contentType?: true
     score?: true
-    mentor_feedback?: true
+    mentorFeedback?: true
     status?: true
-    submitted_at?: true
+    submittedAt?: true
   }
 
   export type AssignmentContentMaxAggregateInputType = {
     id?: true
-    assignment_id?: true
-    santri_id?: true
-    content_type?: true
+    assignmentId?: true
+    santriId?: true
+    contentType?: true
     score?: true
-    mentor_feedback?: true
+    mentorFeedback?: true
     status?: true
-    submitted_at?: true
+    submittedAt?: true
   }
 
   export type AssignmentContentCountAggregateInputType = {
     id?: true
-    assignment_id?: true
-    santri_id?: true
-    content_type?: true
-    file_url?: true
+    assignmentId?: true
+    santriId?: true
+    contentType?: true
+    fileUrl?: true
     score?: true
-    mentor_feedback?: true
+    mentorFeedback?: true
     status?: true
-    submitted_at?: true
+    submittedAt?: true
     _all?: true
   }
 
@@ -4284,14 +4293,14 @@ export namespace Prisma {
 
   export type AssignmentContentGroupByOutputType = {
     id: string
-    assignment_id: string
-    santri_id: string
-    content_type: $Enums.ContentType
-    file_url: string[]
+    assignmentId: string
+    santriId: string
+    contentType: $Enums.ContentType
+    fileUrl: string[]
     score: number | null
-    mentor_feedback: string | null
+    mentorFeedback: string | null
     status: $Enums.GradingStatus
-    submitted_at: Date
+    submittedAt: Date
     _count: AssignmentContentCountAggregateOutputType | null
     _avg: AssignmentContentAvgAggregateOutputType | null
     _sum: AssignmentContentSumAggregateOutputType | null
@@ -4315,59 +4324,59 @@ export namespace Prisma {
 
   export type AssignmentContentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    assignment_id?: boolean
-    santri_id?: boolean
-    content_type?: boolean
-    file_url?: boolean
+    assignmentId?: boolean
+    santriId?: boolean
+    contentType?: boolean
+    fileUrl?: boolean
     score?: boolean
-    mentor_feedback?: boolean
+    mentorFeedback?: boolean
     status?: boolean
-    submitted_at?: boolean
+    submittedAt?: boolean
     assignment?: boolean | AssignmentDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignmentContent"]>
 
   export type AssignmentContentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    assignment_id?: boolean
-    santri_id?: boolean
-    content_type?: boolean
-    file_url?: boolean
+    assignmentId?: boolean
+    santriId?: boolean
+    contentType?: boolean
+    fileUrl?: boolean
     score?: boolean
-    mentor_feedback?: boolean
+    mentorFeedback?: boolean
     status?: boolean
-    submitted_at?: boolean
+    submittedAt?: boolean
     assignment?: boolean | AssignmentDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignmentContent"]>
 
   export type AssignmentContentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    assignment_id?: boolean
-    santri_id?: boolean
-    content_type?: boolean
-    file_url?: boolean
+    assignmentId?: boolean
+    santriId?: boolean
+    contentType?: boolean
+    fileUrl?: boolean
     score?: boolean
-    mentor_feedback?: boolean
+    mentorFeedback?: boolean
     status?: boolean
-    submitted_at?: boolean
+    submittedAt?: boolean
     assignment?: boolean | AssignmentDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignmentContent"]>
 
   export type AssignmentContentSelectScalar = {
     id?: boolean
-    assignment_id?: boolean
-    santri_id?: boolean
-    content_type?: boolean
-    file_url?: boolean
+    assignmentId?: boolean
+    santriId?: boolean
+    contentType?: boolean
+    fileUrl?: boolean
     score?: boolean
-    mentor_feedback?: boolean
+    mentorFeedback?: boolean
     status?: boolean
-    submitted_at?: boolean
+    submittedAt?: boolean
   }
 
-  export type AssignmentContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "assignment_id" | "santri_id" | "content_type" | "file_url" | "score" | "mentor_feedback" | "status" | "submitted_at", ExtArgs["result"]["assignmentContent"]>
+  export type AssignmentContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "assignmentId" | "santriId" | "contentType" | "fileUrl" | "score" | "mentorFeedback" | "status" | "submittedAt", ExtArgs["result"]["assignmentContent"]>
   export type AssignmentContentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignment?: boolean | AssignmentDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
@@ -4389,14 +4398,14 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      assignment_id: string
-      santri_id: string
-      content_type: $Enums.ContentType
-      file_url: string[]
+      assignmentId: string
+      santriId: string
+      contentType: $Enums.ContentType
+      fileUrl: string[]
       score: number | null
-      mentor_feedback: string | null
+      mentorFeedback: string | null
       status: $Enums.GradingStatus
-      submitted_at: Date
+      submittedAt: Date
     }, ExtArgs["result"]["assignmentContent"]>
     composites: {}
   }
@@ -4823,14 +4832,14 @@ export namespace Prisma {
    */
   interface AssignmentContentFieldRefs {
     readonly id: FieldRef<"AssignmentContent", 'String'>
-    readonly assignment_id: FieldRef<"AssignmentContent", 'String'>
-    readonly santri_id: FieldRef<"AssignmentContent", 'String'>
-    readonly content_type: FieldRef<"AssignmentContent", 'ContentType'>
-    readonly file_url: FieldRef<"AssignmentContent", 'String[]'>
+    readonly assignmentId: FieldRef<"AssignmentContent", 'String'>
+    readonly santriId: FieldRef<"AssignmentContent", 'String'>
+    readonly contentType: FieldRef<"AssignmentContent", 'ContentType'>
+    readonly fileUrl: FieldRef<"AssignmentContent", 'String[]'>
     readonly score: FieldRef<"AssignmentContent", 'Int'>
-    readonly mentor_feedback: FieldRef<"AssignmentContent", 'String'>
+    readonly mentorFeedback: FieldRef<"AssignmentContent", 'String'>
     readonly status: FieldRef<"AssignmentContent", 'GradingStatus'>
-    readonly submitted_at: FieldRef<"AssignmentContent", 'DateTime'>
+    readonly submittedAt: FieldRef<"AssignmentContent", 'DateTime'>
   }
     
 
@@ -5262,76 +5271,76 @@ export namespace Prisma {
 
   export type AttendanceMinAggregateOutputType = {
     id: string | null
-    class_id: string | null
-    santri_id: string | null
-    mentor_id: string | null
+    classId: string | null
+    santriId: string | null
+    mentorId: string | null
     date: Date | null
     status: $Enums.AttendanceStatus | null
     notes: string | null
-    image_url: string | null
-    created_at: Date | null
+    imageUrl: string | null
+    createdAt: Date | null
   }
 
   export type AttendanceMaxAggregateOutputType = {
     id: string | null
-    class_id: string | null
-    santri_id: string | null
-    mentor_id: string | null
+    classId: string | null
+    santriId: string | null
+    mentorId: string | null
     date: Date | null
     status: $Enums.AttendanceStatus | null
     notes: string | null
-    image_url: string | null
-    created_at: Date | null
+    imageUrl: string | null
+    createdAt: Date | null
   }
 
   export type AttendanceCountAggregateOutputType = {
     id: number
-    class_id: number
-    santri_id: number
-    mentor_id: number
+    classId: number
+    santriId: number
+    mentorId: number
     date: number
     status: number
     notes: number
-    image_url: number
-    created_at: number
+    imageUrl: number
+    createdAt: number
     _all: number
   }
 
 
   export type AttendanceMinAggregateInputType = {
     id?: true
-    class_id?: true
-    santri_id?: true
-    mentor_id?: true
+    classId?: true
+    santriId?: true
+    mentorId?: true
     date?: true
     status?: true
     notes?: true
-    image_url?: true
-    created_at?: true
+    imageUrl?: true
+    createdAt?: true
   }
 
   export type AttendanceMaxAggregateInputType = {
     id?: true
-    class_id?: true
-    santri_id?: true
-    mentor_id?: true
+    classId?: true
+    santriId?: true
+    mentorId?: true
     date?: true
     status?: true
     notes?: true
-    image_url?: true
-    created_at?: true
+    imageUrl?: true
+    createdAt?: true
   }
 
   export type AttendanceCountAggregateInputType = {
     id?: true
-    class_id?: true
-    santri_id?: true
-    mentor_id?: true
+    classId?: true
+    santriId?: true
+    mentorId?: true
     date?: true
     status?: true
     notes?: true
-    image_url?: true
-    created_at?: true
+    imageUrl?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -5409,14 +5418,14 @@ export namespace Prisma {
 
   export type AttendanceGroupByOutputType = {
     id: string
-    class_id: string
-    santri_id: string
-    mentor_id: string
+    classId: string
+    santriId: string
+    mentorId: string
     date: Date
     status: $Enums.AttendanceStatus
     notes: string | null
-    image_url: string | null
-    created_at: Date
+    imageUrl: string | null
+    createdAt: Date
     _count: AttendanceCountAggregateOutputType | null
     _min: AttendanceMinAggregateOutputType | null
     _max: AttendanceMaxAggregateOutputType | null
@@ -5438,14 +5447,14 @@ export namespace Prisma {
 
   export type AttendanceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_id?: boolean
-    santri_id?: boolean
-    mentor_id?: boolean
+    classId?: boolean
+    santriId?: boolean
+    mentorId?: boolean
     date?: boolean
     status?: boolean
     notes?: boolean
-    image_url?: boolean
-    created_at?: boolean
+    imageUrl?: boolean
+    createdAt?: boolean
     class?: boolean | ClassDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
     mentor?: boolean | UserDefaultArgs<ExtArgs>
@@ -5453,14 +5462,14 @@ export namespace Prisma {
 
   export type AttendanceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_id?: boolean
-    santri_id?: boolean
-    mentor_id?: boolean
+    classId?: boolean
+    santriId?: boolean
+    mentorId?: boolean
     date?: boolean
     status?: boolean
     notes?: boolean
-    image_url?: boolean
-    created_at?: boolean
+    imageUrl?: boolean
+    createdAt?: boolean
     class?: boolean | ClassDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
     mentor?: boolean | UserDefaultArgs<ExtArgs>
@@ -5468,14 +5477,14 @@ export namespace Prisma {
 
   export type AttendanceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_id?: boolean
-    santri_id?: boolean
-    mentor_id?: boolean
+    classId?: boolean
+    santriId?: boolean
+    mentorId?: boolean
     date?: boolean
     status?: boolean
     notes?: boolean
-    image_url?: boolean
-    created_at?: boolean
+    imageUrl?: boolean
+    createdAt?: boolean
     class?: boolean | ClassDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
     mentor?: boolean | UserDefaultArgs<ExtArgs>
@@ -5483,17 +5492,17 @@ export namespace Prisma {
 
   export type AttendanceSelectScalar = {
     id?: boolean
-    class_id?: boolean
-    santri_id?: boolean
-    mentor_id?: boolean
+    classId?: boolean
+    santriId?: boolean
+    mentorId?: boolean
     date?: boolean
     status?: boolean
     notes?: boolean
-    image_url?: boolean
-    created_at?: boolean
+    imageUrl?: boolean
+    createdAt?: boolean
   }
 
-  export type AttendanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "class_id" | "santri_id" | "mentor_id" | "date" | "status" | "notes" | "image_url" | "created_at", ExtArgs["result"]["attendance"]>
+  export type AttendanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "classId" | "santriId" | "mentorId" | "date" | "status" | "notes" | "imageUrl" | "createdAt", ExtArgs["result"]["attendance"]>
   export type AttendanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     class?: boolean | ClassDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
@@ -5519,14 +5528,14 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      class_id: string
-      santri_id: string
-      mentor_id: string
+      classId: string
+      santriId: string
+      mentorId: string
       date: Date
       status: $Enums.AttendanceStatus
       notes: string | null
-      image_url: string | null
-      created_at: Date
+      imageUrl: string | null
+      createdAt: Date
     }, ExtArgs["result"]["attendance"]>
     composites: {}
   }
@@ -5954,14 +5963,14 @@ export namespace Prisma {
    */
   interface AttendanceFieldRefs {
     readonly id: FieldRef<"Attendance", 'String'>
-    readonly class_id: FieldRef<"Attendance", 'String'>
-    readonly santri_id: FieldRef<"Attendance", 'String'>
-    readonly mentor_id: FieldRef<"Attendance", 'String'>
+    readonly classId: FieldRef<"Attendance", 'String'>
+    readonly santriId: FieldRef<"Attendance", 'String'>
+    readonly mentorId: FieldRef<"Attendance", 'String'>
     readonly date: FieldRef<"Attendance", 'DateTime'>
     readonly status: FieldRef<"Attendance", 'AttendanceStatus'>
     readonly notes: FieldRef<"Attendance", 'String'>
-    readonly image_url: FieldRef<"Attendance", 'String'>
-    readonly created_at: FieldRef<"Attendance", 'DateTime'>
+    readonly imageUrl: FieldRef<"Attendance", 'String'>
+    readonly createdAt: FieldRef<"Attendance", 'DateTime'>
   }
     
 
@@ -6393,52 +6402,52 @@ export namespace Prisma {
 
   export type ClassMinAggregateOutputType = {
     id: string | null
-    division_id: string | null
+    divisiId: string | null
     name: string | null
-    mentor_id: string | null
-    created_at: Date | null
+    mentorId: string | null
+    createdAt: Date | null
   }
 
   export type ClassMaxAggregateOutputType = {
     id: string | null
-    division_id: string | null
+    divisiId: string | null
     name: string | null
-    mentor_id: string | null
-    created_at: Date | null
+    mentorId: string | null
+    createdAt: Date | null
   }
 
   export type ClassCountAggregateOutputType = {
     id: number
-    division_id: number
+    divisiId: number
     name: number
-    mentor_id: number
-    created_at: number
+    mentorId: number
+    createdAt: number
     _all: number
   }
 
 
   export type ClassMinAggregateInputType = {
     id?: true
-    division_id?: true
+    divisiId?: true
     name?: true
-    mentor_id?: true
-    created_at?: true
+    mentorId?: true
+    createdAt?: true
   }
 
   export type ClassMaxAggregateInputType = {
     id?: true
-    division_id?: true
+    divisiId?: true
     name?: true
-    mentor_id?: true
-    created_at?: true
+    mentorId?: true
+    createdAt?: true
   }
 
   export type ClassCountAggregateInputType = {
     id?: true
-    division_id?: true
+    divisiId?: true
     name?: true
-    mentor_id?: true
-    created_at?: true
+    mentorId?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -6516,10 +6525,10 @@ export namespace Prisma {
 
   export type ClassGroupByOutputType = {
     id: string
-    division_id: string
+    divisiId: string
     name: string
-    mentor_id: string
-    created_at: Date
+    mentorId: string
+    createdAt: Date
     _count: ClassCountAggregateOutputType | null
     _min: ClassMinAggregateOutputType | null
     _max: ClassMaxAggregateOutputType | null
@@ -6541,53 +6550,53 @@ export namespace Prisma {
 
   export type ClassSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    division_id?: boolean
+    divisiId?: boolean
     name?: boolean
-    mentor_id?: boolean
-    created_at?: boolean
+    mentorId?: boolean
+    createdAt?: boolean
     division?: boolean | DivisionDefaultArgs<ExtArgs>
     mentor?: boolean | UserDefaultArgs<ExtArgs>
     attendances?: boolean | Class$attendancesArgs<ExtArgs>
     assignments?: boolean | Class$assignmentsArgs<ExtArgs>
-    santri_profiles?: boolean | Class$santri_profilesArgs<ExtArgs>
+    santriProfiles?: boolean | Class$santriProfilesArgs<ExtArgs>
     _count?: boolean | ClassCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["class"]>
 
   export type ClassSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    division_id?: boolean
+    divisiId?: boolean
     name?: boolean
-    mentor_id?: boolean
-    created_at?: boolean
+    mentorId?: boolean
+    createdAt?: boolean
     division?: boolean | DivisionDefaultArgs<ExtArgs>
     mentor?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["class"]>
 
   export type ClassSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    division_id?: boolean
+    divisiId?: boolean
     name?: boolean
-    mentor_id?: boolean
-    created_at?: boolean
+    mentorId?: boolean
+    createdAt?: boolean
     division?: boolean | DivisionDefaultArgs<ExtArgs>
     mentor?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["class"]>
 
   export type ClassSelectScalar = {
     id?: boolean
-    division_id?: boolean
+    divisiId?: boolean
     name?: boolean
-    mentor_id?: boolean
-    created_at?: boolean
+    mentorId?: boolean
+    createdAt?: boolean
   }
 
-  export type ClassOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "division_id" | "name" | "mentor_id" | "created_at", ExtArgs["result"]["class"]>
+  export type ClassOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "divisiId" | "name" | "mentorId" | "createdAt", ExtArgs["result"]["class"]>
   export type ClassInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     division?: boolean | DivisionDefaultArgs<ExtArgs>
     mentor?: boolean | UserDefaultArgs<ExtArgs>
     attendances?: boolean | Class$attendancesArgs<ExtArgs>
     assignments?: boolean | Class$assignmentsArgs<ExtArgs>
-    santri_profiles?: boolean | Class$santri_profilesArgs<ExtArgs>
+    santriProfiles?: boolean | Class$santriProfilesArgs<ExtArgs>
     _count?: boolean | ClassCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ClassIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6606,14 +6615,14 @@ export namespace Prisma {
       mentor: Prisma.$UserPayload<ExtArgs>
       attendances: Prisma.$AttendancePayload<ExtArgs>[]
       assignments: Prisma.$AssignmentPayload<ExtArgs>[]
-      santri_profiles: Prisma.$SantriProfilePayload<ExtArgs>[]
+      santriProfiles: Prisma.$SantriProfilePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      division_id: string
+      divisiId: string
       name: string
-      mentor_id: string
-      created_at: Date
+      mentorId: string
+      createdAt: Date
     }, ExtArgs["result"]["class"]>
     composites: {}
   }
@@ -7012,7 +7021,7 @@ export namespace Prisma {
     mentor<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     attendances<T extends Class$attendancesArgs<ExtArgs> = {}>(args?: Subset<T, Class$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     assignments<T extends Class$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Class$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    santri_profiles<T extends Class$santri_profilesArgs<ExtArgs> = {}>(args?: Subset<T, Class$santri_profilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SantriProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    santriProfiles<T extends Class$santriProfilesArgs<ExtArgs> = {}>(args?: Subset<T, Class$santriProfilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SantriProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7043,10 +7052,10 @@ export namespace Prisma {
    */
   interface ClassFieldRefs {
     readonly id: FieldRef<"Class", 'String'>
-    readonly division_id: FieldRef<"Class", 'String'>
+    readonly divisiId: FieldRef<"Class", 'String'>
     readonly name: FieldRef<"Class", 'String'>
-    readonly mentor_id: FieldRef<"Class", 'String'>
-    readonly created_at: FieldRef<"Class", 'DateTime'>
+    readonly mentorId: FieldRef<"Class", 'String'>
+    readonly createdAt: FieldRef<"Class", 'DateTime'>
   }
     
 
@@ -7496,9 +7505,9 @@ export namespace Prisma {
   }
 
   /**
-   * Class.santri_profiles
+   * Class.santriProfiles
    */
-  export type Class$santri_profilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Class$santriProfilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the SantriProfile
      */
@@ -7552,21 +7561,21 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
-    created_at: Date | null
+    createdAt: Date | null
   }
 
   export type DivisionMaxAggregateOutputType = {
     id: string | null
     name: string | null
     description: string | null
-    created_at: Date | null
+    createdAt: Date | null
   }
 
   export type DivisionCountAggregateOutputType = {
     id: number
     name: number
     description: number
-    created_at: number
+    createdAt: number
     _all: number
   }
 
@@ -7575,21 +7584,21 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    created_at?: true
+    createdAt?: true
   }
 
   export type DivisionMaxAggregateInputType = {
     id?: true
     name?: true
     description?: true
-    created_at?: true
+    createdAt?: true
   }
 
   export type DivisionCountAggregateInputType = {
     id?: true
     name?: true
     description?: true
-    created_at?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -7669,7 +7678,7 @@ export namespace Prisma {
     id: string
     name: string
     description: string | null
-    created_at: Date
+    createdAt: Date
     _count: DivisionCountAggregateOutputType | null
     _min: DivisionMinAggregateOutputType | null
     _max: DivisionMaxAggregateOutputType | null
@@ -7693,7 +7702,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    created_at?: boolean
+    createdAt?: boolean
     classes?: boolean | Division$classesArgs<ExtArgs>
     _count?: boolean | DivisionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["division"]>
@@ -7702,24 +7711,24 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    created_at?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["division"]>
 
   export type DivisionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     description?: boolean
-    created_at?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["division"]>
 
   export type DivisionSelectScalar = {
     id?: boolean
     name?: boolean
     description?: boolean
-    created_at?: boolean
+    createdAt?: boolean
   }
 
-  export type DivisionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "created_at", ExtArgs["result"]["division"]>
+  export type DivisionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "createdAt", ExtArgs["result"]["division"]>
   export type DivisionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     classes?: boolean | Division$classesArgs<ExtArgs>
     _count?: boolean | DivisionCountOutputTypeDefaultArgs<ExtArgs>
@@ -7736,7 +7745,7 @@ export namespace Prisma {
       id: string
       name: string
       description: string | null
-      created_at: Date
+      createdAt: Date
     }, ExtArgs["result"]["division"]>
     composites: {}
   }
@@ -8164,7 +8173,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Division", 'String'>
     readonly name: FieldRef<"Division", 'String'>
     readonly description: FieldRef<"Division", 'String'>
-    readonly created_at: FieldRef<"Division", 'DateTime'>
+    readonly createdAt: FieldRef<"Division", 'DateTime'>
   }
     
 
@@ -8612,64 +8621,70 @@ export namespace Prisma {
 
   export type SantriProfileMinAggregateOutputType = {
     id: string | null
-    user_id: string | null
-    nis: string | null
-    birth_date: Date | null
+    userId: string | null
+    waliId: string | null
+    phone: string | null
+    birthDate: Date | null
     address: string | null
-    photo_url: string | null
-    class_id: string | null
+    photoUrl: string | null
+    classId: string | null
   }
 
   export type SantriProfileMaxAggregateOutputType = {
     id: string | null
-    user_id: string | null
-    nis: string | null
-    birth_date: Date | null
+    userId: string | null
+    waliId: string | null
+    phone: string | null
+    birthDate: Date | null
     address: string | null
-    photo_url: string | null
-    class_id: string | null
+    photoUrl: string | null
+    classId: string | null
   }
 
   export type SantriProfileCountAggregateOutputType = {
     id: number
-    user_id: number
-    nis: number
-    birth_date: number
+    userId: number
+    waliId: number
+    phone: number
+    birthDate: number
     address: number
-    photo_url: number
-    class_id: number
+    photoUrl: number
+    classId: number
     _all: number
   }
 
 
   export type SantriProfileMinAggregateInputType = {
     id?: true
-    user_id?: true
-    nis?: true
-    birth_date?: true
+    userId?: true
+    waliId?: true
+    phone?: true
+    birthDate?: true
     address?: true
-    photo_url?: true
-    class_id?: true
+    photoUrl?: true
+    classId?: true
   }
 
   export type SantriProfileMaxAggregateInputType = {
     id?: true
-    user_id?: true
-    nis?: true
-    birth_date?: true
+    userId?: true
+    waliId?: true
+    phone?: true
+    birthDate?: true
     address?: true
-    photo_url?: true
-    class_id?: true
+    photoUrl?: true
+    classId?: true
   }
 
   export type SantriProfileCountAggregateInputType = {
     id?: true
-    user_id?: true
-    nis?: true
-    birth_date?: true
+    userId?: true
+    waliId?: true
+    phone?: true
+    birthDate?: true
     address?: true
-    photo_url?: true
-    class_id?: true
+    photoUrl?: true
+    classId?: true
     _all?: true
   }
 
@@ -8747,12 +8762,13 @@ export namespace Prisma {
 
   export type SantriProfileGroupByOutputType = {
     id: string
-    user_id: string
-    nis: string
-    birth_date: Date | null
+    userId: string
+    waliId: string | null
+    phone: string | null
+    birthDate: Date | null
     address: string | null
-    photo_url: string | null
-    class_id: string | null
+    photoUrl: string | null
+    classId: string | null
     _count: SantriProfileCountAggregateOutputType | null
     _min: SantriProfileMinAggregateOutputType | null
     _max: SantriProfileMaxAggregateOutputType | null
@@ -8774,61 +8790,71 @@ export namespace Prisma {
 
   export type SantriProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    user_id?: boolean
-    nis?: boolean
-    birth_date?: boolean
+    userId?: boolean
+    waliId?: boolean
+    phone?: boolean
+    birthDate?: boolean
     address?: boolean
-    photo_url?: boolean
-    class_id?: boolean
+    photoUrl?: boolean
+    classId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    wali?: boolean | SantriProfile$waliArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }, ExtArgs["result"]["santriProfile"]>
 
   export type SantriProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    user_id?: boolean
-    nis?: boolean
-    birth_date?: boolean
+    userId?: boolean
+    waliId?: boolean
+    phone?: boolean
+    birthDate?: boolean
     address?: boolean
-    photo_url?: boolean
-    class_id?: boolean
+    photoUrl?: boolean
+    classId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    wali?: boolean | SantriProfile$waliArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }, ExtArgs["result"]["santriProfile"]>
 
   export type SantriProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    user_id?: boolean
-    nis?: boolean
-    birth_date?: boolean
+    userId?: boolean
+    waliId?: boolean
+    phone?: boolean
+    birthDate?: boolean
     address?: boolean
-    photo_url?: boolean
-    class_id?: boolean
+    photoUrl?: boolean
+    classId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    wali?: boolean | SantriProfile$waliArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }, ExtArgs["result"]["santriProfile"]>
 
   export type SantriProfileSelectScalar = {
     id?: boolean
-    user_id?: boolean
-    nis?: boolean
-    birth_date?: boolean
+    userId?: boolean
+    waliId?: boolean
+    phone?: boolean
+    birthDate?: boolean
     address?: boolean
-    photo_url?: boolean
-    class_id?: boolean
+    photoUrl?: boolean
+    classId?: boolean
   }
 
-  export type SantriProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "nis" | "birth_date" | "address" | "photo_url" | "class_id", ExtArgs["result"]["santriProfile"]>
+  export type SantriProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "waliId" | "phone" | "birthDate" | "address" | "photoUrl" | "classId", ExtArgs["result"]["santriProfile"]>
   export type SantriProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    wali?: boolean | SantriProfile$waliArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }
   export type SantriProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    wali?: boolean | SantriProfile$waliArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }
   export type SantriProfileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    wali?: boolean | SantriProfile$waliArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }
 
@@ -8836,16 +8862,18 @@ export namespace Prisma {
     name: "SantriProfile"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      wali: Prisma.$UserPayload<ExtArgs> | null
       class: Prisma.$ClassPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      user_id: string
-      nis: string
-      birth_date: Date | null
+      userId: string
+      waliId: string | null
+      phone: string | null
+      birthDate: Date | null
       address: string | null
-      photo_url: string | null
-      class_id: string | null
+      photoUrl: string | null
+      classId: string | null
     }, ExtArgs["result"]["santriProfile"]>
     composites: {}
   }
@@ -9241,6 +9269,7 @@ export namespace Prisma {
   export interface Prisma__SantriProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    wali<T extends SantriProfile$waliArgs<ExtArgs> = {}>(args?: Subset<T, SantriProfile$waliArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     class<T extends SantriProfile$classArgs<ExtArgs> = {}>(args?: Subset<T, SantriProfile$classArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9272,12 +9301,13 @@ export namespace Prisma {
    */
   interface SantriProfileFieldRefs {
     readonly id: FieldRef<"SantriProfile", 'String'>
-    readonly user_id: FieldRef<"SantriProfile", 'String'>
-    readonly nis: FieldRef<"SantriProfile", 'String'>
-    readonly birth_date: FieldRef<"SantriProfile", 'DateTime'>
+    readonly userId: FieldRef<"SantriProfile", 'String'>
+    readonly waliId: FieldRef<"SantriProfile", 'String'>
+    readonly phone: FieldRef<"SantriProfile", 'String'>
+    readonly birthDate: FieldRef<"SantriProfile", 'DateTime'>
     readonly address: FieldRef<"SantriProfile", 'String'>
-    readonly photo_url: FieldRef<"SantriProfile", 'String'>
-    readonly class_id: FieldRef<"SantriProfile", 'String'>
+    readonly photoUrl: FieldRef<"SantriProfile", 'String'>
+    readonly classId: FieldRef<"SantriProfile", 'String'>
   }
     
 
@@ -9679,6 +9709,25 @@ export namespace Prisma {
   }
 
   /**
+   * SantriProfile.wali
+   */
+  export type SantriProfile$waliArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
    * SantriProfile.class
    */
   export type SantriProfile$classArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9728,70 +9777,76 @@ export namespace Prisma {
 
   export type UserMinAggregateOutputType = {
     id: string | null
-    full_name: string | null
+    nis: string | null
+    fullName: string | null
     email: string | null
     password: string | null
     phone: string | null
     role: $Enums.Role | null
-    is_active: boolean | null
-    created_at: Date | null
+    isActive: boolean | null
+    createdAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: string | null
-    full_name: string | null
+    nis: string | null
+    fullName: string | null
     email: string | null
     password: string | null
     phone: string | null
     role: $Enums.Role | null
-    is_active: boolean | null
-    created_at: Date | null
+    isActive: boolean | null
+    createdAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
-    full_name: number
+    nis: number
+    fullName: number
     email: number
     password: number
     phone: number
     role: number
-    is_active: number
-    created_at: number
+    isActive: number
+    createdAt: number
     _all: number
   }
 
 
   export type UserMinAggregateInputType = {
     id?: true
-    full_name?: true
+    nis?: true
+    fullName?: true
     email?: true
     password?: true
     phone?: true
     role?: true
-    is_active?: true
-    created_at?: true
+    isActive?: true
+    createdAt?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
-    full_name?: true
+    nis?: true
+    fullName?: true
     email?: true
     password?: true
     phone?: true
     role?: true
-    is_active?: true
-    created_at?: true
+    isActive?: true
+    createdAt?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
-    full_name?: true
+    nis?: true
+    fullName?: true
     email?: true
     password?: true
     phone?: true
     role?: true
-    is_active?: true
-    created_at?: true
+    isActive?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -9869,13 +9924,14 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: string
-    full_name: string
+    nis: string | null
+    fullName: string
     email: string
     password: string
     phone: string | null
     role: $Enums.Role
-    is_active: boolean
-    created_at: Date
+    isActive: boolean
+    createdAt: Date
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -9897,69 +9953,75 @@ export namespace Prisma {
 
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    full_name?: boolean
+    nis?: boolean
+    fullName?: boolean
     email?: boolean
     password?: boolean
     phone?: boolean
     role?: boolean
-    is_active?: boolean
-    created_at?: boolean
+    isActive?: boolean
+    createdAt?: boolean
     verifications?: boolean | User$verificationsArgs<ExtArgs>
-    santri_profile?: boolean | User$santri_profileArgs<ExtArgs>
-    mentor_classes?: boolean | User$mentor_classesArgs<ExtArgs>
-    mentor_attendances?: boolean | User$mentor_attendancesArgs<ExtArgs>
-    santri_attendances?: boolean | User$santri_attendancesArgs<ExtArgs>
-    mentor_assignments?: boolean | User$mentor_assignmentsArgs<ExtArgs>
-    santri_submissions?: boolean | User$santri_submissionsArgs<ExtArgs>
-    wali_relations?: boolean | User$wali_relationsArgs<ExtArgs>
-    santri_relations?: boolean | User$santri_relationsArgs<ExtArgs>
+    santriProfile?: boolean | User$santriProfileArgs<ExtArgs>
+    mentorClasses?: boolean | User$mentorClassesArgs<ExtArgs>
+    mentorAttendances?: boolean | User$mentorAttendancesArgs<ExtArgs>
+    santriAttendances?: boolean | User$santriAttendancesArgs<ExtArgs>
+    mentorAssignments?: boolean | User$mentorAssignmentsArgs<ExtArgs>
+    santriSubmissions?: boolean | User$santriSubmissionsArgs<ExtArgs>
+    waliRelations?: boolean | User$waliRelationsArgs<ExtArgs>
+    santriRelations?: boolean | User$santriRelationsArgs<ExtArgs>
+    santriUnderWali?: boolean | User$santriUnderWaliArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    full_name?: boolean
+    nis?: boolean
+    fullName?: boolean
     email?: boolean
     password?: boolean
     phone?: boolean
     role?: boolean
-    is_active?: boolean
-    created_at?: boolean
+    isActive?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    full_name?: boolean
+    nis?: boolean
+    fullName?: boolean
     email?: boolean
     password?: boolean
     phone?: boolean
     role?: boolean
-    is_active?: boolean
-    created_at?: boolean
+    isActive?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
-    full_name?: boolean
+    nis?: boolean
+    fullName?: boolean
     email?: boolean
     password?: boolean
     phone?: boolean
     role?: boolean
-    is_active?: boolean
-    created_at?: boolean
+    isActive?: boolean
+    createdAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "full_name" | "email" | "password" | "phone" | "role" | "is_active" | "created_at", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nis" | "fullName" | "email" | "password" | "phone" | "role" | "isActive" | "createdAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     verifications?: boolean | User$verificationsArgs<ExtArgs>
-    santri_profile?: boolean | User$santri_profileArgs<ExtArgs>
-    mentor_classes?: boolean | User$mentor_classesArgs<ExtArgs>
-    mentor_attendances?: boolean | User$mentor_attendancesArgs<ExtArgs>
-    santri_attendances?: boolean | User$santri_attendancesArgs<ExtArgs>
-    mentor_assignments?: boolean | User$mentor_assignmentsArgs<ExtArgs>
-    santri_submissions?: boolean | User$santri_submissionsArgs<ExtArgs>
-    wali_relations?: boolean | User$wali_relationsArgs<ExtArgs>
-    santri_relations?: boolean | User$santri_relationsArgs<ExtArgs>
+    santriProfile?: boolean | User$santriProfileArgs<ExtArgs>
+    mentorClasses?: boolean | User$mentorClassesArgs<ExtArgs>
+    mentorAttendances?: boolean | User$mentorAttendancesArgs<ExtArgs>
+    santriAttendances?: boolean | User$santriAttendancesArgs<ExtArgs>
+    mentorAssignments?: boolean | User$mentorAssignmentsArgs<ExtArgs>
+    santriSubmissions?: boolean | User$santriSubmissionsArgs<ExtArgs>
+    waliRelations?: boolean | User$waliRelationsArgs<ExtArgs>
+    santriRelations?: boolean | User$santriRelationsArgs<ExtArgs>
+    santriUnderWali?: boolean | User$santriUnderWaliArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -9969,24 +10031,26 @@ export namespace Prisma {
     name: "User"
     objects: {
       verifications: Prisma.$VerificationPayload<ExtArgs>[]
-      santri_profile: Prisma.$SantriProfilePayload<ExtArgs> | null
-      mentor_classes: Prisma.$ClassPayload<ExtArgs>[]
-      mentor_attendances: Prisma.$AttendancePayload<ExtArgs>[]
-      santri_attendances: Prisma.$AttendancePayload<ExtArgs>[]
-      mentor_assignments: Prisma.$AssignmentPayload<ExtArgs>[]
-      santri_submissions: Prisma.$AssignmentContentPayload<ExtArgs>[]
-      wali_relations: Prisma.$WaliSantriRelationPayload<ExtArgs>[]
-      santri_relations: Prisma.$WaliSantriRelationPayload<ExtArgs>[]
+      santriProfile: Prisma.$SantriProfilePayload<ExtArgs> | null
+      mentorClasses: Prisma.$ClassPayload<ExtArgs>[]
+      mentorAttendances: Prisma.$AttendancePayload<ExtArgs>[]
+      santriAttendances: Prisma.$AttendancePayload<ExtArgs>[]
+      mentorAssignments: Prisma.$AssignmentPayload<ExtArgs>[]
+      santriSubmissions: Prisma.$AssignmentContentPayload<ExtArgs>[]
+      waliRelations: Prisma.$WaliSantriRelationPayload<ExtArgs>[]
+      santriRelations: Prisma.$WaliSantriRelationPayload<ExtArgs>[]
+      santriUnderWali: Prisma.$SantriProfilePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      full_name: string
+      nis: string | null
+      fullName: string
       email: string
       password: string
       phone: string | null
       role: $Enums.Role
-      is_active: boolean
-      created_at: Date
+      isActive: boolean
+      createdAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -10382,14 +10446,15 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     verifications<T extends User$verificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$verificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    santri_profile<T extends User$santri_profileArgs<ExtArgs> = {}>(args?: Subset<T, User$santri_profileArgs<ExtArgs>>): Prisma__SantriProfileClient<$Result.GetResult<Prisma.$SantriProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    mentor_classes<T extends User$mentor_classesArgs<ExtArgs> = {}>(args?: Subset<T, User$mentor_classesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    mentor_attendances<T extends User$mentor_attendancesArgs<ExtArgs> = {}>(args?: Subset<T, User$mentor_attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    santri_attendances<T extends User$santri_attendancesArgs<ExtArgs> = {}>(args?: Subset<T, User$santri_attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    mentor_assignments<T extends User$mentor_assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, User$mentor_assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    santri_submissions<T extends User$santri_submissionsArgs<ExtArgs> = {}>(args?: Subset<T, User$santri_submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    wali_relations<T extends User$wali_relationsArgs<ExtArgs> = {}>(args?: Subset<T, User$wali_relationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaliSantriRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    santri_relations<T extends User$santri_relationsArgs<ExtArgs> = {}>(args?: Subset<T, User$santri_relationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaliSantriRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    santriProfile<T extends User$santriProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$santriProfileArgs<ExtArgs>>): Prisma__SantriProfileClient<$Result.GetResult<Prisma.$SantriProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    mentorClasses<T extends User$mentorClassesArgs<ExtArgs> = {}>(args?: Subset<T, User$mentorClassesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    mentorAttendances<T extends User$mentorAttendancesArgs<ExtArgs> = {}>(args?: Subset<T, User$mentorAttendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    santriAttendances<T extends User$santriAttendancesArgs<ExtArgs> = {}>(args?: Subset<T, User$santriAttendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    mentorAssignments<T extends User$mentorAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, User$mentorAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    santriSubmissions<T extends User$santriSubmissionsArgs<ExtArgs> = {}>(args?: Subset<T, User$santriSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    waliRelations<T extends User$waliRelationsArgs<ExtArgs> = {}>(args?: Subset<T, User$waliRelationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaliSantriRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    santriRelations<T extends User$santriRelationsArgs<ExtArgs> = {}>(args?: Subset<T, User$santriRelationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaliSantriRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    santriUnderWali<T extends User$santriUnderWaliArgs<ExtArgs> = {}>(args?: Subset<T, User$santriUnderWaliArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SantriProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10420,13 +10485,14 @@ export namespace Prisma {
    */
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
-    readonly full_name: FieldRef<"User", 'String'>
+    readonly nis: FieldRef<"User", 'String'>
+    readonly fullName: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly phone: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'Role'>
-    readonly is_active: FieldRef<"User", 'Boolean'>
-    readonly created_at: FieldRef<"User", 'DateTime'>
+    readonly isActive: FieldRef<"User", 'Boolean'>
+    readonly createdAt: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -10844,9 +10910,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.santri_profile
+   * User.santriProfile
    */
-  export type User$santri_profileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$santriProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the SantriProfile
      */
@@ -10863,9 +10929,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.mentor_classes
+   * User.mentorClasses
    */
-  export type User$mentor_classesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$mentorClassesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Class
      */
@@ -10887,9 +10953,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.mentor_attendances
+   * User.mentorAttendances
    */
-  export type User$mentor_attendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$mentorAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Attendance
      */
@@ -10911,9 +10977,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.santri_attendances
+   * User.santriAttendances
    */
-  export type User$santri_attendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$santriAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Attendance
      */
@@ -10935,9 +11001,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.mentor_assignments
+   * User.mentorAssignments
    */
-  export type User$mentor_assignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$mentorAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Assignment
      */
@@ -10959,9 +11025,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.santri_submissions
+   * User.santriSubmissions
    */
-  export type User$santri_submissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$santriSubmissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the AssignmentContent
      */
@@ -10983,9 +11049,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.wali_relations
+   * User.waliRelations
    */
-  export type User$wali_relationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$waliRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the WaliSantriRelation
      */
@@ -11007,9 +11073,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.santri_relations
+   * User.santriRelations
    */
-  export type User$santri_relationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$santriRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the WaliSantriRelation
      */
@@ -11028,6 +11094,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: WaliSantriRelationScalarFieldEnum | WaliSantriRelationScalarFieldEnum[]
+  }
+
+  /**
+   * User.santriUnderWali
+   */
+  export type User$santriUnderWaliArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SantriProfile
+     */
+    select?: SantriProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SantriProfile
+     */
+    omit?: SantriProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SantriProfileInclude<ExtArgs> | null
+    where?: SantriProfileWhereInput
+    orderBy?: SantriProfileOrderByWithRelationInput | SantriProfileOrderByWithRelationInput[]
+    cursor?: SantriProfileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SantriProfileScalarFieldEnum | SantriProfileScalarFieldEnum[]
   }
 
   /**
@@ -11061,46 +11151,76 @@ export namespace Prisma {
 
   export type WaliSantriRelationMinAggregateOutputType = {
     id: string | null
-    wali_id: string | null
-    santri_id: string | null
+    waliId: string | null
+    santriId: string | null
+    name: string | null
+    phone: string | null
+    photoUrl: string | null
     category: $Enums.WaliSantriCategory | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type WaliSantriRelationMaxAggregateOutputType = {
     id: string | null
-    wali_id: string | null
-    santri_id: string | null
+    waliId: string | null
+    santriId: string | null
+    name: string | null
+    phone: string | null
+    photoUrl: string | null
     category: $Enums.WaliSantriCategory | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type WaliSantriRelationCountAggregateOutputType = {
     id: number
-    wali_id: number
-    santri_id: number
+    waliId: number
+    santriId: number
+    name: number
+    phone: number
+    photoUrl: number
     category: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
   export type WaliSantriRelationMinAggregateInputType = {
     id?: true
-    wali_id?: true
-    santri_id?: true
+    waliId?: true
+    santriId?: true
+    name?: true
+    phone?: true
+    photoUrl?: true
     category?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type WaliSantriRelationMaxAggregateInputType = {
     id?: true
-    wali_id?: true
-    santri_id?: true
+    waliId?: true
+    santriId?: true
+    name?: true
+    phone?: true
+    photoUrl?: true
     category?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type WaliSantriRelationCountAggregateInputType = {
     id?: true
-    wali_id?: true
-    santri_id?: true
+    waliId?: true
+    santriId?: true
+    name?: true
+    phone?: true
+    photoUrl?: true
     category?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -11178,9 +11298,14 @@ export namespace Prisma {
 
   export type WaliSantriRelationGroupByOutputType = {
     id: string
-    wali_id: string
-    santri_id: string
+    waliId: string
+    santriId: string
+    name: string | null
+    phone: string | null
+    photoUrl: string | null
     category: $Enums.WaliSantriCategory
+    createdAt: Date
+    updatedAt: Date
     _count: WaliSantriRelationCountAggregateOutputType | null
     _min: WaliSantriRelationMinAggregateOutputType | null
     _max: WaliSantriRelationMaxAggregateOutputType | null
@@ -11202,39 +11327,59 @@ export namespace Prisma {
 
   export type WaliSantriRelationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    wali_id?: boolean
-    santri_id?: boolean
+    waliId?: boolean
+    santriId?: boolean
+    name?: boolean
+    phone?: boolean
+    photoUrl?: boolean
     category?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     wali?: boolean | UserDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["waliSantriRelation"]>
 
   export type WaliSantriRelationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    wali_id?: boolean
-    santri_id?: boolean
+    waliId?: boolean
+    santriId?: boolean
+    name?: boolean
+    phone?: boolean
+    photoUrl?: boolean
     category?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     wali?: boolean | UserDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["waliSantriRelation"]>
 
   export type WaliSantriRelationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    wali_id?: boolean
-    santri_id?: boolean
+    waliId?: boolean
+    santriId?: boolean
+    name?: boolean
+    phone?: boolean
+    photoUrl?: boolean
     category?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     wali?: boolean | UserDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["waliSantriRelation"]>
 
   export type WaliSantriRelationSelectScalar = {
     id?: boolean
-    wali_id?: boolean
-    santri_id?: boolean
+    waliId?: boolean
+    santriId?: boolean
+    name?: boolean
+    phone?: boolean
+    photoUrl?: boolean
     category?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type WaliSantriRelationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "wali_id" | "santri_id" | "category", ExtArgs["result"]["waliSantriRelation"]>
+  export type WaliSantriRelationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "waliId" | "santriId" | "name" | "phone" | "photoUrl" | "category" | "createdAt" | "updatedAt", ExtArgs["result"]["waliSantriRelation"]>
   export type WaliSantriRelationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     wali?: boolean | UserDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
@@ -11256,9 +11401,14 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      wali_id: string
-      santri_id: string
+      waliId: string
+      santriId: string
+      name: string | null
+      phone: string | null
+      photoUrl: string | null
       category: $Enums.WaliSantriCategory
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["waliSantriRelation"]>
     composites: {}
   }
@@ -11685,9 +11835,14 @@ export namespace Prisma {
    */
   interface WaliSantriRelationFieldRefs {
     readonly id: FieldRef<"WaliSantriRelation", 'String'>
-    readonly wali_id: FieldRef<"WaliSantriRelation", 'String'>
-    readonly santri_id: FieldRef<"WaliSantriRelation", 'String'>
+    readonly waliId: FieldRef<"WaliSantriRelation", 'String'>
+    readonly santriId: FieldRef<"WaliSantriRelation", 'String'>
+    readonly name: FieldRef<"WaliSantriRelation", 'String'>
+    readonly phone: FieldRef<"WaliSantriRelation", 'String'>
+    readonly photoUrl: FieldRef<"WaliSantriRelation", 'String'>
     readonly category: FieldRef<"WaliSantriRelation", 'WaliSantriCategory'>
+    readonly createdAt: FieldRef<"WaliSantriRelation", 'DateTime'>
+    readonly updatedAt: FieldRef<"WaliSantriRelation", 'DateTime'>
   }
     
 
@@ -12134,14 +12289,14 @@ export namespace Prisma {
 
   export const AssignmentScalarFieldEnum: {
     id: 'id',
-    class_id: 'class_id',
-    mentor_id: 'mentor_id',
+    classId: 'classId',
+    mentorId: 'mentorId',
     title: 'title',
     description: 'description',
-    submission_type: 'submission_type',
-    attachment_url: 'attachment_url',
+    submissionType: 'submissionType',
+    attachmentUrl: 'attachmentUrl',
     due_date: 'due_date',
-    created_at: 'created_at'
+    createdAt: 'createdAt'
   };
 
   export type AssignmentScalarFieldEnum = (typeof AssignmentScalarFieldEnum)[keyof typeof AssignmentScalarFieldEnum]
@@ -12149,14 +12304,14 @@ export namespace Prisma {
 
   export const AssignmentContentScalarFieldEnum: {
     id: 'id',
-    assignment_id: 'assignment_id',
-    santri_id: 'santri_id',
-    content_type: 'content_type',
-    file_url: 'file_url',
+    assignmentId: 'assignmentId',
+    santriId: 'santriId',
+    contentType: 'contentType',
+    fileUrl: 'fileUrl',
     score: 'score',
-    mentor_feedback: 'mentor_feedback',
+    mentorFeedback: 'mentorFeedback',
     status: 'status',
-    submitted_at: 'submitted_at'
+    submittedAt: 'submittedAt'
   };
 
   export type AssignmentContentScalarFieldEnum = (typeof AssignmentContentScalarFieldEnum)[keyof typeof AssignmentContentScalarFieldEnum]
@@ -12164,14 +12319,14 @@ export namespace Prisma {
 
   export const AttendanceScalarFieldEnum: {
     id: 'id',
-    class_id: 'class_id',
-    santri_id: 'santri_id',
-    mentor_id: 'mentor_id',
+    classId: 'classId',
+    santriId: 'santriId',
+    mentorId: 'mentorId',
     date: 'date',
     status: 'status',
     notes: 'notes',
-    image_url: 'image_url',
-    created_at: 'created_at'
+    imageUrl: 'imageUrl',
+    createdAt: 'createdAt'
   };
 
   export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
@@ -12179,10 +12334,10 @@ export namespace Prisma {
 
   export const ClassScalarFieldEnum: {
     id: 'id',
-    division_id: 'division_id',
+    divisiId: 'divisiId',
     name: 'name',
-    mentor_id: 'mentor_id',
-    created_at: 'created_at'
+    mentorId: 'mentorId',
+    createdAt: 'createdAt'
   };
 
   export type ClassScalarFieldEnum = (typeof ClassScalarFieldEnum)[keyof typeof ClassScalarFieldEnum]
@@ -12192,7 +12347,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     description: 'description',
-    created_at: 'created_at'
+    createdAt: 'createdAt'
   };
 
   export type DivisionScalarFieldEnum = (typeof DivisionScalarFieldEnum)[keyof typeof DivisionScalarFieldEnum]
@@ -12200,12 +12355,13 @@ export namespace Prisma {
 
   export const SantriProfileScalarFieldEnum: {
     id: 'id',
-    user_id: 'user_id',
-    nis: 'nis',
-    birth_date: 'birth_date',
+    userId: 'userId',
+    waliId: 'waliId',
+    phone: 'phone',
+    birthDate: 'birthDate',
     address: 'address',
-    photo_url: 'photo_url',
-    class_id: 'class_id'
+    photoUrl: 'photoUrl',
+    classId: 'classId'
   };
 
   export type SantriProfileScalarFieldEnum = (typeof SantriProfileScalarFieldEnum)[keyof typeof SantriProfileScalarFieldEnum]
@@ -12213,13 +12369,14 @@ export namespace Prisma {
 
   export const UserScalarFieldEnum: {
     id: 'id',
-    full_name: 'full_name',
+    nis: 'nis',
+    fullName: 'fullName',
     email: 'email',
     password: 'password',
     phone: 'phone',
     role: 'role',
-    is_active: 'is_active',
-    created_at: 'created_at'
+    isActive: 'isActive',
+    createdAt: 'createdAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -12227,9 +12384,14 @@ export namespace Prisma {
 
   export const WaliSantriRelationScalarFieldEnum: {
     id: 'id',
-    wali_id: 'wali_id',
-    santri_id: 'santri_id',
-    category: 'category'
+    waliId: 'waliId',
+    santriId: 'santriId',
+    name: 'name',
+    phone: 'phone',
+    photoUrl: 'photoUrl',
+    category: 'category',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type WaliSantriRelationScalarFieldEnum = (typeof WaliSantriRelationScalarFieldEnum)[keyof typeof WaliSantriRelationScalarFieldEnum]
@@ -12475,14 +12637,14 @@ export namespace Prisma {
     OR?: AssignmentWhereInput[]
     NOT?: AssignmentWhereInput | AssignmentWhereInput[]
     id?: StringFilter<"Assignment"> | string
-    class_id?: StringFilter<"Assignment"> | string
-    mentor_id?: StringFilter<"Assignment"> | string
+    classId?: StringFilter<"Assignment"> | string
+    mentorId?: StringFilter<"Assignment"> | string
     title?: StringFilter<"Assignment"> | string
     description?: StringNullableFilter<"Assignment"> | string | null
-    submission_type?: EnumSubmissionTypeFilter<"Assignment"> | $Enums.SubmissionType
-    attachment_url?: StringNullableFilter<"Assignment"> | string | null
+    submissionType?: EnumSubmissionTypeFilter<"Assignment"> | $Enums.SubmissionType
+    attachmentUrl?: StringNullableFilter<"Assignment"> | string | null
     due_date?: DateTimeFilter<"Assignment"> | Date | string
-    created_at?: DateTimeFilter<"Assignment"> | Date | string
+    createdAt?: DateTimeFilter<"Assignment"> | Date | string
     class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
     mentor?: XOR<UserScalarRelationFilter, UserWhereInput>
     submissions?: AssignmentContentListRelationFilter
@@ -12490,14 +12652,14 @@ export namespace Prisma {
 
   export type AssignmentOrderByWithRelationInput = {
     id?: SortOrder
-    class_id?: SortOrder
-    mentor_id?: SortOrder
+    classId?: SortOrder
+    mentorId?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    submission_type?: SortOrder
-    attachment_url?: SortOrderInput | SortOrder
+    submissionType?: SortOrder
+    attachmentUrl?: SortOrderInput | SortOrder
     due_date?: SortOrder
-    created_at?: SortOrder
+    createdAt?: SortOrder
     class?: ClassOrderByWithRelationInput
     mentor?: UserOrderByWithRelationInput
     submissions?: AssignmentContentOrderByRelationAggregateInput
@@ -12508,14 +12670,14 @@ export namespace Prisma {
     AND?: AssignmentWhereInput | AssignmentWhereInput[]
     OR?: AssignmentWhereInput[]
     NOT?: AssignmentWhereInput | AssignmentWhereInput[]
-    class_id?: StringFilter<"Assignment"> | string
-    mentor_id?: StringFilter<"Assignment"> | string
+    classId?: StringFilter<"Assignment"> | string
+    mentorId?: StringFilter<"Assignment"> | string
     title?: StringFilter<"Assignment"> | string
     description?: StringNullableFilter<"Assignment"> | string | null
-    submission_type?: EnumSubmissionTypeFilter<"Assignment"> | $Enums.SubmissionType
-    attachment_url?: StringNullableFilter<"Assignment"> | string | null
+    submissionType?: EnumSubmissionTypeFilter<"Assignment"> | $Enums.SubmissionType
+    attachmentUrl?: StringNullableFilter<"Assignment"> | string | null
     due_date?: DateTimeFilter<"Assignment"> | Date | string
-    created_at?: DateTimeFilter<"Assignment"> | Date | string
+    createdAt?: DateTimeFilter<"Assignment"> | Date | string
     class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
     mentor?: XOR<UserScalarRelationFilter, UserWhereInput>
     submissions?: AssignmentContentListRelationFilter
@@ -12523,14 +12685,14 @@ export namespace Prisma {
 
   export type AssignmentOrderByWithAggregationInput = {
     id?: SortOrder
-    class_id?: SortOrder
-    mentor_id?: SortOrder
+    classId?: SortOrder
+    mentorId?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    submission_type?: SortOrder
-    attachment_url?: SortOrderInput | SortOrder
+    submissionType?: SortOrder
+    attachmentUrl?: SortOrderInput | SortOrder
     due_date?: SortOrder
-    created_at?: SortOrder
+    createdAt?: SortOrder
     _count?: AssignmentCountOrderByAggregateInput
     _max?: AssignmentMaxOrderByAggregateInput
     _min?: AssignmentMinOrderByAggregateInput
@@ -12541,14 +12703,14 @@ export namespace Prisma {
     OR?: AssignmentScalarWhereWithAggregatesInput[]
     NOT?: AssignmentScalarWhereWithAggregatesInput | AssignmentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Assignment"> | string
-    class_id?: StringWithAggregatesFilter<"Assignment"> | string
-    mentor_id?: StringWithAggregatesFilter<"Assignment"> | string
+    classId?: StringWithAggregatesFilter<"Assignment"> | string
+    mentorId?: StringWithAggregatesFilter<"Assignment"> | string
     title?: StringWithAggregatesFilter<"Assignment"> | string
     description?: StringNullableWithAggregatesFilter<"Assignment"> | string | null
-    submission_type?: EnumSubmissionTypeWithAggregatesFilter<"Assignment"> | $Enums.SubmissionType
-    attachment_url?: StringNullableWithAggregatesFilter<"Assignment"> | string | null
+    submissionType?: EnumSubmissionTypeWithAggregatesFilter<"Assignment"> | $Enums.SubmissionType
+    attachmentUrl?: StringNullableWithAggregatesFilter<"Assignment"> | string | null
     due_date?: DateTimeWithAggregatesFilter<"Assignment"> | Date | string
-    created_at?: DateTimeWithAggregatesFilter<"Assignment"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Assignment"> | Date | string
   }
 
   export type AssignmentContentWhereInput = {
@@ -12556,60 +12718,60 @@ export namespace Prisma {
     OR?: AssignmentContentWhereInput[]
     NOT?: AssignmentContentWhereInput | AssignmentContentWhereInput[]
     id?: StringFilter<"AssignmentContent"> | string
-    assignment_id?: StringFilter<"AssignmentContent"> | string
-    santri_id?: StringFilter<"AssignmentContent"> | string
-    content_type?: EnumContentTypeFilter<"AssignmentContent"> | $Enums.ContentType
-    file_url?: StringNullableListFilter<"AssignmentContent">
+    assignmentId?: StringFilter<"AssignmentContent"> | string
+    santriId?: StringFilter<"AssignmentContent"> | string
+    contentType?: EnumContentTypeFilter<"AssignmentContent"> | $Enums.ContentType
+    fileUrl?: StringNullableListFilter<"AssignmentContent">
     score?: IntNullableFilter<"AssignmentContent"> | number | null
-    mentor_feedback?: StringNullableFilter<"AssignmentContent"> | string | null
+    mentorFeedback?: StringNullableFilter<"AssignmentContent"> | string | null
     status?: EnumGradingStatusFilter<"AssignmentContent"> | $Enums.GradingStatus
-    submitted_at?: DateTimeFilter<"AssignmentContent"> | Date | string
+    submittedAt?: DateTimeFilter<"AssignmentContent"> | Date | string
     assignment?: XOR<AssignmentScalarRelationFilter, AssignmentWhereInput>
     santri?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type AssignmentContentOrderByWithRelationInput = {
     id?: SortOrder
-    assignment_id?: SortOrder
-    santri_id?: SortOrder
-    content_type?: SortOrder
-    file_url?: SortOrder
+    assignmentId?: SortOrder
+    santriId?: SortOrder
+    contentType?: SortOrder
+    fileUrl?: SortOrder
     score?: SortOrderInput | SortOrder
-    mentor_feedback?: SortOrderInput | SortOrder
+    mentorFeedback?: SortOrderInput | SortOrder
     status?: SortOrder
-    submitted_at?: SortOrder
+    submittedAt?: SortOrder
     assignment?: AssignmentOrderByWithRelationInput
     santri?: UserOrderByWithRelationInput
   }
 
   export type AssignmentContentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    assignment_id_santri_id?: AssignmentContentAssignment_idSantri_idCompoundUniqueInput
+    assignmentId_santriId?: AssignmentContentAssignmentIdSantriIdCompoundUniqueInput
     AND?: AssignmentContentWhereInput | AssignmentContentWhereInput[]
     OR?: AssignmentContentWhereInput[]
     NOT?: AssignmentContentWhereInput | AssignmentContentWhereInput[]
-    assignment_id?: StringFilter<"AssignmentContent"> | string
-    santri_id?: StringFilter<"AssignmentContent"> | string
-    content_type?: EnumContentTypeFilter<"AssignmentContent"> | $Enums.ContentType
-    file_url?: StringNullableListFilter<"AssignmentContent">
+    assignmentId?: StringFilter<"AssignmentContent"> | string
+    santriId?: StringFilter<"AssignmentContent"> | string
+    contentType?: EnumContentTypeFilter<"AssignmentContent"> | $Enums.ContentType
+    fileUrl?: StringNullableListFilter<"AssignmentContent">
     score?: IntNullableFilter<"AssignmentContent"> | number | null
-    mentor_feedback?: StringNullableFilter<"AssignmentContent"> | string | null
+    mentorFeedback?: StringNullableFilter<"AssignmentContent"> | string | null
     status?: EnumGradingStatusFilter<"AssignmentContent"> | $Enums.GradingStatus
-    submitted_at?: DateTimeFilter<"AssignmentContent"> | Date | string
+    submittedAt?: DateTimeFilter<"AssignmentContent"> | Date | string
     assignment?: XOR<AssignmentScalarRelationFilter, AssignmentWhereInput>
     santri?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "assignment_id_santri_id">
+  }, "id" | "assignmentId_santriId">
 
   export type AssignmentContentOrderByWithAggregationInput = {
     id?: SortOrder
-    assignment_id?: SortOrder
-    santri_id?: SortOrder
-    content_type?: SortOrder
-    file_url?: SortOrder
+    assignmentId?: SortOrder
+    santriId?: SortOrder
+    contentType?: SortOrder
+    fileUrl?: SortOrder
     score?: SortOrderInput | SortOrder
-    mentor_feedback?: SortOrderInput | SortOrder
+    mentorFeedback?: SortOrderInput | SortOrder
     status?: SortOrder
-    submitted_at?: SortOrder
+    submittedAt?: SortOrder
     _count?: AssignmentContentCountOrderByAggregateInput
     _avg?: AssignmentContentAvgOrderByAggregateInput
     _max?: AssignmentContentMaxOrderByAggregateInput
@@ -12622,14 +12784,14 @@ export namespace Prisma {
     OR?: AssignmentContentScalarWhereWithAggregatesInput[]
     NOT?: AssignmentContentScalarWhereWithAggregatesInput | AssignmentContentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"AssignmentContent"> | string
-    assignment_id?: StringWithAggregatesFilter<"AssignmentContent"> | string
-    santri_id?: StringWithAggregatesFilter<"AssignmentContent"> | string
-    content_type?: EnumContentTypeWithAggregatesFilter<"AssignmentContent"> | $Enums.ContentType
-    file_url?: StringNullableListFilter<"AssignmentContent">
+    assignmentId?: StringWithAggregatesFilter<"AssignmentContent"> | string
+    santriId?: StringWithAggregatesFilter<"AssignmentContent"> | string
+    contentType?: EnumContentTypeWithAggregatesFilter<"AssignmentContent"> | $Enums.ContentType
+    fileUrl?: StringNullableListFilter<"AssignmentContent">
     score?: IntNullableWithAggregatesFilter<"AssignmentContent"> | number | null
-    mentor_feedback?: StringNullableWithAggregatesFilter<"AssignmentContent"> | string | null
+    mentorFeedback?: StringNullableWithAggregatesFilter<"AssignmentContent"> | string | null
     status?: EnumGradingStatusWithAggregatesFilter<"AssignmentContent"> | $Enums.GradingStatus
-    submitted_at?: DateTimeWithAggregatesFilter<"AssignmentContent"> | Date | string
+    submittedAt?: DateTimeWithAggregatesFilter<"AssignmentContent"> | Date | string
   }
 
   export type AttendanceWhereInput = {
@@ -12637,14 +12799,14 @@ export namespace Prisma {
     OR?: AttendanceWhereInput[]
     NOT?: AttendanceWhereInput | AttendanceWhereInput[]
     id?: StringFilter<"Attendance"> | string
-    class_id?: StringFilter<"Attendance"> | string
-    santri_id?: StringFilter<"Attendance"> | string
-    mentor_id?: StringFilter<"Attendance"> | string
+    classId?: StringFilter<"Attendance"> | string
+    santriId?: StringFilter<"Attendance"> | string
+    mentorId?: StringFilter<"Attendance"> | string
     date?: DateTimeFilter<"Attendance"> | Date | string
     status?: EnumAttendanceStatusFilter<"Attendance"> | $Enums.AttendanceStatus
     notes?: StringNullableFilter<"Attendance"> | string | null
-    image_url?: StringNullableFilter<"Attendance"> | string | null
-    created_at?: DateTimeFilter<"Attendance"> | Date | string
+    imageUrl?: StringNullableFilter<"Attendance"> | string | null
+    createdAt?: DateTimeFilter<"Attendance"> | Date | string
     class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
     santri?: XOR<UserScalarRelationFilter, UserWhereInput>
     mentor?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -12652,14 +12814,14 @@ export namespace Prisma {
 
   export type AttendanceOrderByWithRelationInput = {
     id?: SortOrder
-    class_id?: SortOrder
-    santri_id?: SortOrder
-    mentor_id?: SortOrder
+    classId?: SortOrder
+    santriId?: SortOrder
+    mentorId?: SortOrder
     date?: SortOrder
     status?: SortOrder
     notes?: SortOrderInput | SortOrder
-    image_url?: SortOrderInput | SortOrder
-    created_at?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     class?: ClassOrderByWithRelationInput
     santri?: UserOrderByWithRelationInput
     mentor?: UserOrderByWithRelationInput
@@ -12667,33 +12829,33 @@ export namespace Prisma {
 
   export type AttendanceWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    class_id_santri_id_date?: AttendanceClass_idSantri_idDateCompoundUniqueInput
+    classId_santriId_date?: AttendanceClassIdSantriIdDateCompoundUniqueInput
     AND?: AttendanceWhereInput | AttendanceWhereInput[]
     OR?: AttendanceWhereInput[]
     NOT?: AttendanceWhereInput | AttendanceWhereInput[]
-    class_id?: StringFilter<"Attendance"> | string
-    santri_id?: StringFilter<"Attendance"> | string
-    mentor_id?: StringFilter<"Attendance"> | string
+    classId?: StringFilter<"Attendance"> | string
+    santriId?: StringFilter<"Attendance"> | string
+    mentorId?: StringFilter<"Attendance"> | string
     date?: DateTimeFilter<"Attendance"> | Date | string
     status?: EnumAttendanceStatusFilter<"Attendance"> | $Enums.AttendanceStatus
     notes?: StringNullableFilter<"Attendance"> | string | null
-    image_url?: StringNullableFilter<"Attendance"> | string | null
-    created_at?: DateTimeFilter<"Attendance"> | Date | string
+    imageUrl?: StringNullableFilter<"Attendance"> | string | null
+    createdAt?: DateTimeFilter<"Attendance"> | Date | string
     class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
     santri?: XOR<UserScalarRelationFilter, UserWhereInput>
     mentor?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "class_id_santri_id_date">
+  }, "id" | "classId_santriId_date">
 
   export type AttendanceOrderByWithAggregationInput = {
     id?: SortOrder
-    class_id?: SortOrder
-    santri_id?: SortOrder
-    mentor_id?: SortOrder
+    classId?: SortOrder
+    santriId?: SortOrder
+    mentorId?: SortOrder
     date?: SortOrder
     status?: SortOrder
     notes?: SortOrderInput | SortOrder
-    image_url?: SortOrderInput | SortOrder
-    created_at?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     _count?: AttendanceCountOrderByAggregateInput
     _max?: AttendanceMaxOrderByAggregateInput
     _min?: AttendanceMinOrderByAggregateInput
@@ -12704,14 +12866,14 @@ export namespace Prisma {
     OR?: AttendanceScalarWhereWithAggregatesInput[]
     NOT?: AttendanceScalarWhereWithAggregatesInput | AttendanceScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Attendance"> | string
-    class_id?: StringWithAggregatesFilter<"Attendance"> | string
-    santri_id?: StringWithAggregatesFilter<"Attendance"> | string
-    mentor_id?: StringWithAggregatesFilter<"Attendance"> | string
+    classId?: StringWithAggregatesFilter<"Attendance"> | string
+    santriId?: StringWithAggregatesFilter<"Attendance"> | string
+    mentorId?: StringWithAggregatesFilter<"Attendance"> | string
     date?: DateTimeWithAggregatesFilter<"Attendance"> | Date | string
     status?: EnumAttendanceStatusWithAggregatesFilter<"Attendance"> | $Enums.AttendanceStatus
     notes?: StringNullableWithAggregatesFilter<"Attendance"> | string | null
-    image_url?: StringNullableWithAggregatesFilter<"Attendance"> | string | null
-    created_at?: DateTimeWithAggregatesFilter<"Attendance"> | Date | string
+    imageUrl?: StringNullableWithAggregatesFilter<"Attendance"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Attendance"> | Date | string
   }
 
   export type ClassWhereInput = {
@@ -12719,28 +12881,28 @@ export namespace Prisma {
     OR?: ClassWhereInput[]
     NOT?: ClassWhereInput | ClassWhereInput[]
     id?: StringFilter<"Class"> | string
-    division_id?: StringFilter<"Class"> | string
+    divisiId?: StringFilter<"Class"> | string
     name?: StringFilter<"Class"> | string
-    mentor_id?: StringFilter<"Class"> | string
-    created_at?: DateTimeFilter<"Class"> | Date | string
+    mentorId?: StringFilter<"Class"> | string
+    createdAt?: DateTimeFilter<"Class"> | Date | string
     division?: XOR<DivisionScalarRelationFilter, DivisionWhereInput>
     mentor?: XOR<UserScalarRelationFilter, UserWhereInput>
     attendances?: AttendanceListRelationFilter
     assignments?: AssignmentListRelationFilter
-    santri_profiles?: SantriProfileListRelationFilter
+    santriProfiles?: SantriProfileListRelationFilter
   }
 
   export type ClassOrderByWithRelationInput = {
     id?: SortOrder
-    division_id?: SortOrder
+    divisiId?: SortOrder
     name?: SortOrder
-    mentor_id?: SortOrder
-    created_at?: SortOrder
+    mentorId?: SortOrder
+    createdAt?: SortOrder
     division?: DivisionOrderByWithRelationInput
     mentor?: UserOrderByWithRelationInput
     attendances?: AttendanceOrderByRelationAggregateInput
     assignments?: AssignmentOrderByRelationAggregateInput
-    santri_profiles?: SantriProfileOrderByRelationAggregateInput
+    santriProfiles?: SantriProfileOrderByRelationAggregateInput
   }
 
   export type ClassWhereUniqueInput = Prisma.AtLeast<{
@@ -12748,23 +12910,23 @@ export namespace Prisma {
     AND?: ClassWhereInput | ClassWhereInput[]
     OR?: ClassWhereInput[]
     NOT?: ClassWhereInput | ClassWhereInput[]
-    division_id?: StringFilter<"Class"> | string
+    divisiId?: StringFilter<"Class"> | string
     name?: StringFilter<"Class"> | string
-    mentor_id?: StringFilter<"Class"> | string
-    created_at?: DateTimeFilter<"Class"> | Date | string
+    mentorId?: StringFilter<"Class"> | string
+    createdAt?: DateTimeFilter<"Class"> | Date | string
     division?: XOR<DivisionScalarRelationFilter, DivisionWhereInput>
     mentor?: XOR<UserScalarRelationFilter, UserWhereInput>
     attendances?: AttendanceListRelationFilter
     assignments?: AssignmentListRelationFilter
-    santri_profiles?: SantriProfileListRelationFilter
+    santriProfiles?: SantriProfileListRelationFilter
   }, "id">
 
   export type ClassOrderByWithAggregationInput = {
     id?: SortOrder
-    division_id?: SortOrder
+    divisiId?: SortOrder
     name?: SortOrder
-    mentor_id?: SortOrder
-    created_at?: SortOrder
+    mentorId?: SortOrder
+    createdAt?: SortOrder
     _count?: ClassCountOrderByAggregateInput
     _max?: ClassMaxOrderByAggregateInput
     _min?: ClassMinOrderByAggregateInput
@@ -12775,10 +12937,10 @@ export namespace Prisma {
     OR?: ClassScalarWhereWithAggregatesInput[]
     NOT?: ClassScalarWhereWithAggregatesInput | ClassScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Class"> | string
-    division_id?: StringWithAggregatesFilter<"Class"> | string
+    divisiId?: StringWithAggregatesFilter<"Class"> | string
     name?: StringWithAggregatesFilter<"Class"> | string
-    mentor_id?: StringWithAggregatesFilter<"Class"> | string
-    created_at?: DateTimeWithAggregatesFilter<"Class"> | Date | string
+    mentorId?: StringWithAggregatesFilter<"Class"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Class"> | Date | string
   }
 
   export type DivisionWhereInput = {
@@ -12788,7 +12950,7 @@ export namespace Prisma {
     id?: StringFilter<"Division"> | string
     name?: StringFilter<"Division"> | string
     description?: StringNullableFilter<"Division"> | string | null
-    created_at?: DateTimeFilter<"Division"> | Date | string
+    createdAt?: DateTimeFilter<"Division"> | Date | string
     classes?: ClassListRelationFilter
   }
 
@@ -12796,7 +12958,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    created_at?: SortOrder
+    createdAt?: SortOrder
     classes?: ClassOrderByRelationAggregateInput
   }
 
@@ -12807,7 +12969,7 @@ export namespace Prisma {
     NOT?: DivisionWhereInput | DivisionWhereInput[]
     name?: StringFilter<"Division"> | string
     description?: StringNullableFilter<"Division"> | string | null
-    created_at?: DateTimeFilter<"Division"> | Date | string
+    createdAt?: DateTimeFilter<"Division"> | Date | string
     classes?: ClassListRelationFilter
   }, "id">
 
@@ -12815,7 +12977,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    created_at?: SortOrder
+    createdAt?: SortOrder
     _count?: DivisionCountOrderByAggregateInput
     _max?: DivisionMaxOrderByAggregateInput
     _min?: DivisionMinOrderByAggregateInput
@@ -12828,7 +12990,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Division"> | string
     name?: StringWithAggregatesFilter<"Division"> | string
     description?: StringNullableWithAggregatesFilter<"Division"> | string | null
-    created_at?: DateTimeWithAggregatesFilter<"Division"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Division"> | Date | string
   }
 
   export type SantriProfileWhereInput = {
@@ -12836,51 +12998,58 @@ export namespace Prisma {
     OR?: SantriProfileWhereInput[]
     NOT?: SantriProfileWhereInput | SantriProfileWhereInput[]
     id?: StringFilter<"SantriProfile"> | string
-    user_id?: StringFilter<"SantriProfile"> | string
-    nis?: StringFilter<"SantriProfile"> | string
-    birth_date?: DateTimeNullableFilter<"SantriProfile"> | Date | string | null
+    userId?: StringFilter<"SantriProfile"> | string
+    waliId?: StringNullableFilter<"SantriProfile"> | string | null
+    phone?: StringNullableFilter<"SantriProfile"> | string | null
+    birthDate?: DateTimeNullableFilter<"SantriProfile"> | Date | string | null
     address?: StringNullableFilter<"SantriProfile"> | string | null
-    photo_url?: StringNullableFilter<"SantriProfile"> | string | null
-    class_id?: StringNullableFilter<"SantriProfile"> | string | null
+    photoUrl?: StringNullableFilter<"SantriProfile"> | string | null
+    classId?: StringNullableFilter<"SantriProfile"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    wali?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
   }
 
   export type SantriProfileOrderByWithRelationInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    nis?: SortOrder
-    birth_date?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    waliId?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
+    birthDate?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
-    photo_url?: SortOrderInput | SortOrder
-    class_id?: SortOrderInput | SortOrder
+    photoUrl?: SortOrderInput | SortOrder
+    classId?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
+    wali?: UserOrderByWithRelationInput
     class?: ClassOrderByWithRelationInput
   }
 
   export type SantriProfileWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    user_id?: string
-    nis?: string
+    userId?: string
     AND?: SantriProfileWhereInput | SantriProfileWhereInput[]
     OR?: SantriProfileWhereInput[]
     NOT?: SantriProfileWhereInput | SantriProfileWhereInput[]
-    birth_date?: DateTimeNullableFilter<"SantriProfile"> | Date | string | null
+    waliId?: StringNullableFilter<"SantriProfile"> | string | null
+    phone?: StringNullableFilter<"SantriProfile"> | string | null
+    birthDate?: DateTimeNullableFilter<"SantriProfile"> | Date | string | null
     address?: StringNullableFilter<"SantriProfile"> | string | null
-    photo_url?: StringNullableFilter<"SantriProfile"> | string | null
-    class_id?: StringNullableFilter<"SantriProfile"> | string | null
+    photoUrl?: StringNullableFilter<"SantriProfile"> | string | null
+    classId?: StringNullableFilter<"SantriProfile"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    wali?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
-  }, "id" | "user_id" | "nis">
+  }, "id" | "userId">
 
   export type SantriProfileOrderByWithAggregationInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    nis?: SortOrder
-    birth_date?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    waliId?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
+    birthDate?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
-    photo_url?: SortOrderInput | SortOrder
-    class_id?: SortOrderInput | SortOrder
+    photoUrl?: SortOrderInput | SortOrder
+    classId?: SortOrderInput | SortOrder
     _count?: SantriProfileCountOrderByAggregateInput
     _max?: SantriProfileMaxOrderByAggregateInput
     _min?: SantriProfileMinOrderByAggregateInput
@@ -12891,12 +13060,13 @@ export namespace Prisma {
     OR?: SantriProfileScalarWhereWithAggregatesInput[]
     NOT?: SantriProfileScalarWhereWithAggregatesInput | SantriProfileScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"SantriProfile"> | string
-    user_id?: StringWithAggregatesFilter<"SantriProfile"> | string
-    nis?: StringWithAggregatesFilter<"SantriProfile"> | string
-    birth_date?: DateTimeNullableWithAggregatesFilter<"SantriProfile"> | Date | string | null
+    userId?: StringWithAggregatesFilter<"SantriProfile"> | string
+    waliId?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
+    phone?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
+    birthDate?: DateTimeNullableWithAggregatesFilter<"SantriProfile"> | Date | string | null
     address?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
-    photo_url?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
-    class_id?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
+    photoUrl?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
+    classId?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
   }
 
   export type UserWhereInput = {
@@ -12904,76 +13074,83 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
-    full_name?: StringFilter<"User"> | string
+    nis?: StringNullableFilter<"User"> | string | null
+    fullName?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     phone?: StringNullableFilter<"User"> | string | null
     role?: EnumRoleFilter<"User"> | $Enums.Role
-    is_active?: BoolFilter<"User"> | boolean
-    created_at?: DateTimeFilter<"User"> | Date | string
+    isActive?: BoolFilter<"User"> | boolean
+    createdAt?: DateTimeFilter<"User"> | Date | string
     verifications?: VerificationListRelationFilter
-    santri_profile?: XOR<SantriProfileNullableScalarRelationFilter, SantriProfileWhereInput> | null
-    mentor_classes?: ClassListRelationFilter
-    mentor_attendances?: AttendanceListRelationFilter
-    santri_attendances?: AttendanceListRelationFilter
-    mentor_assignments?: AssignmentListRelationFilter
-    santri_submissions?: AssignmentContentListRelationFilter
-    wali_relations?: WaliSantriRelationListRelationFilter
-    santri_relations?: WaliSantriRelationListRelationFilter
+    santriProfile?: XOR<SantriProfileNullableScalarRelationFilter, SantriProfileWhereInput> | null
+    mentorClasses?: ClassListRelationFilter
+    mentorAttendances?: AttendanceListRelationFilter
+    santriAttendances?: AttendanceListRelationFilter
+    mentorAssignments?: AssignmentListRelationFilter
+    santriSubmissions?: AssignmentContentListRelationFilter
+    waliRelations?: WaliSantriRelationListRelationFilter
+    santriRelations?: WaliSantriRelationListRelationFilter
+    santriUnderWali?: SantriProfileListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    full_name?: SortOrder
+    nis?: SortOrderInput | SortOrder
+    fullName?: SortOrder
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrderInput | SortOrder
     role?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
     verifications?: VerificationOrderByRelationAggregateInput
-    santri_profile?: SantriProfileOrderByWithRelationInput
-    mentor_classes?: ClassOrderByRelationAggregateInput
-    mentor_attendances?: AttendanceOrderByRelationAggregateInput
-    santri_attendances?: AttendanceOrderByRelationAggregateInput
-    mentor_assignments?: AssignmentOrderByRelationAggregateInput
-    santri_submissions?: AssignmentContentOrderByRelationAggregateInput
-    wali_relations?: WaliSantriRelationOrderByRelationAggregateInput
-    santri_relations?: WaliSantriRelationOrderByRelationAggregateInput
+    santriProfile?: SantriProfileOrderByWithRelationInput
+    mentorClasses?: ClassOrderByRelationAggregateInput
+    mentorAttendances?: AttendanceOrderByRelationAggregateInput
+    santriAttendances?: AttendanceOrderByRelationAggregateInput
+    mentorAssignments?: AssignmentOrderByRelationAggregateInput
+    santriSubmissions?: AssignmentContentOrderByRelationAggregateInput
+    waliRelations?: WaliSantriRelationOrderByRelationAggregateInput
+    santriRelations?: WaliSantriRelationOrderByRelationAggregateInput
+    santriUnderWali?: SantriProfileOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    nis?: string
     email?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    full_name?: StringFilter<"User"> | string
+    fullName?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     phone?: StringNullableFilter<"User"> | string | null
     role?: EnumRoleFilter<"User"> | $Enums.Role
-    is_active?: BoolFilter<"User"> | boolean
-    created_at?: DateTimeFilter<"User"> | Date | string
+    isActive?: BoolFilter<"User"> | boolean
+    createdAt?: DateTimeFilter<"User"> | Date | string
     verifications?: VerificationListRelationFilter
-    santri_profile?: XOR<SantriProfileNullableScalarRelationFilter, SantriProfileWhereInput> | null
-    mentor_classes?: ClassListRelationFilter
-    mentor_attendances?: AttendanceListRelationFilter
-    santri_attendances?: AttendanceListRelationFilter
-    mentor_assignments?: AssignmentListRelationFilter
-    santri_submissions?: AssignmentContentListRelationFilter
-    wali_relations?: WaliSantriRelationListRelationFilter
-    santri_relations?: WaliSantriRelationListRelationFilter
-  }, "id" | "email">
+    santriProfile?: XOR<SantriProfileNullableScalarRelationFilter, SantriProfileWhereInput> | null
+    mentorClasses?: ClassListRelationFilter
+    mentorAttendances?: AttendanceListRelationFilter
+    santriAttendances?: AttendanceListRelationFilter
+    mentorAssignments?: AssignmentListRelationFilter
+    santriSubmissions?: AssignmentContentListRelationFilter
+    waliRelations?: WaliSantriRelationListRelationFilter
+    santriRelations?: WaliSantriRelationListRelationFilter
+    santriUnderWali?: SantriProfileListRelationFilter
+  }, "id" | "nis" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    full_name?: SortOrder
+    nis?: SortOrderInput | SortOrder
+    fullName?: SortOrder
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrderInput | SortOrder
     role?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -12984,13 +13161,14 @@ export namespace Prisma {
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
-    full_name?: StringWithAggregatesFilter<"User"> | string
+    nis?: StringNullableWithAggregatesFilter<"User"> | string | null
+    fullName?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     phone?: StringNullableWithAggregatesFilter<"User"> | string | null
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
-    is_active?: BoolWithAggregatesFilter<"User"> | boolean
-    created_at?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    isActive?: BoolWithAggregatesFilter<"User"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
   export type WaliSantriRelationWhereInput = {
@@ -12998,40 +13176,60 @@ export namespace Prisma {
     OR?: WaliSantriRelationWhereInput[]
     NOT?: WaliSantriRelationWhereInput | WaliSantriRelationWhereInput[]
     id?: StringFilter<"WaliSantriRelation"> | string
-    wali_id?: StringFilter<"WaliSantriRelation"> | string
-    santri_id?: StringFilter<"WaliSantriRelation"> | string
+    waliId?: StringFilter<"WaliSantriRelation"> | string
+    santriId?: StringFilter<"WaliSantriRelation"> | string
+    name?: StringNullableFilter<"WaliSantriRelation"> | string | null
+    phone?: StringNullableFilter<"WaliSantriRelation"> | string | null
+    photoUrl?: StringNullableFilter<"WaliSantriRelation"> | string | null
     category?: EnumWaliSantriCategoryFilter<"WaliSantriRelation"> | $Enums.WaliSantriCategory
+    createdAt?: DateTimeFilter<"WaliSantriRelation"> | Date | string
+    updatedAt?: DateTimeFilter<"WaliSantriRelation"> | Date | string
     wali?: XOR<UserScalarRelationFilter, UserWhereInput>
     santri?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type WaliSantriRelationOrderByWithRelationInput = {
     id?: SortOrder
-    wali_id?: SortOrder
-    santri_id?: SortOrder
+    waliId?: SortOrder
+    santriId?: SortOrder
+    name?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
+    photoUrl?: SortOrderInput | SortOrder
     category?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     wali?: UserOrderByWithRelationInput
     santri?: UserOrderByWithRelationInput
   }
 
   export type WaliSantriRelationWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    wali_id_santri_id?: WaliSantriRelationWali_idSantri_idCompoundUniqueInput
+    waliId_santriId?: WaliSantriRelationWaliIdSantriIdCompoundUniqueInput
     AND?: WaliSantriRelationWhereInput | WaliSantriRelationWhereInput[]
     OR?: WaliSantriRelationWhereInput[]
     NOT?: WaliSantriRelationWhereInput | WaliSantriRelationWhereInput[]
-    wali_id?: StringFilter<"WaliSantriRelation"> | string
-    santri_id?: StringFilter<"WaliSantriRelation"> | string
+    waliId?: StringFilter<"WaliSantriRelation"> | string
+    santriId?: StringFilter<"WaliSantriRelation"> | string
+    name?: StringNullableFilter<"WaliSantriRelation"> | string | null
+    phone?: StringNullableFilter<"WaliSantriRelation"> | string | null
+    photoUrl?: StringNullableFilter<"WaliSantriRelation"> | string | null
     category?: EnumWaliSantriCategoryFilter<"WaliSantriRelation"> | $Enums.WaliSantriCategory
+    createdAt?: DateTimeFilter<"WaliSantriRelation"> | Date | string
+    updatedAt?: DateTimeFilter<"WaliSantriRelation"> | Date | string
     wali?: XOR<UserScalarRelationFilter, UserWhereInput>
     santri?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "wali_id_santri_id">
+  }, "id" | "waliId_santriId">
 
   export type WaliSantriRelationOrderByWithAggregationInput = {
     id?: SortOrder
-    wali_id?: SortOrder
-    santri_id?: SortOrder
+    waliId?: SortOrder
+    santriId?: SortOrder
+    name?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
+    photoUrl?: SortOrderInput | SortOrder
     category?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: WaliSantriRelationCountOrderByAggregateInput
     _max?: WaliSantriRelationMaxOrderByAggregateInput
     _min?: WaliSantriRelationMinOrderByAggregateInput
@@ -13042,9 +13240,14 @@ export namespace Prisma {
     OR?: WaliSantriRelationScalarWhereWithAggregatesInput[]
     NOT?: WaliSantriRelationScalarWhereWithAggregatesInput | WaliSantriRelationScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"WaliSantriRelation"> | string
-    wali_id?: StringWithAggregatesFilter<"WaliSantriRelation"> | string
-    santri_id?: StringWithAggregatesFilter<"WaliSantriRelation"> | string
+    waliId?: StringWithAggregatesFilter<"WaliSantriRelation"> | string
+    santriId?: StringWithAggregatesFilter<"WaliSantriRelation"> | string
+    name?: StringNullableWithAggregatesFilter<"WaliSantriRelation"> | string | null
+    phone?: StringNullableWithAggregatesFilter<"WaliSantriRelation"> | string | null
+    photoUrl?: StringNullableWithAggregatesFilter<"WaliSantriRelation"> | string | null
     category?: EnumWaliSantriCategoryWithAggregatesFilter<"WaliSantriRelation"> | $Enums.WaliSantriCategory
+    createdAt?: DateTimeWithAggregatesFilter<"WaliSantriRelation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"WaliSantriRelation"> | Date | string
   }
 
   export type VerificationCreateInput = {
@@ -13106,25 +13309,25 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    submission_type: $Enums.SubmissionType
-    attachment_url?: string | null
+    submissionType: $Enums.SubmissionType
+    attachmentUrl?: string | null
     due_date: Date | string
-    created_at?: Date | string
+    createdAt?: Date | string
     class: ClassCreateNestedOneWithoutAssignmentsInput
-    mentor: UserCreateNestedOneWithoutMentor_assignmentsInput
+    mentor: UserCreateNestedOneWithoutMentorAssignmentsInput
     submissions?: AssignmentContentCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUncheckedCreateInput = {
     id?: string
-    class_id: string
-    mentor_id: string
+    classId: string
+    mentorId: string
     title: string
     description?: string | null
-    submission_type: $Enums.SubmissionType
-    attachment_url?: string | null
+    submissionType: $Enums.SubmissionType
+    attachmentUrl?: string | null
     due_date: Date | string
-    created_at?: Date | string
+    createdAt?: Date | string
     submissions?: AssignmentContentUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
@@ -13132,142 +13335,142 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_type?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
-    attachment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionType?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutAssignmentsNestedInput
-    mentor?: UserUpdateOneRequiredWithoutMentor_assignmentsNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorAssignmentsNestedInput
     submissions?: AssignmentContentUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_type?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
-    attachment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionType?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     submissions?: AssignmentContentUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentCreateManyInput = {
     id?: string
-    class_id: string
-    mentor_id: string
+    classId: string
+    mentorId: string
     title: string
     description?: string | null
-    submission_type: $Enums.SubmissionType
-    attachment_url?: string | null
+    submissionType: $Enums.SubmissionType
+    attachmentUrl?: string | null
     due_date: Date | string
-    created_at?: Date | string
+    createdAt?: Date | string
   }
 
   export type AssignmentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_type?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
-    attachment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionType?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AssignmentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_type?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
-    attachment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionType?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AssignmentContentCreateInput = {
     id?: string
-    content_type: $Enums.ContentType
-    file_url?: AssignmentContentCreatefile_urlInput | string[]
+    contentType: $Enums.ContentType
+    fileUrl?: AssignmentContentCreatefileUrlInput | string[]
     score?: number | null
-    mentor_feedback?: string | null
+    mentorFeedback?: string | null
     status?: $Enums.GradingStatus
-    submitted_at?: Date | string
+    submittedAt?: Date | string
     assignment: AssignmentCreateNestedOneWithoutSubmissionsInput
-    santri: UserCreateNestedOneWithoutSantri_submissionsInput
+    santri: UserCreateNestedOneWithoutSantriSubmissionsInput
   }
 
   export type AssignmentContentUncheckedCreateInput = {
     id?: string
-    assignment_id: string
-    santri_id: string
-    content_type: $Enums.ContentType
-    file_url?: AssignmentContentCreatefile_urlInput | string[]
+    assignmentId: string
+    santriId: string
+    contentType: $Enums.ContentType
+    fileUrl?: AssignmentContentCreatefileUrlInput | string[]
     score?: number | null
-    mentor_feedback?: string | null
+    mentorFeedback?: string | null
     status?: $Enums.GradingStatus
-    submitted_at?: Date | string
+    submittedAt?: Date | string
   }
 
   export type AssignmentContentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    content_type?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
-    file_url?: AssignmentContentUpdatefile_urlInput | string[]
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    fileUrl?: AssignmentContentUpdatefileUrlInput | string[]
     score?: NullableIntFieldUpdateOperationsInput | number | null
-    mentor_feedback?: NullableStringFieldUpdateOperationsInput | string | null
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumGradingStatusFieldUpdateOperationsInput | $Enums.GradingStatus
-    submitted_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignment?: AssignmentUpdateOneRequiredWithoutSubmissionsNestedInput
-    santri?: UserUpdateOneRequiredWithoutSantri_submissionsNestedInput
+    santri?: UserUpdateOneRequiredWithoutSantriSubmissionsNestedInput
   }
 
   export type AssignmentContentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignment_id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
-    content_type?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
-    file_url?: AssignmentContentUpdatefile_urlInput | string[]
+    assignmentId?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    fileUrl?: AssignmentContentUpdatefileUrlInput | string[]
     score?: NullableIntFieldUpdateOperationsInput | number | null
-    mentor_feedback?: NullableStringFieldUpdateOperationsInput | string | null
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumGradingStatusFieldUpdateOperationsInput | $Enums.GradingStatus
-    submitted_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AssignmentContentCreateManyInput = {
     id?: string
-    assignment_id: string
-    santri_id: string
-    content_type: $Enums.ContentType
-    file_url?: AssignmentContentCreatefile_urlInput | string[]
+    assignmentId: string
+    santriId: string
+    contentType: $Enums.ContentType
+    fileUrl?: AssignmentContentCreatefileUrlInput | string[]
     score?: number | null
-    mentor_feedback?: string | null
+    mentorFeedback?: string | null
     status?: $Enums.GradingStatus
-    submitted_at?: Date | string
+    submittedAt?: Date | string
   }
 
   export type AssignmentContentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    content_type?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
-    file_url?: AssignmentContentUpdatefile_urlInput | string[]
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    fileUrl?: AssignmentContentUpdatefileUrlInput | string[]
     score?: NullableIntFieldUpdateOperationsInput | number | null
-    mentor_feedback?: NullableStringFieldUpdateOperationsInput | string | null
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumGradingStatusFieldUpdateOperationsInput | $Enums.GradingStatus
-    submitted_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AssignmentContentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignment_id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
-    content_type?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
-    file_url?: AssignmentContentUpdatefile_urlInput | string[]
+    assignmentId?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    fileUrl?: AssignmentContentUpdatefileUrlInput | string[]
     score?: NullableIntFieldUpdateOperationsInput | number | null
-    mentor_feedback?: NullableStringFieldUpdateOperationsInput | string | null
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumGradingStatusFieldUpdateOperationsInput | $Enums.GradingStatus
-    submitted_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceCreateInput = {
@@ -13275,23 +13478,23 @@ export namespace Prisma {
     date: Date | string
     status: $Enums.AttendanceStatus
     notes?: string | null
-    image_url?: string | null
-    created_at?: Date | string
+    imageUrl?: string | null
+    createdAt?: Date | string
     class: ClassCreateNestedOneWithoutAttendancesInput
-    santri: UserCreateNestedOneWithoutSantri_attendancesInput
-    mentor: UserCreateNestedOneWithoutMentor_attendancesInput
+    santri: UserCreateNestedOneWithoutSantriAttendancesInput
+    mentor: UserCreateNestedOneWithoutMentorAttendancesInput
   }
 
   export type AttendanceUncheckedCreateInput = {
     id?: string
-    class_id: string
-    santri_id: string
-    mentor_id: string
+    classId: string
+    santriId: string
+    mentorId: string
     date: Date | string
     status: $Enums.AttendanceStatus
     notes?: string | null
-    image_url?: string | null
-    created_at?: Date | string
+    imageUrl?: string | null
+    createdAt?: Date | string
   }
 
   export type AttendanceUpdateInput = {
@@ -13299,35 +13502,35 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutAttendancesNestedInput
-    santri?: UserUpdateOneRequiredWithoutSantri_attendancesNestedInput
-    mentor?: UserUpdateOneRequiredWithoutMentor_attendancesNestedInput
+    santri?: UserUpdateOneRequiredWithoutSantriAttendancesNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorAttendancesNestedInput
   }
 
   export type AttendanceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceCreateManyInput = {
     id?: string
-    class_id: string
-    santri_id: string
-    mentor_id: string
+    classId: string
+    santriId: string
+    mentorId: string
     date: Date | string
     status: $Enums.AttendanceStatus
     notes?: string | null
-    image_url?: string | null
-    created_at?: Date | string
+    imageUrl?: string | null
+    createdAt?: Date | string
   }
 
   export type AttendanceUpdateManyMutationInput = {
@@ -13335,93 +13538,93 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassCreateInput = {
     id?: string
     name: string
-    created_at?: Date | string
+    createdAt?: Date | string
     division: DivisionCreateNestedOneWithoutClassesInput
-    mentor: UserCreateNestedOneWithoutMentor_classesInput
+    mentor: UserCreateNestedOneWithoutMentorClassesInput
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     assignments?: AssignmentCreateNestedManyWithoutClassInput
-    santri_profiles?: SantriProfileCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateInput = {
     id?: string
-    division_id: string
+    divisiId: string
     name: string
-    mentor_id: string
-    created_at?: Date | string
+    mentorId: string
+    createdAt?: Date | string
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
-    santri_profiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     division?: DivisionUpdateOneRequiredWithoutClassesNestedInput
-    mentor?: UserUpdateOneRequiredWithoutMentor_classesNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorClassesNestedInput
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
-    santri_profiles?: SantriProfileUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    division_id?: StringFieldUpdateOperationsInput | string
+    divisiId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
-    santri_profiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type ClassCreateManyInput = {
     id?: string
-    division_id: string
+    divisiId: string
     name: string
-    mentor_id: string
-    created_at?: Date | string
+    mentorId: string
+    createdAt?: Date | string
   }
 
   export type ClassUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    division_id?: StringFieldUpdateOperationsInput | string
+    divisiId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DivisionCreateInput = {
     id?: string
     name: string
     description?: string | null
-    created_at?: Date | string
+    createdAt?: Date | string
     classes?: ClassCreateNestedManyWithoutDivisionInput
   }
 
@@ -13429,7 +13632,7 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
-    created_at?: Date | string
+    createdAt?: Date | string
     classes?: ClassUncheckedCreateNestedManyWithoutDivisionInput
   }
 
@@ -13437,7 +13640,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     classes?: ClassUpdateManyWithoutDivisionNestedInput
   }
 
@@ -13445,7 +13648,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     classes?: ClassUncheckedUpdateManyWithoutDivisionNestedInput
   }
 
@@ -13453,249 +13656,301 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
-    created_at?: Date | string
+    createdAt?: Date | string
   }
 
   export type DivisionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DivisionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SantriProfileCreateInput = {
     id?: string
-    nis: string
-    birth_date?: Date | string | null
+    phone?: string | null
+    birthDate?: Date | string | null
     address?: string | null
-    photo_url?: string | null
-    user: UserCreateNestedOneWithoutSantri_profileInput
-    class?: ClassCreateNestedOneWithoutSantri_profilesInput
+    photoUrl?: string | null
+    user: UserCreateNestedOneWithoutSantriProfileInput
+    wali?: UserCreateNestedOneWithoutSantriUnderWaliInput
+    class?: ClassCreateNestedOneWithoutSantriProfilesInput
   }
 
   export type SantriProfileUncheckedCreateInput = {
     id?: string
-    user_id: string
-    nis: string
-    birth_date?: Date | string | null
+    userId: string
+    waliId?: string | null
+    phone?: string | null
+    birthDate?: Date | string | null
     address?: string | null
-    photo_url?: string | null
-    class_id?: string | null
+    photoUrl?: string | null
+    classId?: string | null
   }
 
   export type SantriProfileUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nis?: StringFieldUpdateOperationsInput | string
-    birth_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    photo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    user?: UserUpdateOneRequiredWithoutSantri_profileNestedInput
-    class?: ClassUpdateOneWithoutSantri_profilesNestedInput
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutSantriProfileNestedInput
+    wali?: UserUpdateOneWithoutSantriUnderWaliNestedInput
+    class?: ClassUpdateOneWithoutSantriProfilesNestedInput
   }
 
   export type SantriProfileUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    nis?: StringFieldUpdateOperationsInput | string
-    birth_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    waliId?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    photo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    class_id?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SantriProfileCreateManyInput = {
     id?: string
-    user_id: string
-    nis: string
-    birth_date?: Date | string | null
+    userId: string
+    waliId?: string | null
+    phone?: string | null
+    birthDate?: Date | string | null
     address?: string | null
-    photo_url?: string | null
-    class_id?: string | null
+    photoUrl?: string | null
+    classId?: string | null
   }
 
   export type SantriProfileUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nis?: StringFieldUpdateOperationsInput | string
-    birth_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    photo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SantriProfileUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    nis?: StringFieldUpdateOperationsInput | string
-    birth_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    waliId?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    photo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    class_id?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserCreateInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassUncheckedCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUncheckedUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type WaliSantriRelationCreateInput = {
     id?: string
+    name?: string | null
+    phone?: string | null
+    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
-    wali: UserCreateNestedOneWithoutWali_relationsInput
-    santri: UserCreateNestedOneWithoutSantri_relationsInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    wali: UserCreateNestedOneWithoutWaliRelationsInput
+    santri: UserCreateNestedOneWithoutSantriRelationsInput
   }
 
   export type WaliSantriRelationUncheckedCreateInput = {
     id?: string
-    wali_id: string
-    santri_id: string
+    waliId: string
+    santriId: string
+    name?: string | null
+    phone?: string | null
+    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type WaliSantriRelationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
-    wali?: UserUpdateOneRequiredWithoutWali_relationsNestedInput
-    santri?: UserUpdateOneRequiredWithoutSantri_relationsNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wali?: UserUpdateOneRequiredWithoutWaliRelationsNestedInput
+    santri?: UserUpdateOneRequiredWithoutSantriRelationsNestedInput
   }
 
   export type WaliSantriRelationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    wali_id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
+    waliId?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type WaliSantriRelationCreateManyInput = {
     id?: string
-    wali_id: string
-    santri_id: string
+    waliId: string
+    santriId: string
+    name?: string | null
+    phone?: string | null
+    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type WaliSantriRelationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type WaliSantriRelationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    wali_id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
+    waliId?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -13834,38 +14089,38 @@ export namespace Prisma {
 
   export type AssignmentCountOrderByAggregateInput = {
     id?: SortOrder
-    class_id?: SortOrder
-    mentor_id?: SortOrder
+    classId?: SortOrder
+    mentorId?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    submission_type?: SortOrder
-    attachment_url?: SortOrder
+    submissionType?: SortOrder
+    attachmentUrl?: SortOrder
     due_date?: SortOrder
-    created_at?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type AssignmentMaxOrderByAggregateInput = {
     id?: SortOrder
-    class_id?: SortOrder
-    mentor_id?: SortOrder
+    classId?: SortOrder
+    mentorId?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    submission_type?: SortOrder
-    attachment_url?: SortOrder
+    submissionType?: SortOrder
+    attachmentUrl?: SortOrder
     due_date?: SortOrder
-    created_at?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type AssignmentMinOrderByAggregateInput = {
     id?: SortOrder
-    class_id?: SortOrder
-    mentor_id?: SortOrder
+    classId?: SortOrder
+    mentorId?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    submission_type?: SortOrder
-    attachment_url?: SortOrder
+    submissionType?: SortOrder
+    attachmentUrl?: SortOrder
     due_date?: SortOrder
-    created_at?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -13934,21 +14189,21 @@ export namespace Prisma {
     isNot?: AssignmentWhereInput
   }
 
-  export type AssignmentContentAssignment_idSantri_idCompoundUniqueInput = {
-    assignment_id: string
-    santri_id: string
+  export type AssignmentContentAssignmentIdSantriIdCompoundUniqueInput = {
+    assignmentId: string
+    santriId: string
   }
 
   export type AssignmentContentCountOrderByAggregateInput = {
     id?: SortOrder
-    assignment_id?: SortOrder
-    santri_id?: SortOrder
-    content_type?: SortOrder
-    file_url?: SortOrder
+    assignmentId?: SortOrder
+    santriId?: SortOrder
+    contentType?: SortOrder
+    fileUrl?: SortOrder
     score?: SortOrder
-    mentor_feedback?: SortOrder
+    mentorFeedback?: SortOrder
     status?: SortOrder
-    submitted_at?: SortOrder
+    submittedAt?: SortOrder
   }
 
   export type AssignmentContentAvgOrderByAggregateInput = {
@@ -13957,24 +14212,24 @@ export namespace Prisma {
 
   export type AssignmentContentMaxOrderByAggregateInput = {
     id?: SortOrder
-    assignment_id?: SortOrder
-    santri_id?: SortOrder
-    content_type?: SortOrder
+    assignmentId?: SortOrder
+    santriId?: SortOrder
+    contentType?: SortOrder
     score?: SortOrder
-    mentor_feedback?: SortOrder
+    mentorFeedback?: SortOrder
     status?: SortOrder
-    submitted_at?: SortOrder
+    submittedAt?: SortOrder
   }
 
   export type AssignmentContentMinOrderByAggregateInput = {
     id?: SortOrder
-    assignment_id?: SortOrder
-    santri_id?: SortOrder
-    content_type?: SortOrder
+    assignmentId?: SortOrder
+    santriId?: SortOrder
+    contentType?: SortOrder
     score?: SortOrder
-    mentor_feedback?: SortOrder
+    mentorFeedback?: SortOrder
     status?: SortOrder
-    submitted_at?: SortOrder
+    submittedAt?: SortOrder
   }
 
   export type AssignmentContentSumOrderByAggregateInput = {
@@ -14024,46 +14279,46 @@ export namespace Prisma {
     not?: NestedEnumAttendanceStatusFilter<$PrismaModel> | $Enums.AttendanceStatus
   }
 
-  export type AttendanceClass_idSantri_idDateCompoundUniqueInput = {
-    class_id: string
-    santri_id: string
+  export type AttendanceClassIdSantriIdDateCompoundUniqueInput = {
+    classId: string
+    santriId: string
     date: Date | string
   }
 
   export type AttendanceCountOrderByAggregateInput = {
     id?: SortOrder
-    class_id?: SortOrder
-    santri_id?: SortOrder
-    mentor_id?: SortOrder
+    classId?: SortOrder
+    santriId?: SortOrder
+    mentorId?: SortOrder
     date?: SortOrder
     status?: SortOrder
     notes?: SortOrder
-    image_url?: SortOrder
-    created_at?: SortOrder
+    imageUrl?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type AttendanceMaxOrderByAggregateInput = {
     id?: SortOrder
-    class_id?: SortOrder
-    santri_id?: SortOrder
-    mentor_id?: SortOrder
+    classId?: SortOrder
+    santriId?: SortOrder
+    mentorId?: SortOrder
     date?: SortOrder
     status?: SortOrder
     notes?: SortOrder
-    image_url?: SortOrder
-    created_at?: SortOrder
+    imageUrl?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type AttendanceMinOrderByAggregateInput = {
     id?: SortOrder
-    class_id?: SortOrder
-    santri_id?: SortOrder
-    mentor_id?: SortOrder
+    classId?: SortOrder
+    santriId?: SortOrder
+    mentorId?: SortOrder
     date?: SortOrder
     status?: SortOrder
     notes?: SortOrder
-    image_url?: SortOrder
-    created_at?: SortOrder
+    imageUrl?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type EnumAttendanceStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -14113,26 +14368,26 @@ export namespace Prisma {
 
   export type ClassCountOrderByAggregateInput = {
     id?: SortOrder
-    division_id?: SortOrder
+    divisiId?: SortOrder
     name?: SortOrder
-    mentor_id?: SortOrder
-    created_at?: SortOrder
+    mentorId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type ClassMaxOrderByAggregateInput = {
     id?: SortOrder
-    division_id?: SortOrder
+    divisiId?: SortOrder
     name?: SortOrder
-    mentor_id?: SortOrder
-    created_at?: SortOrder
+    mentorId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type ClassMinOrderByAggregateInput = {
     id?: SortOrder
-    division_id?: SortOrder
+    divisiId?: SortOrder
     name?: SortOrder
-    mentor_id?: SortOrder
-    created_at?: SortOrder
+    mentorId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type ClassListRelationFilter = {
@@ -14149,21 +14404,21 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type DivisionMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type DivisionMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -14177,6 +14432,11 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
   export type ClassNullableScalarRelationFilter = {
     is?: ClassWhereInput | null
     isNot?: ClassWhereInput | null
@@ -14184,32 +14444,35 @@ export namespace Prisma {
 
   export type SantriProfileCountOrderByAggregateInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    nis?: SortOrder
-    birth_date?: SortOrder
+    userId?: SortOrder
+    waliId?: SortOrder
+    phone?: SortOrder
+    birthDate?: SortOrder
     address?: SortOrder
-    photo_url?: SortOrder
-    class_id?: SortOrder
+    photoUrl?: SortOrder
+    classId?: SortOrder
   }
 
   export type SantriProfileMaxOrderByAggregateInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    nis?: SortOrder
-    birth_date?: SortOrder
+    userId?: SortOrder
+    waliId?: SortOrder
+    phone?: SortOrder
+    birthDate?: SortOrder
     address?: SortOrder
-    photo_url?: SortOrder
-    class_id?: SortOrder
+    photoUrl?: SortOrder
+    classId?: SortOrder
   }
 
   export type SantriProfileMinOrderByAggregateInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    nis?: SortOrder
-    birth_date?: SortOrder
+    userId?: SortOrder
+    waliId?: SortOrder
+    phone?: SortOrder
+    birthDate?: SortOrder
     address?: SortOrder
-    photo_url?: SortOrder
-    class_id?: SortOrder
+    photoUrl?: SortOrder
+    classId?: SortOrder
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -14265,35 +14528,38 @@ export namespace Prisma {
 
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
-    full_name?: SortOrder
+    nis?: SortOrder
+    fullName?: SortOrder
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
     role?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
-    full_name?: SortOrder
+    nis?: SortOrder
+    fullName?: SortOrder
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
     role?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
-    full_name?: SortOrder
+    nis?: SortOrder
+    fullName?: SortOrder
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
     role?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
@@ -14321,30 +14587,45 @@ export namespace Prisma {
     not?: NestedEnumWaliSantriCategoryFilter<$PrismaModel> | $Enums.WaliSantriCategory
   }
 
-  export type WaliSantriRelationWali_idSantri_idCompoundUniqueInput = {
-    wali_id: string
-    santri_id: string
+  export type WaliSantriRelationWaliIdSantriIdCompoundUniqueInput = {
+    waliId: string
+    santriId: string
   }
 
   export type WaliSantriRelationCountOrderByAggregateInput = {
     id?: SortOrder
-    wali_id?: SortOrder
-    santri_id?: SortOrder
+    waliId?: SortOrder
+    santriId?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    photoUrl?: SortOrder
     category?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type WaliSantriRelationMaxOrderByAggregateInput = {
     id?: SortOrder
-    wali_id?: SortOrder
-    santri_id?: SortOrder
+    waliId?: SortOrder
+    santriId?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    photoUrl?: SortOrder
     category?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type WaliSantriRelationMinOrderByAggregateInput = {
     id?: SortOrder
-    wali_id?: SortOrder
-    santri_id?: SortOrder
+    waliId?: SortOrder
+    santriId?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    photoUrl?: SortOrder
     category?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type EnumWaliSantriCategoryWithAggregatesFilter<$PrismaModel = never> = {
@@ -14385,9 +14666,9 @@ export namespace Prisma {
     connect?: ClassWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutMentor_assignmentsInput = {
-    create?: XOR<UserCreateWithoutMentor_assignmentsInput, UserUncheckedCreateWithoutMentor_assignmentsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutMentor_assignmentsInput
+  export type UserCreateNestedOneWithoutMentorAssignmentsInput = {
+    create?: XOR<UserCreateWithoutMentorAssignmentsInput, UserUncheckedCreateWithoutMentorAssignmentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMentorAssignmentsInput
     connect?: UserWhereUniqueInput
   }
 
@@ -14421,12 +14702,12 @@ export namespace Prisma {
     update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutAssignmentsInput, ClassUpdateWithoutAssignmentsInput>, ClassUncheckedUpdateWithoutAssignmentsInput>
   }
 
-  export type UserUpdateOneRequiredWithoutMentor_assignmentsNestedInput = {
-    create?: XOR<UserCreateWithoutMentor_assignmentsInput, UserUncheckedCreateWithoutMentor_assignmentsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutMentor_assignmentsInput
-    upsert?: UserUpsertWithoutMentor_assignmentsInput
+  export type UserUpdateOneRequiredWithoutMentorAssignmentsNestedInput = {
+    create?: XOR<UserCreateWithoutMentorAssignmentsInput, UserUncheckedCreateWithoutMentorAssignmentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMentorAssignmentsInput
+    upsert?: UserUpsertWithoutMentorAssignmentsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMentor_assignmentsInput, UserUpdateWithoutMentor_assignmentsInput>, UserUncheckedUpdateWithoutMentor_assignmentsInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMentorAssignmentsInput, UserUpdateWithoutMentorAssignmentsInput>, UserUncheckedUpdateWithoutMentorAssignmentsInput>
   }
 
   export type AssignmentContentUpdateManyWithoutAssignmentNestedInput = {
@@ -14457,7 +14738,7 @@ export namespace Prisma {
     deleteMany?: AssignmentContentScalarWhereInput | AssignmentContentScalarWhereInput[]
   }
 
-  export type AssignmentContentCreatefile_urlInput = {
+  export type AssignmentContentCreatefileUrlInput = {
     set: string[]
   }
 
@@ -14467,9 +14748,9 @@ export namespace Prisma {
     connect?: AssignmentWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutSantri_submissionsInput = {
-    create?: XOR<UserCreateWithoutSantri_submissionsInput, UserUncheckedCreateWithoutSantri_submissionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSantri_submissionsInput
+  export type UserCreateNestedOneWithoutSantriSubmissionsInput = {
+    create?: XOR<UserCreateWithoutSantriSubmissionsInput, UserUncheckedCreateWithoutSantriSubmissionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSantriSubmissionsInput
     connect?: UserWhereUniqueInput
   }
 
@@ -14477,7 +14758,7 @@ export namespace Prisma {
     set?: $Enums.ContentType
   }
 
-  export type AssignmentContentUpdatefile_urlInput = {
+  export type AssignmentContentUpdatefileUrlInput = {
     set?: string[]
     push?: string | string[]
   }
@@ -14502,12 +14783,12 @@ export namespace Prisma {
     update?: XOR<XOR<AssignmentUpdateToOneWithWhereWithoutSubmissionsInput, AssignmentUpdateWithoutSubmissionsInput>, AssignmentUncheckedUpdateWithoutSubmissionsInput>
   }
 
-  export type UserUpdateOneRequiredWithoutSantri_submissionsNestedInput = {
-    create?: XOR<UserCreateWithoutSantri_submissionsInput, UserUncheckedCreateWithoutSantri_submissionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSantri_submissionsInput
-    upsert?: UserUpsertWithoutSantri_submissionsInput
+  export type UserUpdateOneRequiredWithoutSantriSubmissionsNestedInput = {
+    create?: XOR<UserCreateWithoutSantriSubmissionsInput, UserUncheckedCreateWithoutSantriSubmissionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSantriSubmissionsInput
+    upsert?: UserUpsertWithoutSantriSubmissionsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSantri_submissionsInput, UserUpdateWithoutSantri_submissionsInput>, UserUncheckedUpdateWithoutSantri_submissionsInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSantriSubmissionsInput, UserUpdateWithoutSantriSubmissionsInput>, UserUncheckedUpdateWithoutSantriSubmissionsInput>
   }
 
   export type ClassCreateNestedOneWithoutAttendancesInput = {
@@ -14516,15 +14797,15 @@ export namespace Prisma {
     connect?: ClassWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutSantri_attendancesInput = {
-    create?: XOR<UserCreateWithoutSantri_attendancesInput, UserUncheckedCreateWithoutSantri_attendancesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSantri_attendancesInput
+  export type UserCreateNestedOneWithoutSantriAttendancesInput = {
+    create?: XOR<UserCreateWithoutSantriAttendancesInput, UserUncheckedCreateWithoutSantriAttendancesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSantriAttendancesInput
     connect?: UserWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutMentor_attendancesInput = {
-    create?: XOR<UserCreateWithoutMentor_attendancesInput, UserUncheckedCreateWithoutMentor_attendancesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutMentor_attendancesInput
+  export type UserCreateNestedOneWithoutMentorAttendancesInput = {
+    create?: XOR<UserCreateWithoutMentorAttendancesInput, UserUncheckedCreateWithoutMentorAttendancesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMentorAttendancesInput
     connect?: UserWhereUniqueInput
   }
 
@@ -14540,20 +14821,20 @@ export namespace Prisma {
     update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutAttendancesInput, ClassUpdateWithoutAttendancesInput>, ClassUncheckedUpdateWithoutAttendancesInput>
   }
 
-  export type UserUpdateOneRequiredWithoutSantri_attendancesNestedInput = {
-    create?: XOR<UserCreateWithoutSantri_attendancesInput, UserUncheckedCreateWithoutSantri_attendancesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSantri_attendancesInput
-    upsert?: UserUpsertWithoutSantri_attendancesInput
+  export type UserUpdateOneRequiredWithoutSantriAttendancesNestedInput = {
+    create?: XOR<UserCreateWithoutSantriAttendancesInput, UserUncheckedCreateWithoutSantriAttendancesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSantriAttendancesInput
+    upsert?: UserUpsertWithoutSantriAttendancesInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSantri_attendancesInput, UserUpdateWithoutSantri_attendancesInput>, UserUncheckedUpdateWithoutSantri_attendancesInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSantriAttendancesInput, UserUpdateWithoutSantriAttendancesInput>, UserUncheckedUpdateWithoutSantriAttendancesInput>
   }
 
-  export type UserUpdateOneRequiredWithoutMentor_attendancesNestedInput = {
-    create?: XOR<UserCreateWithoutMentor_attendancesInput, UserUncheckedCreateWithoutMentor_attendancesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutMentor_attendancesInput
-    upsert?: UserUpsertWithoutMentor_attendancesInput
+  export type UserUpdateOneRequiredWithoutMentorAttendancesNestedInput = {
+    create?: XOR<UserCreateWithoutMentorAttendancesInput, UserUncheckedCreateWithoutMentorAttendancesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMentorAttendancesInput
+    upsert?: UserUpsertWithoutMentorAttendancesInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMentor_attendancesInput, UserUpdateWithoutMentor_attendancesInput>, UserUncheckedUpdateWithoutMentor_attendancesInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMentorAttendancesInput, UserUpdateWithoutMentorAttendancesInput>, UserUncheckedUpdateWithoutMentorAttendancesInput>
   }
 
   export type DivisionCreateNestedOneWithoutClassesInput = {
@@ -14562,9 +14843,9 @@ export namespace Prisma {
     connect?: DivisionWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutMentor_classesInput = {
-    create?: XOR<UserCreateWithoutMentor_classesInput, UserUncheckedCreateWithoutMentor_classesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutMentor_classesInput
+  export type UserCreateNestedOneWithoutMentorClassesInput = {
+    create?: XOR<UserCreateWithoutMentorClassesInput, UserUncheckedCreateWithoutMentorClassesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMentorClassesInput
     connect?: UserWhereUniqueInput
   }
 
@@ -14618,12 +14899,12 @@ export namespace Prisma {
     update?: XOR<XOR<DivisionUpdateToOneWithWhereWithoutClassesInput, DivisionUpdateWithoutClassesInput>, DivisionUncheckedUpdateWithoutClassesInput>
   }
 
-  export type UserUpdateOneRequiredWithoutMentor_classesNestedInput = {
-    create?: XOR<UserCreateWithoutMentor_classesInput, UserUncheckedCreateWithoutMentor_classesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutMentor_classesInput
-    upsert?: UserUpsertWithoutMentor_classesInput
+  export type UserUpdateOneRequiredWithoutMentorClassesNestedInput = {
+    create?: XOR<UserCreateWithoutMentorClassesInput, UserUncheckedCreateWithoutMentorClassesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMentorClassesInput
+    upsert?: UserUpsertWithoutMentorClassesInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMentor_classesInput, UserUpdateWithoutMentor_classesInput>, UserUncheckedUpdateWithoutMentor_classesInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMentorClassesInput, UserUpdateWithoutMentorClassesInput>, UserUncheckedUpdateWithoutMentorClassesInput>
   }
 
   export type AttendanceUpdateManyWithoutClassNestedInput = {
@@ -14752,15 +15033,21 @@ export namespace Prisma {
     deleteMany?: ClassScalarWhereInput | ClassScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutSantri_profileInput = {
-    create?: XOR<UserCreateWithoutSantri_profileInput, UserUncheckedCreateWithoutSantri_profileInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSantri_profileInput
+  export type UserCreateNestedOneWithoutSantriProfileInput = {
+    create?: XOR<UserCreateWithoutSantriProfileInput, UserUncheckedCreateWithoutSantriProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSantriProfileInput
     connect?: UserWhereUniqueInput
   }
 
-  export type ClassCreateNestedOneWithoutSantri_profilesInput = {
-    create?: XOR<ClassCreateWithoutSantri_profilesInput, ClassUncheckedCreateWithoutSantri_profilesInput>
-    connectOrCreate?: ClassCreateOrConnectWithoutSantri_profilesInput
+  export type UserCreateNestedOneWithoutSantriUnderWaliInput = {
+    create?: XOR<UserCreateWithoutSantriUnderWaliInput, UserUncheckedCreateWithoutSantriUnderWaliInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSantriUnderWaliInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ClassCreateNestedOneWithoutSantriProfilesInput = {
+    create?: XOR<ClassCreateWithoutSantriProfilesInput, ClassUncheckedCreateWithoutSantriProfilesInput>
+    connectOrCreate?: ClassCreateOrConnectWithoutSantriProfilesInput
     connect?: ClassWhereUniqueInput
   }
 
@@ -14768,22 +15055,32 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type UserUpdateOneRequiredWithoutSantri_profileNestedInput = {
-    create?: XOR<UserCreateWithoutSantri_profileInput, UserUncheckedCreateWithoutSantri_profileInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSantri_profileInput
-    upsert?: UserUpsertWithoutSantri_profileInput
+  export type UserUpdateOneRequiredWithoutSantriProfileNestedInput = {
+    create?: XOR<UserCreateWithoutSantriProfileInput, UserUncheckedCreateWithoutSantriProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSantriProfileInput
+    upsert?: UserUpsertWithoutSantriProfileInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSantri_profileInput, UserUpdateWithoutSantri_profileInput>, UserUncheckedUpdateWithoutSantri_profileInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSantriProfileInput, UserUpdateWithoutSantriProfileInput>, UserUncheckedUpdateWithoutSantriProfileInput>
   }
 
-  export type ClassUpdateOneWithoutSantri_profilesNestedInput = {
-    create?: XOR<ClassCreateWithoutSantri_profilesInput, ClassUncheckedCreateWithoutSantri_profilesInput>
-    connectOrCreate?: ClassCreateOrConnectWithoutSantri_profilesInput
-    upsert?: ClassUpsertWithoutSantri_profilesInput
+  export type UserUpdateOneWithoutSantriUnderWaliNestedInput = {
+    create?: XOR<UserCreateWithoutSantriUnderWaliInput, UserUncheckedCreateWithoutSantriUnderWaliInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSantriUnderWaliInput
+    upsert?: UserUpsertWithoutSantriUnderWaliInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSantriUnderWaliInput, UserUpdateWithoutSantriUnderWaliInput>, UserUncheckedUpdateWithoutSantriUnderWaliInput>
+  }
+
+  export type ClassUpdateOneWithoutSantriProfilesNestedInput = {
+    create?: XOR<ClassCreateWithoutSantriProfilesInput, ClassUncheckedCreateWithoutSantriProfilesInput>
+    connectOrCreate?: ClassCreateOrConnectWithoutSantriProfilesInput
+    upsert?: ClassUpsertWithoutSantriProfilesInput
     disconnect?: ClassWhereInput | boolean
     delete?: ClassWhereInput | boolean
     connect?: ClassWhereUniqueInput
-    update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutSantri_profilesInput, ClassUpdateWithoutSantri_profilesInput>, ClassUncheckedUpdateWithoutSantri_profilesInput>
+    update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutSantriProfilesInput, ClassUpdateWithoutSantriProfilesInput>, ClassUncheckedUpdateWithoutSantriProfilesInput>
   }
 
   export type VerificationCreateNestedManyWithoutUserInput = {
@@ -14848,6 +15145,13 @@ export namespace Prisma {
     connect?: WaliSantriRelationWhereUniqueInput | WaliSantriRelationWhereUniqueInput[]
   }
 
+  export type SantriProfileCreateNestedManyWithoutWaliInput = {
+    create?: XOR<SantriProfileCreateWithoutWaliInput, SantriProfileUncheckedCreateWithoutWaliInput> | SantriProfileCreateWithoutWaliInput[] | SantriProfileUncheckedCreateWithoutWaliInput[]
+    connectOrCreate?: SantriProfileCreateOrConnectWithoutWaliInput | SantriProfileCreateOrConnectWithoutWaliInput[]
+    createMany?: SantriProfileCreateManyWaliInputEnvelope
+    connect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
+  }
+
   export type VerificationUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<VerificationCreateWithoutUserInput, VerificationUncheckedCreateWithoutUserInput> | VerificationCreateWithoutUserInput[] | VerificationUncheckedCreateWithoutUserInput[]
     connectOrCreate?: VerificationCreateOrConnectWithoutUserInput | VerificationCreateOrConnectWithoutUserInput[]
@@ -14908,6 +15212,13 @@ export namespace Prisma {
     connectOrCreate?: WaliSantriRelationCreateOrConnectWithoutSantriInput | WaliSantriRelationCreateOrConnectWithoutSantriInput[]
     createMany?: WaliSantriRelationCreateManySantriInputEnvelope
     connect?: WaliSantriRelationWhereUniqueInput | WaliSantriRelationWhereUniqueInput[]
+  }
+
+  export type SantriProfileUncheckedCreateNestedManyWithoutWaliInput = {
+    create?: XOR<SantriProfileCreateWithoutWaliInput, SantriProfileUncheckedCreateWithoutWaliInput> | SantriProfileCreateWithoutWaliInput[] | SantriProfileUncheckedCreateWithoutWaliInput[]
+    connectOrCreate?: SantriProfileCreateOrConnectWithoutWaliInput | SantriProfileCreateOrConnectWithoutWaliInput[]
+    createMany?: SantriProfileCreateManyWaliInputEnvelope
+    connect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
   }
 
   export type EnumRoleFieldUpdateOperationsInput = {
@@ -15040,6 +15351,20 @@ export namespace Prisma {
     deleteMany?: WaliSantriRelationScalarWhereInput | WaliSantriRelationScalarWhereInput[]
   }
 
+  export type SantriProfileUpdateManyWithoutWaliNestedInput = {
+    create?: XOR<SantriProfileCreateWithoutWaliInput, SantriProfileUncheckedCreateWithoutWaliInput> | SantriProfileCreateWithoutWaliInput[] | SantriProfileUncheckedCreateWithoutWaliInput[]
+    connectOrCreate?: SantriProfileCreateOrConnectWithoutWaliInput | SantriProfileCreateOrConnectWithoutWaliInput[]
+    upsert?: SantriProfileUpsertWithWhereUniqueWithoutWaliInput | SantriProfileUpsertWithWhereUniqueWithoutWaliInput[]
+    createMany?: SantriProfileCreateManyWaliInputEnvelope
+    set?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
+    disconnect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
+    delete?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
+    connect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
+    update?: SantriProfileUpdateWithWhereUniqueWithoutWaliInput | SantriProfileUpdateWithWhereUniqueWithoutWaliInput[]
+    updateMany?: SantriProfileUpdateManyWithWhereWithoutWaliInput | SantriProfileUpdateManyWithWhereWithoutWaliInput[]
+    deleteMany?: SantriProfileScalarWhereInput | SantriProfileScalarWhereInput[]
+  }
+
   export type VerificationUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<VerificationCreateWithoutUserInput, VerificationUncheckedCreateWithoutUserInput> | VerificationCreateWithoutUserInput[] | VerificationUncheckedCreateWithoutUserInput[]
     connectOrCreate?: VerificationCreateOrConnectWithoutUserInput | VerificationCreateOrConnectWithoutUserInput[]
@@ -15162,15 +15487,29 @@ export namespace Prisma {
     deleteMany?: WaliSantriRelationScalarWhereInput | WaliSantriRelationScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutWali_relationsInput = {
-    create?: XOR<UserCreateWithoutWali_relationsInput, UserUncheckedCreateWithoutWali_relationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutWali_relationsInput
+  export type SantriProfileUncheckedUpdateManyWithoutWaliNestedInput = {
+    create?: XOR<SantriProfileCreateWithoutWaliInput, SantriProfileUncheckedCreateWithoutWaliInput> | SantriProfileCreateWithoutWaliInput[] | SantriProfileUncheckedCreateWithoutWaliInput[]
+    connectOrCreate?: SantriProfileCreateOrConnectWithoutWaliInput | SantriProfileCreateOrConnectWithoutWaliInput[]
+    upsert?: SantriProfileUpsertWithWhereUniqueWithoutWaliInput | SantriProfileUpsertWithWhereUniqueWithoutWaliInput[]
+    createMany?: SantriProfileCreateManyWaliInputEnvelope
+    set?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
+    disconnect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
+    delete?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
+    connect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
+    update?: SantriProfileUpdateWithWhereUniqueWithoutWaliInput | SantriProfileUpdateWithWhereUniqueWithoutWaliInput[]
+    updateMany?: SantriProfileUpdateManyWithWhereWithoutWaliInput | SantriProfileUpdateManyWithWhereWithoutWaliInput[]
+    deleteMany?: SantriProfileScalarWhereInput | SantriProfileScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutWaliRelationsInput = {
+    create?: XOR<UserCreateWithoutWaliRelationsInput, UserUncheckedCreateWithoutWaliRelationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWaliRelationsInput
     connect?: UserWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutSantri_relationsInput = {
-    create?: XOR<UserCreateWithoutSantri_relationsInput, UserUncheckedCreateWithoutSantri_relationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSantri_relationsInput
+  export type UserCreateNestedOneWithoutSantriRelationsInput = {
+    create?: XOR<UserCreateWithoutSantriRelationsInput, UserUncheckedCreateWithoutSantriRelationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSantriRelationsInput
     connect?: UserWhereUniqueInput
   }
 
@@ -15178,20 +15517,20 @@ export namespace Prisma {
     set?: $Enums.WaliSantriCategory
   }
 
-  export type UserUpdateOneRequiredWithoutWali_relationsNestedInput = {
-    create?: XOR<UserCreateWithoutWali_relationsInput, UserUncheckedCreateWithoutWali_relationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutWali_relationsInput
-    upsert?: UserUpsertWithoutWali_relationsInput
+  export type UserUpdateOneRequiredWithoutWaliRelationsNestedInput = {
+    create?: XOR<UserCreateWithoutWaliRelationsInput, UserUncheckedCreateWithoutWaliRelationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWaliRelationsInput
+    upsert?: UserUpsertWithoutWaliRelationsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutWali_relationsInput, UserUpdateWithoutWali_relationsInput>, UserUncheckedUpdateWithoutWali_relationsInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutWaliRelationsInput, UserUpdateWithoutWaliRelationsInput>, UserUncheckedUpdateWithoutWaliRelationsInput>
   }
 
-  export type UserUpdateOneRequiredWithoutSantri_relationsNestedInput = {
-    create?: XOR<UserCreateWithoutSantri_relationsInput, UserUncheckedCreateWithoutSantri_relationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSantri_relationsInput
-    upsert?: UserUpsertWithoutSantri_relationsInput
+  export type UserUpdateOneRequiredWithoutSantriRelationsNestedInput = {
+    create?: XOR<UserCreateWithoutSantriRelationsInput, UserUncheckedCreateWithoutSantriRelationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSantriRelationsInput
+    upsert?: UserUpsertWithoutSantriRelationsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSantri_relationsInput, UserUpdateWithoutSantri_relationsInput>, UserUncheckedUpdateWithoutSantri_relationsInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSantriRelationsInput, UserUpdateWithoutSantriRelationsInput>, UserUncheckedUpdateWithoutSantriRelationsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -15472,40 +15811,44 @@ export namespace Prisma {
 
   export type UserCreateWithoutVerificationsInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
-    santri_profile?: SantriProfileCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    isActive?: boolean
+    createdAt?: Date | string
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
   export type UserUncheckedCreateWithoutVerificationsInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
-    santri_profile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassUncheckedCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    isActive?: boolean
+    createdAt?: Date | string
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
   export type UserCreateOrConnectWithoutVerificationsInput = {
@@ -15526,60 +15869,64 @@ export namespace Prisma {
 
   export type UserUpdateWithoutVerificationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    santri_profile?: SantriProfileUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUncheckedUpdateWithoutVerificationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    santri_profile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUncheckedUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type ClassCreateWithoutAssignmentsInput = {
     id?: string
     name: string
-    created_at?: Date | string
+    createdAt?: Date | string
     division: DivisionCreateNestedOneWithoutClassesInput
-    mentor: UserCreateNestedOneWithoutMentor_classesInput
+    mentor: UserCreateNestedOneWithoutMentorClassesInput
     attendances?: AttendanceCreateNestedManyWithoutClassInput
-    santri_profiles?: SantriProfileCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutAssignmentsInput = {
     id?: string
-    division_id: string
+    divisiId: string
     name: string
-    mentor_id: string
-    created_at?: Date | string
+    mentorId: string
+    createdAt?: Date | string
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
-    santri_profiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutAssignmentsInput = {
@@ -15587,69 +15934,73 @@ export namespace Prisma {
     create: XOR<ClassCreateWithoutAssignmentsInput, ClassUncheckedCreateWithoutAssignmentsInput>
   }
 
-  export type UserCreateWithoutMentor_assignmentsInput = {
+  export type UserCreateWithoutMentorAssignmentsInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceCreateNestedManyWithoutSantriInput
-    santri_submissions?: AssignmentContentCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
-  export type UserUncheckedCreateWithoutMentor_assignmentsInput = {
+  export type UserUncheckedCreateWithoutMentorAssignmentsInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassUncheckedCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
-    santri_submissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
-  export type UserCreateOrConnectWithoutMentor_assignmentsInput = {
+  export type UserCreateOrConnectWithoutMentorAssignmentsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutMentor_assignmentsInput, UserUncheckedCreateWithoutMentor_assignmentsInput>
+    create: XOR<UserCreateWithoutMentorAssignmentsInput, UserUncheckedCreateWithoutMentorAssignmentsInput>
   }
 
   export type AssignmentContentCreateWithoutAssignmentInput = {
     id?: string
-    content_type: $Enums.ContentType
-    file_url?: AssignmentContentCreatefile_urlInput | string[]
+    contentType: $Enums.ContentType
+    fileUrl?: AssignmentContentCreatefileUrlInput | string[]
     score?: number | null
-    mentor_feedback?: string | null
+    mentorFeedback?: string | null
     status?: $Enums.GradingStatus
-    submitted_at?: Date | string
-    santri: UserCreateNestedOneWithoutSantri_submissionsInput
+    submittedAt?: Date | string
+    santri: UserCreateNestedOneWithoutSantriSubmissionsInput
   }
 
   export type AssignmentContentUncheckedCreateWithoutAssignmentInput = {
     id?: string
-    santri_id: string
-    content_type: $Enums.ContentType
-    file_url?: AssignmentContentCreatefile_urlInput | string[]
+    santriId: string
+    contentType: $Enums.ContentType
+    fileUrl?: AssignmentContentCreatefileUrlInput | string[]
     score?: number | null
-    mentor_feedback?: string | null
+    mentorFeedback?: string | null
     status?: $Enums.GradingStatus
-    submitted_at?: Date | string
+    submittedAt?: Date | string
   }
 
   export type AssignmentContentCreateOrConnectWithoutAssignmentInput = {
@@ -15676,70 +16027,74 @@ export namespace Prisma {
   export type ClassUpdateWithoutAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     division?: DivisionUpdateOneRequiredWithoutClassesNestedInput
-    mentor?: UserUpdateOneRequiredWithoutMentor_classesNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorClassesNestedInput
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
-    santri_profiles?: SantriProfileUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    division_id?: StringFieldUpdateOperationsInput | string
+    divisiId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
-    santri_profiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
   }
 
-  export type UserUpsertWithoutMentor_assignmentsInput = {
-    update: XOR<UserUpdateWithoutMentor_assignmentsInput, UserUncheckedUpdateWithoutMentor_assignmentsInput>
-    create: XOR<UserCreateWithoutMentor_assignmentsInput, UserUncheckedCreateWithoutMentor_assignmentsInput>
+  export type UserUpsertWithoutMentorAssignmentsInput = {
+    update: XOR<UserUpdateWithoutMentorAssignmentsInput, UserUncheckedUpdateWithoutMentorAssignmentsInput>
+    create: XOR<UserCreateWithoutMentorAssignmentsInput, UserUncheckedCreateWithoutMentorAssignmentsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutMentor_assignmentsInput = {
+  export type UserUpdateToOneWithWhereWithoutMentorAssignmentsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutMentor_assignmentsInput, UserUncheckedUpdateWithoutMentor_assignmentsInput>
+    data: XOR<UserUpdateWithoutMentorAssignmentsInput, UserUncheckedUpdateWithoutMentorAssignmentsInput>
   }
 
-  export type UserUpdateWithoutMentor_assignmentsInput = {
+  export type UserUpdateWithoutMentorAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUpdateManyWithoutSantriNestedInput
-    santri_submissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutMentor_assignmentsInput = {
+  export type UserUncheckedUpdateWithoutMentorAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUncheckedUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
-    santri_submissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type AssignmentContentUpsertWithWhereUniqueWithoutAssignmentInput = {
@@ -15763,38 +16118,38 @@ export namespace Prisma {
     OR?: AssignmentContentScalarWhereInput[]
     NOT?: AssignmentContentScalarWhereInput | AssignmentContentScalarWhereInput[]
     id?: StringFilter<"AssignmentContent"> | string
-    assignment_id?: StringFilter<"AssignmentContent"> | string
-    santri_id?: StringFilter<"AssignmentContent"> | string
-    content_type?: EnumContentTypeFilter<"AssignmentContent"> | $Enums.ContentType
-    file_url?: StringNullableListFilter<"AssignmentContent">
+    assignmentId?: StringFilter<"AssignmentContent"> | string
+    santriId?: StringFilter<"AssignmentContent"> | string
+    contentType?: EnumContentTypeFilter<"AssignmentContent"> | $Enums.ContentType
+    fileUrl?: StringNullableListFilter<"AssignmentContent">
     score?: IntNullableFilter<"AssignmentContent"> | number | null
-    mentor_feedback?: StringNullableFilter<"AssignmentContent"> | string | null
+    mentorFeedback?: StringNullableFilter<"AssignmentContent"> | string | null
     status?: EnumGradingStatusFilter<"AssignmentContent"> | $Enums.GradingStatus
-    submitted_at?: DateTimeFilter<"AssignmentContent"> | Date | string
+    submittedAt?: DateTimeFilter<"AssignmentContent"> | Date | string
   }
 
   export type AssignmentCreateWithoutSubmissionsInput = {
     id?: string
     title: string
     description?: string | null
-    submission_type: $Enums.SubmissionType
-    attachment_url?: string | null
+    submissionType: $Enums.SubmissionType
+    attachmentUrl?: string | null
     due_date: Date | string
-    created_at?: Date | string
+    createdAt?: Date | string
     class: ClassCreateNestedOneWithoutAssignmentsInput
-    mentor: UserCreateNestedOneWithoutMentor_assignmentsInput
+    mentor: UserCreateNestedOneWithoutMentorAssignmentsInput
   }
 
   export type AssignmentUncheckedCreateWithoutSubmissionsInput = {
     id?: string
-    class_id: string
-    mentor_id: string
+    classId: string
+    mentorId: string
     title: string
     description?: string | null
-    submission_type: $Enums.SubmissionType
-    attachment_url?: string | null
+    submissionType: $Enums.SubmissionType
+    attachmentUrl?: string | null
     due_date: Date | string
-    created_at?: Date | string
+    createdAt?: Date | string
   }
 
   export type AssignmentCreateOrConnectWithoutSubmissionsInput = {
@@ -15802,47 +16157,51 @@ export namespace Prisma {
     create: XOR<AssignmentCreateWithoutSubmissionsInput, AssignmentUncheckedCreateWithoutSubmissionsInput>
   }
 
-  export type UserCreateWithoutSantri_submissionsInput = {
+  export type UserCreateWithoutSantriSubmissionsInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentCreateNestedManyWithoutMentorInput
-    wali_relations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
-  export type UserUncheckedCreateWithoutSantri_submissionsInput = {
+  export type UserUncheckedCreateWithoutSantriSubmissionsInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassUncheckedCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
-    wali_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
-  export type UserCreateOrConnectWithoutSantri_submissionsInput = {
+  export type UserCreateOrConnectWithoutSantriSubmissionsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSantri_submissionsInput, UserUncheckedCreateWithoutSantri_submissionsInput>
+    create: XOR<UserCreateWithoutSantriSubmissionsInput, UserUncheckedCreateWithoutSantriSubmissionsInput>
   }
 
   export type AssignmentUpsertWithoutSubmissionsInput = {
@@ -15860,93 +16219,97 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_type?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
-    attachment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionType?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutAssignmentsNestedInput
-    mentor?: UserUpdateOneRequiredWithoutMentor_assignmentsNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorAssignmentsNestedInput
   }
 
   export type AssignmentUncheckedUpdateWithoutSubmissionsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_type?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
-    attachment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionType?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserUpsertWithoutSantri_submissionsInput = {
-    update: XOR<UserUpdateWithoutSantri_submissionsInput, UserUncheckedUpdateWithoutSantri_submissionsInput>
-    create: XOR<UserCreateWithoutSantri_submissionsInput, UserUncheckedCreateWithoutSantri_submissionsInput>
+  export type UserUpsertWithoutSantriSubmissionsInput = {
+    update: XOR<UserUpdateWithoutSantriSubmissionsInput, UserUncheckedUpdateWithoutSantriSubmissionsInput>
+    create: XOR<UserCreateWithoutSantriSubmissionsInput, UserUncheckedCreateWithoutSantriSubmissionsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutSantri_submissionsInput = {
+  export type UserUpdateToOneWithWhereWithoutSantriSubmissionsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSantri_submissionsInput, UserUncheckedUpdateWithoutSantri_submissionsInput>
+    data: XOR<UserUpdateWithoutSantriSubmissionsInput, UserUncheckedUpdateWithoutSantriSubmissionsInput>
   }
 
-  export type UserUpdateWithoutSantri_submissionsInput = {
+  export type UserUpdateWithoutSantriSubmissionsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUpdateManyWithoutMentorNestedInput
-    wali_relations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutSantri_submissionsInput = {
+  export type UserUncheckedUpdateWithoutSantriSubmissionsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUncheckedUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
-    wali_relations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type ClassCreateWithoutAttendancesInput = {
     id?: string
     name: string
-    created_at?: Date | string
+    createdAt?: Date | string
     division: DivisionCreateNestedOneWithoutClassesInput
-    mentor: UserCreateNestedOneWithoutMentor_classesInput
+    mentor: UserCreateNestedOneWithoutMentorClassesInput
     assignments?: AssignmentCreateNestedManyWithoutClassInput
-    santri_profiles?: SantriProfileCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutAttendancesInput = {
     id?: string
-    division_id: string
+    divisiId: string
     name: string
-    mentor_id: string
-    created_at?: Date | string
+    mentorId: string
+    createdAt?: Date | string
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
-    santri_profiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutAttendancesInput = {
@@ -15954,90 +16317,98 @@ export namespace Prisma {
     create: XOR<ClassCreateWithoutAttendancesInput, ClassUncheckedCreateWithoutAttendancesInput>
   }
 
-  export type UserCreateWithoutSantri_attendancesInput = {
+  export type UserCreateWithoutSantriAttendancesInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceCreateNestedManyWithoutMentorInput
-    mentor_assignments?: AssignmentCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
-  export type UserUncheckedCreateWithoutSantri_attendancesInput = {
+  export type UserUncheckedCreateWithoutSantriAttendancesInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassUncheckedCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
-    mentor_assignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
-  export type UserCreateOrConnectWithoutSantri_attendancesInput = {
+  export type UserCreateOrConnectWithoutSantriAttendancesInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSantri_attendancesInput, UserUncheckedCreateWithoutSantri_attendancesInput>
+    create: XOR<UserCreateWithoutSantriAttendancesInput, UserUncheckedCreateWithoutSantriAttendancesInput>
   }
 
-  export type UserCreateWithoutMentor_attendancesInput = {
+  export type UserCreateWithoutMentorAttendancesInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
-  export type UserUncheckedCreateWithoutMentor_attendancesInput = {
+  export type UserUncheckedCreateWithoutMentorAttendancesInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassUncheckedCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
-  export type UserCreateOrConnectWithoutMentor_attendancesInput = {
+  export type UserCreateOrConnectWithoutMentorAttendancesInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutMentor_attendancesInput, UserUncheckedCreateWithoutMentor_attendancesInput>
+    create: XOR<UserCreateWithoutMentorAttendancesInput, UserUncheckedCreateWithoutMentorAttendancesInput>
   }
 
   export type ClassUpsertWithoutAttendancesInput = {
@@ -16054,133 +16425,141 @@ export namespace Prisma {
   export type ClassUpdateWithoutAttendancesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     division?: DivisionUpdateOneRequiredWithoutClassesNestedInput
-    mentor?: UserUpdateOneRequiredWithoutMentor_classesNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorClassesNestedInput
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
-    santri_profiles?: SantriProfileUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutAttendancesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    division_id?: StringFieldUpdateOperationsInput | string
+    divisiId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
-    santri_profiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
   }
 
-  export type UserUpsertWithoutSantri_attendancesInput = {
-    update: XOR<UserUpdateWithoutSantri_attendancesInput, UserUncheckedUpdateWithoutSantri_attendancesInput>
-    create: XOR<UserCreateWithoutSantri_attendancesInput, UserUncheckedCreateWithoutSantri_attendancesInput>
+  export type UserUpsertWithoutSantriAttendancesInput = {
+    update: XOR<UserUpdateWithoutSantriAttendancesInput, UserUncheckedUpdateWithoutSantriAttendancesInput>
+    create: XOR<UserCreateWithoutSantriAttendancesInput, UserUncheckedCreateWithoutSantriAttendancesInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutSantri_attendancesInput = {
+  export type UserUpdateToOneWithWhereWithoutSantriAttendancesInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSantri_attendancesInput, UserUncheckedUpdateWithoutSantri_attendancesInput>
+    data: XOR<UserUpdateWithoutSantriAttendancesInput, UserUncheckedUpdateWithoutSantriAttendancesInput>
   }
 
-  export type UserUpdateWithoutSantri_attendancesInput = {
+  export type UserUpdateWithoutSantriAttendancesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUpdateManyWithoutMentorNestedInput
-    mentor_assignments?: AssignmentUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutSantri_attendancesInput = {
+  export type UserUncheckedUpdateWithoutSantriAttendancesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUncheckedUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
-    mentor_assignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
-  export type UserUpsertWithoutMentor_attendancesInput = {
-    update: XOR<UserUpdateWithoutMentor_attendancesInput, UserUncheckedUpdateWithoutMentor_attendancesInput>
-    create: XOR<UserCreateWithoutMentor_attendancesInput, UserUncheckedCreateWithoutMentor_attendancesInput>
+  export type UserUpsertWithoutMentorAttendancesInput = {
+    update: XOR<UserUpdateWithoutMentorAttendancesInput, UserUncheckedUpdateWithoutMentorAttendancesInput>
+    create: XOR<UserCreateWithoutMentorAttendancesInput, UserUncheckedCreateWithoutMentorAttendancesInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutMentor_attendancesInput = {
+  export type UserUpdateToOneWithWhereWithoutMentorAttendancesInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutMentor_attendancesInput, UserUncheckedUpdateWithoutMentor_attendancesInput>
+    data: XOR<UserUpdateWithoutMentorAttendancesInput, UserUncheckedUpdateWithoutMentorAttendancesInput>
   }
 
-  export type UserUpdateWithoutMentor_attendancesInput = {
+  export type UserUpdateWithoutMentorAttendancesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutMentor_attendancesInput = {
+  export type UserUncheckedUpdateWithoutMentorAttendancesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUncheckedUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type DivisionCreateWithoutClassesInput = {
     id?: string
     name: string
     description?: string | null
-    created_at?: Date | string
+    createdAt?: Date | string
   }
 
   export type DivisionUncheckedCreateWithoutClassesInput = {
     id?: string
     name: string
     description?: string | null
-    created_at?: Date | string
+    createdAt?: Date | string
   }
 
   export type DivisionCreateOrConnectWithoutClassesInput = {
@@ -16188,47 +16567,51 @@ export namespace Prisma {
     create: XOR<DivisionCreateWithoutClassesInput, DivisionUncheckedCreateWithoutClassesInput>
   }
 
-  export type UserCreateWithoutMentor_classesInput = {
+  export type UserCreateWithoutMentorClassesInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileCreateNestedOneWithoutUserInput
-    mentor_attendances?: AttendanceCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
-  export type UserUncheckedCreateWithoutMentor_classesInput = {
+  export type UserUncheckedCreateWithoutMentorClassesInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
-    mentor_attendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
-  export type UserCreateOrConnectWithoutMentor_classesInput = {
+  export type UserCreateOrConnectWithoutMentorClassesInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutMentor_classesInput, UserUncheckedCreateWithoutMentor_classesInput>
+    create: XOR<UserCreateWithoutMentorClassesInput, UserUncheckedCreateWithoutMentorClassesInput>
   }
 
   export type AttendanceCreateWithoutClassInput = {
@@ -16236,21 +16619,21 @@ export namespace Prisma {
     date: Date | string
     status: $Enums.AttendanceStatus
     notes?: string | null
-    image_url?: string | null
-    created_at?: Date | string
-    santri: UserCreateNestedOneWithoutSantri_attendancesInput
-    mentor: UserCreateNestedOneWithoutMentor_attendancesInput
+    imageUrl?: string | null
+    createdAt?: Date | string
+    santri: UserCreateNestedOneWithoutSantriAttendancesInput
+    mentor: UserCreateNestedOneWithoutMentorAttendancesInput
   }
 
   export type AttendanceUncheckedCreateWithoutClassInput = {
     id?: string
-    santri_id: string
-    mentor_id: string
+    santriId: string
+    mentorId: string
     date: Date | string
     status: $Enums.AttendanceStatus
     notes?: string | null
-    image_url?: string | null
-    created_at?: Date | string
+    imageUrl?: string | null
+    createdAt?: Date | string
   }
 
   export type AttendanceCreateOrConnectWithoutClassInput = {
@@ -16267,23 +16650,23 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    submission_type: $Enums.SubmissionType
-    attachment_url?: string | null
+    submissionType: $Enums.SubmissionType
+    attachmentUrl?: string | null
     due_date: Date | string
-    created_at?: Date | string
-    mentor: UserCreateNestedOneWithoutMentor_assignmentsInput
+    createdAt?: Date | string
+    mentor: UserCreateNestedOneWithoutMentorAssignmentsInput
     submissions?: AssignmentContentCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUncheckedCreateWithoutClassInput = {
     id?: string
-    mentor_id: string
+    mentorId: string
     title: string
     description?: string | null
-    submission_type: $Enums.SubmissionType
-    attachment_url?: string | null
+    submissionType: $Enums.SubmissionType
+    attachmentUrl?: string | null
     due_date: Date | string
-    created_at?: Date | string
+    createdAt?: Date | string
     submissions?: AssignmentContentUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
@@ -16299,20 +16682,22 @@ export namespace Prisma {
 
   export type SantriProfileCreateWithoutClassInput = {
     id?: string
-    nis: string
-    birth_date?: Date | string | null
+    phone?: string | null
+    birthDate?: Date | string | null
     address?: string | null
-    photo_url?: string | null
-    user: UserCreateNestedOneWithoutSantri_profileInput
+    photoUrl?: string | null
+    user: UserCreateNestedOneWithoutSantriProfileInput
+    wali?: UserCreateNestedOneWithoutSantriUnderWaliInput
   }
 
   export type SantriProfileUncheckedCreateWithoutClassInput = {
     id?: string
-    user_id: string
-    nis: string
-    birth_date?: Date | string | null
+    userId: string
+    waliId?: string | null
+    phone?: string | null
+    birthDate?: Date | string | null
     address?: string | null
-    photo_url?: string | null
+    photoUrl?: string | null
   }
 
   export type SantriProfileCreateOrConnectWithoutClassInput = {
@@ -16340,63 +16725,67 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DivisionUncheckedUpdateWithoutClassesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserUpsertWithoutMentor_classesInput = {
-    update: XOR<UserUpdateWithoutMentor_classesInput, UserUncheckedUpdateWithoutMentor_classesInput>
-    create: XOR<UserCreateWithoutMentor_classesInput, UserUncheckedCreateWithoutMentor_classesInput>
+  export type UserUpsertWithoutMentorClassesInput = {
+    update: XOR<UserUpdateWithoutMentorClassesInput, UserUncheckedUpdateWithoutMentorClassesInput>
+    create: XOR<UserCreateWithoutMentorClassesInput, UserUncheckedCreateWithoutMentorClassesInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutMentor_classesInput = {
+  export type UserUpdateToOneWithWhereWithoutMentorClassesInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutMentor_classesInput, UserUncheckedUpdateWithoutMentor_classesInput>
+    data: XOR<UserUpdateWithoutMentorClassesInput, UserUncheckedUpdateWithoutMentorClassesInput>
   }
 
-  export type UserUpdateWithoutMentor_classesInput = {
+  export type UserUpdateWithoutMentorClassesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUpdateOneWithoutUserNestedInput
-    mentor_attendances?: AttendanceUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutMentor_classesInput = {
+  export type UserUncheckedUpdateWithoutMentorClassesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
-    mentor_attendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type AttendanceUpsertWithWhereUniqueWithoutClassInput = {
@@ -16420,14 +16809,14 @@ export namespace Prisma {
     OR?: AttendanceScalarWhereInput[]
     NOT?: AttendanceScalarWhereInput | AttendanceScalarWhereInput[]
     id?: StringFilter<"Attendance"> | string
-    class_id?: StringFilter<"Attendance"> | string
-    santri_id?: StringFilter<"Attendance"> | string
-    mentor_id?: StringFilter<"Attendance"> | string
+    classId?: StringFilter<"Attendance"> | string
+    santriId?: StringFilter<"Attendance"> | string
+    mentorId?: StringFilter<"Attendance"> | string
     date?: DateTimeFilter<"Attendance"> | Date | string
     status?: EnumAttendanceStatusFilter<"Attendance"> | $Enums.AttendanceStatus
     notes?: StringNullableFilter<"Attendance"> | string | null
-    image_url?: StringNullableFilter<"Attendance"> | string | null
-    created_at?: DateTimeFilter<"Attendance"> | Date | string
+    imageUrl?: StringNullableFilter<"Attendance"> | string | null
+    createdAt?: DateTimeFilter<"Attendance"> | Date | string
   }
 
   export type AssignmentUpsertWithWhereUniqueWithoutClassInput = {
@@ -16451,14 +16840,14 @@ export namespace Prisma {
     OR?: AssignmentScalarWhereInput[]
     NOT?: AssignmentScalarWhereInput | AssignmentScalarWhereInput[]
     id?: StringFilter<"Assignment"> | string
-    class_id?: StringFilter<"Assignment"> | string
-    mentor_id?: StringFilter<"Assignment"> | string
+    classId?: StringFilter<"Assignment"> | string
+    mentorId?: StringFilter<"Assignment"> | string
     title?: StringFilter<"Assignment"> | string
     description?: StringNullableFilter<"Assignment"> | string | null
-    submission_type?: EnumSubmissionTypeFilter<"Assignment"> | $Enums.SubmissionType
-    attachment_url?: StringNullableFilter<"Assignment"> | string | null
+    submissionType?: EnumSubmissionTypeFilter<"Assignment"> | $Enums.SubmissionType
+    attachmentUrl?: StringNullableFilter<"Assignment"> | string | null
     due_date?: DateTimeFilter<"Assignment"> | Date | string
-    created_at?: DateTimeFilter<"Assignment"> | Date | string
+    createdAt?: DateTimeFilter<"Assignment"> | Date | string
   }
 
   export type SantriProfileUpsertWithWhereUniqueWithoutClassInput = {
@@ -16482,32 +16871,33 @@ export namespace Prisma {
     OR?: SantriProfileScalarWhereInput[]
     NOT?: SantriProfileScalarWhereInput | SantriProfileScalarWhereInput[]
     id?: StringFilter<"SantriProfile"> | string
-    user_id?: StringFilter<"SantriProfile"> | string
-    nis?: StringFilter<"SantriProfile"> | string
-    birth_date?: DateTimeNullableFilter<"SantriProfile"> | Date | string | null
+    userId?: StringFilter<"SantriProfile"> | string
+    waliId?: StringNullableFilter<"SantriProfile"> | string | null
+    phone?: StringNullableFilter<"SantriProfile"> | string | null
+    birthDate?: DateTimeNullableFilter<"SantriProfile"> | Date | string | null
     address?: StringNullableFilter<"SantriProfile"> | string | null
-    photo_url?: StringNullableFilter<"SantriProfile"> | string | null
-    class_id?: StringNullableFilter<"SantriProfile"> | string | null
+    photoUrl?: StringNullableFilter<"SantriProfile"> | string | null
+    classId?: StringNullableFilter<"SantriProfile"> | string | null
   }
 
   export type ClassCreateWithoutDivisionInput = {
     id?: string
     name: string
-    created_at?: Date | string
-    mentor: UserCreateNestedOneWithoutMentor_classesInput
+    createdAt?: Date | string
+    mentor: UserCreateNestedOneWithoutMentorClassesInput
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     assignments?: AssignmentCreateNestedManyWithoutClassInput
-    santri_profiles?: SantriProfileCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutDivisionInput = {
     id?: string
     name: string
-    mentor_id: string
-    created_at?: Date | string
+    mentorId: string
+    createdAt?: Date | string
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
-    santri_profiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutDivisionInput = {
@@ -16541,156 +16931,264 @@ export namespace Prisma {
     OR?: ClassScalarWhereInput[]
     NOT?: ClassScalarWhereInput | ClassScalarWhereInput[]
     id?: StringFilter<"Class"> | string
-    division_id?: StringFilter<"Class"> | string
+    divisiId?: StringFilter<"Class"> | string
     name?: StringFilter<"Class"> | string
-    mentor_id?: StringFilter<"Class"> | string
-    created_at?: DateTimeFilter<"Class"> | Date | string
+    mentorId?: StringFilter<"Class"> | string
+    createdAt?: DateTimeFilter<"Class"> | Date | string
   }
 
-  export type UserCreateWithoutSantri_profileInput = {
+  export type UserCreateWithoutSantriProfileInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationCreateNestedManyWithoutUserInput
-    mentor_classes?: ClassCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
-  export type UserUncheckedCreateWithoutSantri_profileInput = {
+  export type UserUncheckedCreateWithoutSantriProfileInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    mentor_classes?: ClassUncheckedCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
-    santri_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
-  export type UserCreateOrConnectWithoutSantri_profileInput = {
+  export type UserCreateOrConnectWithoutSantriProfileInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSantri_profileInput, UserUncheckedCreateWithoutSantri_profileInput>
+    create: XOR<UserCreateWithoutSantriProfileInput, UserUncheckedCreateWithoutSantriProfileInput>
   }
 
-  export type ClassCreateWithoutSantri_profilesInput = {
+  export type UserCreateWithoutSantriUnderWaliInput = {
+    id?: string
+    nis?: string | null
+    fullName: string
+    email: string
+    password: string
+    phone?: string | null
+    role: $Enums.Role
+    isActive?: boolean
+    createdAt?: Date | string
+    verifications?: VerificationCreateNestedManyWithoutUserInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+  }
+
+  export type UserUncheckedCreateWithoutSantriUnderWaliInput = {
+    id?: string
+    nis?: string | null
+    fullName: string
+    email: string
+    password: string
+    phone?: string | null
+    role: $Enums.Role
+    isActive?: boolean
+    createdAt?: Date | string
+    verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+  }
+
+  export type UserCreateOrConnectWithoutSantriUnderWaliInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSantriUnderWaliInput, UserUncheckedCreateWithoutSantriUnderWaliInput>
+  }
+
+  export type ClassCreateWithoutSantriProfilesInput = {
     id?: string
     name: string
-    created_at?: Date | string
+    createdAt?: Date | string
     division: DivisionCreateNestedOneWithoutClassesInput
-    mentor: UserCreateNestedOneWithoutMentor_classesInput
+    mentor: UserCreateNestedOneWithoutMentorClassesInput
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     assignments?: AssignmentCreateNestedManyWithoutClassInput
   }
 
-  export type ClassUncheckedCreateWithoutSantri_profilesInput = {
+  export type ClassUncheckedCreateWithoutSantriProfilesInput = {
     id?: string
-    division_id: string
+    divisiId: string
     name: string
-    mentor_id: string
-    created_at?: Date | string
+    mentorId: string
+    createdAt?: Date | string
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
   }
 
-  export type ClassCreateOrConnectWithoutSantri_profilesInput = {
+  export type ClassCreateOrConnectWithoutSantriProfilesInput = {
     where: ClassWhereUniqueInput
-    create: XOR<ClassCreateWithoutSantri_profilesInput, ClassUncheckedCreateWithoutSantri_profilesInput>
+    create: XOR<ClassCreateWithoutSantriProfilesInput, ClassUncheckedCreateWithoutSantriProfilesInput>
   }
 
-  export type UserUpsertWithoutSantri_profileInput = {
-    update: XOR<UserUpdateWithoutSantri_profileInput, UserUncheckedUpdateWithoutSantri_profileInput>
-    create: XOR<UserCreateWithoutSantri_profileInput, UserUncheckedCreateWithoutSantri_profileInput>
+  export type UserUpsertWithoutSantriProfileInput = {
+    update: XOR<UserUpdateWithoutSantriProfileInput, UserUncheckedUpdateWithoutSantriProfileInput>
+    create: XOR<UserCreateWithoutSantriProfileInput, UserUncheckedCreateWithoutSantriProfileInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutSantri_profileInput = {
+  export type UserUpdateToOneWithWhereWithoutSantriProfileInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSantri_profileInput, UserUncheckedUpdateWithoutSantri_profileInput>
+    data: XOR<UserUpdateWithoutSantriProfileInput, UserUncheckedUpdateWithoutSantriProfileInput>
   }
 
-  export type UserUpdateWithoutSantri_profileInput = {
+  export type UserUpdateWithoutSantriProfileInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUpdateManyWithoutUserNestedInput
-    mentor_classes?: ClassUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutSantri_profileInput = {
+  export type UserUncheckedUpdateWithoutSantriProfileInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    mentor_classes?: ClassUncheckedUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
-    santri_relations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
-  export type ClassUpsertWithoutSantri_profilesInput = {
-    update: XOR<ClassUpdateWithoutSantri_profilesInput, ClassUncheckedUpdateWithoutSantri_profilesInput>
-    create: XOR<ClassCreateWithoutSantri_profilesInput, ClassUncheckedCreateWithoutSantri_profilesInput>
+  export type UserUpsertWithoutSantriUnderWaliInput = {
+    update: XOR<UserUpdateWithoutSantriUnderWaliInput, UserUncheckedUpdateWithoutSantriUnderWaliInput>
+    create: XOR<UserCreateWithoutSantriUnderWaliInput, UserUncheckedCreateWithoutSantriUnderWaliInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSantriUnderWaliInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSantriUnderWaliInput, UserUncheckedUpdateWithoutSantriUnderWaliInput>
+  }
+
+  export type UserUpdateWithoutSantriUnderWaliInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    verifications?: VerificationUpdateManyWithoutUserNestedInput
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSantriUnderWaliInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+  }
+
+  export type ClassUpsertWithoutSantriProfilesInput = {
+    update: XOR<ClassUpdateWithoutSantriProfilesInput, ClassUncheckedUpdateWithoutSantriProfilesInput>
+    create: XOR<ClassCreateWithoutSantriProfilesInput, ClassUncheckedCreateWithoutSantriProfilesInput>
     where?: ClassWhereInput
   }
 
-  export type ClassUpdateToOneWithWhereWithoutSantri_profilesInput = {
+  export type ClassUpdateToOneWithWhereWithoutSantriProfilesInput = {
     where?: ClassWhereInput
-    data: XOR<ClassUpdateWithoutSantri_profilesInput, ClassUncheckedUpdateWithoutSantri_profilesInput>
+    data: XOR<ClassUpdateWithoutSantriProfilesInput, ClassUncheckedUpdateWithoutSantriProfilesInput>
   }
 
-  export type ClassUpdateWithoutSantri_profilesInput = {
+  export type ClassUpdateWithoutSantriProfilesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     division?: DivisionUpdateOneRequiredWithoutClassesNestedInput
-    mentor?: UserUpdateOneRequiredWithoutMentor_classesNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorClassesNestedInput
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
   }
 
-  export type ClassUncheckedUpdateWithoutSantri_profilesInput = {
+  export type ClassUncheckedUpdateWithoutSantriProfilesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    division_id?: StringFieldUpdateOperationsInput | string
+    divisiId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
   }
@@ -16721,20 +17219,22 @@ export namespace Prisma {
 
   export type SantriProfileCreateWithoutUserInput = {
     id?: string
-    nis: string
-    birth_date?: Date | string | null
+    phone?: string | null
+    birthDate?: Date | string | null
     address?: string | null
-    photo_url?: string | null
-    class?: ClassCreateNestedOneWithoutSantri_profilesInput
+    photoUrl?: string | null
+    wali?: UserCreateNestedOneWithoutSantriUnderWaliInput
+    class?: ClassCreateNestedOneWithoutSantriProfilesInput
   }
 
   export type SantriProfileUncheckedCreateWithoutUserInput = {
     id?: string
-    nis: string
-    birth_date?: Date | string | null
+    waliId?: string | null
+    phone?: string | null
+    birthDate?: Date | string | null
     address?: string | null
-    photo_url?: string | null
-    class_id?: string | null
+    photoUrl?: string | null
+    classId?: string | null
   }
 
   export type SantriProfileCreateOrConnectWithoutUserInput = {
@@ -16745,21 +17245,21 @@ export namespace Prisma {
   export type ClassCreateWithoutMentorInput = {
     id?: string
     name: string
-    created_at?: Date | string
+    createdAt?: Date | string
     division: DivisionCreateNestedOneWithoutClassesInput
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     assignments?: AssignmentCreateNestedManyWithoutClassInput
-    santri_profiles?: SantriProfileCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutMentorInput = {
     id?: string
-    division_id: string
+    divisiId: string
     name: string
-    created_at?: Date | string
+    createdAt?: Date | string
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
-    santri_profiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutMentorInput = {
@@ -16777,21 +17277,21 @@ export namespace Prisma {
     date: Date | string
     status: $Enums.AttendanceStatus
     notes?: string | null
-    image_url?: string | null
-    created_at?: Date | string
+    imageUrl?: string | null
+    createdAt?: Date | string
     class: ClassCreateNestedOneWithoutAttendancesInput
-    santri: UserCreateNestedOneWithoutSantri_attendancesInput
+    santri: UserCreateNestedOneWithoutSantriAttendancesInput
   }
 
   export type AttendanceUncheckedCreateWithoutMentorInput = {
     id?: string
-    class_id: string
-    santri_id: string
+    classId: string
+    santriId: string
     date: Date | string
     status: $Enums.AttendanceStatus
     notes?: string | null
-    image_url?: string | null
-    created_at?: Date | string
+    imageUrl?: string | null
+    createdAt?: Date | string
   }
 
   export type AttendanceCreateOrConnectWithoutMentorInput = {
@@ -16809,21 +17309,21 @@ export namespace Prisma {
     date: Date | string
     status: $Enums.AttendanceStatus
     notes?: string | null
-    image_url?: string | null
-    created_at?: Date | string
+    imageUrl?: string | null
+    createdAt?: Date | string
     class: ClassCreateNestedOneWithoutAttendancesInput
-    mentor: UserCreateNestedOneWithoutMentor_attendancesInput
+    mentor: UserCreateNestedOneWithoutMentorAttendancesInput
   }
 
   export type AttendanceUncheckedCreateWithoutSantriInput = {
     id?: string
-    class_id: string
-    mentor_id: string
+    classId: string
+    mentorId: string
     date: Date | string
     status: $Enums.AttendanceStatus
     notes?: string | null
-    image_url?: string | null
-    created_at?: Date | string
+    imageUrl?: string | null
+    createdAt?: Date | string
   }
 
   export type AttendanceCreateOrConnectWithoutSantriInput = {
@@ -16840,23 +17340,23 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    submission_type: $Enums.SubmissionType
-    attachment_url?: string | null
+    submissionType: $Enums.SubmissionType
+    attachmentUrl?: string | null
     due_date: Date | string
-    created_at?: Date | string
+    createdAt?: Date | string
     class: ClassCreateNestedOneWithoutAssignmentsInput
     submissions?: AssignmentContentCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUncheckedCreateWithoutMentorInput = {
     id?: string
-    class_id: string
+    classId: string
     title: string
     description?: string | null
-    submission_type: $Enums.SubmissionType
-    attachment_url?: string | null
+    submissionType: $Enums.SubmissionType
+    attachmentUrl?: string | null
     due_date: Date | string
-    created_at?: Date | string
+    createdAt?: Date | string
     submissions?: AssignmentContentUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
@@ -16872,24 +17372,24 @@ export namespace Prisma {
 
   export type AssignmentContentCreateWithoutSantriInput = {
     id?: string
-    content_type: $Enums.ContentType
-    file_url?: AssignmentContentCreatefile_urlInput | string[]
+    contentType: $Enums.ContentType
+    fileUrl?: AssignmentContentCreatefileUrlInput | string[]
     score?: number | null
-    mentor_feedback?: string | null
+    mentorFeedback?: string | null
     status?: $Enums.GradingStatus
-    submitted_at?: Date | string
+    submittedAt?: Date | string
     assignment: AssignmentCreateNestedOneWithoutSubmissionsInput
   }
 
   export type AssignmentContentUncheckedCreateWithoutSantriInput = {
     id?: string
-    assignment_id: string
-    content_type: $Enums.ContentType
-    file_url?: AssignmentContentCreatefile_urlInput | string[]
+    assignmentId: string
+    contentType: $Enums.ContentType
+    fileUrl?: AssignmentContentCreatefileUrlInput | string[]
     score?: number | null
-    mentor_feedback?: string | null
+    mentorFeedback?: string | null
     status?: $Enums.GradingStatus
-    submitted_at?: Date | string
+    submittedAt?: Date | string
   }
 
   export type AssignmentContentCreateOrConnectWithoutSantriInput = {
@@ -16904,14 +17404,24 @@ export namespace Prisma {
 
   export type WaliSantriRelationCreateWithoutWaliInput = {
     id?: string
+    name?: string | null
+    phone?: string | null
+    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
-    santri: UserCreateNestedOneWithoutSantri_relationsInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    santri: UserCreateNestedOneWithoutSantriRelationsInput
   }
 
   export type WaliSantriRelationUncheckedCreateWithoutWaliInput = {
     id?: string
-    santri_id: string
+    santriId: string
+    name?: string | null
+    phone?: string | null
+    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type WaliSantriRelationCreateOrConnectWithoutWaliInput = {
@@ -16926,14 +17436,24 @@ export namespace Prisma {
 
   export type WaliSantriRelationCreateWithoutSantriInput = {
     id?: string
+    name?: string | null
+    phone?: string | null
+    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
-    wali: UserCreateNestedOneWithoutWali_relationsInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    wali: UserCreateNestedOneWithoutWaliRelationsInput
   }
 
   export type WaliSantriRelationUncheckedCreateWithoutSantriInput = {
     id?: string
-    wali_id: string
+    waliId: string
+    name?: string | null
+    phone?: string | null
+    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type WaliSantriRelationCreateOrConnectWithoutSantriInput = {
@@ -16943,6 +17463,36 @@ export namespace Prisma {
 
   export type WaliSantriRelationCreateManySantriInputEnvelope = {
     data: WaliSantriRelationCreateManySantriInput | WaliSantriRelationCreateManySantriInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SantriProfileCreateWithoutWaliInput = {
+    id?: string
+    phone?: string | null
+    birthDate?: Date | string | null
+    address?: string | null
+    photoUrl?: string | null
+    user: UserCreateNestedOneWithoutSantriProfileInput
+    class?: ClassCreateNestedOneWithoutSantriProfilesInput
+  }
+
+  export type SantriProfileUncheckedCreateWithoutWaliInput = {
+    id?: string
+    userId: string
+    phone?: string | null
+    birthDate?: Date | string | null
+    address?: string | null
+    photoUrl?: string | null
+    classId?: string | null
+  }
+
+  export type SantriProfileCreateOrConnectWithoutWaliInput = {
+    where: SantriProfileWhereUniqueInput
+    create: XOR<SantriProfileCreateWithoutWaliInput, SantriProfileUncheckedCreateWithoutWaliInput>
+  }
+
+  export type SantriProfileCreateManyWaliInputEnvelope = {
+    data: SantriProfileCreateManyWaliInput | SantriProfileCreateManyWaliInput[]
     skipDuplicates?: boolean
   }
 
@@ -16986,20 +17536,22 @@ export namespace Prisma {
 
   export type SantriProfileUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nis?: StringFieldUpdateOperationsInput | string
-    birth_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    photo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    class?: ClassUpdateOneWithoutSantri_profilesNestedInput
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    wali?: UserUpdateOneWithoutSantriUnderWaliNestedInput
+    class?: ClassUpdateOneWithoutSantriProfilesNestedInput
   }
 
   export type SantriProfileUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nis?: StringFieldUpdateOperationsInput | string
-    birth_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    waliId?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    photo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    class_id?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ClassUpsertWithWhereUniqueWithoutMentorInput = {
@@ -17103,9 +17655,14 @@ export namespace Prisma {
     OR?: WaliSantriRelationScalarWhereInput[]
     NOT?: WaliSantriRelationScalarWhereInput | WaliSantriRelationScalarWhereInput[]
     id?: StringFilter<"WaliSantriRelation"> | string
-    wali_id?: StringFilter<"WaliSantriRelation"> | string
-    santri_id?: StringFilter<"WaliSantriRelation"> | string
+    waliId?: StringFilter<"WaliSantriRelation"> | string
+    santriId?: StringFilter<"WaliSantriRelation"> | string
+    name?: StringNullableFilter<"WaliSantriRelation"> | string | null
+    phone?: StringNullableFilter<"WaliSantriRelation"> | string | null
+    photoUrl?: StringNullableFilter<"WaliSantriRelation"> | string | null
     category?: EnumWaliSantriCategoryFilter<"WaliSantriRelation"> | $Enums.WaliSantriCategory
+    createdAt?: DateTimeFilter<"WaliSantriRelation"> | Date | string
+    updatedAt?: DateTimeFilter<"WaliSantriRelation"> | Date | string
   }
 
   export type WaliSantriRelationUpsertWithWhereUniqueWithoutSantriInput = {
@@ -17124,263 +17681,296 @@ export namespace Prisma {
     data: XOR<WaliSantriRelationUpdateManyMutationInput, WaliSantriRelationUncheckedUpdateManyWithoutSantriInput>
   }
 
-  export type UserCreateWithoutWali_relationsInput = {
+  export type SantriProfileUpsertWithWhereUniqueWithoutWaliInput = {
+    where: SantriProfileWhereUniqueInput
+    update: XOR<SantriProfileUpdateWithoutWaliInput, SantriProfileUncheckedUpdateWithoutWaliInput>
+    create: XOR<SantriProfileCreateWithoutWaliInput, SantriProfileUncheckedCreateWithoutWaliInput>
+  }
+
+  export type SantriProfileUpdateWithWhereUniqueWithoutWaliInput = {
+    where: SantriProfileWhereUniqueInput
+    data: XOR<SantriProfileUpdateWithoutWaliInput, SantriProfileUncheckedUpdateWithoutWaliInput>
+  }
+
+  export type SantriProfileUpdateManyWithWhereWithoutWaliInput = {
+    where: SantriProfileScalarWhereInput
+    data: XOR<SantriProfileUpdateManyMutationInput, SantriProfileUncheckedUpdateManyWithoutWaliInput>
+  }
+
+  export type UserCreateWithoutWaliRelationsInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentCreateNestedManyWithoutSantriInput
-    santri_relations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
-  export type UserUncheckedCreateWithoutWali_relationsInput = {
+  export type UserUncheckedCreateWithoutWaliRelationsInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassUncheckedCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
-    santri_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
-  export type UserCreateOrConnectWithoutWali_relationsInput = {
+  export type UserCreateOrConnectWithoutWaliRelationsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutWali_relationsInput, UserUncheckedCreateWithoutWali_relationsInput>
+    create: XOR<UserCreateWithoutWaliRelationsInput, UserUncheckedCreateWithoutWaliRelationsInput>
   }
 
-  export type UserCreateWithoutSantri_relationsInput = {
+  export type UserCreateWithoutSantriRelationsInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
-  export type UserUncheckedCreateWithoutSantri_relationsInput = {
+  export type UserUncheckedCreateWithoutSantriRelationsInput = {
     id?: string
-    full_name: string
+    nis?: string | null
+    fullName: string
     email: string
     password: string
     phone?: string | null
     role: $Enums.Role
-    is_active?: boolean
-    created_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    santri_profile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
-    mentor_classes?: ClassUncheckedCreateNestedManyWithoutMentorInput
-    mentor_attendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
-    santri_attendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
-    mentor_assignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
-    santri_submissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
-    wali_relations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
-  export type UserCreateOrConnectWithoutSantri_relationsInput = {
+  export type UserCreateOrConnectWithoutSantriRelationsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSantri_relationsInput, UserUncheckedCreateWithoutSantri_relationsInput>
+    create: XOR<UserCreateWithoutSantriRelationsInput, UserUncheckedCreateWithoutSantriRelationsInput>
   }
 
-  export type UserUpsertWithoutWali_relationsInput = {
-    update: XOR<UserUpdateWithoutWali_relationsInput, UserUncheckedUpdateWithoutWali_relationsInput>
-    create: XOR<UserCreateWithoutWali_relationsInput, UserUncheckedCreateWithoutWali_relationsInput>
+  export type UserUpsertWithoutWaliRelationsInput = {
+    update: XOR<UserUpdateWithoutWaliRelationsInput, UserUncheckedUpdateWithoutWaliRelationsInput>
+    create: XOR<UserCreateWithoutWaliRelationsInput, UserUncheckedCreateWithoutWaliRelationsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutWali_relationsInput = {
+  export type UserUpdateToOneWithWhereWithoutWaliRelationsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutWali_relationsInput, UserUncheckedUpdateWithoutWali_relationsInput>
+    data: XOR<UserUpdateWithoutWaliRelationsInput, UserUncheckedUpdateWithoutWaliRelationsInput>
   }
 
-  export type UserUpdateWithoutWali_relationsInput = {
+  export type UserUpdateWithoutWaliRelationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
-    santri_relations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutWali_relationsInput = {
+  export type UserUncheckedUpdateWithoutWaliRelationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUncheckedUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
-    santri_relations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
-  export type UserUpsertWithoutSantri_relationsInput = {
-    update: XOR<UserUpdateWithoutSantri_relationsInput, UserUncheckedUpdateWithoutSantri_relationsInput>
-    create: XOR<UserCreateWithoutSantri_relationsInput, UserUncheckedCreateWithoutSantri_relationsInput>
+  export type UserUpsertWithoutSantriRelationsInput = {
+    update: XOR<UserUpdateWithoutSantriRelationsInput, UserUncheckedUpdateWithoutSantriRelationsInput>
+    create: XOR<UserCreateWithoutSantriRelationsInput, UserUncheckedCreateWithoutSantriRelationsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutSantri_relationsInput = {
+  export type UserUpdateToOneWithWhereWithoutSantriRelationsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSantri_relationsInput, UserUncheckedUpdateWithoutSantri_relationsInput>
+    data: XOR<UserUpdateWithoutSantriRelationsInput, UserUncheckedUpdateWithoutSantriRelationsInput>
   }
 
-  export type UserUpdateWithoutSantri_relationsInput = {
+  export type UserUpdateWithoutSantriRelationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutSantri_relationsInput = {
+  export type UserUncheckedUpdateWithoutSantriRelationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    full_name?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    santri_profile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
-    mentor_classes?: ClassUncheckedUpdateManyWithoutMentorNestedInput
-    mentor_attendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
-    santri_attendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
-    mentor_assignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
-    santri_submissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
-    wali_relations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type AssignmentContentCreateManyAssignmentInput = {
     id?: string
-    santri_id: string
-    content_type: $Enums.ContentType
-    file_url?: AssignmentContentCreatefile_urlInput | string[]
+    santriId: string
+    contentType: $Enums.ContentType
+    fileUrl?: AssignmentContentCreatefileUrlInput | string[]
     score?: number | null
-    mentor_feedback?: string | null
+    mentorFeedback?: string | null
     status?: $Enums.GradingStatus
-    submitted_at?: Date | string
+    submittedAt?: Date | string
   }
 
   export type AssignmentContentUpdateWithoutAssignmentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    content_type?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
-    file_url?: AssignmentContentUpdatefile_urlInput | string[]
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    fileUrl?: AssignmentContentUpdatefileUrlInput | string[]
     score?: NullableIntFieldUpdateOperationsInput | number | null
-    mentor_feedback?: NullableStringFieldUpdateOperationsInput | string | null
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumGradingStatusFieldUpdateOperationsInput | $Enums.GradingStatus
-    submitted_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    santri?: UserUpdateOneRequiredWithoutSantri_submissionsNestedInput
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    santri?: UserUpdateOneRequiredWithoutSantriSubmissionsNestedInput
   }
 
   export type AssignmentContentUncheckedUpdateWithoutAssignmentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
-    content_type?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
-    file_url?: AssignmentContentUpdatefile_urlInput | string[]
+    santriId?: StringFieldUpdateOperationsInput | string
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    fileUrl?: AssignmentContentUpdatefileUrlInput | string[]
     score?: NullableIntFieldUpdateOperationsInput | number | null
-    mentor_feedback?: NullableStringFieldUpdateOperationsInput | string | null
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumGradingStatusFieldUpdateOperationsInput | $Enums.GradingStatus
-    submitted_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AssignmentContentUncheckedUpdateManyWithoutAssignmentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
-    content_type?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
-    file_url?: AssignmentContentUpdatefile_urlInput | string[]
+    santriId?: StringFieldUpdateOperationsInput | string
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    fileUrl?: AssignmentContentUpdatefileUrlInput | string[]
     score?: NullableIntFieldUpdateOperationsInput | number | null
-    mentor_feedback?: NullableStringFieldUpdateOperationsInput | string | null
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumGradingStatusFieldUpdateOperationsInput | $Enums.GradingStatus
-    submitted_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceCreateManyClassInput = {
     id?: string
-    santri_id: string
-    mentor_id: string
+    santriId: string
+    mentorId: string
     date: Date | string
     status: $Enums.AttendanceStatus
     notes?: string | null
-    image_url?: string | null
-    created_at?: Date | string
+    imageUrl?: string | null
+    createdAt?: Date | string
   }
 
   export type AssignmentCreateManyClassInput = {
     id?: string
-    mentor_id: string
+    mentorId: string
     title: string
     description?: string | null
-    submission_type: $Enums.SubmissionType
-    attachment_url?: string | null
+    submissionType: $Enums.SubmissionType
+    attachmentUrl?: string | null
     due_date: Date | string
-    created_at?: Date | string
+    createdAt?: Date | string
   }
 
   export type SantriProfileCreateManyClassInput = {
     id?: string
-    user_id: string
-    nis: string
-    birth_date?: Date | string | null
+    userId: string
+    waliId?: string | null
+    phone?: string | null
+    birthDate?: Date | string | null
     address?: string | null
-    photo_url?: string | null
+    photoUrl?: string | null
   }
 
   export type AttendanceUpdateWithoutClassInput = {
@@ -17388,128 +17978,131 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    santri?: UserUpdateOneRequiredWithoutSantri_attendancesNestedInput
-    mentor?: UserUpdateOneRequiredWithoutMentor_attendancesNestedInput
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    santri?: UserUpdateOneRequiredWithoutSantriAttendancesNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorAttendancesNestedInput
   }
 
   export type AttendanceUncheckedUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceUncheckedUpdateManyWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AssignmentUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_type?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
-    attachment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionType?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    mentor?: UserUpdateOneRequiredWithoutMentor_assignmentsNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mentor?: UserUpdateOneRequiredWithoutMentorAssignmentsNestedInput
     submissions?: AssignmentContentUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_type?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
-    attachment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionType?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     submissions?: AssignmentContentUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateManyWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_type?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
-    attachment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionType?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SantriProfileUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nis?: StringFieldUpdateOperationsInput | string
-    birth_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    photo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    user?: UserUpdateOneRequiredWithoutSantri_profileNestedInput
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutSantriProfileNestedInput
+    wali?: UserUpdateOneWithoutSantriUnderWaliNestedInput
   }
 
   export type SantriProfileUncheckedUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    nis?: StringFieldUpdateOperationsInput | string
-    birth_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    waliId?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    photo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SantriProfileUncheckedUpdateManyWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    nis?: StringFieldUpdateOperationsInput | string
-    birth_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    waliId?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
-    photo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ClassCreateManyDivisionInput = {
     id?: string
     name: string
-    mentor_id: string
-    created_at?: Date | string
+    mentorId: string
+    createdAt?: Date | string
   }
 
   export type ClassUpdateWithoutDivisionInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    mentor?: UserUpdateOneRequiredWithoutMentor_classesNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mentor?: UserUpdateOneRequiredWithoutMentorClassesNestedInput
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
-    santri_profiles?: SantriProfileUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutDivisionInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
-    santri_profiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateManyWithoutDivisionInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VerificationCreateManyUserInput = {
@@ -17521,65 +18114,85 @@ export namespace Prisma {
 
   export type ClassCreateManyMentorInput = {
     id?: string
-    division_id: string
+    divisiId: string
     name: string
-    created_at?: Date | string
+    createdAt?: Date | string
   }
 
   export type AttendanceCreateManyMentorInput = {
     id?: string
-    class_id: string
-    santri_id: string
+    classId: string
+    santriId: string
     date: Date | string
     status: $Enums.AttendanceStatus
     notes?: string | null
-    image_url?: string | null
-    created_at?: Date | string
+    imageUrl?: string | null
+    createdAt?: Date | string
   }
 
   export type AttendanceCreateManySantriInput = {
     id?: string
-    class_id: string
-    mentor_id: string
+    classId: string
+    mentorId: string
     date: Date | string
     status: $Enums.AttendanceStatus
     notes?: string | null
-    image_url?: string | null
-    created_at?: Date | string
+    imageUrl?: string | null
+    createdAt?: Date | string
   }
 
   export type AssignmentCreateManyMentorInput = {
     id?: string
-    class_id: string
+    classId: string
     title: string
     description?: string | null
-    submission_type: $Enums.SubmissionType
-    attachment_url?: string | null
+    submissionType: $Enums.SubmissionType
+    attachmentUrl?: string | null
     due_date: Date | string
-    created_at?: Date | string
+    createdAt?: Date | string
   }
 
   export type AssignmentContentCreateManySantriInput = {
     id?: string
-    assignment_id: string
-    content_type: $Enums.ContentType
-    file_url?: AssignmentContentCreatefile_urlInput | string[]
+    assignmentId: string
+    contentType: $Enums.ContentType
+    fileUrl?: AssignmentContentCreatefileUrlInput | string[]
     score?: number | null
-    mentor_feedback?: string | null
+    mentorFeedback?: string | null
     status?: $Enums.GradingStatus
-    submitted_at?: Date | string
+    submittedAt?: Date | string
   }
 
   export type WaliSantriRelationCreateManyWaliInput = {
     id?: string
-    santri_id: string
+    santriId: string
+    name?: string | null
+    phone?: string | null
+    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type WaliSantriRelationCreateManySantriInput = {
     id?: string
-    wali_id: string
+    waliId: string
+    name?: string | null
+    phone?: string | null
+    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SantriProfileCreateManyWaliInput = {
+    id?: string
+    userId: string
+    phone?: string | null
+    birthDate?: Date | string | null
+    address?: string | null
+    photoUrl?: string | null
+    classId?: string | null
   }
 
   export type VerificationUpdateWithoutUserInput = {
@@ -17606,28 +18219,28 @@ export namespace Prisma {
   export type ClassUpdateWithoutMentorInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     division?: DivisionUpdateOneRequiredWithoutClassesNestedInput
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
-    santri_profiles?: SantriProfileUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutMentorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    division_id?: StringFieldUpdateOperationsInput | string
+    divisiId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
-    santri_profiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateManyWithoutMentorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    division_id?: StringFieldUpdateOperationsInput | string
+    divisiId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceUpdateWithoutMentorInput = {
@@ -17635,32 +18248,32 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutAttendancesNestedInput
-    santri?: UserUpdateOneRequiredWithoutSantri_attendancesNestedInput
+    santri?: UserUpdateOneRequiredWithoutSantriAttendancesNestedInput
   }
 
   export type AttendanceUncheckedUpdateWithoutMentorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceUncheckedUpdateManyWithoutMentorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceUpdateWithoutSantriInput = {
@@ -17668,136 +18281,196 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutAttendancesNestedInput
-    mentor?: UserUpdateOneRequiredWithoutMentor_attendancesNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorAttendancesNestedInput
   }
 
   export type AttendanceUncheckedUpdateWithoutSantriInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceUncheckedUpdateManyWithoutSantriInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    mentor_id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AssignmentUpdateWithoutMentorInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_type?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
-    attachment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionType?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutAssignmentsNestedInput
     submissions?: AssignmentContentUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateWithoutMentorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_type?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
-    attachment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionType?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     submissions?: AssignmentContentUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateManyWithoutMentorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_type?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
-    attachment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionType?: EnumSubmissionTypeFieldUpdateOperationsInput | $Enums.SubmissionType
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AssignmentContentUpdateWithoutSantriInput = {
     id?: StringFieldUpdateOperationsInput | string
-    content_type?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
-    file_url?: AssignmentContentUpdatefile_urlInput | string[]
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    fileUrl?: AssignmentContentUpdatefileUrlInput | string[]
     score?: NullableIntFieldUpdateOperationsInput | number | null
-    mentor_feedback?: NullableStringFieldUpdateOperationsInput | string | null
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumGradingStatusFieldUpdateOperationsInput | $Enums.GradingStatus
-    submitted_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignment?: AssignmentUpdateOneRequiredWithoutSubmissionsNestedInput
   }
 
   export type AssignmentContentUncheckedUpdateWithoutSantriInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignment_id?: StringFieldUpdateOperationsInput | string
-    content_type?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
-    file_url?: AssignmentContentUpdatefile_urlInput | string[]
+    assignmentId?: StringFieldUpdateOperationsInput | string
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    fileUrl?: AssignmentContentUpdatefileUrlInput | string[]
     score?: NullableIntFieldUpdateOperationsInput | number | null
-    mentor_feedback?: NullableStringFieldUpdateOperationsInput | string | null
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumGradingStatusFieldUpdateOperationsInput | $Enums.GradingStatus
-    submitted_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AssignmentContentUncheckedUpdateManyWithoutSantriInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignment_id?: StringFieldUpdateOperationsInput | string
-    content_type?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
-    file_url?: AssignmentContentUpdatefile_urlInput | string[]
+    assignmentId?: StringFieldUpdateOperationsInput | string
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    fileUrl?: AssignmentContentUpdatefileUrlInput | string[]
     score?: NullableIntFieldUpdateOperationsInput | number | null
-    mentor_feedback?: NullableStringFieldUpdateOperationsInput | string | null
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumGradingStatusFieldUpdateOperationsInput | $Enums.GradingStatus
-    submitted_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type WaliSantriRelationUpdateWithoutWaliInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
-    santri?: UserUpdateOneRequiredWithoutSantri_relationsNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    santri?: UserUpdateOneRequiredWithoutSantriRelationsNestedInput
   }
 
   export type WaliSantriRelationUncheckedUpdateWithoutWaliInput = {
     id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type WaliSantriRelationUncheckedUpdateManyWithoutWaliInput = {
     id?: StringFieldUpdateOperationsInput | string
-    santri_id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type WaliSantriRelationUpdateWithoutSantriInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
-    wali?: UserUpdateOneRequiredWithoutWali_relationsNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wali?: UserUpdateOneRequiredWithoutWaliRelationsNestedInput
   }
 
   export type WaliSantriRelationUncheckedUpdateWithoutSantriInput = {
     id?: StringFieldUpdateOperationsInput | string
-    wali_id?: StringFieldUpdateOperationsInput | string
+    waliId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type WaliSantriRelationUncheckedUpdateManyWithoutSantriInput = {
     id?: StringFieldUpdateOperationsInput | string
-    wali_id?: StringFieldUpdateOperationsInput | string
+    waliId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SantriProfileUpdateWithoutWaliInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutSantriProfileNestedInput
+    class?: ClassUpdateOneWithoutSantriProfilesNestedInput
+  }
+
+  export type SantriProfileUncheckedUpdateWithoutWaliInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SantriProfileUncheckedUpdateManyWithoutWaliInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

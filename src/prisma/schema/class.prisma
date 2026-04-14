@@ -1,18 +1,18 @@
 model Class {
   id          String   @id @default(uuid())
-  division_id String
-  division    Division @relation(fields: [division_id], references: [id], onDelete: Restrict)
+  divisiId    String
+  division    Division @relation(fields: [divisiId], references: [id], onDelete: Restrict)
   
   name        String
   
-  mentor_id   String
-  mentor      User     @relation("MentorClasses", fields: [mentor_id], references: [id])
+  mentorId    String
+  mentor      User     @relation("MentorClasses", fields: [mentorId], references: [id])
   
-  created_at  DateTime @default(now())
+  createdAt   DateTime @default(now())
 
   attendances Attendance[]
   assignments Assignment[]
-  santri_profiles SantriProfile[]
+  santriProfiles SantriProfile[]
 
   @@map("classes")
-}
+}
