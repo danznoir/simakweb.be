@@ -1,0 +1,28 @@
+model User {
+  id        String   @id @default(uuid())
+  nis       String?  @unique
+  fullName  String
+  email     String   @unique
+  password  String
+  phone     String?  // Dibuat opsional (bisa null) karena mungkin tidak semua punya HP
+  role      Role
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  // Relasi (Ini otomatis dibuat oleh Prisma untuk back-reference)
+  verifications      Verification[]
+  santriProfile      SantriProfile?
+  mentorClasses      Class[]             @relation("MentorClasses")
+  mentorAttendances  Attendance[]        @relation("MentorAttendances")
+  santriAttendances  Attendance[]        @relation("SantriAttendances")
+  mentorAssignments  Assignment[]        @relation("MentorAssignments")
+  santriSubmissions  AssignmentContent[] @relation("SantriSubmissions")
+
+  // Relasi Wali Santri
+  waliRelations     WaliSantriRelation[] @relation("WaliToRelation")
+  santriRelations   WaliSantriRelation[] @relation("SantriToRelation")
+  santriUnderWali   SantriProfile[]      @relation("WaliToSantri")
+
+  @@map("users")
+}
+

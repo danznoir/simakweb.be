@@ -1,0 +1,20 @@
+model AssignmentContent {
+  id              String        @id @default(uuid())
+  
+  assignmentId    String
+  assignment      Assignment    @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  
+  santriId        String
+  santri          User          @relation("SantriSubmissions", fields: [santriId], references: [id], onDelete: Cascade)
+  
+  contentType     ContentType
+  fileUrl         String[]       
+  score           Int?
+  mentorFeedback  String?       @db.Text
+  status          GradingStatus @default(PENDING)
+  
+  submittedAt     DateTime      @default(now())
+
+  @@unique([assignmentId, santriId])
+  @@map("assignment_content")
+}

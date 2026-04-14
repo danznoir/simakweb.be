@@ -1,0 +1,18 @@
+model Class {
+  id          String   @id @default(uuid())
+  divisiId    String
+  division    Division @relation(fields: [divisiId], references: [id], onDelete: Restrict)
+  
+  name        String
+  
+  mentorId    String
+  mentor      User     @relation("MentorClasses", fields: [mentorId], references: [id])
+  
+  createdAt   DateTime @default(now())
+
+  attendances Attendance[]
+  assignments Assignment[]
+  santriProfiles SantriProfile[]
+
+  @@map("classes")
+}

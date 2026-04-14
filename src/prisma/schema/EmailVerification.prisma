@@ -1,0 +1,12 @@
+model Verification {
+  id         String           @id @default(uuid())
+  user_id    String
+  user       User             @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  otpCode   String           // Diganti dari token menjadi otp_code
+  expiresAt DateTime         // Batas waktu OTP valid
+  createdAt DateTime         @default(now())
+
+  // Mencegah ada otp_code dan email yang sama persis ganda di database
+  @@unique([user_id, otpCode])
+  @@map("verifications")
+}

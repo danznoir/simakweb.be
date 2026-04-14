@@ -1,0 +1,228 @@
+model Verification {
+  id        String   @id @default(uuid())
+  user_id   String
+  user      User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  otpCode   String // Diganti dari token menjadi otp_code
+  expiresAt DateTime // Batas waktu OTP valid
+  createdAt DateTime @default(now())
+
+  // Mencegah ada otp_code dan email yang sama persis ganda di database
+  @@unique([user_id, otpCode])
+  @@map("verifications")
+}
+
+model Assignment {
+  id String @id @default(uuid())
+
+  classId String
+  class   Class  @relation(fields: [classId], references: [id], onDelete: Cascade)
+
+  mentorId String
+  mentor   User   @relation("MentorAssignments", fields: [mentorId], references: [id])
+
+  title          String
+  description    String?        @db.Text
+  submissionType SubmissionType
+  attachmentUrl  String? // Link soal (opsional)
+  due_date       DateTime
+
+  createdAt DateTime @default(now())
+
+  submissions AssignmentContent[]
+
+  @@map("assignments")
+}
+
+model AssignmentContent {
+  id String @id @default(uuid())
+
+  assignmentId String
+  assignment   Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+
+  santriId String
+  santri   User   @relation("SantriSubmissions", fields: [santriId], references: [id], onDelete: Cascade)
+
+  contentType    ContentType
+  fileUrl        String[]
+  score          Int?
+  mentorFeedback String?       @db.Text
+  status         GradingStatus @default(PENDING)
+
+  submittedAt DateTime @default(now())
+
+  @@unique([assignmentId, santriId])
+  @@map("assignment_content")
+}
+
+model Attendance {
+  id String @id @default(uuid())
+
+  classId String
+  class   Class  @relation(fields: [classId], references: [id], onDelete: Cascade)
+
+  santriId String
+  santri   User   @relation("SantriAttendances", fields: [santriId], references: [id], onDelete: Cascade)
+
+  mentorId String
+  mentor   User   @relation("MentorAttendances", fields: [mentorId], references: [id])
+
+  date     DateTime         @db.Date
+  status   AttendanceStatus
+  notes    String?          @db.Text
+  imageUrl String? // Bukti kehadiran/sakit/izin
+
+  createdAt DateTime @default(now())
+
+  // Memastikan 1 santri hanya diabsen 1 kali per kelas per hari
+  @@unique([classId, santriId, date])
+  @@map("attendances")
+}
+
+model Class {
+  id       String   @id @default(uuid())
+  divisiId String
+  division Division @relation(fields: [divisiId], references: [id], onDelete: Restrict)
+
+  name String
+
+  mentorId String
+  mentor   User   @relation("MentorClasses", fields: [mentorId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  attendances    Attendance[]
+  assignments    Assignment[]
+  santriProfiles SantriProfile[]
+
+  @@map("classes")
+}
+
+model Division {
+  id          String   @id @default(uuid())
+  name        String // Misal: SD, SMP, SMA, Tahfidz
+  description String?  @db.Text
+  createdAt   DateTime @default(now())
+
+  classes Class[]
+
+  @@map("divisions")
+}
+
+model SantriProfile {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  waliId String?
+  wali   User?   @relation("WaliToSantri", fields: [waliId], references: [id])
+
+  phone     String?
+  birthDate DateTime? @db.Date
+  address   String?   @db.Text
+  photoUrl  String?
+
+  classId String?
+  class   Class?  @relation(fields: [classId], references: [id], onDelete: SetNull)
+
+  @@map("santri_profiles")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  nis       String?  @unique
+  fullName  String
+  email     String   @unique
+  password  String
+  phone     String? // Dibuat opsional (bisa null) karena mungkin tidak semua punya HP
+  role      Role
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  // Relasi (Ini otomatis dibuat oleh Prisma untuk back-reference)
+  verifications     Verification[]
+  santriProfile     SantriProfile?
+  mentorClasses     Class[]             @relation("MentorClasses")
+  mentorAttendances Attendance[]        @relation("MentorAttendances")
+  santriAttendances Attendance[]        @relation("SantriAttendances")
+  mentorAssignments Assignment[]        @relation("MentorAssignments")
+  santriSubmissions AssignmentContent[] @relation("SantriSubmissions")
+
+  // Relasi Wali Santri
+  waliRelations   WaliSantriRelation[] @relation("WaliToRelation")
+  santriRelations WaliSantriRelation[] @relation("SantriToRelation")
+  santriUnderWali SantriProfile[]      @relation("WaliToSantri")
+
+  @@map("users")
+}
+
+model WaliSantriRelation {
+  id String @id @default(uuid())
+
+  waliId String
+  wali   User   @relation("WaliToRelation", fields: [waliId], references: [id], onDelete: Cascade)
+
+  santriId String
+  santri   User   @relation("SantriToRelation", fields: [santriId], references: [id], onDelete: Cascade)
+
+  name     String?
+  phone    String?
+  photoUrl String?
+  category WaliSantriCategory @default(OTHER)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Memastikan satu kombinasi wali dan anak tidak duplikat
+  @@unique([waliId, santriId])
+  @@map("wali_santri_relations")
+}
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  MENTOR
+  SANTRI
+  WALI_SANTRI
+}
+
+enum AttendanceStatus {
+  HADIR
+  SAKIT
+  IZIN
+  ALFA
+}
+
+enum SubmissionType {
+  TEXT
+  FILE
+}
+
+enum GradingStatus {
+  PENDING
+  GRADED
+}
+
+enum ContentType {
+  VIDEO
+  FOTO
+  TEXT
+}
+
+enum WaliSantriCategory {
+  AYAH
+  IBU
+  OTHER
+}
