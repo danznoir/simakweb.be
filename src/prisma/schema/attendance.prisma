@@ -1,0 +1,23 @@
+model Attendance {
+  id          String           @id @default(uuid())
+  
+  classId     String
+  class       Class            @relation(fields: [classId], references: [id], onDelete: Cascade)
+  
+  santriId    String
+  santri      User             @relation("SantriAttendances", fields: [santriId], references: [id], onDelete: Cascade)
+  
+  mentorId    String
+  mentor      User             @relation("MentorAttendances", fields: [mentorId], references: [id])
+  
+  date        DateTime         @db.Date
+  status      AttendanceStatus
+  notes       String?          @db.Text
+  imageUrl    String?          // Bukti kehadiran/sakit/izin
+  
+  createdAt   DateTime         @default(now())
+
+  // Memastikan 1 santri hanya diabsen 1 kali per kelas per hari
+  @@unique([classId, santriId, date])
+  @@map("attendances")
+}

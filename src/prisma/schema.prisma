@@ -5,9 +5,45 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  output   = "../../generated"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  MENTOR
+  SANTRI
+  WALI_SANTRI
+}
+
+enum AttendanceStatus {
+  HADIR
+  SAKIT
+  IZIN
+  ALFA
+}
+
+enum SubmissionType {
+  TEXT
+  FILE
+}
+
+enum GradingStatus {
+  PENDING
+  GRADED
+}
+
+enum ContentType {
+  VIDEO
+  FOTO
+  TEXT
+}
+
+enum WaliSantriCategory {
+  AYAH
+  IBU
+  OTHER
 }
