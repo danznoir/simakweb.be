@@ -1,20 +1,45 @@
-import { prisma } from "../../../config/prisma.js"
-import type { IUpdateProfileData } from "./profile.schema.js"
+import { PrismaClient, Prisma } from "../../../../generated/index.js";
 
-export const getProfileRepo = async (id: string) => {
-    return await prisma.user.findUnique({
-        where: {
-            id,
-        }
-    })
+export class ProfileRepository {
+  constructor(private prisma: PrismaClient) {}
+
+  async findAll(skip: number, take: number) {
+    const [data, total] = await this.prisma.$transaction([
+      this.prisma.user.findMany({
+        skip,
+        take,
+        include: { santriProfile: true }, // Tarik juga data relasi profilnya
+        orderBy: { createdAt: "desc" },
+      }),
+      this.prisma.user.count(), // Hitung total seluruh user
+    ]);
+
+    return { data, total };
+  }
+
+  async findById(id: string) {
+    return await this.prisma.user.findUnique({
+      where: { id },
+      include: { santriProfile: true },
+    });
+  }
+
+  async create(data: Prisma.UserCreateInput) {
+    return await this.prisma.user.create({
+      data,
+    });
+  }
+
+  async update(id: string, data: Prisma.UserUpdateInput) {
+    return await this.prisma.user.update({
+      where: { id },
+      data,
+    });
+  }
+
+  async delete(id: string) {
+    return await this.prisma.user.delete({
+      where: { id },
+    });
+  }
 }
-
-export const updateProfileRepo = async (id: string, data: IUpdateProfileData) => {
-    return await prisma.user.update({
-        where: {
-            id,
-        },
-        data,
-    })
-}
-

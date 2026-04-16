@@ -17,12 +17,10 @@ export const errorHandler = (err: Error & { statusCode?: number }, req: Request,
     message = err.message;
   }
 
-  // Contoh: tangani error spesifik tanpa Prisma
-  // Di dalam errorHandler.ts
   if (message.includes("tidak ditemukan") || message.toLowerCase().includes("not found")) {
     statusCode = 404;
   } else if (message.includes("sudah ada") || message.toLowerCase().includes("already exists")) {
-    statusCode = 409; // Diubah jadi 409 agar lebih spesifik
+    statusCode = 409;
   }
 
 

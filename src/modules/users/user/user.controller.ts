@@ -1,27 +1,38 @@
-import type { Request, Response } from "express"
-import { successResponse } from "../../../utils/response.js"
-import { getAllUserService, getUserByIdService, updateUserService, deleteUserService } from "./user.service.js"
+import type { Request, Response } from "express";
+import { UserService } from "./user.service.js";
+import { successResponse, errorResponse } from "../../../utils/response.js"; 
 
-export const getAllUserController = async (req: Request, res: Response) => {
-    const result = await getAllUserService()
-    successResponse(res, "User berhasil diambil", result, null, 200)
-}
+export class UserController {
+  constructor(private userService: UserService) {}
 
-export const getUserByIdController = async (req: Request, res: Response) => {
-    const { id } = req.params as { id: string }
-    const result = await getUserByIdService(id)
-    successResponse(res, "User berhasil diambil", result, null, 200)
-}
+  getAllUsers = async (req: Request, res: Response) => {
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 10;
 
-export const updateUserController = async (req: Request, res: Response) => {
-    const { id } = req.params as { id: string }
-    const data = req.body
-    const result = await updateUserService(id, data)
-    successResponse(res, "User berhasil diupdate", result, null, 200)
-}
+      const result = await this.userService.getAllUsers(page, limit);
+      successResponse(res, "Data user berhasil diambil", result.data, result.meta, 200);
+  };
 
-export const deleteUserController = async (req: Request, res: Response) => {
-    const { id } = req.params as { id: string }
-    const result = await deleteUserService(id)
-    successResponse(res, "User berhasil dihapus", result, null, 200)
+  getUserById = async (req: Request, res: Response) => {
+      const { id } = req.params;
+      const result = await this.userService.getUserById(id as string);
+      successResponse(res, "Data user berhasil diambil", result, null, 200);
+  };
+
+  createUser = async (req: Request, res: Response) => {
+      const result = await this.userService.createUser(req.body);
+      successResponse(res, "User berhasil dibuat", result, null, 201);
+  };
+
+  updateUser = async (req: Request, res: Response) => {
+      const { id } = req.params;
+      const result = await this.userService.updateUser(id as string, req.body);
+      successResponse(res, "User berhasil diupdate", result, null, 200);
+  };
+
+  deleteUser = async (req: Request, res: Response) => {
+      const { id } = req.params;
+      await this.userService.deleteUser(id as string);
+      successResponse(res, "User berhasil dihapus", null, null, 200);
+  };
 }
