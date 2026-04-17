@@ -13,6 +13,10 @@ import classRouter from "./modules/classes/class.route.js";
 import attendanceRouter from "./modules/attendance/attendance.route.js";
 import assignmentRouter from "./modules/assignments/assignment.route.js";
 import submissionRouter from "./modules/assignment_content/assignment-content.route.js";
+import userRouter from "./modules/users/user/user.route.js";
+import userProfileRouter from "./modules/users/profile/profile.route.js";
+import waliSantriRouter from "./modules/wali/profileWali/waliProfile.route.js";
+import relasiRouter from "./modules/wali/relasi/relation.route.js";
 
 interface CustomRequest extends Request {
   rawBody?: string;
@@ -57,6 +61,10 @@ app.use('/api/v1/classes', classRouter)
 app.use('/api/v1/attendances', attendanceRouter)
 app.use('/api/v1/assignments', assignmentRouter)
 app.use('/api/v1/submissions', submissionRouter)
+app.use('/api/v1/users', userRouter)
+app.use('api/v1/relasi', relasiRouter)
+app.use('/api/v1/user-profile', userProfileRouter)
+app.use('/api/v1/wali-santri', waliSantriRouter)
 
 app.get(/.*/, (req: Request, res: Response) => {
   throw new Error(`Route ${req.originalUrl} tidak ada di API E-Commerce`);

@@ -54,6 +54,11 @@ export type SantriProfile = $Result.DefaultSelection<Prisma.$SantriProfilePayloa
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model WaliProfile
+ * 
+ */
+export type WaliProfile = $Result.DefaultSelection<Prisma.$WaliProfilePayload>
+/**
  * Model WaliSantriRelation
  * 
  */
@@ -342,6 +347,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.waliProfile`: Exposes CRUD operations for the **WaliProfile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WaliProfiles
+    * const waliProfiles = await prisma.waliProfile.findMany()
+    * ```
+    */
+  get waliProfile(): Prisma.WaliProfileDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.waliSantriRelation`: Exposes CRUD operations for the **WaliSantriRelation** model.
@@ -794,6 +809,7 @@ export namespace Prisma {
     Division: 'Division',
     SantriProfile: 'SantriProfile',
     User: 'User',
+    WaliProfile: 'WaliProfile',
     WaliSantriRelation: 'WaliSantriRelation'
   };
 
@@ -810,7 +826,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "verification" | "assignment" | "assignmentContent" | "attendance" | "class" | "division" | "santriProfile" | "user" | "waliSantriRelation"
+      modelProps: "verification" | "assignment" | "assignmentContent" | "attendance" | "class" | "division" | "santriProfile" | "user" | "waliProfile" | "waliSantriRelation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1406,6 +1422,80 @@ export namespace Prisma {
           }
         }
       }
+      WaliProfile: {
+        payload: Prisma.$WaliProfilePayload<ExtArgs>
+        fields: Prisma.WaliProfileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WaliProfileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaliProfilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WaliProfileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaliProfilePayload>
+          }
+          findFirst: {
+            args: Prisma.WaliProfileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaliProfilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WaliProfileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaliProfilePayload>
+          }
+          findMany: {
+            args: Prisma.WaliProfileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaliProfilePayload>[]
+          }
+          create: {
+            args: Prisma.WaliProfileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaliProfilePayload>
+          }
+          createMany: {
+            args: Prisma.WaliProfileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WaliProfileCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaliProfilePayload>[]
+          }
+          delete: {
+            args: Prisma.WaliProfileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaliProfilePayload>
+          }
+          update: {
+            args: Prisma.WaliProfileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaliProfilePayload>
+          }
+          deleteMany: {
+            args: Prisma.WaliProfileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WaliProfileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WaliProfileUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaliProfilePayload>[]
+          }
+          upsert: {
+            args: Prisma.WaliProfileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaliProfilePayload>
+          }
+          aggregate: {
+            args: Prisma.WaliProfileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWaliProfile>
+          }
+          groupBy: {
+            args: Prisma.WaliProfileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WaliProfileGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WaliProfileCountArgs<ExtArgs>
+            result: $Utils.Optional<WaliProfileCountAggregateOutputType> | number
+          }
+        }
+      }
       WaliSantriRelation: {
         payload: Prisma.$WaliSantriRelationPayload<ExtArgs>
         fields: Prisma.WaliSantriRelationFieldRefs
@@ -1596,6 +1686,7 @@ export namespace Prisma {
     division?: DivisionOmit
     santriProfile?: SantriProfileOmit
     user?: UserOmit
+    waliProfile?: WaliProfileOmit
     waliSantriRelation?: WaliSantriRelationOmit
   }
 
@@ -1796,7 +1887,6 @@ export namespace Prisma {
     santriSubmissions: number
     waliRelations: number
     santriRelations: number
-    santriUnderWali: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1808,7 +1898,6 @@ export namespace Prisma {
     santriSubmissions?: boolean | UserCountOutputTypeCountSantriSubmissionsArgs
     waliRelations?: boolean | UserCountOutputTypeCountWaliRelationsArgs
     santriRelations?: boolean | UserCountOutputTypeCountSantriRelationsArgs
-    santriUnderWali?: boolean | UserCountOutputTypeCountSantriUnderWaliArgs
   }
 
   // Custom InputTypes
@@ -1876,13 +1965,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountSantriRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: WaliSantriRelationWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountSantriUnderWaliArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SantriProfileWhereInput
   }
 
 
@@ -8622,7 +8704,6 @@ export namespace Prisma {
   export type SantriProfileMinAggregateOutputType = {
     id: string | null
     userId: string | null
-    waliId: string | null
     phone: string | null
     birthDate: Date | null
     address: string | null
@@ -8633,7 +8714,6 @@ export namespace Prisma {
   export type SantriProfileMaxAggregateOutputType = {
     id: string | null
     userId: string | null
-    waliId: string | null
     phone: string | null
     birthDate: Date | null
     address: string | null
@@ -8644,7 +8724,6 @@ export namespace Prisma {
   export type SantriProfileCountAggregateOutputType = {
     id: number
     userId: number
-    waliId: number
     phone: number
     birthDate: number
     address: number
@@ -8657,7 +8736,6 @@ export namespace Prisma {
   export type SantriProfileMinAggregateInputType = {
     id?: true
     userId?: true
-    waliId?: true
     phone?: true
     birthDate?: true
     address?: true
@@ -8668,7 +8746,6 @@ export namespace Prisma {
   export type SantriProfileMaxAggregateInputType = {
     id?: true
     userId?: true
-    waliId?: true
     phone?: true
     birthDate?: true
     address?: true
@@ -8679,7 +8756,6 @@ export namespace Prisma {
   export type SantriProfileCountAggregateInputType = {
     id?: true
     userId?: true
-    waliId?: true
     phone?: true
     birthDate?: true
     address?: true
@@ -8763,7 +8839,6 @@ export namespace Prisma {
   export type SantriProfileGroupByOutputType = {
     id: string
     userId: string
-    waliId: string | null
     phone: string | null
     birthDate: Date | null
     address: string | null
@@ -8791,49 +8866,42 @@ export namespace Prisma {
   export type SantriProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    waliId?: boolean
     phone?: boolean
     birthDate?: boolean
     address?: boolean
     photoUrl?: boolean
     classId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    wali?: boolean | SantriProfile$waliArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }, ExtArgs["result"]["santriProfile"]>
 
   export type SantriProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    waliId?: boolean
     phone?: boolean
     birthDate?: boolean
     address?: boolean
     photoUrl?: boolean
     classId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    wali?: boolean | SantriProfile$waliArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }, ExtArgs["result"]["santriProfile"]>
 
   export type SantriProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    waliId?: boolean
     phone?: boolean
     birthDate?: boolean
     address?: boolean
     photoUrl?: boolean
     classId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    wali?: boolean | SantriProfile$waliArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }, ExtArgs["result"]["santriProfile"]>
 
   export type SantriProfileSelectScalar = {
     id?: boolean
     userId?: boolean
-    waliId?: boolean
     phone?: boolean
     birthDate?: boolean
     address?: boolean
@@ -8841,20 +8909,17 @@ export namespace Prisma {
     classId?: boolean
   }
 
-  export type SantriProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "waliId" | "phone" | "birthDate" | "address" | "photoUrl" | "classId", ExtArgs["result"]["santriProfile"]>
+  export type SantriProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "phone" | "birthDate" | "address" | "photoUrl" | "classId", ExtArgs["result"]["santriProfile"]>
   export type SantriProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    wali?: boolean | SantriProfile$waliArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }
   export type SantriProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    wali?: boolean | SantriProfile$waliArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }
   export type SantriProfileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    wali?: boolean | SantriProfile$waliArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }
 
@@ -8862,13 +8927,11 @@ export namespace Prisma {
     name: "SantriProfile"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      wali: Prisma.$UserPayload<ExtArgs> | null
       class: Prisma.$ClassPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
-      waliId: string | null
       phone: string | null
       birthDate: Date | null
       address: string | null
@@ -9269,7 +9332,6 @@ export namespace Prisma {
   export interface Prisma__SantriProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    wali<T extends SantriProfile$waliArgs<ExtArgs> = {}>(args?: Subset<T, SantriProfile$waliArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     class<T extends SantriProfile$classArgs<ExtArgs> = {}>(args?: Subset<T, SantriProfile$classArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9302,7 +9364,6 @@ export namespace Prisma {
   interface SantriProfileFieldRefs {
     readonly id: FieldRef<"SantriProfile", 'String'>
     readonly userId: FieldRef<"SantriProfile", 'String'>
-    readonly waliId: FieldRef<"SantriProfile", 'String'>
     readonly phone: FieldRef<"SantriProfile", 'String'>
     readonly birthDate: FieldRef<"SantriProfile", 'DateTime'>
     readonly address: FieldRef<"SantriProfile", 'String'>
@@ -9709,25 +9770,6 @@ export namespace Prisma {
   }
 
   /**
-   * SantriProfile.wali
-   */
-  export type SantriProfile$waliArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
    * SantriProfile.class
    */
   export type SantriProfile$classArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9961,6 +10003,7 @@ export namespace Prisma {
     role?: boolean
     isActive?: boolean
     createdAt?: boolean
+    waliProfile?: boolean | User$waliProfileArgs<ExtArgs>
     verifications?: boolean | User$verificationsArgs<ExtArgs>
     santriProfile?: boolean | User$santriProfileArgs<ExtArgs>
     mentorClasses?: boolean | User$mentorClassesArgs<ExtArgs>
@@ -9970,7 +10013,6 @@ export namespace Prisma {
     santriSubmissions?: boolean | User$santriSubmissionsArgs<ExtArgs>
     waliRelations?: boolean | User$waliRelationsArgs<ExtArgs>
     santriRelations?: boolean | User$santriRelationsArgs<ExtArgs>
-    santriUnderWali?: boolean | User$santriUnderWaliArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -10012,6 +10054,7 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nis" | "fullName" | "email" | "password" | "phone" | "role" | "isActive" | "createdAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    waliProfile?: boolean | User$waliProfileArgs<ExtArgs>
     verifications?: boolean | User$verificationsArgs<ExtArgs>
     santriProfile?: boolean | User$santriProfileArgs<ExtArgs>
     mentorClasses?: boolean | User$mentorClassesArgs<ExtArgs>
@@ -10021,7 +10064,6 @@ export namespace Prisma {
     santriSubmissions?: boolean | User$santriSubmissionsArgs<ExtArgs>
     waliRelations?: boolean | User$waliRelationsArgs<ExtArgs>
     santriRelations?: boolean | User$santriRelationsArgs<ExtArgs>
-    santriUnderWali?: boolean | User$santriUnderWaliArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -10030,6 +10072,7 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
+      waliProfile: Prisma.$WaliProfilePayload<ExtArgs> | null
       verifications: Prisma.$VerificationPayload<ExtArgs>[]
       santriProfile: Prisma.$SantriProfilePayload<ExtArgs> | null
       mentorClasses: Prisma.$ClassPayload<ExtArgs>[]
@@ -10039,7 +10082,6 @@ export namespace Prisma {
       santriSubmissions: Prisma.$AssignmentContentPayload<ExtArgs>[]
       waliRelations: Prisma.$WaliSantriRelationPayload<ExtArgs>[]
       santriRelations: Prisma.$WaliSantriRelationPayload<ExtArgs>[]
-      santriUnderWali: Prisma.$SantriProfilePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10445,6 +10487,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    waliProfile<T extends User$waliProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$waliProfileArgs<ExtArgs>>): Prisma__WaliProfileClient<$Result.GetResult<Prisma.$WaliProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     verifications<T extends User$verificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$verificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     santriProfile<T extends User$santriProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$santriProfileArgs<ExtArgs>>): Prisma__SantriProfileClient<$Result.GetResult<Prisma.$SantriProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     mentorClasses<T extends User$mentorClassesArgs<ExtArgs> = {}>(args?: Subset<T, User$mentorClassesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -10454,7 +10497,6 @@ export namespace Prisma {
     santriSubmissions<T extends User$santriSubmissionsArgs<ExtArgs> = {}>(args?: Subset<T, User$santriSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     waliRelations<T extends User$waliRelationsArgs<ExtArgs> = {}>(args?: Subset<T, User$waliRelationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaliSantriRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     santriRelations<T extends User$santriRelationsArgs<ExtArgs> = {}>(args?: Subset<T, User$santriRelationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaliSantriRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    santriUnderWali<T extends User$santriUnderWaliArgs<ExtArgs> = {}>(args?: Subset<T, User$santriUnderWaliArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SantriProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10886,6 +10928,25 @@ export namespace Prisma {
   }
 
   /**
+   * User.waliProfile
+   */
+  export type User$waliProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaliProfile
+     */
+    select?: WaliProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaliProfile
+     */
+    omit?: WaliProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaliProfileInclude<ExtArgs> | null
+    where?: WaliProfileWhereInput
+  }
+
+  /**
    * User.verifications
    */
   export type User$verificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11097,30 +11158,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.santriUnderWali
-   */
-  export type User$santriUnderWaliArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SantriProfile
-     */
-    select?: SantriProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the SantriProfile
-     */
-    omit?: SantriProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SantriProfileInclude<ExtArgs> | null
-    where?: SantriProfileWhereInput
-    orderBy?: SantriProfileOrderByWithRelationInput | SantriProfileOrderByWithRelationInput[]
-    cursor?: SantriProfileWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SantriProfileScalarFieldEnum | SantriProfileScalarFieldEnum[]
-  }
-
-  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11140,6 +11177,1082 @@ export namespace Prisma {
 
 
   /**
+   * Model WaliProfile
+   */
+
+  export type AggregateWaliProfile = {
+    _count: WaliProfileCountAggregateOutputType | null
+    _min: WaliProfileMinAggregateOutputType | null
+    _max: WaliProfileMaxAggregateOutputType | null
+  }
+
+  export type WaliProfileMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    phone: string | null
+    address: string | null
+    photoUrl: string | null
+    job: string | null
+  }
+
+  export type WaliProfileMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    phone: string | null
+    address: string | null
+    photoUrl: string | null
+    job: string | null
+  }
+
+  export type WaliProfileCountAggregateOutputType = {
+    id: number
+    userId: number
+    phone: number
+    address: number
+    photoUrl: number
+    job: number
+    _all: number
+  }
+
+
+  export type WaliProfileMinAggregateInputType = {
+    id?: true
+    userId?: true
+    phone?: true
+    address?: true
+    photoUrl?: true
+    job?: true
+  }
+
+  export type WaliProfileMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    phone?: true
+    address?: true
+    photoUrl?: true
+    job?: true
+  }
+
+  export type WaliProfileCountAggregateInputType = {
+    id?: true
+    userId?: true
+    phone?: true
+    address?: true
+    photoUrl?: true
+    job?: true
+    _all?: true
+  }
+
+  export type WaliProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WaliProfile to aggregate.
+     */
+    where?: WaliProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WaliProfiles to fetch.
+     */
+    orderBy?: WaliProfileOrderByWithRelationInput | WaliProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WaliProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WaliProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WaliProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned WaliProfiles
+    **/
+    _count?: true | WaliProfileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WaliProfileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WaliProfileMaxAggregateInputType
+  }
+
+  export type GetWaliProfileAggregateType<T extends WaliProfileAggregateArgs> = {
+        [P in keyof T & keyof AggregateWaliProfile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWaliProfile[P]>
+      : GetScalarType<T[P], AggregateWaliProfile[P]>
+  }
+
+
+
+
+  export type WaliProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WaliProfileWhereInput
+    orderBy?: WaliProfileOrderByWithAggregationInput | WaliProfileOrderByWithAggregationInput[]
+    by: WaliProfileScalarFieldEnum[] | WaliProfileScalarFieldEnum
+    having?: WaliProfileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WaliProfileCountAggregateInputType | true
+    _min?: WaliProfileMinAggregateInputType
+    _max?: WaliProfileMaxAggregateInputType
+  }
+
+  export type WaliProfileGroupByOutputType = {
+    id: string
+    userId: string
+    phone: string | null
+    address: string | null
+    photoUrl: string | null
+    job: string | null
+    _count: WaliProfileCountAggregateOutputType | null
+    _min: WaliProfileMinAggregateOutputType | null
+    _max: WaliProfileMaxAggregateOutputType | null
+  }
+
+  type GetWaliProfileGroupByPayload<T extends WaliProfileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WaliProfileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WaliProfileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WaliProfileGroupByOutputType[P]>
+            : GetScalarType<T[P], WaliProfileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WaliProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    phone?: boolean
+    address?: boolean
+    photoUrl?: boolean
+    job?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["waliProfile"]>
+
+  export type WaliProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    phone?: boolean
+    address?: boolean
+    photoUrl?: boolean
+    job?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["waliProfile"]>
+
+  export type WaliProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    phone?: boolean
+    address?: boolean
+    photoUrl?: boolean
+    job?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["waliProfile"]>
+
+  export type WaliProfileSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    phone?: boolean
+    address?: boolean
+    photoUrl?: boolean
+    job?: boolean
+  }
+
+  export type WaliProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "phone" | "address" | "photoUrl" | "job", ExtArgs["result"]["waliProfile"]>
+  export type WaliProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type WaliProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type WaliProfileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $WaliProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "WaliProfile"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      phone: string | null
+      address: string | null
+      photoUrl: string | null
+      job: string | null
+    }, ExtArgs["result"]["waliProfile"]>
+    composites: {}
+  }
+
+  type WaliProfileGetPayload<S extends boolean | null | undefined | WaliProfileDefaultArgs> = $Result.GetResult<Prisma.$WaliProfilePayload, S>
+
+  type WaliProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WaliProfileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WaliProfileCountAggregateInputType | true
+    }
+
+  export interface WaliProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['WaliProfile'], meta: { name: 'WaliProfile' } }
+    /**
+     * Find zero or one WaliProfile that matches the filter.
+     * @param {WaliProfileFindUniqueArgs} args - Arguments to find a WaliProfile
+     * @example
+     * // Get one WaliProfile
+     * const waliProfile = await prisma.waliProfile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WaliProfileFindUniqueArgs>(args: SelectSubset<T, WaliProfileFindUniqueArgs<ExtArgs>>): Prisma__WaliProfileClient<$Result.GetResult<Prisma.$WaliProfilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one WaliProfile that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WaliProfileFindUniqueOrThrowArgs} args - Arguments to find a WaliProfile
+     * @example
+     * // Get one WaliProfile
+     * const waliProfile = await prisma.waliProfile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WaliProfileFindUniqueOrThrowArgs>(args: SelectSubset<T, WaliProfileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WaliProfileClient<$Result.GetResult<Prisma.$WaliProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WaliProfile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaliProfileFindFirstArgs} args - Arguments to find a WaliProfile
+     * @example
+     * // Get one WaliProfile
+     * const waliProfile = await prisma.waliProfile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WaliProfileFindFirstArgs>(args?: SelectSubset<T, WaliProfileFindFirstArgs<ExtArgs>>): Prisma__WaliProfileClient<$Result.GetResult<Prisma.$WaliProfilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WaliProfile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaliProfileFindFirstOrThrowArgs} args - Arguments to find a WaliProfile
+     * @example
+     * // Get one WaliProfile
+     * const waliProfile = await prisma.waliProfile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WaliProfileFindFirstOrThrowArgs>(args?: SelectSubset<T, WaliProfileFindFirstOrThrowArgs<ExtArgs>>): Prisma__WaliProfileClient<$Result.GetResult<Prisma.$WaliProfilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more WaliProfiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaliProfileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all WaliProfiles
+     * const waliProfiles = await prisma.waliProfile.findMany()
+     * 
+     * // Get first 10 WaliProfiles
+     * const waliProfiles = await prisma.waliProfile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const waliProfileWithIdOnly = await prisma.waliProfile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WaliProfileFindManyArgs>(args?: SelectSubset<T, WaliProfileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaliProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a WaliProfile.
+     * @param {WaliProfileCreateArgs} args - Arguments to create a WaliProfile.
+     * @example
+     * // Create one WaliProfile
+     * const WaliProfile = await prisma.waliProfile.create({
+     *   data: {
+     *     // ... data to create a WaliProfile
+     *   }
+     * })
+     * 
+     */
+    create<T extends WaliProfileCreateArgs>(args: SelectSubset<T, WaliProfileCreateArgs<ExtArgs>>): Prisma__WaliProfileClient<$Result.GetResult<Prisma.$WaliProfilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many WaliProfiles.
+     * @param {WaliProfileCreateManyArgs} args - Arguments to create many WaliProfiles.
+     * @example
+     * // Create many WaliProfiles
+     * const waliProfile = await prisma.waliProfile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WaliProfileCreateManyArgs>(args?: SelectSubset<T, WaliProfileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many WaliProfiles and returns the data saved in the database.
+     * @param {WaliProfileCreateManyAndReturnArgs} args - Arguments to create many WaliProfiles.
+     * @example
+     * // Create many WaliProfiles
+     * const waliProfile = await prisma.waliProfile.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many WaliProfiles and only return the `id`
+     * const waliProfileWithIdOnly = await prisma.waliProfile.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WaliProfileCreateManyAndReturnArgs>(args?: SelectSubset<T, WaliProfileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaliProfilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a WaliProfile.
+     * @param {WaliProfileDeleteArgs} args - Arguments to delete one WaliProfile.
+     * @example
+     * // Delete one WaliProfile
+     * const WaliProfile = await prisma.waliProfile.delete({
+     *   where: {
+     *     // ... filter to delete one WaliProfile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WaliProfileDeleteArgs>(args: SelectSubset<T, WaliProfileDeleteArgs<ExtArgs>>): Prisma__WaliProfileClient<$Result.GetResult<Prisma.$WaliProfilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one WaliProfile.
+     * @param {WaliProfileUpdateArgs} args - Arguments to update one WaliProfile.
+     * @example
+     * // Update one WaliProfile
+     * const waliProfile = await prisma.waliProfile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WaliProfileUpdateArgs>(args: SelectSubset<T, WaliProfileUpdateArgs<ExtArgs>>): Prisma__WaliProfileClient<$Result.GetResult<Prisma.$WaliProfilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more WaliProfiles.
+     * @param {WaliProfileDeleteManyArgs} args - Arguments to filter WaliProfiles to delete.
+     * @example
+     * // Delete a few WaliProfiles
+     * const { count } = await prisma.waliProfile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WaliProfileDeleteManyArgs>(args?: SelectSubset<T, WaliProfileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WaliProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaliProfileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many WaliProfiles
+     * const waliProfile = await prisma.waliProfile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WaliProfileUpdateManyArgs>(args: SelectSubset<T, WaliProfileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WaliProfiles and returns the data updated in the database.
+     * @param {WaliProfileUpdateManyAndReturnArgs} args - Arguments to update many WaliProfiles.
+     * @example
+     * // Update many WaliProfiles
+     * const waliProfile = await prisma.waliProfile.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more WaliProfiles and only return the `id`
+     * const waliProfileWithIdOnly = await prisma.waliProfile.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WaliProfileUpdateManyAndReturnArgs>(args: SelectSubset<T, WaliProfileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaliProfilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one WaliProfile.
+     * @param {WaliProfileUpsertArgs} args - Arguments to update or create a WaliProfile.
+     * @example
+     * // Update or create a WaliProfile
+     * const waliProfile = await prisma.waliProfile.upsert({
+     *   create: {
+     *     // ... data to create a WaliProfile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the WaliProfile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WaliProfileUpsertArgs>(args: SelectSubset<T, WaliProfileUpsertArgs<ExtArgs>>): Prisma__WaliProfileClient<$Result.GetResult<Prisma.$WaliProfilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of WaliProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaliProfileCountArgs} args - Arguments to filter WaliProfiles to count.
+     * @example
+     * // Count the number of WaliProfiles
+     * const count = await prisma.waliProfile.count({
+     *   where: {
+     *     // ... the filter for the WaliProfiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends WaliProfileCountArgs>(
+      args?: Subset<T, WaliProfileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WaliProfileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a WaliProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaliProfileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WaliProfileAggregateArgs>(args: Subset<T, WaliProfileAggregateArgs>): Prisma.PrismaPromise<GetWaliProfileAggregateType<T>>
+
+    /**
+     * Group by WaliProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaliProfileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WaliProfileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WaliProfileGroupByArgs['orderBy'] }
+        : { orderBy?: WaliProfileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WaliProfileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWaliProfileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the WaliProfile model
+   */
+  readonly fields: WaliProfileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for WaliProfile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WaliProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the WaliProfile model
+   */
+  interface WaliProfileFieldRefs {
+    readonly id: FieldRef<"WaliProfile", 'String'>
+    readonly userId: FieldRef<"WaliProfile", 'String'>
+    readonly phone: FieldRef<"WaliProfile", 'String'>
+    readonly address: FieldRef<"WaliProfile", 'String'>
+    readonly photoUrl: FieldRef<"WaliProfile", 'String'>
+    readonly job: FieldRef<"WaliProfile", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * WaliProfile findUnique
+   */
+  export type WaliProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaliProfile
+     */
+    select?: WaliProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaliProfile
+     */
+    omit?: WaliProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaliProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which WaliProfile to fetch.
+     */
+    where: WaliProfileWhereUniqueInput
+  }
+
+  /**
+   * WaliProfile findUniqueOrThrow
+   */
+  export type WaliProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaliProfile
+     */
+    select?: WaliProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaliProfile
+     */
+    omit?: WaliProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaliProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which WaliProfile to fetch.
+     */
+    where: WaliProfileWhereUniqueInput
+  }
+
+  /**
+   * WaliProfile findFirst
+   */
+  export type WaliProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaliProfile
+     */
+    select?: WaliProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaliProfile
+     */
+    omit?: WaliProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaliProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which WaliProfile to fetch.
+     */
+    where?: WaliProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WaliProfiles to fetch.
+     */
+    orderBy?: WaliProfileOrderByWithRelationInput | WaliProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WaliProfiles.
+     */
+    cursor?: WaliProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WaliProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WaliProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WaliProfiles.
+     */
+    distinct?: WaliProfileScalarFieldEnum | WaliProfileScalarFieldEnum[]
+  }
+
+  /**
+   * WaliProfile findFirstOrThrow
+   */
+  export type WaliProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaliProfile
+     */
+    select?: WaliProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaliProfile
+     */
+    omit?: WaliProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaliProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which WaliProfile to fetch.
+     */
+    where?: WaliProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WaliProfiles to fetch.
+     */
+    orderBy?: WaliProfileOrderByWithRelationInput | WaliProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WaliProfiles.
+     */
+    cursor?: WaliProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WaliProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WaliProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WaliProfiles.
+     */
+    distinct?: WaliProfileScalarFieldEnum | WaliProfileScalarFieldEnum[]
+  }
+
+  /**
+   * WaliProfile findMany
+   */
+  export type WaliProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaliProfile
+     */
+    select?: WaliProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaliProfile
+     */
+    omit?: WaliProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaliProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which WaliProfiles to fetch.
+     */
+    where?: WaliProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WaliProfiles to fetch.
+     */
+    orderBy?: WaliProfileOrderByWithRelationInput | WaliProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing WaliProfiles.
+     */
+    cursor?: WaliProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WaliProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WaliProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WaliProfiles.
+     */
+    distinct?: WaliProfileScalarFieldEnum | WaliProfileScalarFieldEnum[]
+  }
+
+  /**
+   * WaliProfile create
+   */
+  export type WaliProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaliProfile
+     */
+    select?: WaliProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaliProfile
+     */
+    omit?: WaliProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaliProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to create a WaliProfile.
+     */
+    data: XOR<WaliProfileCreateInput, WaliProfileUncheckedCreateInput>
+  }
+
+  /**
+   * WaliProfile createMany
+   */
+  export type WaliProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many WaliProfiles.
+     */
+    data: WaliProfileCreateManyInput | WaliProfileCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * WaliProfile createManyAndReturn
+   */
+  export type WaliProfileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaliProfile
+     */
+    select?: WaliProfileSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaliProfile
+     */
+    omit?: WaliProfileOmit<ExtArgs> | null
+    /**
+     * The data used to create many WaliProfiles.
+     */
+    data: WaliProfileCreateManyInput | WaliProfileCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaliProfileIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WaliProfile update
+   */
+  export type WaliProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaliProfile
+     */
+    select?: WaliProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaliProfile
+     */
+    omit?: WaliProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaliProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to update a WaliProfile.
+     */
+    data: XOR<WaliProfileUpdateInput, WaliProfileUncheckedUpdateInput>
+    /**
+     * Choose, which WaliProfile to update.
+     */
+    where: WaliProfileWhereUniqueInput
+  }
+
+  /**
+   * WaliProfile updateMany
+   */
+  export type WaliProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update WaliProfiles.
+     */
+    data: XOR<WaliProfileUpdateManyMutationInput, WaliProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which WaliProfiles to update
+     */
+    where?: WaliProfileWhereInput
+    /**
+     * Limit how many WaliProfiles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * WaliProfile updateManyAndReturn
+   */
+  export type WaliProfileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaliProfile
+     */
+    select?: WaliProfileSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaliProfile
+     */
+    omit?: WaliProfileOmit<ExtArgs> | null
+    /**
+     * The data used to update WaliProfiles.
+     */
+    data: XOR<WaliProfileUpdateManyMutationInput, WaliProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which WaliProfiles to update
+     */
+    where?: WaliProfileWhereInput
+    /**
+     * Limit how many WaliProfiles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaliProfileIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WaliProfile upsert
+   */
+  export type WaliProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaliProfile
+     */
+    select?: WaliProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaliProfile
+     */
+    omit?: WaliProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaliProfileInclude<ExtArgs> | null
+    /**
+     * The filter to search for the WaliProfile to update in case it exists.
+     */
+    where: WaliProfileWhereUniqueInput
+    /**
+     * In case the WaliProfile found by the `where` argument doesn't exist, create a new WaliProfile with this data.
+     */
+    create: XOR<WaliProfileCreateInput, WaliProfileUncheckedCreateInput>
+    /**
+     * In case the WaliProfile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WaliProfileUpdateInput, WaliProfileUncheckedUpdateInput>
+  }
+
+  /**
+   * WaliProfile delete
+   */
+  export type WaliProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaliProfile
+     */
+    select?: WaliProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaliProfile
+     */
+    omit?: WaliProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaliProfileInclude<ExtArgs> | null
+    /**
+     * Filter which WaliProfile to delete.
+     */
+    where: WaliProfileWhereUniqueInput
+  }
+
+  /**
+   * WaliProfile deleteMany
+   */
+  export type WaliProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WaliProfiles to delete
+     */
+    where?: WaliProfileWhereInput
+    /**
+     * Limit how many WaliProfiles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * WaliProfile without action
+   */
+  export type WaliProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaliProfile
+     */
+    select?: WaliProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaliProfile
+     */
+    omit?: WaliProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaliProfileInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model WaliSantriRelation
    */
 
@@ -11153,9 +12266,6 @@ export namespace Prisma {
     id: string | null
     waliId: string | null
     santriId: string | null
-    name: string | null
-    phone: string | null
-    photoUrl: string | null
     category: $Enums.WaliSantriCategory | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -11165,9 +12275,6 @@ export namespace Prisma {
     id: string | null
     waliId: string | null
     santriId: string | null
-    name: string | null
-    phone: string | null
-    photoUrl: string | null
     category: $Enums.WaliSantriCategory | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -11177,9 +12284,6 @@ export namespace Prisma {
     id: number
     waliId: number
     santriId: number
-    name: number
-    phone: number
-    photoUrl: number
     category: number
     createdAt: number
     updatedAt: number
@@ -11191,9 +12295,6 @@ export namespace Prisma {
     id?: true
     waliId?: true
     santriId?: true
-    name?: true
-    phone?: true
-    photoUrl?: true
     category?: true
     createdAt?: true
     updatedAt?: true
@@ -11203,9 +12304,6 @@ export namespace Prisma {
     id?: true
     waliId?: true
     santriId?: true
-    name?: true
-    phone?: true
-    photoUrl?: true
     category?: true
     createdAt?: true
     updatedAt?: true
@@ -11215,9 +12313,6 @@ export namespace Prisma {
     id?: true
     waliId?: true
     santriId?: true
-    name?: true
-    phone?: true
-    photoUrl?: true
     category?: true
     createdAt?: true
     updatedAt?: true
@@ -11300,9 +12395,6 @@ export namespace Prisma {
     id: string
     waliId: string
     santriId: string
-    name: string | null
-    phone: string | null
-    photoUrl: string | null
     category: $Enums.WaliSantriCategory
     createdAt: Date
     updatedAt: Date
@@ -11329,9 +12421,6 @@ export namespace Prisma {
     id?: boolean
     waliId?: boolean
     santriId?: boolean
-    name?: boolean
-    phone?: boolean
-    photoUrl?: boolean
     category?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -11343,9 +12432,6 @@ export namespace Prisma {
     id?: boolean
     waliId?: boolean
     santriId?: boolean
-    name?: boolean
-    phone?: boolean
-    photoUrl?: boolean
     category?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -11357,9 +12443,6 @@ export namespace Prisma {
     id?: boolean
     waliId?: boolean
     santriId?: boolean
-    name?: boolean
-    phone?: boolean
-    photoUrl?: boolean
     category?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -11371,15 +12454,12 @@ export namespace Prisma {
     id?: boolean
     waliId?: boolean
     santriId?: boolean
-    name?: boolean
-    phone?: boolean
-    photoUrl?: boolean
     category?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type WaliSantriRelationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "waliId" | "santriId" | "name" | "phone" | "photoUrl" | "category" | "createdAt" | "updatedAt", ExtArgs["result"]["waliSantriRelation"]>
+  export type WaliSantriRelationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "waliId" | "santriId" | "category" | "createdAt" | "updatedAt", ExtArgs["result"]["waliSantriRelation"]>
   export type WaliSantriRelationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     wali?: boolean | UserDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
@@ -11403,9 +12483,6 @@ export namespace Prisma {
       id: string
       waliId: string
       santriId: string
-      name: string | null
-      phone: string | null
-      photoUrl: string | null
       category: $Enums.WaliSantriCategory
       createdAt: Date
       updatedAt: Date
@@ -11837,9 +12914,6 @@ export namespace Prisma {
     readonly id: FieldRef<"WaliSantriRelation", 'String'>
     readonly waliId: FieldRef<"WaliSantriRelation", 'String'>
     readonly santriId: FieldRef<"WaliSantriRelation", 'String'>
-    readonly name: FieldRef<"WaliSantriRelation", 'String'>
-    readonly phone: FieldRef<"WaliSantriRelation", 'String'>
-    readonly photoUrl: FieldRef<"WaliSantriRelation", 'String'>
     readonly category: FieldRef<"WaliSantriRelation", 'WaliSantriCategory'>
     readonly createdAt: FieldRef<"WaliSantriRelation", 'DateTime'>
     readonly updatedAt: FieldRef<"WaliSantriRelation", 'DateTime'>
@@ -12356,7 +13430,6 @@ export namespace Prisma {
   export const SantriProfileScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    waliId: 'waliId',
     phone: 'phone',
     birthDate: 'birthDate',
     address: 'address',
@@ -12382,13 +13455,22 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const WaliProfileScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    phone: 'phone',
+    address: 'address',
+    photoUrl: 'photoUrl',
+    job: 'job'
+  };
+
+  export type WaliProfileScalarFieldEnum = (typeof WaliProfileScalarFieldEnum)[keyof typeof WaliProfileScalarFieldEnum]
+
+
   export const WaliSantriRelationScalarFieldEnum: {
     id: 'id',
     waliId: 'waliId',
     santriId: 'santriId',
-    name: 'name',
-    phone: 'phone',
-    photoUrl: 'photoUrl',
     category: 'category',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -12999,28 +14081,24 @@ export namespace Prisma {
     NOT?: SantriProfileWhereInput | SantriProfileWhereInput[]
     id?: StringFilter<"SantriProfile"> | string
     userId?: StringFilter<"SantriProfile"> | string
-    waliId?: StringNullableFilter<"SantriProfile"> | string | null
     phone?: StringNullableFilter<"SantriProfile"> | string | null
     birthDate?: DateTimeNullableFilter<"SantriProfile"> | Date | string | null
     address?: StringNullableFilter<"SantriProfile"> | string | null
     photoUrl?: StringNullableFilter<"SantriProfile"> | string | null
     classId?: StringNullableFilter<"SantriProfile"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    wali?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
   }
 
   export type SantriProfileOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    waliId?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     birthDate?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     photoUrl?: SortOrderInput | SortOrder
     classId?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
-    wali?: UserOrderByWithRelationInput
     class?: ClassOrderByWithRelationInput
   }
 
@@ -13030,21 +14108,18 @@ export namespace Prisma {
     AND?: SantriProfileWhereInput | SantriProfileWhereInput[]
     OR?: SantriProfileWhereInput[]
     NOT?: SantriProfileWhereInput | SantriProfileWhereInput[]
-    waliId?: StringNullableFilter<"SantriProfile"> | string | null
     phone?: StringNullableFilter<"SantriProfile"> | string | null
     birthDate?: DateTimeNullableFilter<"SantriProfile"> | Date | string | null
     address?: StringNullableFilter<"SantriProfile"> | string | null
     photoUrl?: StringNullableFilter<"SantriProfile"> | string | null
     classId?: StringNullableFilter<"SantriProfile"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    wali?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
   }, "id" | "userId">
 
   export type SantriProfileOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    waliId?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     birthDate?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
@@ -13061,7 +14136,6 @@ export namespace Prisma {
     NOT?: SantriProfileScalarWhereWithAggregatesInput | SantriProfileScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"SantriProfile"> | string
     userId?: StringWithAggregatesFilter<"SantriProfile"> | string
-    waliId?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
     phone?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
     birthDate?: DateTimeNullableWithAggregatesFilter<"SantriProfile"> | Date | string | null
     address?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
@@ -13082,6 +14156,7 @@ export namespace Prisma {
     role?: EnumRoleFilter<"User"> | $Enums.Role
     isActive?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
+    waliProfile?: XOR<WaliProfileNullableScalarRelationFilter, WaliProfileWhereInput> | null
     verifications?: VerificationListRelationFilter
     santriProfile?: XOR<SantriProfileNullableScalarRelationFilter, SantriProfileWhereInput> | null
     mentorClasses?: ClassListRelationFilter
@@ -13091,7 +14166,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentListRelationFilter
     waliRelations?: WaliSantriRelationListRelationFilter
     santriRelations?: WaliSantriRelationListRelationFilter
-    santriUnderWali?: SantriProfileListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -13104,6 +14178,7 @@ export namespace Prisma {
     role?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    waliProfile?: WaliProfileOrderByWithRelationInput
     verifications?: VerificationOrderByRelationAggregateInput
     santriProfile?: SantriProfileOrderByWithRelationInput
     mentorClasses?: ClassOrderByRelationAggregateInput
@@ -13113,7 +14188,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentOrderByRelationAggregateInput
     waliRelations?: WaliSantriRelationOrderByRelationAggregateInput
     santriRelations?: WaliSantriRelationOrderByRelationAggregateInput
-    santriUnderWali?: SantriProfileOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -13129,6 +14203,7 @@ export namespace Prisma {
     role?: EnumRoleFilter<"User"> | $Enums.Role
     isActive?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
+    waliProfile?: XOR<WaliProfileNullableScalarRelationFilter, WaliProfileWhereInput> | null
     verifications?: VerificationListRelationFilter
     santriProfile?: XOR<SantriProfileNullableScalarRelationFilter, SantriProfileWhereInput> | null
     mentorClasses?: ClassListRelationFilter
@@ -13138,7 +14213,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentListRelationFilter
     waliRelations?: WaliSantriRelationListRelationFilter
     santriRelations?: WaliSantriRelationListRelationFilter
-    santriUnderWali?: SantriProfileListRelationFilter
   }, "id" | "nis" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -13171,6 +14245,66 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
+  export type WaliProfileWhereInput = {
+    AND?: WaliProfileWhereInput | WaliProfileWhereInput[]
+    OR?: WaliProfileWhereInput[]
+    NOT?: WaliProfileWhereInput | WaliProfileWhereInput[]
+    id?: StringFilter<"WaliProfile"> | string
+    userId?: StringFilter<"WaliProfile"> | string
+    phone?: StringNullableFilter<"WaliProfile"> | string | null
+    address?: StringNullableFilter<"WaliProfile"> | string | null
+    photoUrl?: StringNullableFilter<"WaliProfile"> | string | null
+    job?: StringNullableFilter<"WaliProfile"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type WaliProfileOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    photoUrl?: SortOrderInput | SortOrder
+    job?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type WaliProfileWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: WaliProfileWhereInput | WaliProfileWhereInput[]
+    OR?: WaliProfileWhereInput[]
+    NOT?: WaliProfileWhereInput | WaliProfileWhereInput[]
+    phone?: StringNullableFilter<"WaliProfile"> | string | null
+    address?: StringNullableFilter<"WaliProfile"> | string | null
+    photoUrl?: StringNullableFilter<"WaliProfile"> | string | null
+    job?: StringNullableFilter<"WaliProfile"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type WaliProfileOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    photoUrl?: SortOrderInput | SortOrder
+    job?: SortOrderInput | SortOrder
+    _count?: WaliProfileCountOrderByAggregateInput
+    _max?: WaliProfileMaxOrderByAggregateInput
+    _min?: WaliProfileMinOrderByAggregateInput
+  }
+
+  export type WaliProfileScalarWhereWithAggregatesInput = {
+    AND?: WaliProfileScalarWhereWithAggregatesInput | WaliProfileScalarWhereWithAggregatesInput[]
+    OR?: WaliProfileScalarWhereWithAggregatesInput[]
+    NOT?: WaliProfileScalarWhereWithAggregatesInput | WaliProfileScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"WaliProfile"> | string
+    userId?: StringWithAggregatesFilter<"WaliProfile"> | string
+    phone?: StringNullableWithAggregatesFilter<"WaliProfile"> | string | null
+    address?: StringNullableWithAggregatesFilter<"WaliProfile"> | string | null
+    photoUrl?: StringNullableWithAggregatesFilter<"WaliProfile"> | string | null
+    job?: StringNullableWithAggregatesFilter<"WaliProfile"> | string | null
+  }
+
   export type WaliSantriRelationWhereInput = {
     AND?: WaliSantriRelationWhereInput | WaliSantriRelationWhereInput[]
     OR?: WaliSantriRelationWhereInput[]
@@ -13178,9 +14312,6 @@ export namespace Prisma {
     id?: StringFilter<"WaliSantriRelation"> | string
     waliId?: StringFilter<"WaliSantriRelation"> | string
     santriId?: StringFilter<"WaliSantriRelation"> | string
-    name?: StringNullableFilter<"WaliSantriRelation"> | string | null
-    phone?: StringNullableFilter<"WaliSantriRelation"> | string | null
-    photoUrl?: StringNullableFilter<"WaliSantriRelation"> | string | null
     category?: EnumWaliSantriCategoryFilter<"WaliSantriRelation"> | $Enums.WaliSantriCategory
     createdAt?: DateTimeFilter<"WaliSantriRelation"> | Date | string
     updatedAt?: DateTimeFilter<"WaliSantriRelation"> | Date | string
@@ -13192,9 +14323,6 @@ export namespace Prisma {
     id?: SortOrder
     waliId?: SortOrder
     santriId?: SortOrder
-    name?: SortOrderInput | SortOrder
-    phone?: SortOrderInput | SortOrder
-    photoUrl?: SortOrderInput | SortOrder
     category?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13210,9 +14338,6 @@ export namespace Prisma {
     NOT?: WaliSantriRelationWhereInput | WaliSantriRelationWhereInput[]
     waliId?: StringFilter<"WaliSantriRelation"> | string
     santriId?: StringFilter<"WaliSantriRelation"> | string
-    name?: StringNullableFilter<"WaliSantriRelation"> | string | null
-    phone?: StringNullableFilter<"WaliSantriRelation"> | string | null
-    photoUrl?: StringNullableFilter<"WaliSantriRelation"> | string | null
     category?: EnumWaliSantriCategoryFilter<"WaliSantriRelation"> | $Enums.WaliSantriCategory
     createdAt?: DateTimeFilter<"WaliSantriRelation"> | Date | string
     updatedAt?: DateTimeFilter<"WaliSantriRelation"> | Date | string
@@ -13224,9 +14349,6 @@ export namespace Prisma {
     id?: SortOrder
     waliId?: SortOrder
     santriId?: SortOrder
-    name?: SortOrderInput | SortOrder
-    phone?: SortOrderInput | SortOrder
-    photoUrl?: SortOrderInput | SortOrder
     category?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13242,9 +14364,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"WaliSantriRelation"> | string
     waliId?: StringWithAggregatesFilter<"WaliSantriRelation"> | string
     santriId?: StringWithAggregatesFilter<"WaliSantriRelation"> | string
-    name?: StringNullableWithAggregatesFilter<"WaliSantriRelation"> | string | null
-    phone?: StringNullableWithAggregatesFilter<"WaliSantriRelation"> | string | null
-    photoUrl?: StringNullableWithAggregatesFilter<"WaliSantriRelation"> | string | null
     category?: EnumWaliSantriCategoryWithAggregatesFilter<"WaliSantriRelation"> | $Enums.WaliSantriCategory
     createdAt?: DateTimeWithAggregatesFilter<"WaliSantriRelation"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"WaliSantriRelation"> | Date | string
@@ -13680,14 +14799,12 @@ export namespace Prisma {
     address?: string | null
     photoUrl?: string | null
     user: UserCreateNestedOneWithoutSantriProfileInput
-    wali?: UserCreateNestedOneWithoutSantriUnderWaliInput
     class?: ClassCreateNestedOneWithoutSantriProfilesInput
   }
 
   export type SantriProfileUncheckedCreateInput = {
     id?: string
     userId: string
-    waliId?: string | null
     phone?: string | null
     birthDate?: Date | string | null
     address?: string | null
@@ -13702,14 +14819,12 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutSantriProfileNestedInput
-    wali?: UserUpdateOneWithoutSantriUnderWaliNestedInput
     class?: ClassUpdateOneWithoutSantriProfilesNestedInput
   }
 
   export type SantriProfileUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    waliId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13720,7 +14835,6 @@ export namespace Prisma {
   export type SantriProfileCreateManyInput = {
     id?: string
     userId: string
-    waliId?: string | null
     phone?: string | null
     birthDate?: Date | string | null
     address?: string | null
@@ -13739,7 +14853,6 @@ export namespace Prisma {
   export type SantriProfileUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    waliId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13757,6 +14870,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileCreateNestedOneWithoutUserInput
     verifications?: VerificationCreateNestedManyWithoutUserInput
     santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
     mentorClasses?: ClassCreateNestedManyWithoutMentorInput
@@ -13766,7 +14880,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -13779,6 +14892,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileUncheckedCreateNestedOneWithoutUserInput
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
     santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
     mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
@@ -13788,7 +14902,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
   export type UserUpdateInput = {
@@ -13801,6 +14914,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUpdateOneWithoutUserNestedInput
     verifications?: VerificationUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
@@ -13810,7 +14924,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -13823,6 +14936,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUncheckedUpdateOneWithoutUserNestedInput
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
@@ -13832,7 +14946,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -13871,11 +14984,70 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type WaliProfileCreateInput = {
+    id?: string
+    phone?: string | null
+    address?: string | null
+    photoUrl?: string | null
+    job?: string | null
+    user: UserCreateNestedOneWithoutWaliProfileInput
+  }
+
+  export type WaliProfileUncheckedCreateInput = {
+    id?: string
+    userId: string
+    phone?: string | null
+    address?: string | null
+    photoUrl?: string | null
+    job?: string | null
+  }
+
+  export type WaliProfileUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    job?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutWaliProfileNestedInput
+  }
+
+  export type WaliProfileUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    job?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type WaliProfileCreateManyInput = {
+    id?: string
+    userId: string
+    phone?: string | null
+    address?: string | null
+    photoUrl?: string | null
+    job?: string | null
+  }
+
+  export type WaliProfileUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    job?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type WaliProfileUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    job?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type WaliSantriRelationCreateInput = {
     id?: string
-    name?: string | null
-    phone?: string | null
-    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13887,9 +15059,6 @@ export namespace Prisma {
     id?: string
     waliId: string
     santriId: string
-    name?: string | null
-    phone?: string | null
-    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13897,9 +15066,6 @@ export namespace Prisma {
 
   export type WaliSantriRelationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13911,9 +15077,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     waliId?: StringFieldUpdateOperationsInput | string
     santriId?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13923,9 +15086,6 @@ export namespace Prisma {
     id?: string
     waliId: string
     santriId: string
-    name?: string | null
-    phone?: string | null
-    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13933,9 +15093,6 @@ export namespace Prisma {
 
   export type WaliSantriRelationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13945,9 +15102,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     waliId?: StringFieldUpdateOperationsInput | string
     santriId?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14432,11 +15586,6 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type UserNullableScalarRelationFilter = {
-    is?: UserWhereInput | null
-    isNot?: UserWhereInput | null
-  }
-
   export type ClassNullableScalarRelationFilter = {
     is?: ClassWhereInput | null
     isNot?: ClassWhereInput | null
@@ -14445,7 +15594,6 @@ export namespace Prisma {
   export type SantriProfileCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    waliId?: SortOrder
     phone?: SortOrder
     birthDate?: SortOrder
     address?: SortOrder
@@ -14456,7 +15604,6 @@ export namespace Prisma {
   export type SantriProfileMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    waliId?: SortOrder
     phone?: SortOrder
     birthDate?: SortOrder
     address?: SortOrder
@@ -14467,7 +15614,6 @@ export namespace Prisma {
   export type SantriProfileMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    waliId?: SortOrder
     phone?: SortOrder
     birthDate?: SortOrder
     address?: SortOrder
@@ -14499,6 +15645,11 @@ export namespace Prisma {
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type WaliProfileNullableScalarRelationFilter = {
+    is?: WaliProfileWhereInput | null
+    isNot?: WaliProfileWhereInput | null
   }
 
   export type VerificationListRelationFilter = {
@@ -14580,6 +15731,33 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type WaliProfileCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    photoUrl?: SortOrder
+    job?: SortOrder
+  }
+
+  export type WaliProfileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    photoUrl?: SortOrder
+    job?: SortOrder
+  }
+
+  export type WaliProfileMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    photoUrl?: SortOrder
+    job?: SortOrder
+  }
+
   export type EnumWaliSantriCategoryFilter<$PrismaModel = never> = {
     equals?: $Enums.WaliSantriCategory | EnumWaliSantriCategoryFieldRefInput<$PrismaModel>
     in?: $Enums.WaliSantriCategory[] | ListEnumWaliSantriCategoryFieldRefInput<$PrismaModel>
@@ -14596,9 +15774,6 @@ export namespace Prisma {
     id?: SortOrder
     waliId?: SortOrder
     santriId?: SortOrder
-    name?: SortOrder
-    phone?: SortOrder
-    photoUrl?: SortOrder
     category?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14608,9 +15783,6 @@ export namespace Prisma {
     id?: SortOrder
     waliId?: SortOrder
     santriId?: SortOrder
-    name?: SortOrder
-    phone?: SortOrder
-    photoUrl?: SortOrder
     category?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14620,9 +15792,6 @@ export namespace Prisma {
     id?: SortOrder
     waliId?: SortOrder
     santriId?: SortOrder
-    name?: SortOrder
-    phone?: SortOrder
-    photoUrl?: SortOrder
     category?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15039,12 +16208,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutSantriUnderWaliInput = {
-    create?: XOR<UserCreateWithoutSantriUnderWaliInput, UserUncheckedCreateWithoutSantriUnderWaliInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSantriUnderWaliInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type ClassCreateNestedOneWithoutSantriProfilesInput = {
     create?: XOR<ClassCreateWithoutSantriProfilesInput, ClassUncheckedCreateWithoutSantriProfilesInput>
     connectOrCreate?: ClassCreateOrConnectWithoutSantriProfilesInput
@@ -15063,16 +16226,6 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSantriProfileInput, UserUpdateWithoutSantriProfileInput>, UserUncheckedUpdateWithoutSantriProfileInput>
   }
 
-  export type UserUpdateOneWithoutSantriUnderWaliNestedInput = {
-    create?: XOR<UserCreateWithoutSantriUnderWaliInput, UserUncheckedCreateWithoutSantriUnderWaliInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSantriUnderWaliInput
-    upsert?: UserUpsertWithoutSantriUnderWaliInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSantriUnderWaliInput, UserUpdateWithoutSantriUnderWaliInput>, UserUncheckedUpdateWithoutSantriUnderWaliInput>
-  }
-
   export type ClassUpdateOneWithoutSantriProfilesNestedInput = {
     create?: XOR<ClassCreateWithoutSantriProfilesInput, ClassUncheckedCreateWithoutSantriProfilesInput>
     connectOrCreate?: ClassCreateOrConnectWithoutSantriProfilesInput
@@ -15081,6 +16234,12 @@ export namespace Prisma {
     delete?: ClassWhereInput | boolean
     connect?: ClassWhereUniqueInput
     update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutSantriProfilesInput, ClassUpdateWithoutSantriProfilesInput>, ClassUncheckedUpdateWithoutSantriProfilesInput>
+  }
+
+  export type WaliProfileCreateNestedOneWithoutUserInput = {
+    create?: XOR<WaliProfileCreateWithoutUserInput, WaliProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: WaliProfileCreateOrConnectWithoutUserInput
+    connect?: WaliProfileWhereUniqueInput
   }
 
   export type VerificationCreateNestedManyWithoutUserInput = {
@@ -15145,11 +16304,10 @@ export namespace Prisma {
     connect?: WaliSantriRelationWhereUniqueInput | WaliSantriRelationWhereUniqueInput[]
   }
 
-  export type SantriProfileCreateNestedManyWithoutWaliInput = {
-    create?: XOR<SantriProfileCreateWithoutWaliInput, SantriProfileUncheckedCreateWithoutWaliInput> | SantriProfileCreateWithoutWaliInput[] | SantriProfileUncheckedCreateWithoutWaliInput[]
-    connectOrCreate?: SantriProfileCreateOrConnectWithoutWaliInput | SantriProfileCreateOrConnectWithoutWaliInput[]
-    createMany?: SantriProfileCreateManyWaliInputEnvelope
-    connect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
+  export type WaliProfileUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<WaliProfileCreateWithoutUserInput, WaliProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: WaliProfileCreateOrConnectWithoutUserInput
+    connect?: WaliProfileWhereUniqueInput
   }
 
   export type VerificationUncheckedCreateNestedManyWithoutUserInput = {
@@ -15214,19 +16372,22 @@ export namespace Prisma {
     connect?: WaliSantriRelationWhereUniqueInput | WaliSantriRelationWhereUniqueInput[]
   }
 
-  export type SantriProfileUncheckedCreateNestedManyWithoutWaliInput = {
-    create?: XOR<SantriProfileCreateWithoutWaliInput, SantriProfileUncheckedCreateWithoutWaliInput> | SantriProfileCreateWithoutWaliInput[] | SantriProfileUncheckedCreateWithoutWaliInput[]
-    connectOrCreate?: SantriProfileCreateOrConnectWithoutWaliInput | SantriProfileCreateOrConnectWithoutWaliInput[]
-    createMany?: SantriProfileCreateManyWaliInputEnvelope
-    connect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
-  }
-
   export type EnumRoleFieldUpdateOperationsInput = {
     set?: $Enums.Role
   }
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type WaliProfileUpdateOneWithoutUserNestedInput = {
+    create?: XOR<WaliProfileCreateWithoutUserInput, WaliProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: WaliProfileCreateOrConnectWithoutUserInput
+    upsert?: WaliProfileUpsertWithoutUserInput
+    disconnect?: WaliProfileWhereInput | boolean
+    delete?: WaliProfileWhereInput | boolean
+    connect?: WaliProfileWhereUniqueInput
+    update?: XOR<XOR<WaliProfileUpdateToOneWithWhereWithoutUserInput, WaliProfileUpdateWithoutUserInput>, WaliProfileUncheckedUpdateWithoutUserInput>
   }
 
   export type VerificationUpdateManyWithoutUserNestedInput = {
@@ -15351,18 +16512,14 @@ export namespace Prisma {
     deleteMany?: WaliSantriRelationScalarWhereInput | WaliSantriRelationScalarWhereInput[]
   }
 
-  export type SantriProfileUpdateManyWithoutWaliNestedInput = {
-    create?: XOR<SantriProfileCreateWithoutWaliInput, SantriProfileUncheckedCreateWithoutWaliInput> | SantriProfileCreateWithoutWaliInput[] | SantriProfileUncheckedCreateWithoutWaliInput[]
-    connectOrCreate?: SantriProfileCreateOrConnectWithoutWaliInput | SantriProfileCreateOrConnectWithoutWaliInput[]
-    upsert?: SantriProfileUpsertWithWhereUniqueWithoutWaliInput | SantriProfileUpsertWithWhereUniqueWithoutWaliInput[]
-    createMany?: SantriProfileCreateManyWaliInputEnvelope
-    set?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
-    disconnect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
-    delete?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
-    connect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
-    update?: SantriProfileUpdateWithWhereUniqueWithoutWaliInput | SantriProfileUpdateWithWhereUniqueWithoutWaliInput[]
-    updateMany?: SantriProfileUpdateManyWithWhereWithoutWaliInput | SantriProfileUpdateManyWithWhereWithoutWaliInput[]
-    deleteMany?: SantriProfileScalarWhereInput | SantriProfileScalarWhereInput[]
+  export type WaliProfileUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<WaliProfileCreateWithoutUserInput, WaliProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: WaliProfileCreateOrConnectWithoutUserInput
+    upsert?: WaliProfileUpsertWithoutUserInput
+    disconnect?: WaliProfileWhereInput | boolean
+    delete?: WaliProfileWhereInput | boolean
+    connect?: WaliProfileWhereUniqueInput
+    update?: XOR<XOR<WaliProfileUpdateToOneWithWhereWithoutUserInput, WaliProfileUpdateWithoutUserInput>, WaliProfileUncheckedUpdateWithoutUserInput>
   }
 
   export type VerificationUncheckedUpdateManyWithoutUserNestedInput = {
@@ -15487,18 +16644,18 @@ export namespace Prisma {
     deleteMany?: WaliSantriRelationScalarWhereInput | WaliSantriRelationScalarWhereInput[]
   }
 
-  export type SantriProfileUncheckedUpdateManyWithoutWaliNestedInput = {
-    create?: XOR<SantriProfileCreateWithoutWaliInput, SantriProfileUncheckedCreateWithoutWaliInput> | SantriProfileCreateWithoutWaliInput[] | SantriProfileUncheckedCreateWithoutWaliInput[]
-    connectOrCreate?: SantriProfileCreateOrConnectWithoutWaliInput | SantriProfileCreateOrConnectWithoutWaliInput[]
-    upsert?: SantriProfileUpsertWithWhereUniqueWithoutWaliInput | SantriProfileUpsertWithWhereUniqueWithoutWaliInput[]
-    createMany?: SantriProfileCreateManyWaliInputEnvelope
-    set?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
-    disconnect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
-    delete?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
-    connect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
-    update?: SantriProfileUpdateWithWhereUniqueWithoutWaliInput | SantriProfileUpdateWithWhereUniqueWithoutWaliInput[]
-    updateMany?: SantriProfileUpdateManyWithWhereWithoutWaliInput | SantriProfileUpdateManyWithWhereWithoutWaliInput[]
-    deleteMany?: SantriProfileScalarWhereInput | SantriProfileScalarWhereInput[]
+  export type UserCreateNestedOneWithoutWaliProfileInput = {
+    create?: XOR<UserCreateWithoutWaliProfileInput, UserUncheckedCreateWithoutWaliProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWaliProfileInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutWaliProfileNestedInput = {
+    create?: XOR<UserCreateWithoutWaliProfileInput, UserUncheckedCreateWithoutWaliProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWaliProfileInput
+    upsert?: UserUpsertWithoutWaliProfileInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutWaliProfileInput, UserUpdateWithoutWaliProfileInput>, UserUncheckedUpdateWithoutWaliProfileInput>
   }
 
   export type UserCreateNestedOneWithoutWaliRelationsInput = {
@@ -15819,6 +16976,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileCreateNestedOneWithoutUserInput
     santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
     mentorClasses?: ClassCreateNestedManyWithoutMentorInput
     mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
@@ -15827,7 +16985,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
   export type UserUncheckedCreateWithoutVerificationsInput = {
@@ -15840,6 +16997,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileUncheckedCreateNestedOneWithoutUserInput
     santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
     mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
     mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
@@ -15848,7 +17006,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
   export type UserCreateOrConnectWithoutVerificationsInput = {
@@ -15877,6 +17034,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUpdateOneWithoutUserNestedInput
     santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
     mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
@@ -15885,7 +17043,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUncheckedUpdateWithoutVerificationsInput = {
@@ -15898,6 +17055,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUncheckedUpdateOneWithoutUserNestedInput
     santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
     mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
@@ -15906,7 +17064,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type ClassCreateWithoutAssignmentsInput = {
@@ -15944,6 +17101,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileCreateNestedOneWithoutUserInput
     verifications?: VerificationCreateNestedManyWithoutUserInput
     santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
     mentorClasses?: ClassCreateNestedManyWithoutMentorInput
@@ -15952,7 +17110,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
   export type UserUncheckedCreateWithoutMentorAssignmentsInput = {
@@ -15965,6 +17122,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileUncheckedCreateNestedOneWithoutUserInput
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
     santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
     mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
@@ -15973,7 +17131,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
   export type UserCreateOrConnectWithoutMentorAssignmentsInput = {
@@ -16065,6 +17222,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUpdateOneWithoutUserNestedInput
     verifications?: VerificationUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
@@ -16073,7 +17231,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMentorAssignmentsInput = {
@@ -16086,6 +17243,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUncheckedUpdateOneWithoutUserNestedInput
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
@@ -16094,7 +17252,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type AssignmentContentUpsertWithWhereUniqueWithoutAssignmentInput = {
@@ -16167,6 +17324,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileCreateNestedOneWithoutUserInput
     verifications?: VerificationCreateNestedManyWithoutUserInput
     santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
     mentorClasses?: ClassCreateNestedManyWithoutMentorInput
@@ -16175,7 +17333,6 @@ export namespace Prisma {
     mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
   export type UserUncheckedCreateWithoutSantriSubmissionsInput = {
@@ -16188,6 +17345,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileUncheckedCreateNestedOneWithoutUserInput
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
     santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
     mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
@@ -16196,7 +17354,6 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
   export type UserCreateOrConnectWithoutSantriSubmissionsInput = {
@@ -16260,6 +17417,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUpdateOneWithoutUserNestedInput
     verifications?: VerificationUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
@@ -16268,7 +17426,6 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSantriSubmissionsInput = {
@@ -16281,6 +17438,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUncheckedUpdateOneWithoutUserNestedInput
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
@@ -16289,7 +17447,6 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type ClassCreateWithoutAttendancesInput = {
@@ -16327,6 +17484,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileCreateNestedOneWithoutUserInput
     verifications?: VerificationCreateNestedManyWithoutUserInput
     santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
     mentorClasses?: ClassCreateNestedManyWithoutMentorInput
@@ -16335,7 +17493,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
   export type UserUncheckedCreateWithoutSantriAttendancesInput = {
@@ -16348,6 +17505,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileUncheckedCreateNestedOneWithoutUserInput
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
     santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
     mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
@@ -16356,7 +17514,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
   export type UserCreateOrConnectWithoutSantriAttendancesInput = {
@@ -16374,6 +17531,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileCreateNestedOneWithoutUserInput
     verifications?: VerificationCreateNestedManyWithoutUserInput
     santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
     mentorClasses?: ClassCreateNestedManyWithoutMentorInput
@@ -16382,7 +17540,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
   export type UserUncheckedCreateWithoutMentorAttendancesInput = {
@@ -16395,6 +17552,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileUncheckedCreateNestedOneWithoutUserInput
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
     santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
     mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
@@ -16403,7 +17561,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
   export type UserCreateOrConnectWithoutMentorAttendancesInput = {
@@ -16463,6 +17620,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUpdateOneWithoutUserNestedInput
     verifications?: VerificationUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
@@ -16471,7 +17629,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSantriAttendancesInput = {
@@ -16484,6 +17641,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUncheckedUpdateOneWithoutUserNestedInput
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
@@ -16492,7 +17650,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUpsertWithoutMentorAttendancesInput = {
@@ -16516,6 +17673,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUpdateOneWithoutUserNestedInput
     verifications?: VerificationUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
@@ -16524,7 +17682,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMentorAttendancesInput = {
@@ -16537,6 +17694,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUncheckedUpdateOneWithoutUserNestedInput
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
@@ -16545,7 +17703,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type DivisionCreateWithoutClassesInput = {
@@ -16577,6 +17734,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileCreateNestedOneWithoutUserInput
     verifications?: VerificationCreateNestedManyWithoutUserInput
     santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
     mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
@@ -16585,7 +17743,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
   export type UserUncheckedCreateWithoutMentorClassesInput = {
@@ -16598,6 +17755,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileUncheckedCreateNestedOneWithoutUserInput
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
     santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
     mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
@@ -16606,7 +17764,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
   export type UserCreateOrConnectWithoutMentorClassesInput = {
@@ -16687,13 +17844,11 @@ export namespace Prisma {
     address?: string | null
     photoUrl?: string | null
     user: UserCreateNestedOneWithoutSantriProfileInput
-    wali?: UserCreateNestedOneWithoutSantriUnderWaliInput
   }
 
   export type SantriProfileUncheckedCreateWithoutClassInput = {
     id?: string
     userId: string
-    waliId?: string | null
     phone?: string | null
     birthDate?: Date | string | null
     address?: string | null
@@ -16756,6 +17911,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUpdateOneWithoutUserNestedInput
     verifications?: VerificationUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
     mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
@@ -16764,7 +17920,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMentorClassesInput = {
@@ -16777,6 +17932,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUncheckedUpdateOneWithoutUserNestedInput
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
     mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
@@ -16785,7 +17941,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type AttendanceUpsertWithWhereUniqueWithoutClassInput = {
@@ -16872,7 +18027,6 @@ export namespace Prisma {
     NOT?: SantriProfileScalarWhereInput | SantriProfileScalarWhereInput[]
     id?: StringFilter<"SantriProfile"> | string
     userId?: StringFilter<"SantriProfile"> | string
-    waliId?: StringNullableFilter<"SantriProfile"> | string | null
     phone?: StringNullableFilter<"SantriProfile"> | string | null
     birthDate?: DateTimeNullableFilter<"SantriProfile"> | Date | string | null
     address?: StringNullableFilter<"SantriProfile"> | string | null
@@ -16947,6 +18101,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileCreateNestedOneWithoutUserInput
     verifications?: VerificationCreateNestedManyWithoutUserInput
     mentorClasses?: ClassCreateNestedManyWithoutMentorInput
     mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
@@ -16955,7 +18110,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
   }
 
   export type UserUncheckedCreateWithoutSantriProfileInput = {
@@ -16968,6 +18122,7 @@ export namespace Prisma {
     role: $Enums.Role
     isActive?: boolean
     createdAt?: Date | string
+    waliProfile?: WaliProfileUncheckedCreateNestedOneWithoutUserInput
     verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
     mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
     mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
@@ -16976,59 +18131,11 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
   }
 
   export type UserCreateOrConnectWithoutSantriProfileInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutSantriProfileInput, UserUncheckedCreateWithoutSantriProfileInput>
-  }
-
-  export type UserCreateWithoutSantriUnderWaliInput = {
-    id?: string
-    nis?: string | null
-    fullName: string
-    email: string
-    password: string
-    phone?: string | null
-    role: $Enums.Role
-    isActive?: boolean
-    createdAt?: Date | string
-    verifications?: VerificationCreateNestedManyWithoutUserInput
-    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
-    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
-    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
-    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
-    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
-    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
-    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
-    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
-  }
-
-  export type UserUncheckedCreateWithoutSantriUnderWaliInput = {
-    id?: string
-    nis?: string | null
-    fullName: string
-    email: string
-    password: string
-    phone?: string | null
-    role: $Enums.Role
-    isActive?: boolean
-    createdAt?: Date | string
-    verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
-    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
-    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
-    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
-    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
-    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
-    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
-    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
-  }
-
-  export type UserCreateOrConnectWithoutSantriUnderWaliInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSantriUnderWaliInput, UserUncheckedCreateWithoutSantriUnderWaliInput>
   }
 
   export type ClassCreateWithoutSantriProfilesInput = {
@@ -17077,6 +18184,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUpdateOneWithoutUserNestedInput
     verifications?: VerificationUpdateManyWithoutUserNestedInput
     mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
     mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
@@ -17085,7 +18193,6 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSantriProfileInput = {
@@ -17098,61 +18205,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUncheckedUpdateOneWithoutUserNestedInput
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
-    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
-    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
-    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
-    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
-    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
-    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
-  }
-
-  export type UserUpsertWithoutSantriUnderWaliInput = {
-    update: XOR<UserUpdateWithoutSantriUnderWaliInput, UserUncheckedUpdateWithoutSantriUnderWaliInput>
-    create: XOR<UserCreateWithoutSantriUnderWaliInput, UserUncheckedCreateWithoutSantriUnderWaliInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutSantriUnderWaliInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSantriUnderWaliInput, UserUncheckedUpdateWithoutSantriUnderWaliInput>
-  }
-
-  export type UserUpdateWithoutSantriUnderWaliInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nis?: NullableStringFieldUpdateOperationsInput | string | null
-    fullName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    verifications?: VerificationUpdateManyWithoutUserNestedInput
-    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
-    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
-    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
-    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
-    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
-    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
-    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
-    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutSantriUnderWaliInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nis?: NullableStringFieldUpdateOperationsInput | string | null
-    fullName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
     mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
     santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
@@ -17193,6 +18247,27 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
   }
 
+  export type WaliProfileCreateWithoutUserInput = {
+    id?: string
+    phone?: string | null
+    address?: string | null
+    photoUrl?: string | null
+    job?: string | null
+  }
+
+  export type WaliProfileUncheckedCreateWithoutUserInput = {
+    id?: string
+    phone?: string | null
+    address?: string | null
+    photoUrl?: string | null
+    job?: string | null
+  }
+
+  export type WaliProfileCreateOrConnectWithoutUserInput = {
+    where: WaliProfileWhereUniqueInput
+    create: XOR<WaliProfileCreateWithoutUserInput, WaliProfileUncheckedCreateWithoutUserInput>
+  }
+
   export type VerificationCreateWithoutUserInput = {
     id?: string
     otpCode: string
@@ -17223,13 +18298,11 @@ export namespace Prisma {
     birthDate?: Date | string | null
     address?: string | null
     photoUrl?: string | null
-    wali?: UserCreateNestedOneWithoutSantriUnderWaliInput
     class?: ClassCreateNestedOneWithoutSantriProfilesInput
   }
 
   export type SantriProfileUncheckedCreateWithoutUserInput = {
     id?: string
-    waliId?: string | null
     phone?: string | null
     birthDate?: Date | string | null
     address?: string | null
@@ -17404,9 +18477,6 @@ export namespace Prisma {
 
   export type WaliSantriRelationCreateWithoutWaliInput = {
     id?: string
-    name?: string | null
-    phone?: string | null
-    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17416,9 +18486,6 @@ export namespace Prisma {
   export type WaliSantriRelationUncheckedCreateWithoutWaliInput = {
     id?: string
     santriId: string
-    name?: string | null
-    phone?: string | null
-    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17436,9 +18503,6 @@ export namespace Prisma {
 
   export type WaliSantriRelationCreateWithoutSantriInput = {
     id?: string
-    name?: string | null
-    phone?: string | null
-    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17448,9 +18512,6 @@ export namespace Prisma {
   export type WaliSantriRelationUncheckedCreateWithoutSantriInput = {
     id?: string
     waliId: string
-    name?: string | null
-    phone?: string | null
-    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17466,34 +18527,31 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type SantriProfileCreateWithoutWaliInput = {
-    id?: string
-    phone?: string | null
-    birthDate?: Date | string | null
-    address?: string | null
-    photoUrl?: string | null
-    user: UserCreateNestedOneWithoutSantriProfileInput
-    class?: ClassCreateNestedOneWithoutSantriProfilesInput
+  export type WaliProfileUpsertWithoutUserInput = {
+    update: XOR<WaliProfileUpdateWithoutUserInput, WaliProfileUncheckedUpdateWithoutUserInput>
+    create: XOR<WaliProfileCreateWithoutUserInput, WaliProfileUncheckedCreateWithoutUserInput>
+    where?: WaliProfileWhereInput
   }
 
-  export type SantriProfileUncheckedCreateWithoutWaliInput = {
-    id?: string
-    userId: string
-    phone?: string | null
-    birthDate?: Date | string | null
-    address?: string | null
-    photoUrl?: string | null
-    classId?: string | null
+  export type WaliProfileUpdateToOneWithWhereWithoutUserInput = {
+    where?: WaliProfileWhereInput
+    data: XOR<WaliProfileUpdateWithoutUserInput, WaliProfileUncheckedUpdateWithoutUserInput>
   }
 
-  export type SantriProfileCreateOrConnectWithoutWaliInput = {
-    where: SantriProfileWhereUniqueInput
-    create: XOR<SantriProfileCreateWithoutWaliInput, SantriProfileUncheckedCreateWithoutWaliInput>
+  export type WaliProfileUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    job?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type SantriProfileCreateManyWaliInputEnvelope = {
-    data: SantriProfileCreateManyWaliInput | SantriProfileCreateManyWaliInput[]
-    skipDuplicates?: boolean
+  export type WaliProfileUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    job?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type VerificationUpsertWithWhereUniqueWithoutUserInput = {
@@ -17540,13 +18598,11 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    wali?: UserUpdateOneWithoutSantriUnderWaliNestedInput
     class?: ClassUpdateOneWithoutSantriProfilesNestedInput
   }
 
   export type SantriProfileUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    waliId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17657,9 +18713,6 @@ export namespace Prisma {
     id?: StringFilter<"WaliSantriRelation"> | string
     waliId?: StringFilter<"WaliSantriRelation"> | string
     santriId?: StringFilter<"WaliSantriRelation"> | string
-    name?: StringNullableFilter<"WaliSantriRelation"> | string | null
-    phone?: StringNullableFilter<"WaliSantriRelation"> | string | null
-    photoUrl?: StringNullableFilter<"WaliSantriRelation"> | string | null
     category?: EnumWaliSantriCategoryFilter<"WaliSantriRelation"> | $Enums.WaliSantriCategory
     createdAt?: DateTimeFilter<"WaliSantriRelation"> | Date | string
     updatedAt?: DateTimeFilter<"WaliSantriRelation"> | Date | string
@@ -17681,70 +18734,7 @@ export namespace Prisma {
     data: XOR<WaliSantriRelationUpdateManyMutationInput, WaliSantriRelationUncheckedUpdateManyWithoutSantriInput>
   }
 
-  export type SantriProfileUpsertWithWhereUniqueWithoutWaliInput = {
-    where: SantriProfileWhereUniqueInput
-    update: XOR<SantriProfileUpdateWithoutWaliInput, SantriProfileUncheckedUpdateWithoutWaliInput>
-    create: XOR<SantriProfileCreateWithoutWaliInput, SantriProfileUncheckedCreateWithoutWaliInput>
-  }
-
-  export type SantriProfileUpdateWithWhereUniqueWithoutWaliInput = {
-    where: SantriProfileWhereUniqueInput
-    data: XOR<SantriProfileUpdateWithoutWaliInput, SantriProfileUncheckedUpdateWithoutWaliInput>
-  }
-
-  export type SantriProfileUpdateManyWithWhereWithoutWaliInput = {
-    where: SantriProfileScalarWhereInput
-    data: XOR<SantriProfileUpdateManyMutationInput, SantriProfileUncheckedUpdateManyWithoutWaliInput>
-  }
-
-  export type UserCreateWithoutWaliRelationsInput = {
-    id?: string
-    nis?: string | null
-    fullName: string
-    email: string
-    password: string
-    phone?: string | null
-    role: $Enums.Role
-    isActive?: boolean
-    createdAt?: Date | string
-    verifications?: VerificationCreateNestedManyWithoutUserInput
-    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
-    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
-    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
-    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
-    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
-    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
-    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
-  }
-
-  export type UserUncheckedCreateWithoutWaliRelationsInput = {
-    id?: string
-    nis?: string | null
-    fullName: string
-    email: string
-    password: string
-    phone?: string | null
-    role: $Enums.Role
-    isActive?: boolean
-    createdAt?: Date | string
-    verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
-    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
-    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
-    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
-    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
-    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
-    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
-    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
-  }
-
-  export type UserCreateOrConnectWithoutWaliRelationsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutWaliRelationsInput, UserUncheckedCreateWithoutWaliRelationsInput>
-  }
-
-  export type UserCreateWithoutSantriRelationsInput = {
+  export type UserCreateWithoutWaliProfileInput = {
     id?: string
     nis?: string | null
     fullName: string
@@ -17762,10 +18752,10 @@ export namespace Prisma {
     mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
-    santriUnderWali?: SantriProfileCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
   }
 
-  export type UserUncheckedCreateWithoutSantriRelationsInput = {
+  export type UserUncheckedCreateWithoutWaliProfileInput = {
     id?: string
     nis?: string | null
     fullName: string
@@ -17783,7 +18773,154 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
-    santriUnderWali?: SantriProfileUncheckedCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+  }
+
+  export type UserCreateOrConnectWithoutWaliProfileInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutWaliProfileInput, UserUncheckedCreateWithoutWaliProfileInput>
+  }
+
+  export type UserUpsertWithoutWaliProfileInput = {
+    update: XOR<UserUpdateWithoutWaliProfileInput, UserUncheckedUpdateWithoutWaliProfileInput>
+    create: XOR<UserCreateWithoutWaliProfileInput, UserUncheckedCreateWithoutWaliProfileInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutWaliProfileInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutWaliProfileInput, UserUncheckedUpdateWithoutWaliProfileInput>
+  }
+
+  export type UserUpdateWithoutWaliProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    verifications?: VerificationUpdateManyWithoutUserNestedInput
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutWaliProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+  }
+
+  export type UserCreateWithoutWaliRelationsInput = {
+    id?: string
+    nis?: string | null
+    fullName: string
+    email: string
+    password: string
+    phone?: string | null
+    role: $Enums.Role
+    isActive?: boolean
+    createdAt?: Date | string
+    waliProfile?: WaliProfileCreateNestedOneWithoutUserInput
+    verifications?: VerificationCreateNestedManyWithoutUserInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+  }
+
+  export type UserUncheckedCreateWithoutWaliRelationsInput = {
+    id?: string
+    nis?: string | null
+    fullName: string
+    email: string
+    password: string
+    phone?: string | null
+    role: $Enums.Role
+    isActive?: boolean
+    createdAt?: Date | string
+    waliProfile?: WaliProfileUncheckedCreateNestedOneWithoutUserInput
+    verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+  }
+
+  export type UserCreateOrConnectWithoutWaliRelationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutWaliRelationsInput, UserUncheckedCreateWithoutWaliRelationsInput>
+  }
+
+  export type UserCreateWithoutSantriRelationsInput = {
+    id?: string
+    nis?: string | null
+    fullName: string
+    email: string
+    password: string
+    phone?: string | null
+    role: $Enums.Role
+    isActive?: boolean
+    createdAt?: Date | string
+    waliProfile?: WaliProfileCreateNestedOneWithoutUserInput
+    verifications?: VerificationCreateNestedManyWithoutUserInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+  }
+
+  export type UserUncheckedCreateWithoutSantriRelationsInput = {
+    id?: string
+    nis?: string | null
+    fullName: string
+    email: string
+    password: string
+    phone?: string | null
+    role: $Enums.Role
+    isActive?: boolean
+    createdAt?: Date | string
+    waliProfile?: WaliProfileUncheckedCreateNestedOneWithoutUserInput
+    verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
   }
 
   export type UserCreateOrConnectWithoutSantriRelationsInput = {
@@ -17812,6 +18949,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUpdateOneWithoutUserNestedInput
     verifications?: VerificationUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
@@ -17820,7 +18958,6 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWaliRelationsInput = {
@@ -17833,6 +18970,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUncheckedUpdateOneWithoutUserNestedInput
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
@@ -17841,7 +18979,6 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
-    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUpsertWithoutSantriRelationsInput = {
@@ -17865,6 +19002,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUpdateOneWithoutUserNestedInput
     verifications?: VerificationUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
@@ -17873,7 +19011,6 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
-    santriUnderWali?: SantriProfileUpdateManyWithoutWaliNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSantriRelationsInput = {
@@ -17886,6 +19023,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUncheckedUpdateOneWithoutUserNestedInput
     verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
     santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
     mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
@@ -17894,7 +19032,6 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
-    santriUnderWali?: SantriProfileUncheckedUpdateManyWithoutWaliNestedInput
   }
 
   export type AssignmentContentCreateManyAssignmentInput = {
@@ -17966,7 +19103,6 @@ export namespace Prisma {
   export type SantriProfileCreateManyClassInput = {
     id?: string
     userId: string
-    waliId?: string | null
     phone?: string | null
     birthDate?: Date | string | null
     address?: string | null
@@ -18048,13 +19184,11 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutSantriProfileNestedInput
-    wali?: UserUpdateOneWithoutSantriUnderWaliNestedInput
   }
 
   export type SantriProfileUncheckedUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    waliId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18064,7 +19198,6 @@ export namespace Prisma {
   export type SantriProfileUncheckedUpdateManyWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    waliId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18166,9 +19299,6 @@ export namespace Prisma {
   export type WaliSantriRelationCreateManyWaliInput = {
     id?: string
     santriId: string
-    name?: string | null
-    phone?: string | null
-    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18177,22 +19307,9 @@ export namespace Prisma {
   export type WaliSantriRelationCreateManySantriInput = {
     id?: string
     waliId: string
-    name?: string | null
-    phone?: string | null
-    photoUrl?: string | null
     category?: $Enums.WaliSantriCategory
     createdAt?: Date | string
     updatedAt?: Date | string
-  }
-
-  export type SantriProfileCreateManyWaliInput = {
-    id?: string
-    userId: string
-    phone?: string | null
-    birthDate?: Date | string | null
-    address?: string | null
-    photoUrl?: string | null
-    classId?: string | null
   }
 
   export type VerificationUpdateWithoutUserInput = {
@@ -18379,9 +19496,6 @@ export namespace Prisma {
 
   export type WaliSantriRelationUpdateWithoutWaliInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18391,9 +19505,6 @@ export namespace Prisma {
   export type WaliSantriRelationUncheckedUpdateWithoutWaliInput = {
     id?: StringFieldUpdateOperationsInput | string
     santriId?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18402,9 +19513,6 @@ export namespace Prisma {
   export type WaliSantriRelationUncheckedUpdateManyWithoutWaliInput = {
     id?: StringFieldUpdateOperationsInput | string
     santriId?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18412,9 +19520,6 @@ export namespace Prisma {
 
   export type WaliSantriRelationUpdateWithoutSantriInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18424,9 +19529,6 @@ export namespace Prisma {
   export type WaliSantriRelationUncheckedUpdateWithoutSantriInput = {
     id?: StringFieldUpdateOperationsInput | string
     waliId?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18435,42 +19537,9 @@ export namespace Prisma {
   export type WaliSantriRelationUncheckedUpdateManyWithoutSantriInput = {
     id?: StringFieldUpdateOperationsInput | string
     waliId?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SantriProfileUpdateWithoutWaliInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    user?: UserUpdateOneRequiredWithoutSantriProfileNestedInput
-    class?: ClassUpdateOneWithoutSantriProfilesNestedInput
-  }
-
-  export type SantriProfileUncheckedUpdateWithoutWaliInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    classId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type SantriProfileUncheckedUpdateManyWithoutWaliInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    classId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

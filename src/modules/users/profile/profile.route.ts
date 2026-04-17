@@ -7,6 +7,7 @@ import { validate } from "../../../utils/validate.js";
 import { createProfileSchema, updateProfileSchema } from "./profile.schema.js";
 import { adminMiddleware } from "../../../middleware/role.middleware.js";
 import { authenticate } from "../../../middleware/auth.middleware.js";
+import { upload } from "../../../middleware/upload.middleware.js";
 
 const router = Router();
 
@@ -20,8 +21,8 @@ const profileController = new ProfileController(profileService);
 router.get("/", authenticate, adminMiddleware, profileController.getAllProfiles);
 router.get("/:id", authenticate, profileController.getProfileById);
 
-router.post("/", authenticate, validate(createProfileSchema), profileController.createProfile);
-router.put("/:id", authenticate, validate(updateProfileSchema), profileController.updateProfile);
+router.post("/", authenticate, upload.single("photoUrl"), validate(createProfileSchema), profileController.createProfile);
+router.put("/:id", authenticate, upload.single("photoUrl"), validate(updateProfileSchema), profileController.updateProfile);
 router.delete("/:id", authenticate, profileController.deleteProfile);
 
 export default router;

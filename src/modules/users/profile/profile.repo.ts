@@ -27,6 +27,7 @@ export class ProfileRepository {
   async create(data: Prisma.UserCreateInput) {
     return await this.prisma.user.create({
       data,
+      include: { santriProfile: true },
     });
   }
 
@@ -34,6 +35,7 @@ export class ProfileRepository {
     return await this.prisma.user.update({
       where: { id },
       data,
+      include: { santriProfile: true },
     });
   }
 

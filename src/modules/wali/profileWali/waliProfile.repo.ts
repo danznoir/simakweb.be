@@ -1,68 +1,54 @@
 import { PrismaClient, Prisma } from "../../../../generated/index.js";
 
-export class WaliRelationRepository {
-  constructor(private prisma: PrismaClient) {}
+export class WaliProfileRepository {
+  constructor(private prisma: PrismaClient) { }
 
   async findAll(skip: number, take: number) {
-    // Gunakan transaction untuk menjalankan query data dan count secara paralel
     const [data, total] = await this.prisma.$transaction([
-      this.prisma.waliSantriRelation.findMany({
+      this.prisma.waliProfile.findMany({
         skip,
         take,
         include: {
-          wali: { select: { id: true, fullName: true, email: true, phone: true } },
-          santri: { select: { id: true, fullName: true, nis: true } },
+          // Tarik data nama dan email dari tabel User utama
+          user: { select: { id: true, fullName: true, email: true } }, 
         },
-        orderBy: { createdAt: "desc" },
       }),
-      this.prisma.waliSantriRelation.count(),
+      this.prisma.waliProfile.count(),
     ]);
 
     return { data, total };
   }
 
-  async findByUserId(userId: string) {
-    return await this.prisma.user.findUnique({
-      where: { id: userId },
-        select :{
-            fullName: true,
-            phone: true
-        }
-    });
-  }
-
   async findById(id: string) {
-    return await this.prisma.waliSantriRelation.findUnique({
+    return await this.prisma.waliProfile.findUnique({
       where: { id },
-    });
-  }
-
-  async checkDuplicate(waliId: string, santriId: string) {
-    return await this.prisma.waliSantriRelation.findUnique({
-      where: {
-        waliId_santriId: {
-          waliId,
-          santriId,
-        },
+      include: {
+        user: { select: { fullName: true, email: true } },
       },
     });
   }
 
-  async create(data: Prisma.WaliSantriRelationUncheckedCreateInput) {
-    return await this.prisma.waliSantriRelation.create({
+  async findByUserId(userId: string) {
+    return await this.prisma.waliProfile.findUnique({
+      where: { userId },
+    });
+  }
+
+  async create(data: Prisma.WaliProfileUncheckedCreateInput) {
+    return await this.prisma.waliProfile.create({
       data,
     });
   }
 
-  async update(id: string, data: Prisma.WaliSantriRelationUpdateInput) {
-    return await this.prisma.waliSantriRelation.update({
+  async update(id: string, data: Prisma.WaliProfileUpdateInput) {
+    return await this.prisma.waliProfile.update({
       where: { id },
       data,
     });
   }
 
   async delete(id: string) {
-    return await this.prisma.waliSantriRelation.delete({
+    return await this.prisma.waliProfile.delete({
       where: { id },
     });
   }

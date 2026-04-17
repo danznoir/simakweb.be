@@ -6,6 +6,7 @@ export const config = {
     HOST: process.env.HOST,
     PORT: process.env.PORT,
     JWT_SECRET: process.env.JWT_SECRET,
+    REFRESH_TOKEN: process.env.REFRESH_TOKEN,
     NODE_ENV: process.env.NODE_ENV,
     CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
     CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,

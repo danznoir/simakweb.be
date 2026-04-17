@@ -10,6 +10,7 @@ model User {
   createdAt DateTime @default(now())
 
   // Relasi (Ini otomatis dibuat oleh Prisma untuk back-reference)
+  waliProfile        WaliProfile?
   verifications      Verification[]
   santriProfile      SantriProfile?
   mentorClasses      Class[]             @relation("MentorClasses")
@@ -21,8 +22,7 @@ model User {
   // Relasi Wali Santri
   waliRelations     WaliSantriRelation[] @relation("WaliToRelation")
   santriRelations   WaliSantriRelation[] @relation("SantriToRelation")
-  santriUnderWali   SantriProfile[]      @relation("WaliToSantri")
 
   @@map("users")
 }
-
+

@@ -8,3 +8,11 @@ export const loginRepo = async (data: ILoginData) => {
         },
     });
 }
+
+export const findByIdRepo = async (id: string) => {
+    return await prisma.user.findUnique({
+        where: {
+            id,
+        },
+    });
+}

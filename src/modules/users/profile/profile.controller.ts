@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { ProfileService } from "./profile.service.js";
 import { successResponse, errorResponse } from "../../../utils/response.js"; // Sesuaikan path
+import { AppError } from "../../../appErr.js";
 
 export class ProfileController {
   constructor(private profileService: ProfileService) {}
@@ -20,13 +21,29 @@ export class ProfileController {
   };
 
   createProfile = async (req: Request, res: Response) => {
-      const result = await this.profileService.createProfile(req.body);
+      const file = req.file;
+      if (!file) {
+        throw new AppError("File tidak ditemukan", 404);
+      }
+      const data = {
+        ...req.body,
+        photoUrl: file.path,
+      }
+      const result = await this.profileService.createProfile(data);
       successResponse(res, "Profile berhasil dibuat", result, null, 201);
   };
 
   updateProfile = async (req: Request, res: Response) => {
       const { id } = req.params;
-      const result = await this.profileService.updateProfile(id as string, req.body);
+      const file = req.file;
+      if (!file) {
+        throw new AppError("File tidak ditemukan", 404);
+      }
+      const data = {
+        ...req.body,
+        photoUrl: file.path,
+      }
+      const result = await this.profileService.updateProfile(id as string, data);
       successResponse(res, "Profile berhasil diupdate", result, null, 200);
   };
 

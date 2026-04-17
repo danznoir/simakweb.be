@@ -39,7 +39,18 @@ export class ProfileService {
       password: hashedPassword,
       role: data.role,
       phone: data.phone ?? null,
+      ...(data.photoUrl && {
+        santriProfile: {
+          create: {
+            photoUrl: data.photoUrl,
+            address: data.address ?? null,
+            birthDate: data.birthDate ? new Date(data.birthDate) : null,
+          },
+        },
+      })
     };
+
+    console.log("payload", payload);
 
     return await this.profileRepo.create(payload);
   }
@@ -54,6 +65,22 @@ export class ProfileService {
       ...(data.email !== undefined && { email: data.email }),
       ...(data.phone !== undefined && { phone: data.phone }),
       ...(data.role !== undefined && { role: data.role }),
+      ...(data.photoUrl !== undefined && {
+        santriProfile: {
+          upsert: {
+            create: {
+              photoUrl: data.photoUrl ?? null,
+              address: data.address ?? null,
+              birthDate: data.birthDate ? new Date(data.birthDate) : null,
+            },
+            update: {
+              ...(data.photoUrl !== undefined && { photoUrl: data.photoUrl }),
+              ...(data.address !== undefined && { address: data.address }),
+              ...(data.birthDate !== undefined && { birthDate: new Date(data.birthDate!) }),
+            },
+          },
+        },
+      })
     };
 
     return await this.profileRepo.update(id, payload);
