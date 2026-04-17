@@ -1,0 +1,12 @@
+model WaliProfile {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  phone     String?
+  address   String?  @db.Text
+  photoUrl  String?
+  job       String?  // Opsional: Pekerjaan wali
+
+  @@map("wali_profiles")
+}

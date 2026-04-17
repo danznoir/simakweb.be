@@ -1,21 +1,21 @@
 model WaliSantriRelation {
-  id        String             @id @default(uuid())
+  id        String   @id @default(uuid())
   
+  // Titik A: User Wali
   waliId    String
-  wali      User               @relation("WaliToRelation", fields: [waliId], references: [id], onDelete: Cascade)
+  wali      User     @relation("WaliToRelation", fields: [waliId], references: [id], onDelete: Cascade)
   
+  // Titik B: User Santri
   santriId  String
-  santri    User               @relation("SantriToRelation", fields: [santriId], references: [id], onDelete: Cascade)
+  santri    User     @relation("SantriToRelation", fields: [santriId], references: [id], onDelete: Cascade)
   
-  name      String?
-  phone     String?
-  photoUrl  String?
+  // Keterangan Hubungan (Ayah, Ibu, Paman, dll)
   category  WaliSantriCategory @default(OTHER)
 
-  createdAt DateTime           @default(now())
-  updatedAt DateTime           @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  // Memastikan satu kombinasi wali dan anak tidak duplikat
+  // Memastikan satu kombinasi wali dan anak spesifik tidak duplikat
   @@unique([waliId, santriId]) 
   @@map("wali_santri_relations")
-}
+}

@@ -1,12 +1,17 @@
 import { z } from 'zod';
-import { WaliSantriCategory } from '../../../../generated/index.js';
 
-export const createWaliRelationSchema = z.object({
-  waliId: z.string().min(1, "Wali ID wajib diisi"),
-  santriId: z.string().min(1, "Santri ID wajib diisi"),
-  name: z.string().optional(),
-  phone: z.string().optional(),
-  category: z.nativeEnum(WaliSantriCategory).optional(), 
+export const createWaliProfileSchema = z.object({
+  userId: z.string().uuid("User ID wajib diisi dan harus berupa UUID"),
+  phone: z.string().nullable().optional(),
+  address: z.string().nullable().optional(),
+  job: z.string().nullable().optional(),
 });
 
-export type ICreateWaliRelation = z.infer<typeof createWaliRelationSchema>;
+export const updateWaliProfileSchema = z.object({
+  phone: z.string().nullable().optional(),
+  address: z.string().nullable().optional(),
+  job: z.string().nullable().optional(),
+});
+
+export type ICreateWaliProfile = z.infer<typeof createWaliProfileSchema> & { photoUrl?: string | null };
+export type IUpdateWaliProfile = z.infer<typeof updateWaliProfileSchema> & { photoUrl?: string | null };

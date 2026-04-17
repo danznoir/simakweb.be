@@ -113,9 +113,6 @@ model SantriProfile {
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  waliId String?
-  wali   User?   @relation("WaliToSantri", fields: [waliId], references: [id])
-
   phone     String?
   birthDate DateTime? @db.Date
   address   String?   @db.Text
@@ -139,6 +136,7 @@ model User {
   createdAt DateTime @default(now())
 
   // Relasi (Ini otomatis dibuat oleh Prisma untuk back-reference)
+  waliProfile       WaliProfile?
   verifications     Verification[]
   santriProfile     SantriProfile?
   mentorClasses     Class[]             @relation("MentorClasses")
@@ -150,29 +148,41 @@ model User {
   // Relasi Wali Santri
   waliRelations   WaliSantriRelation[] @relation("WaliToRelation")
   santriRelations WaliSantriRelation[] @relation("SantriToRelation")
-  santriUnderWali SantriProfile[]      @relation("WaliToSantri")
 
   @@map("users")
+}
+
+model WaliProfile {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  phone    String?
+  address  String? @db.Text
+  photoUrl String?
+  job      String? // Opsional: Pekerjaan wali
+
+  @@map("wali_profiles")
 }
 
 model WaliSantriRelation {
   id String @id @default(uuid())
 
+  // Titik A: User Wali
   waliId String
   wali   User   @relation("WaliToRelation", fields: [waliId], references: [id], onDelete: Cascade)
 
+  // Titik B: User Santri
   santriId String
   santri   User   @relation("SantriToRelation", fields: [santriId], references: [id], onDelete: Cascade)
 
-  name     String?
-  phone    String?
-  photoUrl String?
+  // Keterangan Hubungan (Ayah, Ibu, Paman, dll)
   category WaliSantriCategory @default(OTHER)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Memastikan satu kombinasi wali dan anak tidak duplikat
+  // Memastikan satu kombinasi wali dan anak spesifik tidak duplikat
   @@unique([waliId, santriId])
   @@map("wali_santri_relations")
 }

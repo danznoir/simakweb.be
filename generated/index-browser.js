@@ -182,7 +182,6 @@ exports.Prisma.DivisionScalarFieldEnum = {
 exports.Prisma.SantriProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  waliId: 'waliId',
   phone: 'phone',
   birthDate: 'birthDate',
   address: 'address',
@@ -202,13 +201,19 @@ exports.Prisma.UserScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.WaliProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  phone: 'phone',
+  address: 'address',
+  photoUrl: 'photoUrl',
+  job: 'job'
+};
+
 exports.Prisma.WaliSantriRelationScalarFieldEnum = {
   id: 'id',
   waliId: 'waliId',
   santriId: 'santriId',
-  name: 'name',
-  phone: 'phone',
-  photoUrl: 'photoUrl',
   category: 'category',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -273,6 +278,7 @@ exports.Prisma.ModelName = {
   Division: 'Division',
   SantriProfile: 'SantriProfile',
   User: 'User',
+  WaliProfile: 'WaliProfile',
   WaliSantriRelation: 'WaliSantriRelation'
 };
 
