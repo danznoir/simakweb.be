@@ -9,6 +9,7 @@ import { successResponse } from "./utils/response.js";
 import { errorHandler } from "./middleware/errorHandler.middleware.js";
 import authRouter from "./modules/auth/auth.router.js";
 import divisionRouter from "./modules/divisions/division.route.js";
+import classRouter from "./modules/classes/class.route.js";
 
 interface CustomRequest extends Request {
   rawBody?: string;
@@ -49,6 +50,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/divisions', divisionRouter)
+app.use('/api/v1/classes', classRouter)
 
 app.get(/.*/, (req: Request, res: Response) => {
   throw new Error(`Route ${req.originalUrl} tidak ada di API E-Commerce`);
