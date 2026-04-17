@@ -3,9 +3,6 @@ model SantriProfile {
   userId    String    @unique
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   
-  waliId    String?
-  wali      User?     @relation("WaliToSantri", fields: [waliId], references: [id])
-  
   phone     String?
   birthDate DateTime? @db.Date
   address   String?   @db.Text
@@ -15,4 +12,4 @@ model SantriProfile {
   class     Class?    @relation(fields: [classId], references: [id], onDelete: SetNull)
 
   @@map("santri_profiles")
-}
+}

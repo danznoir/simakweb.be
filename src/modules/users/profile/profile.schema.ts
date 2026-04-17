@@ -13,14 +13,20 @@ export const createProfileSchema = z.object({
   password: z.string().min(6, "Password minimal 6 karakter"),
   phone: z.string().min(10, "Nomor telepon minimal 10 karakter").optional(),
   role: z.enum(["SANTRI", "MENTOR", "WALI_SANTRI"]),
+  photoUrl: z.string().nullish(),
+  address: z.string().nullish(),
+  birthDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Format tanggal lahir YYYY-MM-DD").nullish(),
 });
 
 // Skema untuk Update (Semuanya opsional karena bisa jadi cuma update nama)
 export const updateProfileSchema = z.object({
-  fullName: z.string().min(3).optional(),
-  email: z.string().email().optional(),
-  phone: z.string().min(10).optional(),
+  fullName: z.string().min(3, "Nama minimal 3 karakter").optional(),
+  email: z.string().email("Email tidak valid").optional(),
+  phone: z.string().min(10, "Nomor telepon minimal 10 karakter").optional(),
   role: z.enum(["SANTRI", "MENTOR", "WALI_SANTRI"]).optional(),
+  photoUrl: z.string().nullish(),
+  address: z.string().nullish(),
+  birthDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Format tanggal lahir YYYY-MM-DD").nullish(),
 });
 
 export type ICreateProfileData = z.infer<typeof createProfileSchema>;

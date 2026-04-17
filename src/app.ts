@@ -8,6 +8,10 @@ import { successResponse } from "./utils/response.js";
 // import swaggerSpec from './utils/swagger.js';
 import { errorHandler } from "./middleware/errorHandler.middleware.js";
 import authRouter from "./modules/auth/auth.router.js";
+import userRouter from "./modules/users/user/user.route.js";
+import userProfileRouter from "./modules/users/profile/profile.route.js";
+import waliSantriRouter from "./modules/wali/profileWali/waliProfile.route.js";
+import relasiRouter from "./modules/wali/relasi/relation.route.js";
 
 interface CustomRequest extends Request {
   rawBody?: string;
@@ -47,6 +51,10 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/users', userRouter)
+app.use('api/v1/relasi', relasiRouter)
+app.use('/api/v1/user-profile', userProfileRouter)
+app.use('/api/v1/wali-santri', waliSantriRouter)
 
 app.get(/.*/, (req: Request, res: Response) => {
   throw new Error(`Route ${req.originalUrl} tidak ada di API E-Commerce`);

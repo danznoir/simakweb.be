@@ -1,19 +1,19 @@
 import { Router } from "express";
 import { upload } from "../../../middleware/upload.middleware.js";
-import { WaliRelationController } from "./waliProfile.controller.js";
-import { WaliRelationRepository } from "./waliProfile.repo.js";
-import { WaliRelationService } from "./waliProfile.service.js";
 import { prisma } from "../../../config/prisma.js";
 import { adminMiddleware } from "../../../middleware/role.middleware.js";
+import { WaliProfileRepository } from "./waliProfile.repo.js";
+import { WaliProfileService } from "./waliProfile.service.js";
+import { WaliProfileController } from "./waliProfile.controller.js";
 
 const router = Router();
-const repo = new WaliRelationRepository(prisma);
-const service = new WaliRelationService(repo);
-const controller = new WaliRelationController(service);
+const repo = new WaliProfileRepository(prisma);
+const service = new WaliProfileService(repo);
+const controller = new WaliProfileController(service);
 
-router.get("/", adminMiddleware, controller.getAllRelations);
-router.post("/", upload.single("photoUrl"), controller.createRelation);
-router.put("/:id", upload.single("photoUrl"), controller.updateRelation);
-router.delete("/:id", adminMiddleware, controller.deleteRelation);
+router.get("/", adminMiddleware, controller.getAllProfiles);
+router.post("/", upload.single("photoUrl"), controller.createProfile);
+router.put("/:id", upload.single("photoUrl"), controller.updateProfile);
+router.delete("/:id", adminMiddleware, controller.deleteProfile);
 
 export default router;
