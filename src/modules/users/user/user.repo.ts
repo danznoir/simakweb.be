@@ -1,6 +1,7 @@
-import { PrismaClient, Prisma } from "../../../../generated/index.js";
+import type { Prisma, PrismaClient } from "../../../../generated/index.js";
 
-export class ProfileRepository {
+
+export class UserRepository {
   constructor(private prisma: PrismaClient) {}
 
   async findAll(skip: number, take: number) {
@@ -8,10 +9,19 @@ export class ProfileRepository {
       this.prisma.user.findMany({
         skip,
         take,
-        include: { santriProfile: true }, // Tarik juga data relasi profilnya
+        // (Opsional) Sembunyikan password saat mengambil data banyak
+        select: {
+          id: true,
+          fullName: true,
+          email: true,
+          phone: true,
+          role: true,
+          isActive: true,
+          createdAt: true,
+        },
         orderBy: { createdAt: "desc" },
       }),
-      this.prisma.user.count(), // Hitung total seluruh user
+      this.prisma.user.count(),
     ]);
 
     return { data, total };
@@ -20,7 +30,6 @@ export class ProfileRepository {
   async findById(id: string) {
     return await this.prisma.user.findUnique({
       where: { id },
-      include: { santriProfile: true },
     });
   }
 

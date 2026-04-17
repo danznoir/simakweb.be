@@ -22,3 +22,15 @@ export const registerRepo = async (data: IRegisterData) => {
   });
 };
 
+export const getNisSantri = async (prefix: string) => {
+  return await prisma.user.findFirst({
+    where: {
+      nis: {
+        startsWith: prefix,
+      },
+    },
+    orderBy: {
+      nis: "desc",
+    },
+  });
+}
