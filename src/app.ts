@@ -8,6 +8,11 @@ import { successResponse } from "./utils/response.js";
 // import swaggerSpec from './utils/swagger.js';
 import { errorHandler } from "./middleware/errorHandler.middleware.js";
 import authRouter from "./modules/auth/auth.router.js";
+import divisionRouter from "./modules/divisions/division.route.js";
+import classRouter from "./modules/classes/class.route.js";
+import attendanceRouter from "./modules/attendance/attendance.route.js";
+import assignmentRouter from "./modules/assignments/assignment.route.js";
+import submissionRouter from "./modules/assignment_content/assignment-content.route.js";
 
 interface CustomRequest extends Request {
   rawBody?: string;
@@ -47,6 +52,11 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/divisions', divisionRouter)
+app.use('/api/v1/classes', classRouter)
+app.use('/api/v1/attendances', attendanceRouter)
+app.use('/api/v1/assignments', assignmentRouter)
+app.use('/api/v1/submissions', submissionRouter)
 
 app.get(/.*/, (req: Request, res: Response) => {
   throw new Error(`Route ${req.originalUrl} tidak ada di API E-Commerce`);
