@@ -12,6 +12,7 @@ const service = new WaliProfileService(repo);
 const controller = new WaliProfileController(service);
 
 router.get("/", adminMiddleware, controller.getAllProfiles);
+router.get("/:id", controller.getProfileByUserId);
 router.post("/", upload.single("photoUrl"), controller.createProfile);
 router.put("/:id", upload.single("photoUrl"), controller.updateProfile);
 router.delete("/:id", adminMiddleware, controller.deleteProfile);

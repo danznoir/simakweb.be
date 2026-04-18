@@ -52,7 +52,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/users', userRouter)
-app.use('api/v1/relasi', relasiRouter)
+app.use('/api/v1/relasi', relasiRouter)
 app.use('/api/v1/user-profile', userProfileRouter)
 app.use('/api/v1/wali-santri', waliSantriRouter)
 

@@ -6,9 +6,9 @@ import { Prisma } from "../../../../generated/index.js";
 export class UserService {
   constructor(private userRepo: UserRepository) {}
 
-  async getAllUsers(page: number, limit: number) {
+  async getAllUsers(page: number, limit: number, search?: string) {
     const skip = (page - 1) * limit;
-    const { data, total } = await this.userRepo.findAll(skip, limit);
+    const { data, total } = await this.userRepo.findAll(skip, limit, search);
 
     return {
       data,
