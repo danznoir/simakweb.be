@@ -3,15 +3,20 @@ import { UserService } from "./user.service.js";
 import { successResponse, errorResponse } from "../../../utils/response.js"; 
 
 export class UserController {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   getAllUsers = async (req: Request, res: Response) => {
-      const page = parseInt(req.query.page as string) || 1;
-      const limit = parseInt(req.query.limit as string) || 10;
-      const search = req.query.search as string;
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    const search = req.query.search as string;
+    const role = req.query.role as string;
 
-      const result = await this.userService.getAllUsers(page, limit, search);
-      successResponse(res, "Data user berhasil diambil", result.data, result.meta, 200);
+    let isActive: boolean | undefined;
+    if (req.query.isActive === "true") isActive = true;
+    else if (req.query.isActive === "false") isActive = false;
+
+    const result = await this.userService.getAllUsers({page, limit, search, role, isActive});
+    successResponse(res, "Data user berhasil diambil", result.data, result.meta, 200);
   };
 
   getUserById = async (req: Request, res: Response) => {

@@ -1,14 +1,39 @@
 import { UserRepository } from "./user.repo.js";
 import type { ICreateUserData, IUpdateUserData } from "./user.schema.js";
 import bcrypt from "bcrypt";
-import { Prisma } from "../../../../generated/index.js";
+import { Prisma, Role } from "../../../../generated/index.js";
 
 export class UserService {
-  constructor(private userRepo: UserRepository) {}
+  constructor(private userRepo: UserRepository) { }
 
-  async getAllUsers(page: number, limit: number, search?: string) {
+  async getAllUsers(params: {
+    page: number;
+    limit: number;
+    search?: string | undefined;
+    role?: string | undefined;
+    isActive?: boolean | undefined;
+  }) {
+    const { page, limit, search, role, isActive } = params;
     const skip = (page - 1) * limit;
-    const { data, total } = await this.userRepo.findAll(skip, limit, search);
+
+    const where: Prisma.UserWhereInput = {
+      AND: [
+        search ? {
+          OR: [
+            { fullName: { contains: search, mode: "insensitive" } },
+            { email: { contains: search, mode: "insensitive" } },
+          ],
+        } : {},
+        role ? { role: role as Role } : {},
+        isActive !== undefined ? { isActive } : {},
+      ],
+    };
+
+    const { data, total } = await this.userRepo.findAll({
+      skip,
+      take: limit,
+      where,
+    });
 
     return {
       data,
@@ -20,6 +45,7 @@ export class UserService {
       },
     };
   }
+
 
   async getUserById(id: string) {
     const user = await this.userRepo.findById(id);

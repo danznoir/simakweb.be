@@ -11,8 +11,15 @@ export class WaliProfileController {
     getAllProfiles = async (req: Request, res: Response) => {
         const page = parseInt(req.query.page as string) || 1;
         const limit = parseInt(req.query.limit as string) || 10;
+        const search = req.query.search as string;
+        const role = req.query.role as string;
 
-        const result = await this.service.getAllProfiles(page, limit);
+        
+        let isActive: boolean | undefined;
+        if (req.query.isActive === "true") isActive = true;
+        else if (req.query.isActive === "false") isActive = false;
+
+        const result = await this.service.getAllProfiles(page, limit, search, role, isActive);
         successResponse(res, "Berhasil mengambil data profil wali", result.data, result.meta, 200);
     };
 

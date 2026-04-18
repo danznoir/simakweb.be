@@ -7,10 +7,10 @@ import bcrypt from "bcrypt";
 export class ProfileService {
   constructor(private profileRepo: ProfileRepository) { }
 
-  async getAllProfiles(page: number, limit: number, search?: string) {
+  async getAllProfiles(page: number, limit: number, search?: string | undefined, role?: string | undefined, isActive?: boolean | undefined) {
     const skip = (page - 1) * limit;
 
-    const { data, total } = await this.profileRepo.findAll(skip, limit, search);
+    const { data, total } = await this.profileRepo.findAll(skip, limit, search, role, isActive);
 
     return {
       data,

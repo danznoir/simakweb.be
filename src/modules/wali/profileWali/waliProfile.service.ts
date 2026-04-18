@@ -7,9 +7,9 @@ import type { Prisma } from "../../../../generated/index.js";
 export class WaliProfileService {
   constructor(private repo: WaliProfileRepository) { }
 
-  async getAllProfiles(page: number = 1, limit: number = 10) {
+  async getAllProfiles(page: number = 1, limit: number = 10, search?: string | undefined, role?: string | undefined, isActive?: boolean | undefined) {
     const skip = (page - 1) * limit;
-    const { data, total } = await this.repo.findAll(skip, limit);
+    const { data, total } = await this.repo.findAll(skip, limit, search, role, isActive);
 
     return {
       data,
