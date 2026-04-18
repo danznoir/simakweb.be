@@ -1,16 +1,21 @@
-import { PrismaClient, Prisma } from "../../../../generated/index.js";
+import { PrismaClient, Prisma, Role } from "../../../../generated/index.js";
 
 export class ProfileRepository {
   constructor(private prisma: PrismaClient) {}
 
-  async findAll(skip: number, take: number, search?: string) {
-    const whereClause = search ? {
-      OR: [
-        { fullName: { contains: search, mode: "insensitive" as const } },
-        { email: { contains: search, mode: "insensitive" as const } },
-        { phone: { contains: search, mode: "insensitive" as const } },
-      ],
-    } : {};
+  async findAll(skip: number, take: number, search?: string, role?: string, isActive?: boolean) {
+    const whereClause: Prisma.UserWhereInput = {
+      ...(search && {
+        OR: [
+          { fullName: { contains: search, mode: "insensitive" as const } },
+          { email: { contains: search, mode: "insensitive" as const } },
+          { phone: { contains: search, mode: "insensitive" as const } },
+        ],
+      }),
+      ...(role && { role: role as Role }),
+      ...(isActive !== undefined && { isActive }),
+    };
+    
     const [data, total] = await this.prisma.$transaction([
       this.prisma.user.findMany({
         skip,

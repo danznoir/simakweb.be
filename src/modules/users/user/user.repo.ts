@@ -4,32 +4,29 @@ import type { Prisma, PrismaClient } from "../../../../generated/index.js";
 export class UserRepository {
   constructor(private prisma: PrismaClient) { }
 
-  async findAll(skip: number, take: number, search?: string) {
-    const whereClause = search ? {
-      OR: [
-        { fullName: { contains: search, mode: "insensitive" as const } },
-        { email: { contains: search, mode: "insensitive" as const } },
-        { phone: { contains: search, mode: "insensitive" as const } },
-      ],
-    } : {};
+  async findAll(params: {
+    skip: number;
+    take: number;
+    where: Prisma.UserWhereInput;
+  }) {
+    const { skip, take, where } = params;
 
     const [data, total] = await this.prisma.$transaction([
       this.prisma.user.findMany({
         skip,
         take,
-        where: whereClause,
+        where,
         select: {
           id: true,
           fullName: true,
           email: true,
-          phone: true,
           role: true,
           isActive: true,
           createdAt: true,
         },
         orderBy: { createdAt: "desc" },
       }),
-      this.prisma.user.count({ where: whereClause }), // Penting: tambahkan filter di sini
+      this.prisma.user.count({ where }),
     ]);
 
     return { data, total };
