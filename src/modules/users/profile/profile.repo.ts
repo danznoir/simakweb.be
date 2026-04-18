@@ -3,15 +3,23 @@ import { PrismaClient, Prisma } from "../../../../generated/index.js";
 export class ProfileRepository {
   constructor(private prisma: PrismaClient) {}
 
-  async findAll(skip: number, take: number) {
+  async findAll(skip: number, take: number, search?: string) {
+    const whereClause = search ? {
+      OR: [
+        { fullName: { contains: search, mode: "insensitive" as const } },
+        { email: { contains: search, mode: "insensitive" as const } },
+        { phone: { contains: search, mode: "insensitive" as const } },
+      ],
+    } : {};
     const [data, total] = await this.prisma.$transaction([
       this.prisma.user.findMany({
         skip,
         take,
         include: { santriProfile: true }, // Tarik juga data relasi profilnya
         orderBy: { createdAt: "desc" },
+        where: whereClause,
       }),
-      this.prisma.user.count(), // Hitung total seluruh user
+      this.prisma.user.count({ where: whereClause }), // Hitung total seluruh user
     ]);
 
     return { data, total };

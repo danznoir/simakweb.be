@@ -8,8 +8,9 @@ export class UserController {
   getAllUsers = async (req: Request, res: Response) => {
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 10;
+      const search = req.query.search as string;
 
-      const result = await this.userService.getAllUsers(page, limit);
+      const result = await this.userService.getAllUsers(page, limit, search);
       successResponse(res, "Data user berhasil diambil", result.data, result.meta, 200);
   };
 

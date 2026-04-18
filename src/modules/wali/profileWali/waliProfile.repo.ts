@@ -10,7 +10,7 @@ export class WaliProfileRepository {
         take,
         include: {
           // Tarik data nama dan email dari tabel User utama
-          user: { select: { id: true, fullName: true, email: true } }, 
+          user: { select: { id: true, fullName: true, email: true } },
         },
       }),
       this.prisma.waliProfile.count(),
@@ -22,9 +22,7 @@ export class WaliProfileRepository {
   async findById(id: string) {
     return await this.prisma.waliProfile.findUnique({
       where: { id },
-      include: {
-        user: { select: { fullName: true, email: true } },
-      },
+      include: { user: true },
     });
   }
 
@@ -34,9 +32,10 @@ export class WaliProfileRepository {
     });
   }
 
-  async create(data: Prisma.WaliProfileUncheckedCreateInput) {
+  async create(data: Prisma.WaliProfileCreateInput) {
     return await this.prisma.waliProfile.create({
       data,
+      include: { user: true }
     });
   }
 
@@ -44,12 +43,22 @@ export class WaliProfileRepository {
     return await this.prisma.waliProfile.update({
       where: { id },
       data,
+      include: { user: true }
     });
   }
 
+  async updateFromUser(userId: string, data: Prisma.UserUpdateInput) {
+    return await this.prisma.user.update({
+      where: { id: userId },
+      data,
+      include: { waliProfile: true }
+    });
+  }
+
+
   async delete(id: string) {
     return await this.prisma.waliProfile.delete({
-      where: { id },
+      where: { id }
     });
   }
 }
