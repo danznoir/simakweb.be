@@ -5,11 +5,11 @@ import type { ICreateWaliProfile, IUpdateWaliProfile } from "./waliProfile.schem
 import type { Prisma } from "../../../../generated/index.js";
 
 export class WaliProfileService {
-  constructor(private repo: WaliProfileRepository) {}
+  constructor(private repo: WaliProfileRepository) { }
 
-  async getAllProfiles(page: number = 1, limit: number = 10) {
+  async getAllProfiles(page: number = 1, limit: number = 10, search?: string | undefined, role?: string | undefined, isActive?: boolean | undefined) {
     const skip = (page - 1) * limit;
-    const { data, total } = await this.repo.findAll(skip, limit);
+    const { data, total } = await this.repo.findAll(skip, limit, search, role, isActive);
 
     return {
       data,
@@ -22,7 +22,13 @@ export class WaliProfileService {
     };
   }
 
-  async createProfile(body: ICreateWaliProfile, file?: Express.Multer.File) {
+  async getProfileByUserId(userId: string) {
+    const profile = await this.repo.findByUserId(userId);
+    if (!profile) throw new AppError("Profil Wali tidak ditemukan", 404);
+    return profile;
+  }
+
+  async createProfile(body: ICreateWaliProfile) {
     // 1. Cek apakah User ID sudah punya profil (karena userId itu @unique)
     const existingProfile = await this.repo.findByUserId(body.userId);
     if (existingProfile) {
@@ -30,68 +36,57 @@ export class WaliProfileService {
     }
 
     // 2. Siapkan Payload
-    const payload: Prisma.WaliProfileUncheckedCreateInput = {
-      userId: body.userId,
+    const payload: Prisma.WaliProfileCreateInput = {
       phone: body.phone ?? null,
       address: body.address ?? null,
       job: body.job ?? null,
+      photoUrl: body.photoUrl ?? null,
+      user: {
+        connect: {
+          id: body.userId,
+        },
+      },
     };
-
-    // 3. Proses Foto
-    if (file && file.path) {
-      payload.photoUrl = file.path;
-    }
 
     return await this.repo.create(payload);
   }
 
-  async updateProfile(id: string, body: IUpdateWaliProfile, file?: Express.Multer.File) {
-    const existing = await this.repo.findById(id);
+  async updateProfile(userId: string, data: IUpdateWaliProfile) {
+    // 1. Cari berdasarkan User ID menggunakan findByUserId yang sudah ada di repo
+    const existing = await this.repo.findByUserId(userId);
     if (!existing) throw new AppError("Profil Wali tidak ditemukan", 404);
 
-    const payload: Prisma.WaliProfileUpdateInput = {
-      phone: body.phone ?? null,
-      address: body.address ?? null,
-      job: body.job ?? null,
+    // 2. Buat Payload untuk USER (karena ada fullName & email)
+    const payload: Prisma.UserUpdateInput = {
+      fullName: data.fullName,
+      email: data.email,
+      waliProfile: {
+        upsert: {
+          create: {
+            phone: data.phone ?? null,
+            address: data.address ?? null,
+            job: data.job ?? null,
+            photoUrl: data.photoUrl ?? null,
+          },
+          update: {
+            ...(data.phone !== undefined && { phone: data.phone }),
+            ...(data.address !== undefined && { address: data.address }),
+            ...(data.job !== undefined && { job: data.job }),
+            ...(data.photoUrl !== undefined && { photoUrl: data.photoUrl }),
+          },
+        },
+      },
     };
 
-    // Jika ada file foto baru yang di-upload
-    if (file && file.path) {
-      payload.photoUrl = file.path;
-
-      // Hapus foto lama di Cloudinary
-      if (existing.photoUrl) {
-        await this.deleteCloudinaryImage(existing.photoUrl);
-      }
-    }
-
-    return await this.repo.update(id, payload);
+    // 3. Panggil method repository yang mengupdate tabel User
+    return await this.repo.updateFromUser(userId, payload);
   }
+
 
   async deleteProfile(id: string) {
     const existing = await this.repo.findById(id);
     if (!existing) throw new AppError("Profil Wali tidak ditemukan", 404);
 
-    // Hapus foto di Cloudinary sebelum menghapus data di database
-    if (existing.photoUrl) {
-      await this.deleteCloudinaryImage(existing.photoUrl);
-    }
-
     return await this.repo.delete(id);
-  }
-
-  private async deleteCloudinaryImage(photoUrl: string) {
-    if (!photoUrl) return;
-        const urlParts = photoUrl.split("/");
-        const lastPart = urlParts[urlParts.length - 1];
-        const secondLastPart = urlParts[urlParts.length - 2];
-
-        if (!lastPart || !secondLastPart) return;
-
-        const fileName = lastPart.split(".")[0];
-        const folderName = secondLastPart;
-        const publicId = `${folderName}/${fileName}`;
-
-        await cloudinary.uploader.destroy(publicId);
   }
 }

@@ -62,7 +62,7 @@ app.use('/api/v1/attendances', attendanceRouter)
 app.use('/api/v1/assignments', assignmentRouter)
 app.use('/api/v1/submissions', submissionRouter)
 app.use('/api/v1/users', userRouter)
-app.use('api/v1/relasi', relasiRouter)
+app.use('/api/v1/relasi', relasiRouter)
 app.use('/api/v1/user-profile', userProfileRouter)
 app.use('/api/v1/wali-santri', waliSantriRouter)
 

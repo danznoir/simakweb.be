@@ -1,0 +1,18 @@
+model DailyJournal {
+    id          String   @id @default(uuid())
+    santriId   String
+    classId    String
+    mentorId   String
+    class      Class    @relation(fields: [classId], references: [id], name: "ClassDailyJournal")
+    santri     User     @relation(fields: [santriId], references: [id], name: "SantriDailyJournal")
+    mentor     User     @relation(fields: [mentorId], references: [id], name: "MentorDailyJournal")
+
+    attitudeScore  Float   @default(0)
+    notes          String
+    date           DateTime
+    description    String
+    createdAt      DateTime @default(now())
+    updatedAt      DateTime @updatedAt
+
+    @@map("daily_journals")
+}

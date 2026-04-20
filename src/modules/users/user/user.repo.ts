@@ -2,26 +2,31 @@ import type { Prisma, PrismaClient } from "../../../../generated/index.js";
 
 
 export class UserRepository {
-  constructor(private prisma: PrismaClient) {}
+  constructor(private prisma: PrismaClient) { }
 
-  async findAll(skip: number, take: number) {
+  async findAll(params: {
+    skip: number;
+    take: number;
+    where: Prisma.UserWhereInput;
+  }) {
+    const { skip, take, where } = params;
+
     const [data, total] = await this.prisma.$transaction([
       this.prisma.user.findMany({
         skip,
         take,
-        // (Opsional) Sembunyikan password saat mengambil data banyak
+        where,
         select: {
           id: true,
           fullName: true,
           email: true,
-          phone: true,
           role: true,
           isActive: true,
           createdAt: true,
         },
         orderBy: { createdAt: "desc" },
       }),
-      this.prisma.user.count(),
+      this.prisma.user.count({ where }),
     ]);
 
     return { data, total };

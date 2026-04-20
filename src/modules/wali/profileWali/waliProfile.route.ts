@@ -67,6 +67,7 @@ router.get("/", adminMiddleware, controller.getAllProfiles);
  *       201:
  *         description: Wali profile created successfully
  */
+router.get("/:id", controller.getProfileByUserId);
 router.post("/", upload.single("photoUrl"), controller.createProfile);
 /**
  * @swagger

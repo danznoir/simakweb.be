@@ -39,6 +39,11 @@ export type Attendance = $Result.DefaultSelection<Prisma.$AttendancePayload>
  */
 export type Class = $Result.DefaultSelection<Prisma.$ClassPayload>
 /**
+ * Model DailyJournal
+ * 
+ */
+export type DailyJournal = $Result.DefaultSelection<Prisma.$DailyJournalPayload>
+/**
  * Model Division
  * 
  */
@@ -317,6 +322,16 @@ export class PrismaClient<
     * ```
     */
   get class(): Prisma.ClassDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dailyJournal`: Exposes CRUD operations for the **DailyJournal** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DailyJournals
+    * const dailyJournals = await prisma.dailyJournal.findMany()
+    * ```
+    */
+  get dailyJournal(): Prisma.DailyJournalDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.division`: Exposes CRUD operations for the **Division** model.
@@ -806,6 +821,7 @@ export namespace Prisma {
     AssignmentContent: 'AssignmentContent',
     Attendance: 'Attendance',
     Class: 'Class',
+    DailyJournal: 'DailyJournal',
     Division: 'Division',
     SantriProfile: 'SantriProfile',
     User: 'User',
@@ -826,7 +842,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "verification" | "assignment" | "assignmentContent" | "attendance" | "class" | "division" | "santriProfile" | "user" | "waliProfile" | "waliSantriRelation"
+      modelProps: "verification" | "assignment" | "assignmentContent" | "attendance" | "class" | "dailyJournal" | "division" | "santriProfile" | "user" | "waliProfile" | "waliSantriRelation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1197,6 +1213,80 @@ export namespace Prisma {
           count: {
             args: Prisma.ClassCountArgs<ExtArgs>
             result: $Utils.Optional<ClassCountAggregateOutputType> | number
+          }
+        }
+      }
+      DailyJournal: {
+        payload: Prisma.$DailyJournalPayload<ExtArgs>
+        fields: Prisma.DailyJournalFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DailyJournalFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyJournalPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DailyJournalFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyJournalPayload>
+          }
+          findFirst: {
+            args: Prisma.DailyJournalFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyJournalPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DailyJournalFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyJournalPayload>
+          }
+          findMany: {
+            args: Prisma.DailyJournalFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyJournalPayload>[]
+          }
+          create: {
+            args: Prisma.DailyJournalCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyJournalPayload>
+          }
+          createMany: {
+            args: Prisma.DailyJournalCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DailyJournalCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyJournalPayload>[]
+          }
+          delete: {
+            args: Prisma.DailyJournalDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyJournalPayload>
+          }
+          update: {
+            args: Prisma.DailyJournalUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyJournalPayload>
+          }
+          deleteMany: {
+            args: Prisma.DailyJournalDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DailyJournalUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DailyJournalUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyJournalPayload>[]
+          }
+          upsert: {
+            args: Prisma.DailyJournalUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyJournalPayload>
+          }
+          aggregate: {
+            args: Prisma.DailyJournalAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDailyJournal>
+          }
+          groupBy: {
+            args: Prisma.DailyJournalGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DailyJournalGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DailyJournalCountArgs<ExtArgs>
+            result: $Utils.Optional<DailyJournalCountAggregateOutputType> | number
           }
         }
       }
@@ -1683,6 +1773,7 @@ export namespace Prisma {
     assignmentContent?: AssignmentContentOmit
     attendance?: AttendanceOmit
     class?: ClassOmit
+    dailyJournal?: DailyJournalOmit
     division?: DivisionOmit
     santriProfile?: SantriProfileOmit
     user?: UserOmit
@@ -1802,12 +1893,14 @@ export namespace Prisma {
     attendances: number
     assignments: number
     santriProfiles: number
+    dailyJournals: number
   }
 
   export type ClassCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     attendances?: boolean | ClassCountOutputTypeCountAttendancesArgs
     assignments?: boolean | ClassCountOutputTypeCountAssignmentsArgs
     santriProfiles?: boolean | ClassCountOutputTypeCountSantriProfilesArgs
+    dailyJournals?: boolean | ClassCountOutputTypeCountDailyJournalsArgs
   }
 
   // Custom InputTypes
@@ -1840,6 +1933,13 @@ export namespace Prisma {
    */
   export type ClassCountOutputTypeCountSantriProfilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SantriProfileWhereInput
+  }
+
+  /**
+   * ClassCountOutputType without action
+   */
+  export type ClassCountOutputTypeCountDailyJournalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DailyJournalWhereInput
   }
 
 
@@ -1887,6 +1987,8 @@ export namespace Prisma {
     santriSubmissions: number
     waliRelations: number
     santriRelations: number
+    dailyJournals: number
+    mentorDailyJournals: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1898,6 +2000,8 @@ export namespace Prisma {
     santriSubmissions?: boolean | UserCountOutputTypeCountSantriSubmissionsArgs
     waliRelations?: boolean | UserCountOutputTypeCountWaliRelationsArgs
     santriRelations?: boolean | UserCountOutputTypeCountSantriRelationsArgs
+    dailyJournals?: boolean | UserCountOutputTypeCountDailyJournalsArgs
+    mentorDailyJournals?: boolean | UserCountOutputTypeCountMentorDailyJournalsArgs
   }
 
   // Custom InputTypes
@@ -1965,6 +2069,20 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountSantriRelationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: WaliSantriRelationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountDailyJournalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DailyJournalWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMentorDailyJournalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DailyJournalWhereInput
   }
 
 
@@ -6641,6 +6759,7 @@ export namespace Prisma {
     attendances?: boolean | Class$attendancesArgs<ExtArgs>
     assignments?: boolean | Class$assignmentsArgs<ExtArgs>
     santriProfiles?: boolean | Class$santriProfilesArgs<ExtArgs>
+    dailyJournals?: boolean | Class$dailyJournalsArgs<ExtArgs>
     _count?: boolean | ClassCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["class"]>
 
@@ -6679,6 +6798,7 @@ export namespace Prisma {
     attendances?: boolean | Class$attendancesArgs<ExtArgs>
     assignments?: boolean | Class$assignmentsArgs<ExtArgs>
     santriProfiles?: boolean | Class$santriProfilesArgs<ExtArgs>
+    dailyJournals?: boolean | Class$dailyJournalsArgs<ExtArgs>
     _count?: boolean | ClassCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ClassIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6698,6 +6818,7 @@ export namespace Prisma {
       attendances: Prisma.$AttendancePayload<ExtArgs>[]
       assignments: Prisma.$AssignmentPayload<ExtArgs>[]
       santriProfiles: Prisma.$SantriProfilePayload<ExtArgs>[]
+      dailyJournals: Prisma.$DailyJournalPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7104,6 +7225,7 @@ export namespace Prisma {
     attendances<T extends Class$attendancesArgs<ExtArgs> = {}>(args?: Subset<T, Class$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     assignments<T extends Class$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Class$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     santriProfiles<T extends Class$santriProfilesArgs<ExtArgs> = {}>(args?: Subset<T, Class$santriProfilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SantriProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    dailyJournals<T extends Class$dailyJournalsArgs<ExtArgs> = {}>(args?: Subset<T, Class$dailyJournalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7611,6 +7733,30 @@ export namespace Prisma {
   }
 
   /**
+   * Class.dailyJournals
+   */
+  export type Class$dailyJournalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalInclude<ExtArgs> | null
+    where?: DailyJournalWhereInput
+    orderBy?: DailyJournalOrderByWithRelationInput | DailyJournalOrderByWithRelationInput[]
+    cursor?: DailyJournalWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DailyJournalScalarFieldEnum | DailyJournalScalarFieldEnum[]
+  }
+
+  /**
    * Class without action
    */
   export type ClassDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7626,6 +7772,1184 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ClassInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DailyJournal
+   */
+
+  export type AggregateDailyJournal = {
+    _count: DailyJournalCountAggregateOutputType | null
+    _avg: DailyJournalAvgAggregateOutputType | null
+    _sum: DailyJournalSumAggregateOutputType | null
+    _min: DailyJournalMinAggregateOutputType | null
+    _max: DailyJournalMaxAggregateOutputType | null
+  }
+
+  export type DailyJournalAvgAggregateOutputType = {
+    attitudeScore: number | null
+  }
+
+  export type DailyJournalSumAggregateOutputType = {
+    attitudeScore: number | null
+  }
+
+  export type DailyJournalMinAggregateOutputType = {
+    id: string | null
+    santriId: string | null
+    classId: string | null
+    mentorId: string | null
+    attitudeScore: number | null
+    notes: string | null
+    date: Date | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DailyJournalMaxAggregateOutputType = {
+    id: string | null
+    santriId: string | null
+    classId: string | null
+    mentorId: string | null
+    attitudeScore: number | null
+    notes: string | null
+    date: Date | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DailyJournalCountAggregateOutputType = {
+    id: number
+    santriId: number
+    classId: number
+    mentorId: number
+    attitudeScore: number
+    notes: number
+    date: number
+    description: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type DailyJournalAvgAggregateInputType = {
+    attitudeScore?: true
+  }
+
+  export type DailyJournalSumAggregateInputType = {
+    attitudeScore?: true
+  }
+
+  export type DailyJournalMinAggregateInputType = {
+    id?: true
+    santriId?: true
+    classId?: true
+    mentorId?: true
+    attitudeScore?: true
+    notes?: true
+    date?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DailyJournalMaxAggregateInputType = {
+    id?: true
+    santriId?: true
+    classId?: true
+    mentorId?: true
+    attitudeScore?: true
+    notes?: true
+    date?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DailyJournalCountAggregateInputType = {
+    id?: true
+    santriId?: true
+    classId?: true
+    mentorId?: true
+    attitudeScore?: true
+    notes?: true
+    date?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type DailyJournalAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DailyJournal to aggregate.
+     */
+    where?: DailyJournalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyJournals to fetch.
+     */
+    orderBy?: DailyJournalOrderByWithRelationInput | DailyJournalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DailyJournalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyJournals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyJournals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DailyJournals
+    **/
+    _count?: true | DailyJournalCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DailyJournalAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DailyJournalSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DailyJournalMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DailyJournalMaxAggregateInputType
+  }
+
+  export type GetDailyJournalAggregateType<T extends DailyJournalAggregateArgs> = {
+        [P in keyof T & keyof AggregateDailyJournal]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDailyJournal[P]>
+      : GetScalarType<T[P], AggregateDailyJournal[P]>
+  }
+
+
+
+
+  export type DailyJournalGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DailyJournalWhereInput
+    orderBy?: DailyJournalOrderByWithAggregationInput | DailyJournalOrderByWithAggregationInput[]
+    by: DailyJournalScalarFieldEnum[] | DailyJournalScalarFieldEnum
+    having?: DailyJournalScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DailyJournalCountAggregateInputType | true
+    _avg?: DailyJournalAvgAggregateInputType
+    _sum?: DailyJournalSumAggregateInputType
+    _min?: DailyJournalMinAggregateInputType
+    _max?: DailyJournalMaxAggregateInputType
+  }
+
+  export type DailyJournalGroupByOutputType = {
+    id: string
+    santriId: string
+    classId: string
+    mentorId: string
+    attitudeScore: number
+    notes: string
+    date: Date
+    description: string
+    createdAt: Date
+    updatedAt: Date
+    _count: DailyJournalCountAggregateOutputType | null
+    _avg: DailyJournalAvgAggregateOutputType | null
+    _sum: DailyJournalSumAggregateOutputType | null
+    _min: DailyJournalMinAggregateOutputType | null
+    _max: DailyJournalMaxAggregateOutputType | null
+  }
+
+  type GetDailyJournalGroupByPayload<T extends DailyJournalGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DailyJournalGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DailyJournalGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DailyJournalGroupByOutputType[P]>
+            : GetScalarType<T[P], DailyJournalGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DailyJournalSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    santriId?: boolean
+    classId?: boolean
+    mentorId?: boolean
+    attitudeScore?: boolean
+    notes?: boolean
+    date?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    class?: boolean | ClassDefaultArgs<ExtArgs>
+    santri?: boolean | UserDefaultArgs<ExtArgs>
+    mentor?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dailyJournal"]>
+
+  export type DailyJournalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    santriId?: boolean
+    classId?: boolean
+    mentorId?: boolean
+    attitudeScore?: boolean
+    notes?: boolean
+    date?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    class?: boolean | ClassDefaultArgs<ExtArgs>
+    santri?: boolean | UserDefaultArgs<ExtArgs>
+    mentor?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dailyJournal"]>
+
+  export type DailyJournalSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    santriId?: boolean
+    classId?: boolean
+    mentorId?: boolean
+    attitudeScore?: boolean
+    notes?: boolean
+    date?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    class?: boolean | ClassDefaultArgs<ExtArgs>
+    santri?: boolean | UserDefaultArgs<ExtArgs>
+    mentor?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dailyJournal"]>
+
+  export type DailyJournalSelectScalar = {
+    id?: boolean
+    santriId?: boolean
+    classId?: boolean
+    mentorId?: boolean
+    attitudeScore?: boolean
+    notes?: boolean
+    date?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type DailyJournalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "santriId" | "classId" | "mentorId" | "attitudeScore" | "notes" | "date" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["dailyJournal"]>
+  export type DailyJournalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    class?: boolean | ClassDefaultArgs<ExtArgs>
+    santri?: boolean | UserDefaultArgs<ExtArgs>
+    mentor?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type DailyJournalIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    class?: boolean | ClassDefaultArgs<ExtArgs>
+    santri?: boolean | UserDefaultArgs<ExtArgs>
+    mentor?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type DailyJournalIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    class?: boolean | ClassDefaultArgs<ExtArgs>
+    santri?: boolean | UserDefaultArgs<ExtArgs>
+    mentor?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $DailyJournalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DailyJournal"
+    objects: {
+      class: Prisma.$ClassPayload<ExtArgs>
+      santri: Prisma.$UserPayload<ExtArgs>
+      mentor: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      santriId: string
+      classId: string
+      mentorId: string
+      attitudeScore: number
+      notes: string
+      date: Date
+      description: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["dailyJournal"]>
+    composites: {}
+  }
+
+  type DailyJournalGetPayload<S extends boolean | null | undefined | DailyJournalDefaultArgs> = $Result.GetResult<Prisma.$DailyJournalPayload, S>
+
+  type DailyJournalCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DailyJournalFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DailyJournalCountAggregateInputType | true
+    }
+
+  export interface DailyJournalDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DailyJournal'], meta: { name: 'DailyJournal' } }
+    /**
+     * Find zero or one DailyJournal that matches the filter.
+     * @param {DailyJournalFindUniqueArgs} args - Arguments to find a DailyJournal
+     * @example
+     * // Get one DailyJournal
+     * const dailyJournal = await prisma.dailyJournal.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DailyJournalFindUniqueArgs>(args: SelectSubset<T, DailyJournalFindUniqueArgs<ExtArgs>>): Prisma__DailyJournalClient<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DailyJournal that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DailyJournalFindUniqueOrThrowArgs} args - Arguments to find a DailyJournal
+     * @example
+     * // Get one DailyJournal
+     * const dailyJournal = await prisma.dailyJournal.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DailyJournalFindUniqueOrThrowArgs>(args: SelectSubset<T, DailyJournalFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DailyJournalClient<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DailyJournal that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyJournalFindFirstArgs} args - Arguments to find a DailyJournal
+     * @example
+     * // Get one DailyJournal
+     * const dailyJournal = await prisma.dailyJournal.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DailyJournalFindFirstArgs>(args?: SelectSubset<T, DailyJournalFindFirstArgs<ExtArgs>>): Prisma__DailyJournalClient<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DailyJournal that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyJournalFindFirstOrThrowArgs} args - Arguments to find a DailyJournal
+     * @example
+     * // Get one DailyJournal
+     * const dailyJournal = await prisma.dailyJournal.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DailyJournalFindFirstOrThrowArgs>(args?: SelectSubset<T, DailyJournalFindFirstOrThrowArgs<ExtArgs>>): Prisma__DailyJournalClient<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DailyJournals that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyJournalFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DailyJournals
+     * const dailyJournals = await prisma.dailyJournal.findMany()
+     * 
+     * // Get first 10 DailyJournals
+     * const dailyJournals = await prisma.dailyJournal.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const dailyJournalWithIdOnly = await prisma.dailyJournal.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DailyJournalFindManyArgs>(args?: SelectSubset<T, DailyJournalFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DailyJournal.
+     * @param {DailyJournalCreateArgs} args - Arguments to create a DailyJournal.
+     * @example
+     * // Create one DailyJournal
+     * const DailyJournal = await prisma.dailyJournal.create({
+     *   data: {
+     *     // ... data to create a DailyJournal
+     *   }
+     * })
+     * 
+     */
+    create<T extends DailyJournalCreateArgs>(args: SelectSubset<T, DailyJournalCreateArgs<ExtArgs>>): Prisma__DailyJournalClient<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DailyJournals.
+     * @param {DailyJournalCreateManyArgs} args - Arguments to create many DailyJournals.
+     * @example
+     * // Create many DailyJournals
+     * const dailyJournal = await prisma.dailyJournal.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DailyJournalCreateManyArgs>(args?: SelectSubset<T, DailyJournalCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DailyJournals and returns the data saved in the database.
+     * @param {DailyJournalCreateManyAndReturnArgs} args - Arguments to create many DailyJournals.
+     * @example
+     * // Create many DailyJournals
+     * const dailyJournal = await prisma.dailyJournal.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DailyJournals and only return the `id`
+     * const dailyJournalWithIdOnly = await prisma.dailyJournal.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DailyJournalCreateManyAndReturnArgs>(args?: SelectSubset<T, DailyJournalCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DailyJournal.
+     * @param {DailyJournalDeleteArgs} args - Arguments to delete one DailyJournal.
+     * @example
+     * // Delete one DailyJournal
+     * const DailyJournal = await prisma.dailyJournal.delete({
+     *   where: {
+     *     // ... filter to delete one DailyJournal
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DailyJournalDeleteArgs>(args: SelectSubset<T, DailyJournalDeleteArgs<ExtArgs>>): Prisma__DailyJournalClient<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DailyJournal.
+     * @param {DailyJournalUpdateArgs} args - Arguments to update one DailyJournal.
+     * @example
+     * // Update one DailyJournal
+     * const dailyJournal = await prisma.dailyJournal.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DailyJournalUpdateArgs>(args: SelectSubset<T, DailyJournalUpdateArgs<ExtArgs>>): Prisma__DailyJournalClient<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DailyJournals.
+     * @param {DailyJournalDeleteManyArgs} args - Arguments to filter DailyJournals to delete.
+     * @example
+     * // Delete a few DailyJournals
+     * const { count } = await prisma.dailyJournal.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DailyJournalDeleteManyArgs>(args?: SelectSubset<T, DailyJournalDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DailyJournals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyJournalUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DailyJournals
+     * const dailyJournal = await prisma.dailyJournal.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DailyJournalUpdateManyArgs>(args: SelectSubset<T, DailyJournalUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DailyJournals and returns the data updated in the database.
+     * @param {DailyJournalUpdateManyAndReturnArgs} args - Arguments to update many DailyJournals.
+     * @example
+     * // Update many DailyJournals
+     * const dailyJournal = await prisma.dailyJournal.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DailyJournals and only return the `id`
+     * const dailyJournalWithIdOnly = await prisma.dailyJournal.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DailyJournalUpdateManyAndReturnArgs>(args: SelectSubset<T, DailyJournalUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DailyJournal.
+     * @param {DailyJournalUpsertArgs} args - Arguments to update or create a DailyJournal.
+     * @example
+     * // Update or create a DailyJournal
+     * const dailyJournal = await prisma.dailyJournal.upsert({
+     *   create: {
+     *     // ... data to create a DailyJournal
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DailyJournal we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DailyJournalUpsertArgs>(args: SelectSubset<T, DailyJournalUpsertArgs<ExtArgs>>): Prisma__DailyJournalClient<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DailyJournals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyJournalCountArgs} args - Arguments to filter DailyJournals to count.
+     * @example
+     * // Count the number of DailyJournals
+     * const count = await prisma.dailyJournal.count({
+     *   where: {
+     *     // ... the filter for the DailyJournals we want to count
+     *   }
+     * })
+    **/
+    count<T extends DailyJournalCountArgs>(
+      args?: Subset<T, DailyJournalCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DailyJournalCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DailyJournal.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyJournalAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DailyJournalAggregateArgs>(args: Subset<T, DailyJournalAggregateArgs>): Prisma.PrismaPromise<GetDailyJournalAggregateType<T>>
+
+    /**
+     * Group by DailyJournal.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyJournalGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DailyJournalGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DailyJournalGroupByArgs['orderBy'] }
+        : { orderBy?: DailyJournalGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DailyJournalGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDailyJournalGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DailyJournal model
+   */
+  readonly fields: DailyJournalFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DailyJournal.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DailyJournalClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    class<T extends ClassDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClassDefaultArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    santri<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    mentor<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DailyJournal model
+   */
+  interface DailyJournalFieldRefs {
+    readonly id: FieldRef<"DailyJournal", 'String'>
+    readonly santriId: FieldRef<"DailyJournal", 'String'>
+    readonly classId: FieldRef<"DailyJournal", 'String'>
+    readonly mentorId: FieldRef<"DailyJournal", 'String'>
+    readonly attitudeScore: FieldRef<"DailyJournal", 'Float'>
+    readonly notes: FieldRef<"DailyJournal", 'String'>
+    readonly date: FieldRef<"DailyJournal", 'DateTime'>
+    readonly description: FieldRef<"DailyJournal", 'String'>
+    readonly createdAt: FieldRef<"DailyJournal", 'DateTime'>
+    readonly updatedAt: FieldRef<"DailyJournal", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DailyJournal findUnique
+   */
+  export type DailyJournalFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyJournal to fetch.
+     */
+    where: DailyJournalWhereUniqueInput
+  }
+
+  /**
+   * DailyJournal findUniqueOrThrow
+   */
+  export type DailyJournalFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyJournal to fetch.
+     */
+    where: DailyJournalWhereUniqueInput
+  }
+
+  /**
+   * DailyJournal findFirst
+   */
+  export type DailyJournalFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyJournal to fetch.
+     */
+    where?: DailyJournalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyJournals to fetch.
+     */
+    orderBy?: DailyJournalOrderByWithRelationInput | DailyJournalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DailyJournals.
+     */
+    cursor?: DailyJournalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyJournals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyJournals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyJournals.
+     */
+    distinct?: DailyJournalScalarFieldEnum | DailyJournalScalarFieldEnum[]
+  }
+
+  /**
+   * DailyJournal findFirstOrThrow
+   */
+  export type DailyJournalFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyJournal to fetch.
+     */
+    where?: DailyJournalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyJournals to fetch.
+     */
+    orderBy?: DailyJournalOrderByWithRelationInput | DailyJournalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DailyJournals.
+     */
+    cursor?: DailyJournalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyJournals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyJournals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyJournals.
+     */
+    distinct?: DailyJournalScalarFieldEnum | DailyJournalScalarFieldEnum[]
+  }
+
+  /**
+   * DailyJournal findMany
+   */
+  export type DailyJournalFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyJournals to fetch.
+     */
+    where?: DailyJournalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyJournals to fetch.
+     */
+    orderBy?: DailyJournalOrderByWithRelationInput | DailyJournalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DailyJournals.
+     */
+    cursor?: DailyJournalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyJournals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyJournals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyJournals.
+     */
+    distinct?: DailyJournalScalarFieldEnum | DailyJournalScalarFieldEnum[]
+  }
+
+  /**
+   * DailyJournal create
+   */
+  export type DailyJournalCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DailyJournal.
+     */
+    data: XOR<DailyJournalCreateInput, DailyJournalUncheckedCreateInput>
+  }
+
+  /**
+   * DailyJournal createMany
+   */
+  export type DailyJournalCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DailyJournals.
+     */
+    data: DailyJournalCreateManyInput | DailyJournalCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DailyJournal createManyAndReturn
+   */
+  export type DailyJournalCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * The data used to create many DailyJournals.
+     */
+    data: DailyJournalCreateManyInput | DailyJournalCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DailyJournal update
+   */
+  export type DailyJournalUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DailyJournal.
+     */
+    data: XOR<DailyJournalUpdateInput, DailyJournalUncheckedUpdateInput>
+    /**
+     * Choose, which DailyJournal to update.
+     */
+    where: DailyJournalWhereUniqueInput
+  }
+
+  /**
+   * DailyJournal updateMany
+   */
+  export type DailyJournalUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DailyJournals.
+     */
+    data: XOR<DailyJournalUpdateManyMutationInput, DailyJournalUncheckedUpdateManyInput>
+    /**
+     * Filter which DailyJournals to update
+     */
+    where?: DailyJournalWhereInput
+    /**
+     * Limit how many DailyJournals to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyJournal updateManyAndReturn
+   */
+  export type DailyJournalUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * The data used to update DailyJournals.
+     */
+    data: XOR<DailyJournalUpdateManyMutationInput, DailyJournalUncheckedUpdateManyInput>
+    /**
+     * Filter which DailyJournals to update
+     */
+    where?: DailyJournalWhereInput
+    /**
+     * Limit how many DailyJournals to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DailyJournal upsert
+   */
+  export type DailyJournalUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DailyJournal to update in case it exists.
+     */
+    where: DailyJournalWhereUniqueInput
+    /**
+     * In case the DailyJournal found by the `where` argument doesn't exist, create a new DailyJournal with this data.
+     */
+    create: XOR<DailyJournalCreateInput, DailyJournalUncheckedCreateInput>
+    /**
+     * In case the DailyJournal was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DailyJournalUpdateInput, DailyJournalUncheckedUpdateInput>
+  }
+
+  /**
+   * DailyJournal delete
+   */
+  export type DailyJournalDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalInclude<ExtArgs> | null
+    /**
+     * Filter which DailyJournal to delete.
+     */
+    where: DailyJournalWhereUniqueInput
+  }
+
+  /**
+   * DailyJournal deleteMany
+   */
+  export type DailyJournalDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DailyJournals to delete
+     */
+    where?: DailyJournalWhereInput
+    /**
+     * Limit how many DailyJournals to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyJournal without action
+   */
+  export type DailyJournalDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalInclude<ExtArgs> | null
   }
 
 
@@ -10013,6 +11337,8 @@ export namespace Prisma {
     santriSubmissions?: boolean | User$santriSubmissionsArgs<ExtArgs>
     waliRelations?: boolean | User$waliRelationsArgs<ExtArgs>
     santriRelations?: boolean | User$santriRelationsArgs<ExtArgs>
+    dailyJournals?: boolean | User$dailyJournalsArgs<ExtArgs>
+    mentorDailyJournals?: boolean | User$mentorDailyJournalsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -10064,6 +11390,8 @@ export namespace Prisma {
     santriSubmissions?: boolean | User$santriSubmissionsArgs<ExtArgs>
     waliRelations?: boolean | User$waliRelationsArgs<ExtArgs>
     santriRelations?: boolean | User$santriRelationsArgs<ExtArgs>
+    dailyJournals?: boolean | User$dailyJournalsArgs<ExtArgs>
+    mentorDailyJournals?: boolean | User$mentorDailyJournalsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -10082,6 +11410,8 @@ export namespace Prisma {
       santriSubmissions: Prisma.$AssignmentContentPayload<ExtArgs>[]
       waliRelations: Prisma.$WaliSantriRelationPayload<ExtArgs>[]
       santriRelations: Prisma.$WaliSantriRelationPayload<ExtArgs>[]
+      dailyJournals: Prisma.$DailyJournalPayload<ExtArgs>[]
+      mentorDailyJournals: Prisma.$DailyJournalPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10497,6 +11827,8 @@ export namespace Prisma {
     santriSubmissions<T extends User$santriSubmissionsArgs<ExtArgs> = {}>(args?: Subset<T, User$santriSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     waliRelations<T extends User$waliRelationsArgs<ExtArgs> = {}>(args?: Subset<T, User$waliRelationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaliSantriRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     santriRelations<T extends User$santriRelationsArgs<ExtArgs> = {}>(args?: Subset<T, User$santriRelationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaliSantriRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    dailyJournals<T extends User$dailyJournalsArgs<ExtArgs> = {}>(args?: Subset<T, User$dailyJournalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    mentorDailyJournals<T extends User$mentorDailyJournalsArgs<ExtArgs> = {}>(args?: Subset<T, User$mentorDailyJournalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11155,6 +12487,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: WaliSantriRelationScalarFieldEnum | WaliSantriRelationScalarFieldEnum[]
+  }
+
+  /**
+   * User.dailyJournals
+   */
+  export type User$dailyJournalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalInclude<ExtArgs> | null
+    where?: DailyJournalWhereInput
+    orderBy?: DailyJournalOrderByWithRelationInput | DailyJournalOrderByWithRelationInput[]
+    cursor?: DailyJournalWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DailyJournalScalarFieldEnum | DailyJournalScalarFieldEnum[]
+  }
+
+  /**
+   * User.mentorDailyJournals
+   */
+  export type User$mentorDailyJournalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyJournal
+     */
+    select?: DailyJournalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyJournal
+     */
+    omit?: DailyJournalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyJournalInclude<ExtArgs> | null
+    where?: DailyJournalWhereInput
+    orderBy?: DailyJournalOrderByWithRelationInput | DailyJournalOrderByWithRelationInput[]
+    cursor?: DailyJournalWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DailyJournalScalarFieldEnum | DailyJournalScalarFieldEnum[]
   }
 
   /**
@@ -13417,6 +14797,22 @@ export namespace Prisma {
   export type ClassScalarFieldEnum = (typeof ClassScalarFieldEnum)[keyof typeof ClassScalarFieldEnum]
 
 
+  export const DailyJournalScalarFieldEnum: {
+    id: 'id',
+    santriId: 'santriId',
+    classId: 'classId',
+    mentorId: 'mentorId',
+    attitudeScore: 'attitudeScore',
+    notes: 'notes',
+    date: 'date',
+    description: 'description',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type DailyJournalScalarFieldEnum = (typeof DailyJournalScalarFieldEnum)[keyof typeof DailyJournalScalarFieldEnum]
+
+
   export const DivisionScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -13607,6 +15003,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Role'
    */
   export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
@@ -13638,20 +15048,6 @@ export namespace Prisma {
    * Reference to a field of type 'WaliSantriCategory[]'
    */
   export type ListEnumWaliSantriCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WaliSantriCategory[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -13972,6 +15368,7 @@ export namespace Prisma {
     attendances?: AttendanceListRelationFilter
     assignments?: AssignmentListRelationFilter
     santriProfiles?: SantriProfileListRelationFilter
+    dailyJournals?: DailyJournalListRelationFilter
   }
 
   export type ClassOrderByWithRelationInput = {
@@ -13985,6 +15382,7 @@ export namespace Prisma {
     attendances?: AttendanceOrderByRelationAggregateInput
     assignments?: AssignmentOrderByRelationAggregateInput
     santriProfiles?: SantriProfileOrderByRelationAggregateInput
+    dailyJournals?: DailyJournalOrderByRelationAggregateInput
   }
 
   export type ClassWhereUniqueInput = Prisma.AtLeast<{
@@ -14001,6 +15399,7 @@ export namespace Prisma {
     attendances?: AttendanceListRelationFilter
     assignments?: AssignmentListRelationFilter
     santriProfiles?: SantriProfileListRelationFilter
+    dailyJournals?: DailyJournalListRelationFilter
   }, "id">
 
   export type ClassOrderByWithAggregationInput = {
@@ -14023,6 +15422,94 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Class"> | string
     mentorId?: StringWithAggregatesFilter<"Class"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Class"> | Date | string
+  }
+
+  export type DailyJournalWhereInput = {
+    AND?: DailyJournalWhereInput | DailyJournalWhereInput[]
+    OR?: DailyJournalWhereInput[]
+    NOT?: DailyJournalWhereInput | DailyJournalWhereInput[]
+    id?: StringFilter<"DailyJournal"> | string
+    santriId?: StringFilter<"DailyJournal"> | string
+    classId?: StringFilter<"DailyJournal"> | string
+    mentorId?: StringFilter<"DailyJournal"> | string
+    attitudeScore?: FloatFilter<"DailyJournal"> | number
+    notes?: StringFilter<"DailyJournal"> | string
+    date?: DateTimeFilter<"DailyJournal"> | Date | string
+    description?: StringFilter<"DailyJournal"> | string
+    createdAt?: DateTimeFilter<"DailyJournal"> | Date | string
+    updatedAt?: DateTimeFilter<"DailyJournal"> | Date | string
+    class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
+    santri?: XOR<UserScalarRelationFilter, UserWhereInput>
+    mentor?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type DailyJournalOrderByWithRelationInput = {
+    id?: SortOrder
+    santriId?: SortOrder
+    classId?: SortOrder
+    mentorId?: SortOrder
+    attitudeScore?: SortOrder
+    notes?: SortOrder
+    date?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    class?: ClassOrderByWithRelationInput
+    santri?: UserOrderByWithRelationInput
+    mentor?: UserOrderByWithRelationInput
+  }
+
+  export type DailyJournalWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: DailyJournalWhereInput | DailyJournalWhereInput[]
+    OR?: DailyJournalWhereInput[]
+    NOT?: DailyJournalWhereInput | DailyJournalWhereInput[]
+    santriId?: StringFilter<"DailyJournal"> | string
+    classId?: StringFilter<"DailyJournal"> | string
+    mentorId?: StringFilter<"DailyJournal"> | string
+    attitudeScore?: FloatFilter<"DailyJournal"> | number
+    notes?: StringFilter<"DailyJournal"> | string
+    date?: DateTimeFilter<"DailyJournal"> | Date | string
+    description?: StringFilter<"DailyJournal"> | string
+    createdAt?: DateTimeFilter<"DailyJournal"> | Date | string
+    updatedAt?: DateTimeFilter<"DailyJournal"> | Date | string
+    class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
+    santri?: XOR<UserScalarRelationFilter, UserWhereInput>
+    mentor?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type DailyJournalOrderByWithAggregationInput = {
+    id?: SortOrder
+    santriId?: SortOrder
+    classId?: SortOrder
+    mentorId?: SortOrder
+    attitudeScore?: SortOrder
+    notes?: SortOrder
+    date?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: DailyJournalCountOrderByAggregateInput
+    _avg?: DailyJournalAvgOrderByAggregateInput
+    _max?: DailyJournalMaxOrderByAggregateInput
+    _min?: DailyJournalMinOrderByAggregateInput
+    _sum?: DailyJournalSumOrderByAggregateInput
+  }
+
+  export type DailyJournalScalarWhereWithAggregatesInput = {
+    AND?: DailyJournalScalarWhereWithAggregatesInput | DailyJournalScalarWhereWithAggregatesInput[]
+    OR?: DailyJournalScalarWhereWithAggregatesInput[]
+    NOT?: DailyJournalScalarWhereWithAggregatesInput | DailyJournalScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DailyJournal"> | string
+    santriId?: StringWithAggregatesFilter<"DailyJournal"> | string
+    classId?: StringWithAggregatesFilter<"DailyJournal"> | string
+    mentorId?: StringWithAggregatesFilter<"DailyJournal"> | string
+    attitudeScore?: FloatWithAggregatesFilter<"DailyJournal"> | number
+    notes?: StringWithAggregatesFilter<"DailyJournal"> | string
+    date?: DateTimeWithAggregatesFilter<"DailyJournal"> | Date | string
+    description?: StringWithAggregatesFilter<"DailyJournal"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"DailyJournal"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"DailyJournal"> | Date | string
   }
 
   export type DivisionWhereInput = {
@@ -14166,6 +15653,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentListRelationFilter
     waliRelations?: WaliSantriRelationListRelationFilter
     santriRelations?: WaliSantriRelationListRelationFilter
+    dailyJournals?: DailyJournalListRelationFilter
+    mentorDailyJournals?: DailyJournalListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -14188,6 +15677,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentOrderByRelationAggregateInput
     waliRelations?: WaliSantriRelationOrderByRelationAggregateInput
     santriRelations?: WaliSantriRelationOrderByRelationAggregateInput
+    dailyJournals?: DailyJournalOrderByRelationAggregateInput
+    mentorDailyJournals?: DailyJournalOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -14213,6 +15704,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentListRelationFilter
     waliRelations?: WaliSantriRelationListRelationFilter
     santriRelations?: WaliSantriRelationListRelationFilter
+    dailyJournals?: DailyJournalListRelationFilter
+    mentorDailyJournals?: DailyJournalListRelationFilter
   }, "id" | "nis" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -14682,6 +16175,7 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     assignments?: AssignmentCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateInput = {
@@ -14693,6 +16187,7 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassUpdateInput = {
@@ -14704,6 +16199,7 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateInput = {
@@ -14715,6 +16211,7 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type ClassCreateManyInput = {
@@ -14737,6 +16234,94 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     mentorId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyJournalCreateInput = {
+    id?: string
+    attitudeScore?: number
+    notes: string
+    date: Date | string
+    description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    class: ClassCreateNestedOneWithoutDailyJournalsInput
+    santri: UserCreateNestedOneWithoutDailyJournalsInput
+    mentor: UserCreateNestedOneWithoutMentorDailyJournalsInput
+  }
+
+  export type DailyJournalUncheckedCreateInput = {
+    id?: string
+    santriId: string
+    classId: string
+    mentorId: string
+    attitudeScore?: number
+    notes: string
+    date: Date | string
+    description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyJournalUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    class?: ClassUpdateOneRequiredWithoutDailyJournalsNestedInput
+    santri?: UserUpdateOneRequiredWithoutDailyJournalsNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorDailyJournalsNestedInput
+  }
+
+  export type DailyJournalUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyJournalCreateManyInput = {
+    id?: string
+    santriId: string
+    classId: string
+    mentorId: string
+    attitudeScore?: number
+    notes: string
+    date: Date | string
+    description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyJournalUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyJournalUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DivisionCreateInput = {
@@ -14880,6 +16465,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -14902,6 +16489,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
   }
 
   export type UserUpdateInput = {
@@ -14924,6 +16513,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -14946,6 +16537,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -15508,6 +17101,12 @@ export namespace Prisma {
     none?: SantriProfileWhereInput
   }
 
+  export type DailyJournalListRelationFilter = {
+    every?: DailyJournalWhereInput
+    some?: DailyJournalWhereInput
+    none?: DailyJournalWhereInput
+  }
+
   export type AttendanceOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -15517,6 +17116,10 @@ export namespace Prisma {
   }
 
   export type SantriProfileOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DailyJournalOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15542,6 +17145,80 @@ export namespace Prisma {
     name?: SortOrder
     mentorId?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type DailyJournalCountOrderByAggregateInput = {
+    id?: SortOrder
+    santriId?: SortOrder
+    classId?: SortOrder
+    mentorId?: SortOrder
+    attitudeScore?: SortOrder
+    notes?: SortOrder
+    date?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DailyJournalAvgOrderByAggregateInput = {
+    attitudeScore?: SortOrder
+  }
+
+  export type DailyJournalMaxOrderByAggregateInput = {
+    id?: SortOrder
+    santriId?: SortOrder
+    classId?: SortOrder
+    mentorId?: SortOrder
+    attitudeScore?: SortOrder
+    notes?: SortOrder
+    date?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DailyJournalMinOrderByAggregateInput = {
+    id?: SortOrder
+    santriId?: SortOrder
+    classId?: SortOrder
+    mentorId?: SortOrder
+    attitudeScore?: SortOrder
+    notes?: SortOrder
+    date?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DailyJournalSumOrderByAggregateInput = {
+    attitudeScore?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type ClassListRelationFilter = {
@@ -16039,6 +17716,13 @@ export namespace Prisma {
     connect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
   }
 
+  export type DailyJournalCreateNestedManyWithoutClassInput = {
+    create?: XOR<DailyJournalCreateWithoutClassInput, DailyJournalUncheckedCreateWithoutClassInput> | DailyJournalCreateWithoutClassInput[] | DailyJournalUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: DailyJournalCreateOrConnectWithoutClassInput | DailyJournalCreateOrConnectWithoutClassInput[]
+    createMany?: DailyJournalCreateManyClassInputEnvelope
+    connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+  }
+
   export type AttendanceUncheckedCreateNestedManyWithoutClassInput = {
     create?: XOR<AttendanceCreateWithoutClassInput, AttendanceUncheckedCreateWithoutClassInput> | AttendanceCreateWithoutClassInput[] | AttendanceUncheckedCreateWithoutClassInput[]
     connectOrCreate?: AttendanceCreateOrConnectWithoutClassInput | AttendanceCreateOrConnectWithoutClassInput[]
@@ -16058,6 +17742,13 @@ export namespace Prisma {
     connectOrCreate?: SantriProfileCreateOrConnectWithoutClassInput | SantriProfileCreateOrConnectWithoutClassInput[]
     createMany?: SantriProfileCreateManyClassInputEnvelope
     connect?: SantriProfileWhereUniqueInput | SantriProfileWhereUniqueInput[]
+  }
+
+  export type DailyJournalUncheckedCreateNestedManyWithoutClassInput = {
+    create?: XOR<DailyJournalCreateWithoutClassInput, DailyJournalUncheckedCreateWithoutClassInput> | DailyJournalCreateWithoutClassInput[] | DailyJournalUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: DailyJournalCreateOrConnectWithoutClassInput | DailyJournalCreateOrConnectWithoutClassInput[]
+    createMany?: DailyJournalCreateManyClassInputEnvelope
+    connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
   }
 
   export type DivisionUpdateOneRequiredWithoutClassesNestedInput = {
@@ -16118,6 +17809,20 @@ export namespace Prisma {
     deleteMany?: SantriProfileScalarWhereInput | SantriProfileScalarWhereInput[]
   }
 
+  export type DailyJournalUpdateManyWithoutClassNestedInput = {
+    create?: XOR<DailyJournalCreateWithoutClassInput, DailyJournalUncheckedCreateWithoutClassInput> | DailyJournalCreateWithoutClassInput[] | DailyJournalUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: DailyJournalCreateOrConnectWithoutClassInput | DailyJournalCreateOrConnectWithoutClassInput[]
+    upsert?: DailyJournalUpsertWithWhereUniqueWithoutClassInput | DailyJournalUpsertWithWhereUniqueWithoutClassInput[]
+    createMany?: DailyJournalCreateManyClassInputEnvelope
+    set?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    disconnect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    delete?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    update?: DailyJournalUpdateWithWhereUniqueWithoutClassInput | DailyJournalUpdateWithWhereUniqueWithoutClassInput[]
+    updateMany?: DailyJournalUpdateManyWithWhereWithoutClassInput | DailyJournalUpdateManyWithWhereWithoutClassInput[]
+    deleteMany?: DailyJournalScalarWhereInput | DailyJournalScalarWhereInput[]
+  }
+
   export type AttendanceUncheckedUpdateManyWithoutClassNestedInput = {
     create?: XOR<AttendanceCreateWithoutClassInput, AttendanceUncheckedCreateWithoutClassInput> | AttendanceCreateWithoutClassInput[] | AttendanceUncheckedCreateWithoutClassInput[]
     connectOrCreate?: AttendanceCreateOrConnectWithoutClassInput | AttendanceCreateOrConnectWithoutClassInput[]
@@ -16158,6 +17863,70 @@ export namespace Prisma {
     update?: SantriProfileUpdateWithWhereUniqueWithoutClassInput | SantriProfileUpdateWithWhereUniqueWithoutClassInput[]
     updateMany?: SantriProfileUpdateManyWithWhereWithoutClassInput | SantriProfileUpdateManyWithWhereWithoutClassInput[]
     deleteMany?: SantriProfileScalarWhereInput | SantriProfileScalarWhereInput[]
+  }
+
+  export type DailyJournalUncheckedUpdateManyWithoutClassNestedInput = {
+    create?: XOR<DailyJournalCreateWithoutClassInput, DailyJournalUncheckedCreateWithoutClassInput> | DailyJournalCreateWithoutClassInput[] | DailyJournalUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: DailyJournalCreateOrConnectWithoutClassInput | DailyJournalCreateOrConnectWithoutClassInput[]
+    upsert?: DailyJournalUpsertWithWhereUniqueWithoutClassInput | DailyJournalUpsertWithWhereUniqueWithoutClassInput[]
+    createMany?: DailyJournalCreateManyClassInputEnvelope
+    set?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    disconnect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    delete?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    update?: DailyJournalUpdateWithWhereUniqueWithoutClassInput | DailyJournalUpdateWithWhereUniqueWithoutClassInput[]
+    updateMany?: DailyJournalUpdateManyWithWhereWithoutClassInput | DailyJournalUpdateManyWithWhereWithoutClassInput[]
+    deleteMany?: DailyJournalScalarWhereInput | DailyJournalScalarWhereInput[]
+  }
+
+  export type ClassCreateNestedOneWithoutDailyJournalsInput = {
+    create?: XOR<ClassCreateWithoutDailyJournalsInput, ClassUncheckedCreateWithoutDailyJournalsInput>
+    connectOrCreate?: ClassCreateOrConnectWithoutDailyJournalsInput
+    connect?: ClassWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutDailyJournalsInput = {
+    create?: XOR<UserCreateWithoutDailyJournalsInput, UserUncheckedCreateWithoutDailyJournalsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDailyJournalsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutMentorDailyJournalsInput = {
+    create?: XOR<UserCreateWithoutMentorDailyJournalsInput, UserUncheckedCreateWithoutMentorDailyJournalsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMentorDailyJournalsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type ClassUpdateOneRequiredWithoutDailyJournalsNestedInput = {
+    create?: XOR<ClassCreateWithoutDailyJournalsInput, ClassUncheckedCreateWithoutDailyJournalsInput>
+    connectOrCreate?: ClassCreateOrConnectWithoutDailyJournalsInput
+    upsert?: ClassUpsertWithoutDailyJournalsInput
+    connect?: ClassWhereUniqueInput
+    update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutDailyJournalsInput, ClassUpdateWithoutDailyJournalsInput>, ClassUncheckedUpdateWithoutDailyJournalsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutDailyJournalsNestedInput = {
+    create?: XOR<UserCreateWithoutDailyJournalsInput, UserUncheckedCreateWithoutDailyJournalsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDailyJournalsInput
+    upsert?: UserUpsertWithoutDailyJournalsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDailyJournalsInput, UserUpdateWithoutDailyJournalsInput>, UserUncheckedUpdateWithoutDailyJournalsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutMentorDailyJournalsNestedInput = {
+    create?: XOR<UserCreateWithoutMentorDailyJournalsInput, UserUncheckedCreateWithoutMentorDailyJournalsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMentorDailyJournalsInput
+    upsert?: UserUpsertWithoutMentorDailyJournalsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMentorDailyJournalsInput, UserUpdateWithoutMentorDailyJournalsInput>, UserUncheckedUpdateWithoutMentorDailyJournalsInput>
   }
 
   export type ClassCreateNestedManyWithoutDivisionInput = {
@@ -16304,6 +18073,20 @@ export namespace Prisma {
     connect?: WaliSantriRelationWhereUniqueInput | WaliSantriRelationWhereUniqueInput[]
   }
 
+  export type DailyJournalCreateNestedManyWithoutSantriInput = {
+    create?: XOR<DailyJournalCreateWithoutSantriInput, DailyJournalUncheckedCreateWithoutSantriInput> | DailyJournalCreateWithoutSantriInput[] | DailyJournalUncheckedCreateWithoutSantriInput[]
+    connectOrCreate?: DailyJournalCreateOrConnectWithoutSantriInput | DailyJournalCreateOrConnectWithoutSantriInput[]
+    createMany?: DailyJournalCreateManySantriInputEnvelope
+    connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+  }
+
+  export type DailyJournalCreateNestedManyWithoutMentorInput = {
+    create?: XOR<DailyJournalCreateWithoutMentorInput, DailyJournalUncheckedCreateWithoutMentorInput> | DailyJournalCreateWithoutMentorInput[] | DailyJournalUncheckedCreateWithoutMentorInput[]
+    connectOrCreate?: DailyJournalCreateOrConnectWithoutMentorInput | DailyJournalCreateOrConnectWithoutMentorInput[]
+    createMany?: DailyJournalCreateManyMentorInputEnvelope
+    connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+  }
+
   export type WaliProfileUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<WaliProfileCreateWithoutUserInput, WaliProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: WaliProfileCreateOrConnectWithoutUserInput
@@ -16370,6 +18153,20 @@ export namespace Prisma {
     connectOrCreate?: WaliSantriRelationCreateOrConnectWithoutSantriInput | WaliSantriRelationCreateOrConnectWithoutSantriInput[]
     createMany?: WaliSantriRelationCreateManySantriInputEnvelope
     connect?: WaliSantriRelationWhereUniqueInput | WaliSantriRelationWhereUniqueInput[]
+  }
+
+  export type DailyJournalUncheckedCreateNestedManyWithoutSantriInput = {
+    create?: XOR<DailyJournalCreateWithoutSantriInput, DailyJournalUncheckedCreateWithoutSantriInput> | DailyJournalCreateWithoutSantriInput[] | DailyJournalUncheckedCreateWithoutSantriInput[]
+    connectOrCreate?: DailyJournalCreateOrConnectWithoutSantriInput | DailyJournalCreateOrConnectWithoutSantriInput[]
+    createMany?: DailyJournalCreateManySantriInputEnvelope
+    connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+  }
+
+  export type DailyJournalUncheckedCreateNestedManyWithoutMentorInput = {
+    create?: XOR<DailyJournalCreateWithoutMentorInput, DailyJournalUncheckedCreateWithoutMentorInput> | DailyJournalCreateWithoutMentorInput[] | DailyJournalUncheckedCreateWithoutMentorInput[]
+    connectOrCreate?: DailyJournalCreateOrConnectWithoutMentorInput | DailyJournalCreateOrConnectWithoutMentorInput[]
+    createMany?: DailyJournalCreateManyMentorInputEnvelope
+    connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
   }
 
   export type EnumRoleFieldUpdateOperationsInput = {
@@ -16512,6 +18309,34 @@ export namespace Prisma {
     deleteMany?: WaliSantriRelationScalarWhereInput | WaliSantriRelationScalarWhereInput[]
   }
 
+  export type DailyJournalUpdateManyWithoutSantriNestedInput = {
+    create?: XOR<DailyJournalCreateWithoutSantriInput, DailyJournalUncheckedCreateWithoutSantriInput> | DailyJournalCreateWithoutSantriInput[] | DailyJournalUncheckedCreateWithoutSantriInput[]
+    connectOrCreate?: DailyJournalCreateOrConnectWithoutSantriInput | DailyJournalCreateOrConnectWithoutSantriInput[]
+    upsert?: DailyJournalUpsertWithWhereUniqueWithoutSantriInput | DailyJournalUpsertWithWhereUniqueWithoutSantriInput[]
+    createMany?: DailyJournalCreateManySantriInputEnvelope
+    set?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    disconnect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    delete?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    update?: DailyJournalUpdateWithWhereUniqueWithoutSantriInput | DailyJournalUpdateWithWhereUniqueWithoutSantriInput[]
+    updateMany?: DailyJournalUpdateManyWithWhereWithoutSantriInput | DailyJournalUpdateManyWithWhereWithoutSantriInput[]
+    deleteMany?: DailyJournalScalarWhereInput | DailyJournalScalarWhereInput[]
+  }
+
+  export type DailyJournalUpdateManyWithoutMentorNestedInput = {
+    create?: XOR<DailyJournalCreateWithoutMentorInput, DailyJournalUncheckedCreateWithoutMentorInput> | DailyJournalCreateWithoutMentorInput[] | DailyJournalUncheckedCreateWithoutMentorInput[]
+    connectOrCreate?: DailyJournalCreateOrConnectWithoutMentorInput | DailyJournalCreateOrConnectWithoutMentorInput[]
+    upsert?: DailyJournalUpsertWithWhereUniqueWithoutMentorInput | DailyJournalUpsertWithWhereUniqueWithoutMentorInput[]
+    createMany?: DailyJournalCreateManyMentorInputEnvelope
+    set?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    disconnect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    delete?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    update?: DailyJournalUpdateWithWhereUniqueWithoutMentorInput | DailyJournalUpdateWithWhereUniqueWithoutMentorInput[]
+    updateMany?: DailyJournalUpdateManyWithWhereWithoutMentorInput | DailyJournalUpdateManyWithWhereWithoutMentorInput[]
+    deleteMany?: DailyJournalScalarWhereInput | DailyJournalScalarWhereInput[]
+  }
+
   export type WaliProfileUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<WaliProfileCreateWithoutUserInput, WaliProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: WaliProfileCreateOrConnectWithoutUserInput
@@ -16642,6 +18467,34 @@ export namespace Prisma {
     update?: WaliSantriRelationUpdateWithWhereUniqueWithoutSantriInput | WaliSantriRelationUpdateWithWhereUniqueWithoutSantriInput[]
     updateMany?: WaliSantriRelationUpdateManyWithWhereWithoutSantriInput | WaliSantriRelationUpdateManyWithWhereWithoutSantriInput[]
     deleteMany?: WaliSantriRelationScalarWhereInput | WaliSantriRelationScalarWhereInput[]
+  }
+
+  export type DailyJournalUncheckedUpdateManyWithoutSantriNestedInput = {
+    create?: XOR<DailyJournalCreateWithoutSantriInput, DailyJournalUncheckedCreateWithoutSantriInput> | DailyJournalCreateWithoutSantriInput[] | DailyJournalUncheckedCreateWithoutSantriInput[]
+    connectOrCreate?: DailyJournalCreateOrConnectWithoutSantriInput | DailyJournalCreateOrConnectWithoutSantriInput[]
+    upsert?: DailyJournalUpsertWithWhereUniqueWithoutSantriInput | DailyJournalUpsertWithWhereUniqueWithoutSantriInput[]
+    createMany?: DailyJournalCreateManySantriInputEnvelope
+    set?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    disconnect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    delete?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    update?: DailyJournalUpdateWithWhereUniqueWithoutSantriInput | DailyJournalUpdateWithWhereUniqueWithoutSantriInput[]
+    updateMany?: DailyJournalUpdateManyWithWhereWithoutSantriInput | DailyJournalUpdateManyWithWhereWithoutSantriInput[]
+    deleteMany?: DailyJournalScalarWhereInput | DailyJournalScalarWhereInput[]
+  }
+
+  export type DailyJournalUncheckedUpdateManyWithoutMentorNestedInput = {
+    create?: XOR<DailyJournalCreateWithoutMentorInput, DailyJournalUncheckedCreateWithoutMentorInput> | DailyJournalCreateWithoutMentorInput[] | DailyJournalUncheckedCreateWithoutMentorInput[]
+    connectOrCreate?: DailyJournalCreateOrConnectWithoutMentorInput | DailyJournalCreateOrConnectWithoutMentorInput[]
+    upsert?: DailyJournalUpsertWithWhereUniqueWithoutMentorInput | DailyJournalUpsertWithWhereUniqueWithoutMentorInput[]
+    createMany?: DailyJournalCreateManyMentorInputEnvelope
+    set?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    disconnect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    delete?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+    update?: DailyJournalUpdateWithWhereUniqueWithoutMentorInput | DailyJournalUpdateWithWhereUniqueWithoutMentorInput[]
+    updateMany?: DailyJournalUpdateManyWithWhereWithoutMentorInput | DailyJournalUpdateManyWithWhereWithoutMentorInput[]
+    deleteMany?: DailyJournalScalarWhereInput | DailyJournalScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutWaliProfileInput = {
@@ -16894,6 +18747,33 @@ export namespace Prisma {
     _max?: NestedEnumAttendanceStatusFilter<$PrismaModel>
   }
 
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -16985,6 +18865,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
   }
 
   export type UserUncheckedCreateWithoutVerificationsInput = {
@@ -17006,6 +18888,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
   }
 
   export type UserCreateOrConnectWithoutVerificationsInput = {
@@ -17043,6 +18927,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutVerificationsInput = {
@@ -17064,6 +18950,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
   }
 
   export type ClassCreateWithoutAssignmentsInput = {
@@ -17074,6 +18962,7 @@ export namespace Prisma {
     mentor: UserCreateNestedOneWithoutMentorClassesInput
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutAssignmentsInput = {
@@ -17084,6 +18973,7 @@ export namespace Prisma {
     createdAt?: Date | string
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutAssignmentsInput = {
@@ -17110,6 +19000,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
   }
 
   export type UserUncheckedCreateWithoutMentorAssignmentsInput = {
@@ -17131,6 +19023,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
   }
 
   export type UserCreateOrConnectWithoutMentorAssignmentsInput = {
@@ -17189,6 +19083,7 @@ export namespace Prisma {
     mentor?: UserUpdateOneRequiredWithoutMentorClassesNestedInput
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutAssignmentsInput = {
@@ -17199,6 +19094,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type UserUpsertWithoutMentorAssignmentsInput = {
@@ -17231,6 +19127,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMentorAssignmentsInput = {
@@ -17252,6 +19150,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
   }
 
   export type AssignmentContentUpsertWithWhereUniqueWithoutAssignmentInput = {
@@ -17333,6 +19233,8 @@ export namespace Prisma {
     mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
   }
 
   export type UserUncheckedCreateWithoutSantriSubmissionsInput = {
@@ -17354,6 +19256,8 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
   }
 
   export type UserCreateOrConnectWithoutSantriSubmissionsInput = {
@@ -17426,6 +19330,8 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSantriSubmissionsInput = {
@@ -17447,6 +19353,8 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
   }
 
   export type ClassCreateWithoutAttendancesInput = {
@@ -17457,6 +19365,7 @@ export namespace Prisma {
     mentor: UserCreateNestedOneWithoutMentorClassesInput
     assignments?: AssignmentCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutAttendancesInput = {
@@ -17467,6 +19376,7 @@ export namespace Prisma {
     createdAt?: Date | string
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutAttendancesInput = {
@@ -17493,6 +19403,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
   }
 
   export type UserUncheckedCreateWithoutSantriAttendancesInput = {
@@ -17514,6 +19426,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
   }
 
   export type UserCreateOrConnectWithoutSantriAttendancesInput = {
@@ -17540,6 +19454,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
   }
 
   export type UserUncheckedCreateWithoutMentorAttendancesInput = {
@@ -17561,6 +19477,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
   }
 
   export type UserCreateOrConnectWithoutMentorAttendancesInput = {
@@ -17587,6 +19505,7 @@ export namespace Prisma {
     mentor?: UserUpdateOneRequiredWithoutMentorClassesNestedInput
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutAttendancesInput = {
@@ -17597,6 +19516,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type UserUpsertWithoutSantriAttendancesInput = {
@@ -17629,6 +19549,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSantriAttendancesInput = {
@@ -17650,6 +19572,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
   }
 
   export type UserUpsertWithoutMentorAttendancesInput = {
@@ -17682,6 +19606,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMentorAttendancesInput = {
@@ -17703,6 +19629,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
   }
 
   export type DivisionCreateWithoutClassesInput = {
@@ -17743,6 +19671,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
   }
 
   export type UserUncheckedCreateWithoutMentorClassesInput = {
@@ -17764,6 +19694,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
   }
 
   export type UserCreateOrConnectWithoutMentorClassesInput = {
@@ -17865,6 +19797,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type DailyJournalCreateWithoutClassInput = {
+    id?: string
+    attitudeScore?: number
+    notes: string
+    date: Date | string
+    description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    santri: UserCreateNestedOneWithoutDailyJournalsInput
+    mentor: UserCreateNestedOneWithoutMentorDailyJournalsInput
+  }
+
+  export type DailyJournalUncheckedCreateWithoutClassInput = {
+    id?: string
+    santriId: string
+    mentorId: string
+    attitudeScore?: number
+    notes: string
+    date: Date | string
+    description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyJournalCreateOrConnectWithoutClassInput = {
+    where: DailyJournalWhereUniqueInput
+    create: XOR<DailyJournalCreateWithoutClassInput, DailyJournalUncheckedCreateWithoutClassInput>
+  }
+
+  export type DailyJournalCreateManyClassInputEnvelope = {
+    data: DailyJournalCreateManyClassInput | DailyJournalCreateManyClassInput[]
+    skipDuplicates?: boolean
+  }
+
   export type DivisionUpsertWithoutClassesInput = {
     update: XOR<DivisionUpdateWithoutClassesInput, DivisionUncheckedUpdateWithoutClassesInput>
     create: XOR<DivisionCreateWithoutClassesInput, DivisionUncheckedCreateWithoutClassesInput>
@@ -17920,6 +19886,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMentorClassesInput = {
@@ -17941,6 +19909,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
   }
 
   export type AttendanceUpsertWithWhereUniqueWithoutClassInput = {
@@ -18034,6 +20004,314 @@ export namespace Prisma {
     classId?: StringNullableFilter<"SantriProfile"> | string | null
   }
 
+  export type DailyJournalUpsertWithWhereUniqueWithoutClassInput = {
+    where: DailyJournalWhereUniqueInput
+    update: XOR<DailyJournalUpdateWithoutClassInput, DailyJournalUncheckedUpdateWithoutClassInput>
+    create: XOR<DailyJournalCreateWithoutClassInput, DailyJournalUncheckedCreateWithoutClassInput>
+  }
+
+  export type DailyJournalUpdateWithWhereUniqueWithoutClassInput = {
+    where: DailyJournalWhereUniqueInput
+    data: XOR<DailyJournalUpdateWithoutClassInput, DailyJournalUncheckedUpdateWithoutClassInput>
+  }
+
+  export type DailyJournalUpdateManyWithWhereWithoutClassInput = {
+    where: DailyJournalScalarWhereInput
+    data: XOR<DailyJournalUpdateManyMutationInput, DailyJournalUncheckedUpdateManyWithoutClassInput>
+  }
+
+  export type DailyJournalScalarWhereInput = {
+    AND?: DailyJournalScalarWhereInput | DailyJournalScalarWhereInput[]
+    OR?: DailyJournalScalarWhereInput[]
+    NOT?: DailyJournalScalarWhereInput | DailyJournalScalarWhereInput[]
+    id?: StringFilter<"DailyJournal"> | string
+    santriId?: StringFilter<"DailyJournal"> | string
+    classId?: StringFilter<"DailyJournal"> | string
+    mentorId?: StringFilter<"DailyJournal"> | string
+    attitudeScore?: FloatFilter<"DailyJournal"> | number
+    notes?: StringFilter<"DailyJournal"> | string
+    date?: DateTimeFilter<"DailyJournal"> | Date | string
+    description?: StringFilter<"DailyJournal"> | string
+    createdAt?: DateTimeFilter<"DailyJournal"> | Date | string
+    updatedAt?: DateTimeFilter<"DailyJournal"> | Date | string
+  }
+
+  export type ClassCreateWithoutDailyJournalsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    division: DivisionCreateNestedOneWithoutClassesInput
+    mentor: UserCreateNestedOneWithoutMentorClassesInput
+    attendances?: AttendanceCreateNestedManyWithoutClassInput
+    assignments?: AssignmentCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
+  }
+
+  export type ClassUncheckedCreateWithoutDailyJournalsInput = {
+    id?: string
+    divisiId: string
+    name: string
+    mentorId: string
+    createdAt?: Date | string
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
+  }
+
+  export type ClassCreateOrConnectWithoutDailyJournalsInput = {
+    where: ClassWhereUniqueInput
+    create: XOR<ClassCreateWithoutDailyJournalsInput, ClassUncheckedCreateWithoutDailyJournalsInput>
+  }
+
+  export type UserCreateWithoutDailyJournalsInput = {
+    id?: string
+    nis?: string | null
+    fullName: string
+    email: string
+    password: string
+    phone?: string | null
+    role: $Enums.Role
+    isActive?: boolean
+    createdAt?: Date | string
+    waliProfile?: WaliProfileCreateNestedOneWithoutUserInput
+    verifications?: VerificationCreateNestedManyWithoutUserInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+  }
+
+  export type UserUncheckedCreateWithoutDailyJournalsInput = {
+    id?: string
+    nis?: string | null
+    fullName: string
+    email: string
+    password: string
+    phone?: string | null
+    role: $Enums.Role
+    isActive?: boolean
+    createdAt?: Date | string
+    waliProfile?: WaliProfileUncheckedCreateNestedOneWithoutUserInput
+    verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+  }
+
+  export type UserCreateOrConnectWithoutDailyJournalsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutDailyJournalsInput, UserUncheckedCreateWithoutDailyJournalsInput>
+  }
+
+  export type UserCreateWithoutMentorDailyJournalsInput = {
+    id?: string
+    nis?: string | null
+    fullName: string
+    email: string
+    password: string
+    phone?: string | null
+    role: $Enums.Role
+    isActive?: boolean
+    createdAt?: Date | string
+    waliProfile?: WaliProfileCreateNestedOneWithoutUserInput
+    verifications?: VerificationCreateNestedManyWithoutUserInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+  }
+
+  export type UserUncheckedCreateWithoutMentorDailyJournalsInput = {
+    id?: string
+    nis?: string | null
+    fullName: string
+    email: string
+    password: string
+    phone?: string | null
+    role: $Enums.Role
+    isActive?: boolean
+    createdAt?: Date | string
+    waliProfile?: WaliProfileUncheckedCreateNestedOneWithoutUserInput
+    verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+  }
+
+  export type UserCreateOrConnectWithoutMentorDailyJournalsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMentorDailyJournalsInput, UserUncheckedCreateWithoutMentorDailyJournalsInput>
+  }
+
+  export type ClassUpsertWithoutDailyJournalsInput = {
+    update: XOR<ClassUpdateWithoutDailyJournalsInput, ClassUncheckedUpdateWithoutDailyJournalsInput>
+    create: XOR<ClassCreateWithoutDailyJournalsInput, ClassUncheckedCreateWithoutDailyJournalsInput>
+    where?: ClassWhereInput
+  }
+
+  export type ClassUpdateToOneWithWhereWithoutDailyJournalsInput = {
+    where?: ClassWhereInput
+    data: XOR<ClassUpdateWithoutDailyJournalsInput, ClassUncheckedUpdateWithoutDailyJournalsInput>
+  }
+
+  export type ClassUpdateWithoutDailyJournalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    division?: DivisionUpdateOneRequiredWithoutClassesNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorClassesNestedInput
+    attendances?: AttendanceUpdateManyWithoutClassNestedInput
+    assignments?: AssignmentUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
+  }
+
+  export type ClassUncheckedUpdateWithoutDailyJournalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    divisiId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
+    assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
+  }
+
+  export type UserUpsertWithoutDailyJournalsInput = {
+    update: XOR<UserUpdateWithoutDailyJournalsInput, UserUncheckedUpdateWithoutDailyJournalsInput>
+    create: XOR<UserCreateWithoutDailyJournalsInput, UserUncheckedCreateWithoutDailyJournalsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutDailyJournalsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutDailyJournalsInput, UserUncheckedUpdateWithoutDailyJournalsInput>
+  }
+
+  export type UserUpdateWithoutDailyJournalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUpdateOneWithoutUserNestedInput
+    verifications?: VerificationUpdateManyWithoutUserNestedInput
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutDailyJournalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUncheckedUpdateOneWithoutUserNestedInput
+    verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+  }
+
+  export type UserUpsertWithoutMentorDailyJournalsInput = {
+    update: XOR<UserUpdateWithoutMentorDailyJournalsInput, UserUncheckedUpdateWithoutMentorDailyJournalsInput>
+    create: XOR<UserCreateWithoutMentorDailyJournalsInput, UserUncheckedCreateWithoutMentorDailyJournalsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutMentorDailyJournalsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutMentorDailyJournalsInput, UserUncheckedUpdateWithoutMentorDailyJournalsInput>
+  }
+
+  export type UserUpdateWithoutMentorDailyJournalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUpdateOneWithoutUserNestedInput
+    verifications?: VerificationUpdateManyWithoutUserNestedInput
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutMentorDailyJournalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUncheckedUpdateOneWithoutUserNestedInput
+    verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+  }
+
   export type ClassCreateWithoutDivisionInput = {
     id?: string
     name: string
@@ -18042,6 +20320,7 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     assignments?: AssignmentCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutDivisionInput = {
@@ -18052,6 +20331,7 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutDivisionInput = {
@@ -18110,6 +20390,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
   }
 
   export type UserUncheckedCreateWithoutSantriProfileInput = {
@@ -18131,6 +20413,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
   }
 
   export type UserCreateOrConnectWithoutSantriProfileInput = {
@@ -18146,6 +20430,7 @@ export namespace Prisma {
     mentor: UserCreateNestedOneWithoutMentorClassesInput
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     assignments?: AssignmentCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutSantriProfilesInput = {
@@ -18156,6 +20441,7 @@ export namespace Prisma {
     createdAt?: Date | string
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutSantriProfilesInput = {
@@ -18193,6 +20479,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSantriProfileInput = {
@@ -18214,6 +20502,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
   }
 
   export type ClassUpsertWithoutSantriProfilesInput = {
@@ -18235,6 +20525,7 @@ export namespace Prisma {
     mentor?: UserUpdateOneRequiredWithoutMentorClassesNestedInput
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutSantriProfilesInput = {
@@ -18245,6 +20536,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type WaliProfileCreateWithoutUserInput = {
@@ -18323,6 +20615,7 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     assignments?: AssignmentCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutMentorInput = {
@@ -18333,6 +20626,7 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutMentorInput = {
@@ -18524,6 +20818,74 @@ export namespace Prisma {
 
   export type WaliSantriRelationCreateManySantriInputEnvelope = {
     data: WaliSantriRelationCreateManySantriInput | WaliSantriRelationCreateManySantriInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DailyJournalCreateWithoutSantriInput = {
+    id?: string
+    attitudeScore?: number
+    notes: string
+    date: Date | string
+    description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    class: ClassCreateNestedOneWithoutDailyJournalsInput
+    mentor: UserCreateNestedOneWithoutMentorDailyJournalsInput
+  }
+
+  export type DailyJournalUncheckedCreateWithoutSantriInput = {
+    id?: string
+    classId: string
+    mentorId: string
+    attitudeScore?: number
+    notes: string
+    date: Date | string
+    description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyJournalCreateOrConnectWithoutSantriInput = {
+    where: DailyJournalWhereUniqueInput
+    create: XOR<DailyJournalCreateWithoutSantriInput, DailyJournalUncheckedCreateWithoutSantriInput>
+  }
+
+  export type DailyJournalCreateManySantriInputEnvelope = {
+    data: DailyJournalCreateManySantriInput | DailyJournalCreateManySantriInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DailyJournalCreateWithoutMentorInput = {
+    id?: string
+    attitudeScore?: number
+    notes: string
+    date: Date | string
+    description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    class: ClassCreateNestedOneWithoutDailyJournalsInput
+    santri: UserCreateNestedOneWithoutDailyJournalsInput
+  }
+
+  export type DailyJournalUncheckedCreateWithoutMentorInput = {
+    id?: string
+    santriId: string
+    classId: string
+    attitudeScore?: number
+    notes: string
+    date: Date | string
+    description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyJournalCreateOrConnectWithoutMentorInput = {
+    where: DailyJournalWhereUniqueInput
+    create: XOR<DailyJournalCreateWithoutMentorInput, DailyJournalUncheckedCreateWithoutMentorInput>
+  }
+
+  export type DailyJournalCreateManyMentorInputEnvelope = {
+    data: DailyJournalCreateManyMentorInput | DailyJournalCreateManyMentorInput[]
     skipDuplicates?: boolean
   }
 
@@ -18734,6 +21096,38 @@ export namespace Prisma {
     data: XOR<WaliSantriRelationUpdateManyMutationInput, WaliSantriRelationUncheckedUpdateManyWithoutSantriInput>
   }
 
+  export type DailyJournalUpsertWithWhereUniqueWithoutSantriInput = {
+    where: DailyJournalWhereUniqueInput
+    update: XOR<DailyJournalUpdateWithoutSantriInput, DailyJournalUncheckedUpdateWithoutSantriInput>
+    create: XOR<DailyJournalCreateWithoutSantriInput, DailyJournalUncheckedCreateWithoutSantriInput>
+  }
+
+  export type DailyJournalUpdateWithWhereUniqueWithoutSantriInput = {
+    where: DailyJournalWhereUniqueInput
+    data: XOR<DailyJournalUpdateWithoutSantriInput, DailyJournalUncheckedUpdateWithoutSantriInput>
+  }
+
+  export type DailyJournalUpdateManyWithWhereWithoutSantriInput = {
+    where: DailyJournalScalarWhereInput
+    data: XOR<DailyJournalUpdateManyMutationInput, DailyJournalUncheckedUpdateManyWithoutSantriInput>
+  }
+
+  export type DailyJournalUpsertWithWhereUniqueWithoutMentorInput = {
+    where: DailyJournalWhereUniqueInput
+    update: XOR<DailyJournalUpdateWithoutMentorInput, DailyJournalUncheckedUpdateWithoutMentorInput>
+    create: XOR<DailyJournalCreateWithoutMentorInput, DailyJournalUncheckedCreateWithoutMentorInput>
+  }
+
+  export type DailyJournalUpdateWithWhereUniqueWithoutMentorInput = {
+    where: DailyJournalWhereUniqueInput
+    data: XOR<DailyJournalUpdateWithoutMentorInput, DailyJournalUncheckedUpdateWithoutMentorInput>
+  }
+
+  export type DailyJournalUpdateManyWithWhereWithoutMentorInput = {
+    where: DailyJournalScalarWhereInput
+    data: XOR<DailyJournalUpdateManyMutationInput, DailyJournalUncheckedUpdateManyWithoutMentorInput>
+  }
+
   export type UserCreateWithoutWaliProfileInput = {
     id?: string
     nis?: string | null
@@ -18753,6 +21147,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
   }
 
   export type UserUncheckedCreateWithoutWaliProfileInput = {
@@ -18774,6 +21170,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
   }
 
   export type UserCreateOrConnectWithoutWaliProfileInput = {
@@ -18811,6 +21209,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWaliProfileInput = {
@@ -18832,6 +21232,8 @@ export namespace Prisma {
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
   }
 
   export type UserCreateWithoutWaliRelationsInput = {
@@ -18853,6 +21255,8 @@ export namespace Prisma {
     mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
   }
 
   export type UserUncheckedCreateWithoutWaliRelationsInput = {
@@ -18874,6 +21278,8 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
   }
 
   export type UserCreateOrConnectWithoutWaliRelationsInput = {
@@ -18900,6 +21306,8 @@ export namespace Prisma {
     mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
     santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
   }
 
   export type UserUncheckedCreateWithoutSantriRelationsInput = {
@@ -18921,6 +21329,8 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
     santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
   }
 
   export type UserCreateOrConnectWithoutSantriRelationsInput = {
@@ -18958,6 +21368,8 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWaliRelationsInput = {
@@ -18979,6 +21391,8 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
   }
 
   export type UserUpsertWithoutSantriRelationsInput = {
@@ -19011,6 +21425,8 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
     santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSantriRelationsInput = {
@@ -19032,6 +21448,8 @@ export namespace Prisma {
     mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
     santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
   }
 
   export type AssignmentContentCreateManyAssignmentInput = {
@@ -19107,6 +21525,18 @@ export namespace Prisma {
     birthDate?: Date | string | null
     address?: string | null
     photoUrl?: string | null
+  }
+
+  export type DailyJournalCreateManyClassInput = {
+    id?: string
+    santriId: string
+    mentorId: string
+    attitudeScore?: number
+    notes: string
+    date: Date | string
+    description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AttendanceUpdateWithoutClassInput = {
@@ -19204,6 +21634,42 @@ export namespace Prisma {
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type DailyJournalUpdateWithoutClassInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    santri?: UserUpdateOneRequiredWithoutDailyJournalsNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorDailyJournalsNestedInput
+  }
+
+  export type DailyJournalUncheckedUpdateWithoutClassInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyJournalUncheckedUpdateManyWithoutClassInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ClassCreateManyDivisionInput = {
     id?: string
     name: string
@@ -19219,6 +21685,7 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutDivisionInput = {
@@ -19229,6 +21696,7 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateManyWithoutDivisionInput = {
@@ -19312,6 +21780,30 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type DailyJournalCreateManySantriInput = {
+    id?: string
+    classId: string
+    mentorId: string
+    attitudeScore?: number
+    notes: string
+    date: Date | string
+    description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyJournalCreateManyMentorInput = {
+    id?: string
+    santriId: string
+    classId: string
+    attitudeScore?: number
+    notes: string
+    date: Date | string
+    description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type VerificationUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     otpCode?: StringFieldUpdateOperationsInput | string
@@ -19341,6 +21833,7 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutMentorInput = {
@@ -19351,6 +21844,7 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateManyWithoutMentorInput = {
@@ -19538,6 +22032,78 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     waliId?: StringFieldUpdateOperationsInput | string
     category?: EnumWaliSantriCategoryFieldUpdateOperationsInput | $Enums.WaliSantriCategory
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyJournalUpdateWithoutSantriInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    class?: ClassUpdateOneRequiredWithoutDailyJournalsNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorDailyJournalsNestedInput
+  }
+
+  export type DailyJournalUncheckedUpdateWithoutSantriInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyJournalUncheckedUpdateManyWithoutSantriInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyJournalUpdateWithoutMentorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    class?: ClassUpdateOneRequiredWithoutDailyJournalsNestedInput
+    santri?: UserUpdateOneRequiredWithoutDailyJournalsNestedInput
+  }
+
+  export type DailyJournalUncheckedUpdateWithoutMentorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyJournalUncheckedUpdateManyWithoutMentorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
