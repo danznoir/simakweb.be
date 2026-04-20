@@ -172,6 +172,19 @@ exports.Prisma.ClassScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.DailyJournalScalarFieldEnum = {
+  id: 'id',
+  santriId: 'santriId',
+  classId: 'classId',
+  mentorId: 'mentorId',
+  attitudeScore: 'attitudeScore',
+  notes: 'notes',
+  date: 'date',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.DivisionScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -275,6 +288,7 @@ exports.Prisma.ModelName = {
   AssignmentContent: 'AssignmentContent',
   Attendance: 'Attendance',
   Class: 'Class',
+  DailyJournal: 'DailyJournal',
   Division: 'Division',
   SantriProfile: 'SantriProfile',
   User: 'User',
