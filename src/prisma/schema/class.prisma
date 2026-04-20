@@ -13,6 +13,7 @@ model Class {
   attendances Attendance[]
   assignments Assignment[]
   santriProfiles SantriProfile[]
+  dailyJournals DailyJournal[] @relation("ClassDailyJournal")
 
   @@map("classes")
-}
+}

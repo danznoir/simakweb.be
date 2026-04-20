@@ -23,6 +23,10 @@ model User {
   waliRelations     WaliSantriRelation[] @relation("WaliToRelation")
   santriRelations   WaliSantriRelation[] @relation("SantriToRelation")
 
+  // Relasi Daily Journal
+  dailyJournals     DailyJournal[]      @relation("SantriDailyJournal")
+  mentorDailyJournals DailyJournal[]     @relation("MentorDailyJournal")
+
   @@map("users")
 }
 
