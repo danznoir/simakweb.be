@@ -10,6 +10,13 @@ import { authenticate } from "../../middleware/auth.middleware.js";
 import { validate } from "../../utils/validate.js";
 import { createAssignmentSchema, updateAssignmentSchema } from "./assignment.schema.js";
 
+/**
+ * @swagger
+ * tags:
+ *   name: Assignments
+ *   description: Assignment management
+ */
+
 const router = Router();
 
 // Inisialisasi OOP
@@ -19,13 +26,147 @@ const assignmentController = new AssignmentController(assignmentService);
 
 // --- ROUTES ---
 
-// Authenticated (Get)
+/**
+ * @swagger
+ * /api/v1/assignments:
+ *   get:
+ *     summary: Get all assignments
+ *     tags: [Assignments]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of all assignments
+ */
 router.get("/", authenticate, assignmentController.getAllAssignments);
+
+/**
+ * @swagger
+ * /api/v1/assignments/{id}:
+ *   get:
+ *     summary: Get assignment by ID
+ *     tags: [Assignments]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "asn_123"
+ *     responses:
+ *       200:
+ *         description: Assignment details
+ */
 router.get("/:id", authenticate, assignmentController.getAssignmentById);
 
-// Admin / Mentor (Create, Update, Delete)
+/**
+ * @swagger
+ * /api/v1/assignments:
+ *   post:
+ *     summary: Create a new assignment
+ *     tags: [Assignments]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - classId
+ *               - mentorId
+ *               - title
+ *               - submissionType
+ *               - due_date
+ *             properties:
+ *               classId:
+ *                 type: string
+ *                 format: uuid
+ *                 example: "550e8400-e29b-41d4-a716-446655440000"
+ *               mentorId:
+ *                 type: string
+ *                 format: uuid
+ *                 example: "550e8400-e29b-41d4-a716-446655440001"
+ *               title:
+ *                 type: string
+ *                 example: "Project React Dasar"
+ *               description:
+ *                 type: string
+ *                 example: "Buatlah aplikasi React sederhana menggunakan Vite"
+ *               submissionType:
+ *                 type: string
+ *                 enum: [TEXT, FILE]
+ *                 example: FILE
+ *               attachmentUrl:
+ *                 type: string
+ *                 example: "https://example.com/template.zip"
+ *               due_date:
+ *                 type: string
+ *                 format: date-time
+ *                 example: "2024-05-01T23:59:59Z"
+ *     responses:
+ *       201:
+ *         description: Assignment created successfully
+ */
 router.post("/", authenticate, adminMiddleware, validate(createAssignmentSchema), assignmentController.createAssignment);
+
+/**
+ * @swagger
+ * /api/v1/assignments/{id}:
+ *   put:
+ *     summary: Update an assignment
+ *     tags: [Assignments]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "asn_123"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: "Project React Lanjutan"
+ *               due_date:
+ *                 type: string
+ *                 format: date-time
+ *                 example: "2024-05-10T23:59:59Z"
+ *     responses:
+ *       200:
+ *         description: Assignment updated successfully
+ */
 router.put("/:id", authenticate, adminMiddleware, validate(updateAssignmentSchema), assignmentController.updateAssignment);
+
+/**
+ * @swagger
+ * /api/v1/assignments/{id}:
+ *   delete:
+ *     summary: Delete an assignment
+ *     tags: [Assignments]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "asn_123"
+ *     responses:
+ *       200:
+ *         description: Assignment deleted successfully
+ */
 router.delete("/:id", authenticate, adminMiddleware, assignmentController.deleteAssignment);
 
 export default router;

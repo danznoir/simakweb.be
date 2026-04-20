@@ -9,6 +9,13 @@ import { adminMiddleware } from "../../../middleware/role.middleware.js";
 import { createWaliRelationSchema, updateWaliRelationSchema } from "./relation.schema.js";
 import { validate } from "../../../utils/validate.js";
 
+/**
+ * @swagger
+ * tags:
+ *   name: WaliRelations
+ *   description: Relationship management between Wali and Santri
+ */
+
 const router = Router();
 
 // Dependency Injection Setup
@@ -16,10 +23,56 @@ const repo = new WaliRelationRepository(prisma);
 const service = new WaliRelationService(repo);
 const controller = new WaliRelationController(service);
 
-
+/**
+ * @swagger
+ * /api/v1/relasi:
+ *   get:
+ *     summary: Get all wali-santri relations
+ *     tags: [WaliRelations]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of all relations
+ */
 router.get("/", adminMiddleware, controller.getAllRelations);
 
 // Tidak perlu multer, langsung validate JSON menggunakan Zod
+/**
+ * @swagger
+ * /api/v1/relasi:
+ *   post:
+ *     summary: Create a new relation
+ *     tags: [WaliRelations]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - waliId
+ *               - santriId
+ *               - category
+ *             properties:
+ *               waliId:
+ *                 type: string
+ *                 format: uuid
+ *                 example: "550e8400-e29b-41d4-a716-446655440003"
+ *               santriId:
+ *                 type: string
+ *                 format: uuid
+ *                 example: "550e8400-e29b-41d4-a716-446655440001"
+ *               category:
+ *                 type: string
+ *                 enum: [FATHER, MOTHER, GUARDIAN, OTHER]
+ *                 example: FATHER
+ *     responses:
+ *       201:
+ *         description: Relation created successfully
+ */
 router.post(
   "/", 
   adminMiddleware, 
@@ -27,6 +80,36 @@ router.post(
   controller.createRelation
 );
 
+/**
+ * @swagger
+ * /api/v1/relasi/{id}:
+ *   put:
+ *     summary: Update a relation
+ *     tags: [WaliRelations]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "rel_123"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               category:
+ *                 type: string
+ *                 enum: [FATHER, MOTHER, GUARDIAN, OTHER]
+ *                 example: GUARDIAN
+ *     responses:
+ *       200:
+ *         description: Relation updated successfully
+ */
 router.put(
   "/:id", 
   adminMiddleware, 
@@ -34,6 +117,25 @@ router.put(
   controller.updateRelation
 );
 
+/**
+ * @swagger
+ * /api/v1/relasi/{id}:
+ *   delete:
+ *     summary: Delete a relation
+ *     tags: [WaliRelations]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "rel_123"
+ *     responses:
+ *       200:
+ *         description: Relation deleted successfully
+ */
 router.delete("/:id", adminMiddleware, controller.deleteRelation);
 
 export default router;

@@ -4,15 +4,15 @@ import helmet from "helmet";
 import cors from "cors";
 import { requestLogger } from "./middleware/logging.middleware.js";
 import { successResponse } from "./utils/response.js";
-// import swaggerUi from 'swagger-ui-express';
-// import swaggerSpec from './utils/swagger.js';
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from './utils/swagger.js';
 import { errorHandler } from "./middleware/errorHandler.middleware.js";
 import authRouter from "./modules/auth/auth.router.js";
 import divisionRouter from "./modules/divisions/division.route.js";
 import classRouter from "./modules/classes/class.route.js";
 import attendanceRouter from "./modules/attendance/attendance.route.js";
 import assignmentRouter from "./modules/assignments/assignment.route.js";
-import submissionRouter from "./modules/assignment_content/assignment-content.route.js";
+import submissionRouter from "./modules/assignment-content/assignment-content.route.js";
 import userRouter from "./modules/users/user/user.route.js";
 import userProfileRouter from "./modules/users/profile/profile.route.js";
 import waliSantriRouter from "./modules/wali/profileWali/waliProfile.route.js";
@@ -46,7 +46,7 @@ app.use(cors()) // Middleware biar bisa di akses dari frontend
 
 app.use(requestLogger)
 
-// app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 app.get("/", (req: Request, res: Response) => {
     successResponse(res, "Welcome to the API", {
