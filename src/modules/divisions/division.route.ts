@@ -10,6 +10,13 @@ import { authenticate } from "../../middleware/auth.middleware.js";
 import { validate } from "../../utils/validate.js";
 import { createDivisionSchema, updateDivisionSchema } from "./division.schema.js";
 
+/**
+ * @swagger
+ * tags:
+ *   name: Divisions
+ *   description: Division management
+ */
+
 const router = Router();
 
 // Inisialisasi OOP
@@ -19,13 +26,125 @@ const divisionController = new DivisionController(divisionService);
 
 // --- ROUTES ---
 
-// Public / Authenticated (Get)
+/**
+ * @swagger
+ * /api/v1/divisions:
+ *   get:
+ *     summary: Get all divisions
+ *     tags: [Divisions]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of all divisions
+ */
 router.get("/", authenticate, divisionController.getAllDivisions);
+
+/**
+ * @swagger
+ * /api/v1/divisions/{id}:
+ *   get:
+ *     summary: Get division by ID
+ *     tags: [Divisions]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "div_123"
+ *     responses:
+ *       200:
+ *         description: Division details
+ *       404:
+ *         description: Division not found
+ */
 router.get("/:id", authenticate, divisionController.getDivisionById);
 
-// Admin Only (Create, Update, Delete)
+/**
+ * @swagger
+ * /api/v1/divisions:
+ *   post:
+ *     summary: Create a new division
+ *     tags: [Divisions]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: IT Development
+ *               description:
+ *                 type: string
+ *                 example: Division responsible for software development and IT infrastructure
+ *     responses:
+ *       201:
+ *         description: Division created successfully
+ */
 router.post("/", authenticate, adminMiddleware, validate(createDivisionSchema), divisionController.createDivision);
+
+/**
+ * @swagger
+ * /api/v1/divisions/{id}:
+ *   put:
+ *     summary: Update a division
+ *     tags: [Divisions]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "div_123"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: Digital Marketing
+ *               description:
+ *                 type: string
+ *                 example: Updated description for marketing division
+ *     responses:
+ *       200:
+ *         description: Division updated successfully
+ */
 router.put("/:id", authenticate, adminMiddleware, validate(updateDivisionSchema), divisionController.updateDivision);
+
+/**
+ * @swagger
+ * /api/v1/divisions/{id}:
+ *   delete:
+ *     summary: Delete a division
+ *     tags: [Divisions]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "div_123"
+ *     responses:
+ *       200:
+ *         description: Division deleted successfully
+ */
 router.delete("/:id", authenticate, adminMiddleware, divisionController.deleteDivision);
 
 export default router;
