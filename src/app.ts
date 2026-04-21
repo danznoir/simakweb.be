@@ -17,6 +17,8 @@ import userRouter from "./modules/users/user/user.route.js";
 import userProfileRouter from "./modules/users/profile/profile.route.js";
 import waliSantriRouter from "./modules/wali/profileWali/waliProfile.route.js";
 import relasiRouter from "./modules/wali/relasi/relation.route.js";
+import dailyJournalRouter from "./modules/dailyJourney/dailyJourney.route.js";
+import dailyScoreRouter from "./modules/score/score.route.js";
 
 interface CustomRequest extends Request {
   rawBody?: string;
@@ -65,6 +67,8 @@ app.use('/api/v1/users', userRouter)
 app.use('/api/v1/relasi', relasiRouter)
 app.use('/api/v1/user-profile', userProfileRouter)
 app.use('/api/v1/wali-santri', waliSantriRouter)
+app.use('/api/v1/daily-journal', dailyJournalRouter)
+app.use('/api/v1/monthly-evaluation', dailyScoreRouter)
 
 app.get(/.*/, (req: Request, res: Response) => {
   throw new Error(`Route ${req.originalUrl} tidak ada di API E-Commerce`);
