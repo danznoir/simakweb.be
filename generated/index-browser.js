@@ -192,6 +192,25 @@ exports.Prisma.DivisionScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.MonthlyEvaluationScalarFieldEnum = {
+  id: 'id',
+  santriId: 'santriId',
+  classId: 'classId',
+  month: 'month',
+  year: 'year',
+  taskAvg: 'taskAvg',
+  attendancePoin: 'attendancePoin',
+  maxAttendPoin: 'maxAttendPoin',
+  attitudeAvg: 'attitudeAvg',
+  taskScore: 'taskScore',
+  attendanceScore: 'attendanceScore',
+  attitudeScore: 'attitudeScore',
+  finalScore: 'finalScore',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SantriProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -290,6 +309,7 @@ exports.Prisma.ModelName = {
   Class: 'Class',
   DailyJournal: 'DailyJournal',
   Division: 'Division',
+  MonthlyEvaluation: 'MonthlyEvaluation',
   SantriProfile: 'SantriProfile',
   User: 'User',
   WaliProfile: 'WaliProfile',

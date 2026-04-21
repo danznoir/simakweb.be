@@ -49,6 +49,11 @@ export type DailyJournal = $Result.DefaultSelection<Prisma.$DailyJournalPayload>
  */
 export type Division = $Result.DefaultSelection<Prisma.$DivisionPayload>
 /**
+ * Model MonthlyEvaluation
+ * 
+ */
+export type MonthlyEvaluation = $Result.DefaultSelection<Prisma.$MonthlyEvaluationPayload>
+/**
  * Model SantriProfile
  * 
  */
@@ -342,6 +347,16 @@ export class PrismaClient<
     * ```
     */
   get division(): Prisma.DivisionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.monthlyEvaluation`: Exposes CRUD operations for the **MonthlyEvaluation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MonthlyEvaluations
+    * const monthlyEvaluations = await prisma.monthlyEvaluation.findMany()
+    * ```
+    */
+  get monthlyEvaluation(): Prisma.MonthlyEvaluationDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.santriProfile`: Exposes CRUD operations for the **SantriProfile** model.
@@ -823,6 +838,7 @@ export namespace Prisma {
     Class: 'Class',
     DailyJournal: 'DailyJournal',
     Division: 'Division',
+    MonthlyEvaluation: 'MonthlyEvaluation',
     SantriProfile: 'SantriProfile',
     User: 'User',
     WaliProfile: 'WaliProfile',
@@ -842,7 +858,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "verification" | "assignment" | "assignmentContent" | "attendance" | "class" | "dailyJournal" | "division" | "santriProfile" | "user" | "waliProfile" | "waliSantriRelation"
+      modelProps: "verification" | "assignment" | "assignmentContent" | "attendance" | "class" | "dailyJournal" | "division" | "monthlyEvaluation" | "santriProfile" | "user" | "waliProfile" | "waliSantriRelation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1364,6 +1380,80 @@ export namespace Prisma {
           }
         }
       }
+      MonthlyEvaluation: {
+        payload: Prisma.$MonthlyEvaluationPayload<ExtArgs>
+        fields: Prisma.MonthlyEvaluationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MonthlyEvaluationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MonthlyEvaluationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MonthlyEvaluationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MonthlyEvaluationPayload>
+          }
+          findFirst: {
+            args: Prisma.MonthlyEvaluationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MonthlyEvaluationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MonthlyEvaluationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MonthlyEvaluationPayload>
+          }
+          findMany: {
+            args: Prisma.MonthlyEvaluationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MonthlyEvaluationPayload>[]
+          }
+          create: {
+            args: Prisma.MonthlyEvaluationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MonthlyEvaluationPayload>
+          }
+          createMany: {
+            args: Prisma.MonthlyEvaluationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MonthlyEvaluationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MonthlyEvaluationPayload>[]
+          }
+          delete: {
+            args: Prisma.MonthlyEvaluationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MonthlyEvaluationPayload>
+          }
+          update: {
+            args: Prisma.MonthlyEvaluationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MonthlyEvaluationPayload>
+          }
+          deleteMany: {
+            args: Prisma.MonthlyEvaluationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MonthlyEvaluationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MonthlyEvaluationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MonthlyEvaluationPayload>[]
+          }
+          upsert: {
+            args: Prisma.MonthlyEvaluationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MonthlyEvaluationPayload>
+          }
+          aggregate: {
+            args: Prisma.MonthlyEvaluationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMonthlyEvaluation>
+          }
+          groupBy: {
+            args: Prisma.MonthlyEvaluationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MonthlyEvaluationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MonthlyEvaluationCountArgs<ExtArgs>
+            result: $Utils.Optional<MonthlyEvaluationCountAggregateOutputType> | number
+          }
+        }
+      }
       SantriProfile: {
         payload: Prisma.$SantriProfilePayload<ExtArgs>
         fields: Prisma.SantriProfileFieldRefs
@@ -1775,6 +1865,7 @@ export namespace Prisma {
     class?: ClassOmit
     dailyJournal?: DailyJournalOmit
     division?: DivisionOmit
+    monthlyEvaluation?: MonthlyEvaluationOmit
     santriProfile?: SantriProfileOmit
     user?: UserOmit
     waliProfile?: WaliProfileOmit
@@ -1894,6 +1985,7 @@ export namespace Prisma {
     assignments: number
     santriProfiles: number
     dailyJournals: number
+    monthlyEvaluations: number
   }
 
   export type ClassCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1901,6 +1993,7 @@ export namespace Prisma {
     assignments?: boolean | ClassCountOutputTypeCountAssignmentsArgs
     santriProfiles?: boolean | ClassCountOutputTypeCountSantriProfilesArgs
     dailyJournals?: boolean | ClassCountOutputTypeCountDailyJournalsArgs
+    monthlyEvaluations?: boolean | ClassCountOutputTypeCountMonthlyEvaluationsArgs
   }
 
   // Custom InputTypes
@@ -1940,6 +2033,13 @@ export namespace Prisma {
    */
   export type ClassCountOutputTypeCountDailyJournalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DailyJournalWhereInput
+  }
+
+  /**
+   * ClassCountOutputType without action
+   */
+  export type ClassCountOutputTypeCountMonthlyEvaluationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MonthlyEvaluationWhereInput
   }
 
 
@@ -1989,6 +2089,7 @@ export namespace Prisma {
     santriRelations: number
     dailyJournals: number
     mentorDailyJournals: number
+    monthlyEvaluations: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2002,6 +2103,7 @@ export namespace Prisma {
     santriRelations?: boolean | UserCountOutputTypeCountSantriRelationsArgs
     dailyJournals?: boolean | UserCountOutputTypeCountDailyJournalsArgs
     mentorDailyJournals?: boolean | UserCountOutputTypeCountMentorDailyJournalsArgs
+    monthlyEvaluations?: boolean | UserCountOutputTypeCountMonthlyEvaluationsArgs
   }
 
   // Custom InputTypes
@@ -2083,6 +2185,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountMentorDailyJournalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DailyJournalWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMonthlyEvaluationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MonthlyEvaluationWhereInput
   }
 
 
@@ -6760,6 +6869,7 @@ export namespace Prisma {
     assignments?: boolean | Class$assignmentsArgs<ExtArgs>
     santriProfiles?: boolean | Class$santriProfilesArgs<ExtArgs>
     dailyJournals?: boolean | Class$dailyJournalsArgs<ExtArgs>
+    monthlyEvaluations?: boolean | Class$monthlyEvaluationsArgs<ExtArgs>
     _count?: boolean | ClassCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["class"]>
 
@@ -6799,6 +6909,7 @@ export namespace Prisma {
     assignments?: boolean | Class$assignmentsArgs<ExtArgs>
     santriProfiles?: boolean | Class$santriProfilesArgs<ExtArgs>
     dailyJournals?: boolean | Class$dailyJournalsArgs<ExtArgs>
+    monthlyEvaluations?: boolean | Class$monthlyEvaluationsArgs<ExtArgs>
     _count?: boolean | ClassCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ClassIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6819,6 +6930,7 @@ export namespace Prisma {
       assignments: Prisma.$AssignmentPayload<ExtArgs>[]
       santriProfiles: Prisma.$SantriProfilePayload<ExtArgs>[]
       dailyJournals: Prisma.$DailyJournalPayload<ExtArgs>[]
+      monthlyEvaluations: Prisma.$MonthlyEvaluationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7226,6 +7338,7 @@ export namespace Prisma {
     assignments<T extends Class$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Class$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     santriProfiles<T extends Class$santriProfilesArgs<ExtArgs> = {}>(args?: Subset<T, Class$santriProfilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SantriProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     dailyJournals<T extends Class$dailyJournalsArgs<ExtArgs> = {}>(args?: Subset<T, Class$dailyJournalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    monthlyEvaluations<T extends Class$monthlyEvaluationsArgs<ExtArgs> = {}>(args?: Subset<T, Class$monthlyEvaluationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MonthlyEvaluationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7754,6 +7867,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DailyJournalScalarFieldEnum | DailyJournalScalarFieldEnum[]
+  }
+
+  /**
+   * Class.monthlyEvaluations
+   */
+  export type Class$monthlyEvaluationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationInclude<ExtArgs> | null
+    where?: MonthlyEvaluationWhereInput
+    orderBy?: MonthlyEvaluationOrderByWithRelationInput | MonthlyEvaluationOrderByWithRelationInput[]
+    cursor?: MonthlyEvaluationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MonthlyEvaluationScalarFieldEnum | MonthlyEvaluationScalarFieldEnum[]
   }
 
   /**
@@ -10016,6 +10153,1290 @@ export namespace Prisma {
 
 
   /**
+   * Model MonthlyEvaluation
+   */
+
+  export type AggregateMonthlyEvaluation = {
+    _count: MonthlyEvaluationCountAggregateOutputType | null
+    _avg: MonthlyEvaluationAvgAggregateOutputType | null
+    _sum: MonthlyEvaluationSumAggregateOutputType | null
+    _min: MonthlyEvaluationMinAggregateOutputType | null
+    _max: MonthlyEvaluationMaxAggregateOutputType | null
+  }
+
+  export type MonthlyEvaluationAvgAggregateOutputType = {
+    month: number | null
+    year: number | null
+    taskAvg: number | null
+    attendancePoin: number | null
+    maxAttendPoin: number | null
+    attitudeAvg: number | null
+    taskScore: number | null
+    attendanceScore: number | null
+    attitudeScore: number | null
+    finalScore: number | null
+  }
+
+  export type MonthlyEvaluationSumAggregateOutputType = {
+    month: number | null
+    year: number | null
+    taskAvg: number | null
+    attendancePoin: number | null
+    maxAttendPoin: number | null
+    attitudeAvg: number | null
+    taskScore: number | null
+    attendanceScore: number | null
+    attitudeScore: number | null
+    finalScore: number | null
+  }
+
+  export type MonthlyEvaluationMinAggregateOutputType = {
+    id: string | null
+    santriId: string | null
+    classId: string | null
+    month: number | null
+    year: number | null
+    taskAvg: number | null
+    attendancePoin: number | null
+    maxAttendPoin: number | null
+    attitudeAvg: number | null
+    taskScore: number | null
+    attendanceScore: number | null
+    attitudeScore: number | null
+    finalScore: number | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MonthlyEvaluationMaxAggregateOutputType = {
+    id: string | null
+    santriId: string | null
+    classId: string | null
+    month: number | null
+    year: number | null
+    taskAvg: number | null
+    attendancePoin: number | null
+    maxAttendPoin: number | null
+    attitudeAvg: number | null
+    taskScore: number | null
+    attendanceScore: number | null
+    attitudeScore: number | null
+    finalScore: number | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MonthlyEvaluationCountAggregateOutputType = {
+    id: number
+    santriId: number
+    classId: number
+    month: number
+    year: number
+    taskAvg: number
+    attendancePoin: number
+    maxAttendPoin: number
+    attitudeAvg: number
+    taskScore: number
+    attendanceScore: number
+    attitudeScore: number
+    finalScore: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MonthlyEvaluationAvgAggregateInputType = {
+    month?: true
+    year?: true
+    taskAvg?: true
+    attendancePoin?: true
+    maxAttendPoin?: true
+    attitudeAvg?: true
+    taskScore?: true
+    attendanceScore?: true
+    attitudeScore?: true
+    finalScore?: true
+  }
+
+  export type MonthlyEvaluationSumAggregateInputType = {
+    month?: true
+    year?: true
+    taskAvg?: true
+    attendancePoin?: true
+    maxAttendPoin?: true
+    attitudeAvg?: true
+    taskScore?: true
+    attendanceScore?: true
+    attitudeScore?: true
+    finalScore?: true
+  }
+
+  export type MonthlyEvaluationMinAggregateInputType = {
+    id?: true
+    santriId?: true
+    classId?: true
+    month?: true
+    year?: true
+    taskAvg?: true
+    attendancePoin?: true
+    maxAttendPoin?: true
+    attitudeAvg?: true
+    taskScore?: true
+    attendanceScore?: true
+    attitudeScore?: true
+    finalScore?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MonthlyEvaluationMaxAggregateInputType = {
+    id?: true
+    santriId?: true
+    classId?: true
+    month?: true
+    year?: true
+    taskAvg?: true
+    attendancePoin?: true
+    maxAttendPoin?: true
+    attitudeAvg?: true
+    taskScore?: true
+    attendanceScore?: true
+    attitudeScore?: true
+    finalScore?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MonthlyEvaluationCountAggregateInputType = {
+    id?: true
+    santriId?: true
+    classId?: true
+    month?: true
+    year?: true
+    taskAvg?: true
+    attendancePoin?: true
+    maxAttendPoin?: true
+    attitudeAvg?: true
+    taskScore?: true
+    attendanceScore?: true
+    attitudeScore?: true
+    finalScore?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MonthlyEvaluationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MonthlyEvaluation to aggregate.
+     */
+    where?: MonthlyEvaluationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MonthlyEvaluations to fetch.
+     */
+    orderBy?: MonthlyEvaluationOrderByWithRelationInput | MonthlyEvaluationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MonthlyEvaluationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MonthlyEvaluations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MonthlyEvaluations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MonthlyEvaluations
+    **/
+    _count?: true | MonthlyEvaluationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MonthlyEvaluationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MonthlyEvaluationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MonthlyEvaluationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MonthlyEvaluationMaxAggregateInputType
+  }
+
+  export type GetMonthlyEvaluationAggregateType<T extends MonthlyEvaluationAggregateArgs> = {
+        [P in keyof T & keyof AggregateMonthlyEvaluation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMonthlyEvaluation[P]>
+      : GetScalarType<T[P], AggregateMonthlyEvaluation[P]>
+  }
+
+
+
+
+  export type MonthlyEvaluationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MonthlyEvaluationWhereInput
+    orderBy?: MonthlyEvaluationOrderByWithAggregationInput | MonthlyEvaluationOrderByWithAggregationInput[]
+    by: MonthlyEvaluationScalarFieldEnum[] | MonthlyEvaluationScalarFieldEnum
+    having?: MonthlyEvaluationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MonthlyEvaluationCountAggregateInputType | true
+    _avg?: MonthlyEvaluationAvgAggregateInputType
+    _sum?: MonthlyEvaluationSumAggregateInputType
+    _min?: MonthlyEvaluationMinAggregateInputType
+    _max?: MonthlyEvaluationMaxAggregateInputType
+  }
+
+  export type MonthlyEvaluationGroupByOutputType = {
+    id: string
+    santriId: string
+    classId: string
+    month: number
+    year: number
+    taskAvg: number
+    attendancePoin: number
+    maxAttendPoin: number
+    attitudeAvg: number
+    taskScore: number
+    attendanceScore: number
+    attitudeScore: number
+    finalScore: number
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: MonthlyEvaluationCountAggregateOutputType | null
+    _avg: MonthlyEvaluationAvgAggregateOutputType | null
+    _sum: MonthlyEvaluationSumAggregateOutputType | null
+    _min: MonthlyEvaluationMinAggregateOutputType | null
+    _max: MonthlyEvaluationMaxAggregateOutputType | null
+  }
+
+  type GetMonthlyEvaluationGroupByPayload<T extends MonthlyEvaluationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MonthlyEvaluationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MonthlyEvaluationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MonthlyEvaluationGroupByOutputType[P]>
+            : GetScalarType<T[P], MonthlyEvaluationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MonthlyEvaluationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    santriId?: boolean
+    classId?: boolean
+    month?: boolean
+    year?: boolean
+    taskAvg?: boolean
+    attendancePoin?: boolean
+    maxAttendPoin?: boolean
+    attitudeAvg?: boolean
+    taskScore?: boolean
+    attendanceScore?: boolean
+    attitudeScore?: boolean
+    finalScore?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    santri?: boolean | UserDefaultArgs<ExtArgs>
+    class?: boolean | ClassDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["monthlyEvaluation"]>
+
+  export type MonthlyEvaluationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    santriId?: boolean
+    classId?: boolean
+    month?: boolean
+    year?: boolean
+    taskAvg?: boolean
+    attendancePoin?: boolean
+    maxAttendPoin?: boolean
+    attitudeAvg?: boolean
+    taskScore?: boolean
+    attendanceScore?: boolean
+    attitudeScore?: boolean
+    finalScore?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    santri?: boolean | UserDefaultArgs<ExtArgs>
+    class?: boolean | ClassDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["monthlyEvaluation"]>
+
+  export type MonthlyEvaluationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    santriId?: boolean
+    classId?: boolean
+    month?: boolean
+    year?: boolean
+    taskAvg?: boolean
+    attendancePoin?: boolean
+    maxAttendPoin?: boolean
+    attitudeAvg?: boolean
+    taskScore?: boolean
+    attendanceScore?: boolean
+    attitudeScore?: boolean
+    finalScore?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    santri?: boolean | UserDefaultArgs<ExtArgs>
+    class?: boolean | ClassDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["monthlyEvaluation"]>
+
+  export type MonthlyEvaluationSelectScalar = {
+    id?: boolean
+    santriId?: boolean
+    classId?: boolean
+    month?: boolean
+    year?: boolean
+    taskAvg?: boolean
+    attendancePoin?: boolean
+    maxAttendPoin?: boolean
+    attitudeAvg?: boolean
+    taskScore?: boolean
+    attendanceScore?: boolean
+    attitudeScore?: boolean
+    finalScore?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MonthlyEvaluationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "santriId" | "classId" | "month" | "year" | "taskAvg" | "attendancePoin" | "maxAttendPoin" | "attitudeAvg" | "taskScore" | "attendanceScore" | "attitudeScore" | "finalScore" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["monthlyEvaluation"]>
+  export type MonthlyEvaluationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    santri?: boolean | UserDefaultArgs<ExtArgs>
+    class?: boolean | ClassDefaultArgs<ExtArgs>
+  }
+  export type MonthlyEvaluationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    santri?: boolean | UserDefaultArgs<ExtArgs>
+    class?: boolean | ClassDefaultArgs<ExtArgs>
+  }
+  export type MonthlyEvaluationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    santri?: boolean | UserDefaultArgs<ExtArgs>
+    class?: boolean | ClassDefaultArgs<ExtArgs>
+  }
+
+  export type $MonthlyEvaluationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MonthlyEvaluation"
+    objects: {
+      santri: Prisma.$UserPayload<ExtArgs>
+      class: Prisma.$ClassPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      santriId: string
+      classId: string
+      month: number
+      year: number
+      taskAvg: number
+      attendancePoin: number
+      maxAttendPoin: number
+      attitudeAvg: number
+      taskScore: number
+      attendanceScore: number
+      attitudeScore: number
+      finalScore: number
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["monthlyEvaluation"]>
+    composites: {}
+  }
+
+  type MonthlyEvaluationGetPayload<S extends boolean | null | undefined | MonthlyEvaluationDefaultArgs> = $Result.GetResult<Prisma.$MonthlyEvaluationPayload, S>
+
+  type MonthlyEvaluationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MonthlyEvaluationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MonthlyEvaluationCountAggregateInputType | true
+    }
+
+  export interface MonthlyEvaluationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MonthlyEvaluation'], meta: { name: 'MonthlyEvaluation' } }
+    /**
+     * Find zero or one MonthlyEvaluation that matches the filter.
+     * @param {MonthlyEvaluationFindUniqueArgs} args - Arguments to find a MonthlyEvaluation
+     * @example
+     * // Get one MonthlyEvaluation
+     * const monthlyEvaluation = await prisma.monthlyEvaluation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MonthlyEvaluationFindUniqueArgs>(args: SelectSubset<T, MonthlyEvaluationFindUniqueArgs<ExtArgs>>): Prisma__MonthlyEvaluationClient<$Result.GetResult<Prisma.$MonthlyEvaluationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MonthlyEvaluation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MonthlyEvaluationFindUniqueOrThrowArgs} args - Arguments to find a MonthlyEvaluation
+     * @example
+     * // Get one MonthlyEvaluation
+     * const monthlyEvaluation = await prisma.monthlyEvaluation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MonthlyEvaluationFindUniqueOrThrowArgs>(args: SelectSubset<T, MonthlyEvaluationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MonthlyEvaluationClient<$Result.GetResult<Prisma.$MonthlyEvaluationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MonthlyEvaluation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MonthlyEvaluationFindFirstArgs} args - Arguments to find a MonthlyEvaluation
+     * @example
+     * // Get one MonthlyEvaluation
+     * const monthlyEvaluation = await prisma.monthlyEvaluation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MonthlyEvaluationFindFirstArgs>(args?: SelectSubset<T, MonthlyEvaluationFindFirstArgs<ExtArgs>>): Prisma__MonthlyEvaluationClient<$Result.GetResult<Prisma.$MonthlyEvaluationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MonthlyEvaluation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MonthlyEvaluationFindFirstOrThrowArgs} args - Arguments to find a MonthlyEvaluation
+     * @example
+     * // Get one MonthlyEvaluation
+     * const monthlyEvaluation = await prisma.monthlyEvaluation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MonthlyEvaluationFindFirstOrThrowArgs>(args?: SelectSubset<T, MonthlyEvaluationFindFirstOrThrowArgs<ExtArgs>>): Prisma__MonthlyEvaluationClient<$Result.GetResult<Prisma.$MonthlyEvaluationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MonthlyEvaluations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MonthlyEvaluationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MonthlyEvaluations
+     * const monthlyEvaluations = await prisma.monthlyEvaluation.findMany()
+     * 
+     * // Get first 10 MonthlyEvaluations
+     * const monthlyEvaluations = await prisma.monthlyEvaluation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const monthlyEvaluationWithIdOnly = await prisma.monthlyEvaluation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MonthlyEvaluationFindManyArgs>(args?: SelectSubset<T, MonthlyEvaluationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MonthlyEvaluationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MonthlyEvaluation.
+     * @param {MonthlyEvaluationCreateArgs} args - Arguments to create a MonthlyEvaluation.
+     * @example
+     * // Create one MonthlyEvaluation
+     * const MonthlyEvaluation = await prisma.monthlyEvaluation.create({
+     *   data: {
+     *     // ... data to create a MonthlyEvaluation
+     *   }
+     * })
+     * 
+     */
+    create<T extends MonthlyEvaluationCreateArgs>(args: SelectSubset<T, MonthlyEvaluationCreateArgs<ExtArgs>>): Prisma__MonthlyEvaluationClient<$Result.GetResult<Prisma.$MonthlyEvaluationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MonthlyEvaluations.
+     * @param {MonthlyEvaluationCreateManyArgs} args - Arguments to create many MonthlyEvaluations.
+     * @example
+     * // Create many MonthlyEvaluations
+     * const monthlyEvaluation = await prisma.monthlyEvaluation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MonthlyEvaluationCreateManyArgs>(args?: SelectSubset<T, MonthlyEvaluationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MonthlyEvaluations and returns the data saved in the database.
+     * @param {MonthlyEvaluationCreateManyAndReturnArgs} args - Arguments to create many MonthlyEvaluations.
+     * @example
+     * // Create many MonthlyEvaluations
+     * const monthlyEvaluation = await prisma.monthlyEvaluation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MonthlyEvaluations and only return the `id`
+     * const monthlyEvaluationWithIdOnly = await prisma.monthlyEvaluation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MonthlyEvaluationCreateManyAndReturnArgs>(args?: SelectSubset<T, MonthlyEvaluationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MonthlyEvaluationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MonthlyEvaluation.
+     * @param {MonthlyEvaluationDeleteArgs} args - Arguments to delete one MonthlyEvaluation.
+     * @example
+     * // Delete one MonthlyEvaluation
+     * const MonthlyEvaluation = await prisma.monthlyEvaluation.delete({
+     *   where: {
+     *     // ... filter to delete one MonthlyEvaluation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MonthlyEvaluationDeleteArgs>(args: SelectSubset<T, MonthlyEvaluationDeleteArgs<ExtArgs>>): Prisma__MonthlyEvaluationClient<$Result.GetResult<Prisma.$MonthlyEvaluationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MonthlyEvaluation.
+     * @param {MonthlyEvaluationUpdateArgs} args - Arguments to update one MonthlyEvaluation.
+     * @example
+     * // Update one MonthlyEvaluation
+     * const monthlyEvaluation = await prisma.monthlyEvaluation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MonthlyEvaluationUpdateArgs>(args: SelectSubset<T, MonthlyEvaluationUpdateArgs<ExtArgs>>): Prisma__MonthlyEvaluationClient<$Result.GetResult<Prisma.$MonthlyEvaluationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MonthlyEvaluations.
+     * @param {MonthlyEvaluationDeleteManyArgs} args - Arguments to filter MonthlyEvaluations to delete.
+     * @example
+     * // Delete a few MonthlyEvaluations
+     * const { count } = await prisma.monthlyEvaluation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MonthlyEvaluationDeleteManyArgs>(args?: SelectSubset<T, MonthlyEvaluationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MonthlyEvaluations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MonthlyEvaluationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MonthlyEvaluations
+     * const monthlyEvaluation = await prisma.monthlyEvaluation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MonthlyEvaluationUpdateManyArgs>(args: SelectSubset<T, MonthlyEvaluationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MonthlyEvaluations and returns the data updated in the database.
+     * @param {MonthlyEvaluationUpdateManyAndReturnArgs} args - Arguments to update many MonthlyEvaluations.
+     * @example
+     * // Update many MonthlyEvaluations
+     * const monthlyEvaluation = await prisma.monthlyEvaluation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MonthlyEvaluations and only return the `id`
+     * const monthlyEvaluationWithIdOnly = await prisma.monthlyEvaluation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MonthlyEvaluationUpdateManyAndReturnArgs>(args: SelectSubset<T, MonthlyEvaluationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MonthlyEvaluationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MonthlyEvaluation.
+     * @param {MonthlyEvaluationUpsertArgs} args - Arguments to update or create a MonthlyEvaluation.
+     * @example
+     * // Update or create a MonthlyEvaluation
+     * const monthlyEvaluation = await prisma.monthlyEvaluation.upsert({
+     *   create: {
+     *     // ... data to create a MonthlyEvaluation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MonthlyEvaluation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MonthlyEvaluationUpsertArgs>(args: SelectSubset<T, MonthlyEvaluationUpsertArgs<ExtArgs>>): Prisma__MonthlyEvaluationClient<$Result.GetResult<Prisma.$MonthlyEvaluationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MonthlyEvaluations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MonthlyEvaluationCountArgs} args - Arguments to filter MonthlyEvaluations to count.
+     * @example
+     * // Count the number of MonthlyEvaluations
+     * const count = await prisma.monthlyEvaluation.count({
+     *   where: {
+     *     // ... the filter for the MonthlyEvaluations we want to count
+     *   }
+     * })
+    **/
+    count<T extends MonthlyEvaluationCountArgs>(
+      args?: Subset<T, MonthlyEvaluationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MonthlyEvaluationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MonthlyEvaluation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MonthlyEvaluationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MonthlyEvaluationAggregateArgs>(args: Subset<T, MonthlyEvaluationAggregateArgs>): Prisma.PrismaPromise<GetMonthlyEvaluationAggregateType<T>>
+
+    /**
+     * Group by MonthlyEvaluation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MonthlyEvaluationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MonthlyEvaluationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MonthlyEvaluationGroupByArgs['orderBy'] }
+        : { orderBy?: MonthlyEvaluationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MonthlyEvaluationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMonthlyEvaluationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MonthlyEvaluation model
+   */
+  readonly fields: MonthlyEvaluationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MonthlyEvaluation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MonthlyEvaluationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    santri<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    class<T extends ClassDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClassDefaultArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MonthlyEvaluation model
+   */
+  interface MonthlyEvaluationFieldRefs {
+    readonly id: FieldRef<"MonthlyEvaluation", 'String'>
+    readonly santriId: FieldRef<"MonthlyEvaluation", 'String'>
+    readonly classId: FieldRef<"MonthlyEvaluation", 'String'>
+    readonly month: FieldRef<"MonthlyEvaluation", 'Int'>
+    readonly year: FieldRef<"MonthlyEvaluation", 'Int'>
+    readonly taskAvg: FieldRef<"MonthlyEvaluation", 'Float'>
+    readonly attendancePoin: FieldRef<"MonthlyEvaluation", 'Int'>
+    readonly maxAttendPoin: FieldRef<"MonthlyEvaluation", 'Int'>
+    readonly attitudeAvg: FieldRef<"MonthlyEvaluation", 'Float'>
+    readonly taskScore: FieldRef<"MonthlyEvaluation", 'Float'>
+    readonly attendanceScore: FieldRef<"MonthlyEvaluation", 'Float'>
+    readonly attitudeScore: FieldRef<"MonthlyEvaluation", 'Float'>
+    readonly finalScore: FieldRef<"MonthlyEvaluation", 'Float'>
+    readonly notes: FieldRef<"MonthlyEvaluation", 'String'>
+    readonly createdAt: FieldRef<"MonthlyEvaluation", 'DateTime'>
+    readonly updatedAt: FieldRef<"MonthlyEvaluation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MonthlyEvaluation findUnique
+   */
+  export type MonthlyEvaluationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationInclude<ExtArgs> | null
+    /**
+     * Filter, which MonthlyEvaluation to fetch.
+     */
+    where: MonthlyEvaluationWhereUniqueInput
+  }
+
+  /**
+   * MonthlyEvaluation findUniqueOrThrow
+   */
+  export type MonthlyEvaluationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationInclude<ExtArgs> | null
+    /**
+     * Filter, which MonthlyEvaluation to fetch.
+     */
+    where: MonthlyEvaluationWhereUniqueInput
+  }
+
+  /**
+   * MonthlyEvaluation findFirst
+   */
+  export type MonthlyEvaluationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationInclude<ExtArgs> | null
+    /**
+     * Filter, which MonthlyEvaluation to fetch.
+     */
+    where?: MonthlyEvaluationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MonthlyEvaluations to fetch.
+     */
+    orderBy?: MonthlyEvaluationOrderByWithRelationInput | MonthlyEvaluationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MonthlyEvaluations.
+     */
+    cursor?: MonthlyEvaluationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MonthlyEvaluations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MonthlyEvaluations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MonthlyEvaluations.
+     */
+    distinct?: MonthlyEvaluationScalarFieldEnum | MonthlyEvaluationScalarFieldEnum[]
+  }
+
+  /**
+   * MonthlyEvaluation findFirstOrThrow
+   */
+  export type MonthlyEvaluationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationInclude<ExtArgs> | null
+    /**
+     * Filter, which MonthlyEvaluation to fetch.
+     */
+    where?: MonthlyEvaluationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MonthlyEvaluations to fetch.
+     */
+    orderBy?: MonthlyEvaluationOrderByWithRelationInput | MonthlyEvaluationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MonthlyEvaluations.
+     */
+    cursor?: MonthlyEvaluationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MonthlyEvaluations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MonthlyEvaluations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MonthlyEvaluations.
+     */
+    distinct?: MonthlyEvaluationScalarFieldEnum | MonthlyEvaluationScalarFieldEnum[]
+  }
+
+  /**
+   * MonthlyEvaluation findMany
+   */
+  export type MonthlyEvaluationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationInclude<ExtArgs> | null
+    /**
+     * Filter, which MonthlyEvaluations to fetch.
+     */
+    where?: MonthlyEvaluationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MonthlyEvaluations to fetch.
+     */
+    orderBy?: MonthlyEvaluationOrderByWithRelationInput | MonthlyEvaluationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MonthlyEvaluations.
+     */
+    cursor?: MonthlyEvaluationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MonthlyEvaluations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MonthlyEvaluations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MonthlyEvaluations.
+     */
+    distinct?: MonthlyEvaluationScalarFieldEnum | MonthlyEvaluationScalarFieldEnum[]
+  }
+
+  /**
+   * MonthlyEvaluation create
+   */
+  export type MonthlyEvaluationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MonthlyEvaluation.
+     */
+    data: XOR<MonthlyEvaluationCreateInput, MonthlyEvaluationUncheckedCreateInput>
+  }
+
+  /**
+   * MonthlyEvaluation createMany
+   */
+  export type MonthlyEvaluationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MonthlyEvaluations.
+     */
+    data: MonthlyEvaluationCreateManyInput | MonthlyEvaluationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MonthlyEvaluation createManyAndReturn
+   */
+  export type MonthlyEvaluationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * The data used to create many MonthlyEvaluations.
+     */
+    data: MonthlyEvaluationCreateManyInput | MonthlyEvaluationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MonthlyEvaluation update
+   */
+  export type MonthlyEvaluationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MonthlyEvaluation.
+     */
+    data: XOR<MonthlyEvaluationUpdateInput, MonthlyEvaluationUncheckedUpdateInput>
+    /**
+     * Choose, which MonthlyEvaluation to update.
+     */
+    where: MonthlyEvaluationWhereUniqueInput
+  }
+
+  /**
+   * MonthlyEvaluation updateMany
+   */
+  export type MonthlyEvaluationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MonthlyEvaluations.
+     */
+    data: XOR<MonthlyEvaluationUpdateManyMutationInput, MonthlyEvaluationUncheckedUpdateManyInput>
+    /**
+     * Filter which MonthlyEvaluations to update
+     */
+    where?: MonthlyEvaluationWhereInput
+    /**
+     * Limit how many MonthlyEvaluations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MonthlyEvaluation updateManyAndReturn
+   */
+  export type MonthlyEvaluationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * The data used to update MonthlyEvaluations.
+     */
+    data: XOR<MonthlyEvaluationUpdateManyMutationInput, MonthlyEvaluationUncheckedUpdateManyInput>
+    /**
+     * Filter which MonthlyEvaluations to update
+     */
+    where?: MonthlyEvaluationWhereInput
+    /**
+     * Limit how many MonthlyEvaluations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MonthlyEvaluation upsert
+   */
+  export type MonthlyEvaluationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MonthlyEvaluation to update in case it exists.
+     */
+    where: MonthlyEvaluationWhereUniqueInput
+    /**
+     * In case the MonthlyEvaluation found by the `where` argument doesn't exist, create a new MonthlyEvaluation with this data.
+     */
+    create: XOR<MonthlyEvaluationCreateInput, MonthlyEvaluationUncheckedCreateInput>
+    /**
+     * In case the MonthlyEvaluation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MonthlyEvaluationUpdateInput, MonthlyEvaluationUncheckedUpdateInput>
+  }
+
+  /**
+   * MonthlyEvaluation delete
+   */
+  export type MonthlyEvaluationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationInclude<ExtArgs> | null
+    /**
+     * Filter which MonthlyEvaluation to delete.
+     */
+    where: MonthlyEvaluationWhereUniqueInput
+  }
+
+  /**
+   * MonthlyEvaluation deleteMany
+   */
+  export type MonthlyEvaluationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MonthlyEvaluations to delete
+     */
+    where?: MonthlyEvaluationWhereInput
+    /**
+     * Limit how many MonthlyEvaluations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MonthlyEvaluation without action
+   */
+  export type MonthlyEvaluationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model SantriProfile
    */
 
@@ -11339,6 +12760,7 @@ export namespace Prisma {
     santriRelations?: boolean | User$santriRelationsArgs<ExtArgs>
     dailyJournals?: boolean | User$dailyJournalsArgs<ExtArgs>
     mentorDailyJournals?: boolean | User$mentorDailyJournalsArgs<ExtArgs>
+    monthlyEvaluations?: boolean | User$monthlyEvaluationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -11392,6 +12814,7 @@ export namespace Prisma {
     santriRelations?: boolean | User$santriRelationsArgs<ExtArgs>
     dailyJournals?: boolean | User$dailyJournalsArgs<ExtArgs>
     mentorDailyJournals?: boolean | User$mentorDailyJournalsArgs<ExtArgs>
+    monthlyEvaluations?: boolean | User$monthlyEvaluationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -11412,6 +12835,7 @@ export namespace Prisma {
       santriRelations: Prisma.$WaliSantriRelationPayload<ExtArgs>[]
       dailyJournals: Prisma.$DailyJournalPayload<ExtArgs>[]
       mentorDailyJournals: Prisma.$DailyJournalPayload<ExtArgs>[]
+      monthlyEvaluations: Prisma.$MonthlyEvaluationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11829,6 +13253,7 @@ export namespace Prisma {
     santriRelations<T extends User$santriRelationsArgs<ExtArgs> = {}>(args?: Subset<T, User$santriRelationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaliSantriRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     dailyJournals<T extends User$dailyJournalsArgs<ExtArgs> = {}>(args?: Subset<T, User$dailyJournalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     mentorDailyJournals<T extends User$mentorDailyJournalsArgs<ExtArgs> = {}>(args?: Subset<T, User$mentorDailyJournalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyJournalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    monthlyEvaluations<T extends User$monthlyEvaluationsArgs<ExtArgs> = {}>(args?: Subset<T, User$monthlyEvaluationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MonthlyEvaluationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12535,6 +13960,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DailyJournalScalarFieldEnum | DailyJournalScalarFieldEnum[]
+  }
+
+  /**
+   * User.monthlyEvaluations
+   */
+  export type User$monthlyEvaluationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MonthlyEvaluation
+     */
+    select?: MonthlyEvaluationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MonthlyEvaluation
+     */
+    omit?: MonthlyEvaluationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MonthlyEvaluationInclude<ExtArgs> | null
+    where?: MonthlyEvaluationWhereInput
+    orderBy?: MonthlyEvaluationOrderByWithRelationInput | MonthlyEvaluationOrderByWithRelationInput[]
+    cursor?: MonthlyEvaluationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MonthlyEvaluationScalarFieldEnum | MonthlyEvaluationScalarFieldEnum[]
   }
 
   /**
@@ -14823,6 +16272,28 @@ export namespace Prisma {
   export type DivisionScalarFieldEnum = (typeof DivisionScalarFieldEnum)[keyof typeof DivisionScalarFieldEnum]
 
 
+  export const MonthlyEvaluationScalarFieldEnum: {
+    id: 'id',
+    santriId: 'santriId',
+    classId: 'classId',
+    month: 'month',
+    year: 'year',
+    taskAvg: 'taskAvg',
+    attendancePoin: 'attendancePoin',
+    maxAttendPoin: 'maxAttendPoin',
+    attitudeAvg: 'attitudeAvg',
+    taskScore: 'taskScore',
+    attendanceScore: 'attendanceScore',
+    attitudeScore: 'attitudeScore',
+    finalScore: 'finalScore',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MonthlyEvaluationScalarFieldEnum = (typeof MonthlyEvaluationScalarFieldEnum)[keyof typeof MonthlyEvaluationScalarFieldEnum]
+
+
   export const SantriProfileScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -15369,6 +16840,7 @@ export namespace Prisma {
     assignments?: AssignmentListRelationFilter
     santriProfiles?: SantriProfileListRelationFilter
     dailyJournals?: DailyJournalListRelationFilter
+    monthlyEvaluations?: MonthlyEvaluationListRelationFilter
   }
 
   export type ClassOrderByWithRelationInput = {
@@ -15383,6 +16855,7 @@ export namespace Prisma {
     assignments?: AssignmentOrderByRelationAggregateInput
     santriProfiles?: SantriProfileOrderByRelationAggregateInput
     dailyJournals?: DailyJournalOrderByRelationAggregateInput
+    monthlyEvaluations?: MonthlyEvaluationOrderByRelationAggregateInput
   }
 
   export type ClassWhereUniqueInput = Prisma.AtLeast<{
@@ -15400,6 +16873,7 @@ export namespace Prisma {
     assignments?: AssignmentListRelationFilter
     santriProfiles?: SantriProfileListRelationFilter
     dailyJournals?: DailyJournalListRelationFilter
+    monthlyEvaluations?: MonthlyEvaluationListRelationFilter
   }, "id">
 
   export type ClassOrderByWithAggregationInput = {
@@ -15562,6 +17036,122 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Division"> | Date | string
   }
 
+  export type MonthlyEvaluationWhereInput = {
+    AND?: MonthlyEvaluationWhereInput | MonthlyEvaluationWhereInput[]
+    OR?: MonthlyEvaluationWhereInput[]
+    NOT?: MonthlyEvaluationWhereInput | MonthlyEvaluationWhereInput[]
+    id?: StringFilter<"MonthlyEvaluation"> | string
+    santriId?: StringFilter<"MonthlyEvaluation"> | string
+    classId?: StringFilter<"MonthlyEvaluation"> | string
+    month?: IntFilter<"MonthlyEvaluation"> | number
+    year?: IntFilter<"MonthlyEvaluation"> | number
+    taskAvg?: FloatFilter<"MonthlyEvaluation"> | number
+    attendancePoin?: IntFilter<"MonthlyEvaluation"> | number
+    maxAttendPoin?: IntFilter<"MonthlyEvaluation"> | number
+    attitudeAvg?: FloatFilter<"MonthlyEvaluation"> | number
+    taskScore?: FloatFilter<"MonthlyEvaluation"> | number
+    attendanceScore?: FloatFilter<"MonthlyEvaluation"> | number
+    attitudeScore?: FloatFilter<"MonthlyEvaluation"> | number
+    finalScore?: FloatFilter<"MonthlyEvaluation"> | number
+    notes?: StringNullableFilter<"MonthlyEvaluation"> | string | null
+    createdAt?: DateTimeFilter<"MonthlyEvaluation"> | Date | string
+    updatedAt?: DateTimeFilter<"MonthlyEvaluation"> | Date | string
+    santri?: XOR<UserScalarRelationFilter, UserWhereInput>
+    class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
+  }
+
+  export type MonthlyEvaluationOrderByWithRelationInput = {
+    id?: SortOrder
+    santriId?: SortOrder
+    classId?: SortOrder
+    month?: SortOrder
+    year?: SortOrder
+    taskAvg?: SortOrder
+    attendancePoin?: SortOrder
+    maxAttendPoin?: SortOrder
+    attitudeAvg?: SortOrder
+    taskScore?: SortOrder
+    attendanceScore?: SortOrder
+    attitudeScore?: SortOrder
+    finalScore?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    santri?: UserOrderByWithRelationInput
+    class?: ClassOrderByWithRelationInput
+  }
+
+  export type MonthlyEvaluationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    santriId_classId_month_year?: MonthlyEvaluationSantriIdClassIdMonthYearCompoundUniqueInput
+    AND?: MonthlyEvaluationWhereInput | MonthlyEvaluationWhereInput[]
+    OR?: MonthlyEvaluationWhereInput[]
+    NOT?: MonthlyEvaluationWhereInput | MonthlyEvaluationWhereInput[]
+    santriId?: StringFilter<"MonthlyEvaluation"> | string
+    classId?: StringFilter<"MonthlyEvaluation"> | string
+    month?: IntFilter<"MonthlyEvaluation"> | number
+    year?: IntFilter<"MonthlyEvaluation"> | number
+    taskAvg?: FloatFilter<"MonthlyEvaluation"> | number
+    attendancePoin?: IntFilter<"MonthlyEvaluation"> | number
+    maxAttendPoin?: IntFilter<"MonthlyEvaluation"> | number
+    attitudeAvg?: FloatFilter<"MonthlyEvaluation"> | number
+    taskScore?: FloatFilter<"MonthlyEvaluation"> | number
+    attendanceScore?: FloatFilter<"MonthlyEvaluation"> | number
+    attitudeScore?: FloatFilter<"MonthlyEvaluation"> | number
+    finalScore?: FloatFilter<"MonthlyEvaluation"> | number
+    notes?: StringNullableFilter<"MonthlyEvaluation"> | string | null
+    createdAt?: DateTimeFilter<"MonthlyEvaluation"> | Date | string
+    updatedAt?: DateTimeFilter<"MonthlyEvaluation"> | Date | string
+    santri?: XOR<UserScalarRelationFilter, UserWhereInput>
+    class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
+  }, "id" | "santriId_classId_month_year">
+
+  export type MonthlyEvaluationOrderByWithAggregationInput = {
+    id?: SortOrder
+    santriId?: SortOrder
+    classId?: SortOrder
+    month?: SortOrder
+    year?: SortOrder
+    taskAvg?: SortOrder
+    attendancePoin?: SortOrder
+    maxAttendPoin?: SortOrder
+    attitudeAvg?: SortOrder
+    taskScore?: SortOrder
+    attendanceScore?: SortOrder
+    attitudeScore?: SortOrder
+    finalScore?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MonthlyEvaluationCountOrderByAggregateInput
+    _avg?: MonthlyEvaluationAvgOrderByAggregateInput
+    _max?: MonthlyEvaluationMaxOrderByAggregateInput
+    _min?: MonthlyEvaluationMinOrderByAggregateInput
+    _sum?: MonthlyEvaluationSumOrderByAggregateInput
+  }
+
+  export type MonthlyEvaluationScalarWhereWithAggregatesInput = {
+    AND?: MonthlyEvaluationScalarWhereWithAggregatesInput | MonthlyEvaluationScalarWhereWithAggregatesInput[]
+    OR?: MonthlyEvaluationScalarWhereWithAggregatesInput[]
+    NOT?: MonthlyEvaluationScalarWhereWithAggregatesInput | MonthlyEvaluationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MonthlyEvaluation"> | string
+    santriId?: StringWithAggregatesFilter<"MonthlyEvaluation"> | string
+    classId?: StringWithAggregatesFilter<"MonthlyEvaluation"> | string
+    month?: IntWithAggregatesFilter<"MonthlyEvaluation"> | number
+    year?: IntWithAggregatesFilter<"MonthlyEvaluation"> | number
+    taskAvg?: FloatWithAggregatesFilter<"MonthlyEvaluation"> | number
+    attendancePoin?: IntWithAggregatesFilter<"MonthlyEvaluation"> | number
+    maxAttendPoin?: IntWithAggregatesFilter<"MonthlyEvaluation"> | number
+    attitudeAvg?: FloatWithAggregatesFilter<"MonthlyEvaluation"> | number
+    taskScore?: FloatWithAggregatesFilter<"MonthlyEvaluation"> | number
+    attendanceScore?: FloatWithAggregatesFilter<"MonthlyEvaluation"> | number
+    attitudeScore?: FloatWithAggregatesFilter<"MonthlyEvaluation"> | number
+    finalScore?: FloatWithAggregatesFilter<"MonthlyEvaluation"> | number
+    notes?: StringNullableWithAggregatesFilter<"MonthlyEvaluation"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"MonthlyEvaluation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MonthlyEvaluation"> | Date | string
+  }
+
   export type SantriProfileWhereInput = {
     AND?: SantriProfileWhereInput | SantriProfileWhereInput[]
     OR?: SantriProfileWhereInput[]
@@ -15655,6 +17245,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationListRelationFilter
     dailyJournals?: DailyJournalListRelationFilter
     mentorDailyJournals?: DailyJournalListRelationFilter
+    monthlyEvaluations?: MonthlyEvaluationListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -15679,6 +17270,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationOrderByRelationAggregateInput
     dailyJournals?: DailyJournalOrderByRelationAggregateInput
     mentorDailyJournals?: DailyJournalOrderByRelationAggregateInput
+    monthlyEvaluations?: MonthlyEvaluationOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -15706,6 +17298,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationListRelationFilter
     dailyJournals?: DailyJournalListRelationFilter
     mentorDailyJournals?: DailyJournalListRelationFilter
+    monthlyEvaluations?: MonthlyEvaluationListRelationFilter
   }, "id" | "nis" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -16176,6 +17769,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateInput = {
@@ -16188,6 +17782,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassUpdateInput = {
@@ -16200,6 +17795,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateInput = {
@@ -16212,6 +17808,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type ClassCreateManyInput = {
@@ -16377,6 +17974,137 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MonthlyEvaluationCreateInput = {
+    id?: string
+    month: number
+    year: number
+    taskAvg?: number
+    attendancePoin?: number
+    maxAttendPoin?: number
+    attitudeAvg?: number
+    taskScore?: number
+    attendanceScore?: number
+    attitudeScore?: number
+    finalScore: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    santri: UserCreateNestedOneWithoutMonthlyEvaluationsInput
+    class: ClassCreateNestedOneWithoutMonthlyEvaluationsInput
+  }
+
+  export type MonthlyEvaluationUncheckedCreateInput = {
+    id?: string
+    santriId: string
+    classId: string
+    month: number
+    year: number
+    taskAvg?: number
+    attendancePoin?: number
+    maxAttendPoin?: number
+    attitudeAvg?: number
+    taskScore?: number
+    attendanceScore?: number
+    attitudeScore?: number
+    finalScore: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MonthlyEvaluationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    month?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    taskAvg?: FloatFieldUpdateOperationsInput | number
+    attendancePoin?: IntFieldUpdateOperationsInput | number
+    maxAttendPoin?: IntFieldUpdateOperationsInput | number
+    attitudeAvg?: FloatFieldUpdateOperationsInput | number
+    taskScore?: FloatFieldUpdateOperationsInput | number
+    attendanceScore?: FloatFieldUpdateOperationsInput | number
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    finalScore?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    santri?: UserUpdateOneRequiredWithoutMonthlyEvaluationsNestedInput
+    class?: ClassUpdateOneRequiredWithoutMonthlyEvaluationsNestedInput
+  }
+
+  export type MonthlyEvaluationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    month?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    taskAvg?: FloatFieldUpdateOperationsInput | number
+    attendancePoin?: IntFieldUpdateOperationsInput | number
+    maxAttendPoin?: IntFieldUpdateOperationsInput | number
+    attitudeAvg?: FloatFieldUpdateOperationsInput | number
+    taskScore?: FloatFieldUpdateOperationsInput | number
+    attendanceScore?: FloatFieldUpdateOperationsInput | number
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    finalScore?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MonthlyEvaluationCreateManyInput = {
+    id?: string
+    santriId: string
+    classId: string
+    month: number
+    year: number
+    taskAvg?: number
+    attendancePoin?: number
+    maxAttendPoin?: number
+    attitudeAvg?: number
+    taskScore?: number
+    attendanceScore?: number
+    attitudeScore?: number
+    finalScore: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MonthlyEvaluationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    month?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    taskAvg?: FloatFieldUpdateOperationsInput | number
+    attendancePoin?: IntFieldUpdateOperationsInput | number
+    maxAttendPoin?: IntFieldUpdateOperationsInput | number
+    attitudeAvg?: FloatFieldUpdateOperationsInput | number
+    taskScore?: FloatFieldUpdateOperationsInput | number
+    attendanceScore?: FloatFieldUpdateOperationsInput | number
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    finalScore?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MonthlyEvaluationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    month?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    taskAvg?: FloatFieldUpdateOperationsInput | number
+    attendancePoin?: IntFieldUpdateOperationsInput | number
+    maxAttendPoin?: IntFieldUpdateOperationsInput | number
+    attitudeAvg?: FloatFieldUpdateOperationsInput | number
+    taskScore?: FloatFieldUpdateOperationsInput | number
+    attendanceScore?: FloatFieldUpdateOperationsInput | number
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    finalScore?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type SantriProfileCreateInput = {
     id?: string
     phone?: string | null
@@ -16467,6 +18195,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutSantriInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -16491,6 +18220,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput
   }
 
   export type UserUpdateInput = {
@@ -16515,6 +18245,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -16539,6 +18270,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -17107,6 +18839,12 @@ export namespace Prisma {
     none?: DailyJournalWhereInput
   }
 
+  export type MonthlyEvaluationListRelationFilter = {
+    every?: MonthlyEvaluationWhereInput
+    some?: MonthlyEvaluationWhereInput
+    none?: MonthlyEvaluationWhereInput
+  }
+
   export type AttendanceOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -17120,6 +18858,10 @@ export namespace Prisma {
   }
 
   export type DailyJournalOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MonthlyEvaluationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17250,6 +18992,123 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type MonthlyEvaluationSantriIdClassIdMonthYearCompoundUniqueInput = {
+    santriId: string
+    classId: string
+    month: number
+    year: number
+  }
+
+  export type MonthlyEvaluationCountOrderByAggregateInput = {
+    id?: SortOrder
+    santriId?: SortOrder
+    classId?: SortOrder
+    month?: SortOrder
+    year?: SortOrder
+    taskAvg?: SortOrder
+    attendancePoin?: SortOrder
+    maxAttendPoin?: SortOrder
+    attitudeAvg?: SortOrder
+    taskScore?: SortOrder
+    attendanceScore?: SortOrder
+    attitudeScore?: SortOrder
+    finalScore?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MonthlyEvaluationAvgOrderByAggregateInput = {
+    month?: SortOrder
+    year?: SortOrder
+    taskAvg?: SortOrder
+    attendancePoin?: SortOrder
+    maxAttendPoin?: SortOrder
+    attitudeAvg?: SortOrder
+    taskScore?: SortOrder
+    attendanceScore?: SortOrder
+    attitudeScore?: SortOrder
+    finalScore?: SortOrder
+  }
+
+  export type MonthlyEvaluationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    santriId?: SortOrder
+    classId?: SortOrder
+    month?: SortOrder
+    year?: SortOrder
+    taskAvg?: SortOrder
+    attendancePoin?: SortOrder
+    maxAttendPoin?: SortOrder
+    attitudeAvg?: SortOrder
+    taskScore?: SortOrder
+    attendanceScore?: SortOrder
+    attitudeScore?: SortOrder
+    finalScore?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MonthlyEvaluationMinOrderByAggregateInput = {
+    id?: SortOrder
+    santriId?: SortOrder
+    classId?: SortOrder
+    month?: SortOrder
+    year?: SortOrder
+    taskAvg?: SortOrder
+    attendancePoin?: SortOrder
+    maxAttendPoin?: SortOrder
+    attitudeAvg?: SortOrder
+    taskScore?: SortOrder
+    attendanceScore?: SortOrder
+    attitudeScore?: SortOrder
+    finalScore?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MonthlyEvaluationSumOrderByAggregateInput = {
+    month?: SortOrder
+    year?: SortOrder
+    taskAvg?: SortOrder
+    attendancePoin?: SortOrder
+    maxAttendPoin?: SortOrder
+    attitudeAvg?: SortOrder
+    taskScore?: SortOrder
+    attendanceScore?: SortOrder
+    attitudeScore?: SortOrder
+    finalScore?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -17723,6 +19582,13 @@ export namespace Prisma {
     connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
   }
 
+  export type MonthlyEvaluationCreateNestedManyWithoutClassInput = {
+    create?: XOR<MonthlyEvaluationCreateWithoutClassInput, MonthlyEvaluationUncheckedCreateWithoutClassInput> | MonthlyEvaluationCreateWithoutClassInput[] | MonthlyEvaluationUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: MonthlyEvaluationCreateOrConnectWithoutClassInput | MonthlyEvaluationCreateOrConnectWithoutClassInput[]
+    createMany?: MonthlyEvaluationCreateManyClassInputEnvelope
+    connect?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+  }
+
   export type AttendanceUncheckedCreateNestedManyWithoutClassInput = {
     create?: XOR<AttendanceCreateWithoutClassInput, AttendanceUncheckedCreateWithoutClassInput> | AttendanceCreateWithoutClassInput[] | AttendanceUncheckedCreateWithoutClassInput[]
     connectOrCreate?: AttendanceCreateOrConnectWithoutClassInput | AttendanceCreateOrConnectWithoutClassInput[]
@@ -17749,6 +19615,13 @@ export namespace Prisma {
     connectOrCreate?: DailyJournalCreateOrConnectWithoutClassInput | DailyJournalCreateOrConnectWithoutClassInput[]
     createMany?: DailyJournalCreateManyClassInputEnvelope
     connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+  }
+
+  export type MonthlyEvaluationUncheckedCreateNestedManyWithoutClassInput = {
+    create?: XOR<MonthlyEvaluationCreateWithoutClassInput, MonthlyEvaluationUncheckedCreateWithoutClassInput> | MonthlyEvaluationCreateWithoutClassInput[] | MonthlyEvaluationUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: MonthlyEvaluationCreateOrConnectWithoutClassInput | MonthlyEvaluationCreateOrConnectWithoutClassInput[]
+    createMany?: MonthlyEvaluationCreateManyClassInputEnvelope
+    connect?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
   }
 
   export type DivisionUpdateOneRequiredWithoutClassesNestedInput = {
@@ -17823,6 +19696,20 @@ export namespace Prisma {
     deleteMany?: DailyJournalScalarWhereInput | DailyJournalScalarWhereInput[]
   }
 
+  export type MonthlyEvaluationUpdateManyWithoutClassNestedInput = {
+    create?: XOR<MonthlyEvaluationCreateWithoutClassInput, MonthlyEvaluationUncheckedCreateWithoutClassInput> | MonthlyEvaluationCreateWithoutClassInput[] | MonthlyEvaluationUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: MonthlyEvaluationCreateOrConnectWithoutClassInput | MonthlyEvaluationCreateOrConnectWithoutClassInput[]
+    upsert?: MonthlyEvaluationUpsertWithWhereUniqueWithoutClassInput | MonthlyEvaluationUpsertWithWhereUniqueWithoutClassInput[]
+    createMany?: MonthlyEvaluationCreateManyClassInputEnvelope
+    set?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    disconnect?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    delete?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    connect?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    update?: MonthlyEvaluationUpdateWithWhereUniqueWithoutClassInput | MonthlyEvaluationUpdateWithWhereUniqueWithoutClassInput[]
+    updateMany?: MonthlyEvaluationUpdateManyWithWhereWithoutClassInput | MonthlyEvaluationUpdateManyWithWhereWithoutClassInput[]
+    deleteMany?: MonthlyEvaluationScalarWhereInput | MonthlyEvaluationScalarWhereInput[]
+  }
+
   export type AttendanceUncheckedUpdateManyWithoutClassNestedInput = {
     create?: XOR<AttendanceCreateWithoutClassInput, AttendanceUncheckedCreateWithoutClassInput> | AttendanceCreateWithoutClassInput[] | AttendanceUncheckedCreateWithoutClassInput[]
     connectOrCreate?: AttendanceCreateOrConnectWithoutClassInput | AttendanceCreateOrConnectWithoutClassInput[]
@@ -17877,6 +19764,20 @@ export namespace Prisma {
     update?: DailyJournalUpdateWithWhereUniqueWithoutClassInput | DailyJournalUpdateWithWhereUniqueWithoutClassInput[]
     updateMany?: DailyJournalUpdateManyWithWhereWithoutClassInput | DailyJournalUpdateManyWithWhereWithoutClassInput[]
     deleteMany?: DailyJournalScalarWhereInput | DailyJournalScalarWhereInput[]
+  }
+
+  export type MonthlyEvaluationUncheckedUpdateManyWithoutClassNestedInput = {
+    create?: XOR<MonthlyEvaluationCreateWithoutClassInput, MonthlyEvaluationUncheckedCreateWithoutClassInput> | MonthlyEvaluationCreateWithoutClassInput[] | MonthlyEvaluationUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: MonthlyEvaluationCreateOrConnectWithoutClassInput | MonthlyEvaluationCreateOrConnectWithoutClassInput[]
+    upsert?: MonthlyEvaluationUpsertWithWhereUniqueWithoutClassInput | MonthlyEvaluationUpsertWithWhereUniqueWithoutClassInput[]
+    createMany?: MonthlyEvaluationCreateManyClassInputEnvelope
+    set?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    disconnect?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    delete?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    connect?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    update?: MonthlyEvaluationUpdateWithWhereUniqueWithoutClassInput | MonthlyEvaluationUpdateWithWhereUniqueWithoutClassInput[]
+    updateMany?: MonthlyEvaluationUpdateManyWithWhereWithoutClassInput | MonthlyEvaluationUpdateManyWithWhereWithoutClassInput[]
+    deleteMany?: MonthlyEvaluationScalarWhereInput | MonthlyEvaluationScalarWhereInput[]
   }
 
   export type ClassCreateNestedOneWithoutDailyJournalsInput = {
@@ -17969,6 +19870,42 @@ export namespace Prisma {
     update?: ClassUpdateWithWhereUniqueWithoutDivisionInput | ClassUpdateWithWhereUniqueWithoutDivisionInput[]
     updateMany?: ClassUpdateManyWithWhereWithoutDivisionInput | ClassUpdateManyWithWhereWithoutDivisionInput[]
     deleteMany?: ClassScalarWhereInput | ClassScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutMonthlyEvaluationsInput = {
+    create?: XOR<UserCreateWithoutMonthlyEvaluationsInput, UserUncheckedCreateWithoutMonthlyEvaluationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMonthlyEvaluationsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ClassCreateNestedOneWithoutMonthlyEvaluationsInput = {
+    create?: XOR<ClassCreateWithoutMonthlyEvaluationsInput, ClassUncheckedCreateWithoutMonthlyEvaluationsInput>
+    connectOrCreate?: ClassCreateOrConnectWithoutMonthlyEvaluationsInput
+    connect?: ClassWhereUniqueInput
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutMonthlyEvaluationsNestedInput = {
+    create?: XOR<UserCreateWithoutMonthlyEvaluationsInput, UserUncheckedCreateWithoutMonthlyEvaluationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMonthlyEvaluationsInput
+    upsert?: UserUpsertWithoutMonthlyEvaluationsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMonthlyEvaluationsInput, UserUpdateWithoutMonthlyEvaluationsInput>, UserUncheckedUpdateWithoutMonthlyEvaluationsInput>
+  }
+
+  export type ClassUpdateOneRequiredWithoutMonthlyEvaluationsNestedInput = {
+    create?: XOR<ClassCreateWithoutMonthlyEvaluationsInput, ClassUncheckedCreateWithoutMonthlyEvaluationsInput>
+    connectOrCreate?: ClassCreateOrConnectWithoutMonthlyEvaluationsInput
+    upsert?: ClassUpsertWithoutMonthlyEvaluationsInput
+    connect?: ClassWhereUniqueInput
+    update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutMonthlyEvaluationsInput, ClassUpdateWithoutMonthlyEvaluationsInput>, ClassUncheckedUpdateWithoutMonthlyEvaluationsInput>
   }
 
   export type UserCreateNestedOneWithoutSantriProfileInput = {
@@ -18087,6 +20024,13 @@ export namespace Prisma {
     connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
   }
 
+  export type MonthlyEvaluationCreateNestedManyWithoutSantriInput = {
+    create?: XOR<MonthlyEvaluationCreateWithoutSantriInput, MonthlyEvaluationUncheckedCreateWithoutSantriInput> | MonthlyEvaluationCreateWithoutSantriInput[] | MonthlyEvaluationUncheckedCreateWithoutSantriInput[]
+    connectOrCreate?: MonthlyEvaluationCreateOrConnectWithoutSantriInput | MonthlyEvaluationCreateOrConnectWithoutSantriInput[]
+    createMany?: MonthlyEvaluationCreateManySantriInputEnvelope
+    connect?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+  }
+
   export type WaliProfileUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<WaliProfileCreateWithoutUserInput, WaliProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: WaliProfileCreateOrConnectWithoutUserInput
@@ -18167,6 +20111,13 @@ export namespace Prisma {
     connectOrCreate?: DailyJournalCreateOrConnectWithoutMentorInput | DailyJournalCreateOrConnectWithoutMentorInput[]
     createMany?: DailyJournalCreateManyMentorInputEnvelope
     connect?: DailyJournalWhereUniqueInput | DailyJournalWhereUniqueInput[]
+  }
+
+  export type MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput = {
+    create?: XOR<MonthlyEvaluationCreateWithoutSantriInput, MonthlyEvaluationUncheckedCreateWithoutSantriInput> | MonthlyEvaluationCreateWithoutSantriInput[] | MonthlyEvaluationUncheckedCreateWithoutSantriInput[]
+    connectOrCreate?: MonthlyEvaluationCreateOrConnectWithoutSantriInput | MonthlyEvaluationCreateOrConnectWithoutSantriInput[]
+    createMany?: MonthlyEvaluationCreateManySantriInputEnvelope
+    connect?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
   }
 
   export type EnumRoleFieldUpdateOperationsInput = {
@@ -18337,6 +20288,20 @@ export namespace Prisma {
     deleteMany?: DailyJournalScalarWhereInput | DailyJournalScalarWhereInput[]
   }
 
+  export type MonthlyEvaluationUpdateManyWithoutSantriNestedInput = {
+    create?: XOR<MonthlyEvaluationCreateWithoutSantriInput, MonthlyEvaluationUncheckedCreateWithoutSantriInput> | MonthlyEvaluationCreateWithoutSantriInput[] | MonthlyEvaluationUncheckedCreateWithoutSantriInput[]
+    connectOrCreate?: MonthlyEvaluationCreateOrConnectWithoutSantriInput | MonthlyEvaluationCreateOrConnectWithoutSantriInput[]
+    upsert?: MonthlyEvaluationUpsertWithWhereUniqueWithoutSantriInput | MonthlyEvaluationUpsertWithWhereUniqueWithoutSantriInput[]
+    createMany?: MonthlyEvaluationCreateManySantriInputEnvelope
+    set?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    disconnect?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    delete?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    connect?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    update?: MonthlyEvaluationUpdateWithWhereUniqueWithoutSantriInput | MonthlyEvaluationUpdateWithWhereUniqueWithoutSantriInput[]
+    updateMany?: MonthlyEvaluationUpdateManyWithWhereWithoutSantriInput | MonthlyEvaluationUpdateManyWithWhereWithoutSantriInput[]
+    deleteMany?: MonthlyEvaluationScalarWhereInput | MonthlyEvaluationScalarWhereInput[]
+  }
+
   export type WaliProfileUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<WaliProfileCreateWithoutUserInput, WaliProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: WaliProfileCreateOrConnectWithoutUserInput
@@ -18495,6 +20460,20 @@ export namespace Prisma {
     update?: DailyJournalUpdateWithWhereUniqueWithoutMentorInput | DailyJournalUpdateWithWhereUniqueWithoutMentorInput[]
     updateMany?: DailyJournalUpdateManyWithWhereWithoutMentorInput | DailyJournalUpdateManyWithWhereWithoutMentorInput[]
     deleteMany?: DailyJournalScalarWhereInput | DailyJournalScalarWhereInput[]
+  }
+
+  export type MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput = {
+    create?: XOR<MonthlyEvaluationCreateWithoutSantriInput, MonthlyEvaluationUncheckedCreateWithoutSantriInput> | MonthlyEvaluationCreateWithoutSantriInput[] | MonthlyEvaluationUncheckedCreateWithoutSantriInput[]
+    connectOrCreate?: MonthlyEvaluationCreateOrConnectWithoutSantriInput | MonthlyEvaluationCreateOrConnectWithoutSantriInput[]
+    upsert?: MonthlyEvaluationUpsertWithWhereUniqueWithoutSantriInput | MonthlyEvaluationUpsertWithWhereUniqueWithoutSantriInput[]
+    createMany?: MonthlyEvaluationCreateManySantriInputEnvelope
+    set?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    disconnect?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    delete?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    connect?: MonthlyEvaluationWhereUniqueInput | MonthlyEvaluationWhereUniqueInput[]
+    update?: MonthlyEvaluationUpdateWithWhereUniqueWithoutSantriInput | MonthlyEvaluationUpdateWithWhereUniqueWithoutSantriInput[]
+    updateMany?: MonthlyEvaluationUpdateManyWithWhereWithoutSantriInput | MonthlyEvaluationUpdateManyWithWhereWithoutSantriInput[]
+    deleteMany?: MonthlyEvaluationScalarWhereInput | MonthlyEvaluationScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutWaliProfileInput = {
@@ -18774,6 +20753,22 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -18867,6 +20862,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutSantriInput
   }
 
   export type UserUncheckedCreateWithoutVerificationsInput = {
@@ -18890,6 +20886,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput
   }
 
   export type UserCreateOrConnectWithoutVerificationsInput = {
@@ -18929,6 +20926,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUncheckedUpdateWithoutVerificationsInput = {
@@ -18952,6 +20950,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput
   }
 
   export type ClassCreateWithoutAssignmentsInput = {
@@ -18963,6 +20962,7 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutAssignmentsInput = {
@@ -18974,6 +20974,7 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutAssignmentsInput = {
@@ -19002,6 +21003,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutSantriInput
   }
 
   export type UserUncheckedCreateWithoutMentorAssignmentsInput = {
@@ -19025,6 +21027,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput
   }
 
   export type UserCreateOrConnectWithoutMentorAssignmentsInput = {
@@ -19084,6 +21087,7 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutAssignmentsInput = {
@@ -19095,6 +21099,7 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type UserUpsertWithoutMentorAssignmentsInput = {
@@ -19129,6 +21134,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMentorAssignmentsInput = {
@@ -19152,6 +21158,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput
   }
 
   export type AssignmentContentUpsertWithWhereUniqueWithoutAssignmentInput = {
@@ -19235,6 +21242,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutSantriInput
   }
 
   export type UserUncheckedCreateWithoutSantriSubmissionsInput = {
@@ -19258,6 +21266,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput
   }
 
   export type UserCreateOrConnectWithoutSantriSubmissionsInput = {
@@ -19332,6 +21341,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSantriSubmissionsInput = {
@@ -19355,6 +21365,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput
   }
 
   export type ClassCreateWithoutAttendancesInput = {
@@ -19366,6 +21377,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutAttendancesInput = {
@@ -19377,6 +21389,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutAttendancesInput = {
@@ -19405,6 +21418,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutSantriInput
   }
 
   export type UserUncheckedCreateWithoutSantriAttendancesInput = {
@@ -19428,6 +21442,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput
   }
 
   export type UserCreateOrConnectWithoutSantriAttendancesInput = {
@@ -19456,6 +21471,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutSantriInput
   }
 
   export type UserUncheckedCreateWithoutMentorAttendancesInput = {
@@ -19479,6 +21495,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput
   }
 
   export type UserCreateOrConnectWithoutMentorAttendancesInput = {
@@ -19506,6 +21523,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutAttendancesInput = {
@@ -19517,6 +21535,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type UserUpsertWithoutSantriAttendancesInput = {
@@ -19551,6 +21570,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSantriAttendancesInput = {
@@ -19574,6 +21594,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUpsertWithoutMentorAttendancesInput = {
@@ -19608,6 +21629,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMentorAttendancesInput = {
@@ -19631,6 +21653,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput
   }
 
   export type DivisionCreateWithoutClassesInput = {
@@ -19673,6 +21696,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutSantriInput
   }
 
   export type UserUncheckedCreateWithoutMentorClassesInput = {
@@ -19696,6 +21720,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput
   }
 
   export type UserCreateOrConnectWithoutMentorClassesInput = {
@@ -19831,6 +21856,52 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MonthlyEvaluationCreateWithoutClassInput = {
+    id?: string
+    month: number
+    year: number
+    taskAvg?: number
+    attendancePoin?: number
+    maxAttendPoin?: number
+    attitudeAvg?: number
+    taskScore?: number
+    attendanceScore?: number
+    attitudeScore?: number
+    finalScore: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    santri: UserCreateNestedOneWithoutMonthlyEvaluationsInput
+  }
+
+  export type MonthlyEvaluationUncheckedCreateWithoutClassInput = {
+    id?: string
+    santriId: string
+    month: number
+    year: number
+    taskAvg?: number
+    attendancePoin?: number
+    maxAttendPoin?: number
+    attitudeAvg?: number
+    taskScore?: number
+    attendanceScore?: number
+    attitudeScore?: number
+    finalScore: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MonthlyEvaluationCreateOrConnectWithoutClassInput = {
+    where: MonthlyEvaluationWhereUniqueInput
+    create: XOR<MonthlyEvaluationCreateWithoutClassInput, MonthlyEvaluationUncheckedCreateWithoutClassInput>
+  }
+
+  export type MonthlyEvaluationCreateManyClassInputEnvelope = {
+    data: MonthlyEvaluationCreateManyClassInput | MonthlyEvaluationCreateManyClassInput[]
+    skipDuplicates?: boolean
+  }
+
   export type DivisionUpsertWithoutClassesInput = {
     update: XOR<DivisionUpdateWithoutClassesInput, DivisionUncheckedUpdateWithoutClassesInput>
     create: XOR<DivisionCreateWithoutClassesInput, DivisionUncheckedCreateWithoutClassesInput>
@@ -19888,6 +21959,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMentorClassesInput = {
@@ -19911,6 +21983,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput
   }
 
   export type AttendanceUpsertWithWhereUniqueWithoutClassInput = {
@@ -20036,6 +22109,44 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"DailyJournal"> | Date | string
   }
 
+  export type MonthlyEvaluationUpsertWithWhereUniqueWithoutClassInput = {
+    where: MonthlyEvaluationWhereUniqueInput
+    update: XOR<MonthlyEvaluationUpdateWithoutClassInput, MonthlyEvaluationUncheckedUpdateWithoutClassInput>
+    create: XOR<MonthlyEvaluationCreateWithoutClassInput, MonthlyEvaluationUncheckedCreateWithoutClassInput>
+  }
+
+  export type MonthlyEvaluationUpdateWithWhereUniqueWithoutClassInput = {
+    where: MonthlyEvaluationWhereUniqueInput
+    data: XOR<MonthlyEvaluationUpdateWithoutClassInput, MonthlyEvaluationUncheckedUpdateWithoutClassInput>
+  }
+
+  export type MonthlyEvaluationUpdateManyWithWhereWithoutClassInput = {
+    where: MonthlyEvaluationScalarWhereInput
+    data: XOR<MonthlyEvaluationUpdateManyMutationInput, MonthlyEvaluationUncheckedUpdateManyWithoutClassInput>
+  }
+
+  export type MonthlyEvaluationScalarWhereInput = {
+    AND?: MonthlyEvaluationScalarWhereInput | MonthlyEvaluationScalarWhereInput[]
+    OR?: MonthlyEvaluationScalarWhereInput[]
+    NOT?: MonthlyEvaluationScalarWhereInput | MonthlyEvaluationScalarWhereInput[]
+    id?: StringFilter<"MonthlyEvaluation"> | string
+    santriId?: StringFilter<"MonthlyEvaluation"> | string
+    classId?: StringFilter<"MonthlyEvaluation"> | string
+    month?: IntFilter<"MonthlyEvaluation"> | number
+    year?: IntFilter<"MonthlyEvaluation"> | number
+    taskAvg?: FloatFilter<"MonthlyEvaluation"> | number
+    attendancePoin?: IntFilter<"MonthlyEvaluation"> | number
+    maxAttendPoin?: IntFilter<"MonthlyEvaluation"> | number
+    attitudeAvg?: FloatFilter<"MonthlyEvaluation"> | number
+    taskScore?: FloatFilter<"MonthlyEvaluation"> | number
+    attendanceScore?: FloatFilter<"MonthlyEvaluation"> | number
+    attitudeScore?: FloatFilter<"MonthlyEvaluation"> | number
+    finalScore?: FloatFilter<"MonthlyEvaluation"> | number
+    notes?: StringNullableFilter<"MonthlyEvaluation"> | string | null
+    createdAt?: DateTimeFilter<"MonthlyEvaluation"> | Date | string
+    updatedAt?: DateTimeFilter<"MonthlyEvaluation"> | Date | string
+  }
+
   export type ClassCreateWithoutDailyJournalsInput = {
     id?: string
     name: string
@@ -20045,6 +22156,7 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     assignments?: AssignmentCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutDailyJournalsInput = {
@@ -20056,6 +22168,7 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutDailyJournalsInput = {
@@ -20084,6 +22197,7 @@ export namespace Prisma {
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutSantriInput
   }
 
   export type UserUncheckedCreateWithoutDailyJournalsInput = {
@@ -20107,6 +22221,7 @@ export namespace Prisma {
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput
   }
 
   export type UserCreateOrConnectWithoutDailyJournalsInput = {
@@ -20135,6 +22250,7 @@ export namespace Prisma {
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutSantriInput
   }
 
   export type UserUncheckedCreateWithoutMentorDailyJournalsInput = {
@@ -20158,6 +22274,7 @@ export namespace Prisma {
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput
   }
 
   export type UserCreateOrConnectWithoutMentorDailyJournalsInput = {
@@ -20185,6 +22302,7 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutDailyJournalsInput = {
@@ -20196,6 +22314,7 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type UserUpsertWithoutDailyJournalsInput = {
@@ -20230,6 +22349,7 @@ export namespace Prisma {
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDailyJournalsInput = {
@@ -20253,6 +22373,7 @@ export namespace Prisma {
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUpsertWithoutMentorDailyJournalsInput = {
@@ -20287,6 +22408,7 @@ export namespace Prisma {
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMentorDailyJournalsInput = {
@@ -20310,6 +22432,7 @@ export namespace Prisma {
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput
   }
 
   export type ClassCreateWithoutDivisionInput = {
@@ -20321,6 +22444,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutDivisionInput = {
@@ -20332,6 +22456,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutDivisionInput = {
@@ -20371,6 +22496,182 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Class"> | Date | string
   }
 
+  export type UserCreateWithoutMonthlyEvaluationsInput = {
+    id?: string
+    nis?: string | null
+    fullName: string
+    email: string
+    password: string
+    phone?: string | null
+    role: $Enums.Role
+    isActive?: boolean
+    createdAt?: Date | string
+    waliProfile?: WaliProfileCreateNestedOneWithoutUserInput
+    verifications?: VerificationCreateNestedManyWithoutUserInput
+    santriProfile?: SantriProfileCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+  }
+
+  export type UserUncheckedCreateWithoutMonthlyEvaluationsInput = {
+    id?: string
+    nis?: string | null
+    fullName: string
+    email: string
+    password: string
+    phone?: string | null
+    role: $Enums.Role
+    isActive?: boolean
+    createdAt?: Date | string
+    waliProfile?: WaliProfileUncheckedCreateNestedOneWithoutUserInput
+    verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
+    santriProfile?: SantriProfileUncheckedCreateNestedOneWithoutUserInput
+    mentorClasses?: ClassUncheckedCreateNestedManyWithoutMentorInput
+    mentorAttendances?: AttendanceUncheckedCreateNestedManyWithoutMentorInput
+    santriAttendances?: AttendanceUncheckedCreateNestedManyWithoutSantriInput
+    mentorAssignments?: AssignmentUncheckedCreateNestedManyWithoutMentorInput
+    santriSubmissions?: AssignmentContentUncheckedCreateNestedManyWithoutSantriInput
+    waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
+    santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
+    mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+  }
+
+  export type UserCreateOrConnectWithoutMonthlyEvaluationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMonthlyEvaluationsInput, UserUncheckedCreateWithoutMonthlyEvaluationsInput>
+  }
+
+  export type ClassCreateWithoutMonthlyEvaluationsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    division: DivisionCreateNestedOneWithoutClassesInput
+    mentor: UserCreateNestedOneWithoutMentorClassesInput
+    attendances?: AttendanceCreateNestedManyWithoutClassInput
+    assignments?: AssignmentCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalCreateNestedManyWithoutClassInput
+  }
+
+  export type ClassUncheckedCreateWithoutMonthlyEvaluationsInput = {
+    id?: string
+    divisiId: string
+    name: string
+    mentorId: string
+    createdAt?: Date | string
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
+    santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
+    dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutClassInput
+  }
+
+  export type ClassCreateOrConnectWithoutMonthlyEvaluationsInput = {
+    where: ClassWhereUniqueInput
+    create: XOR<ClassCreateWithoutMonthlyEvaluationsInput, ClassUncheckedCreateWithoutMonthlyEvaluationsInput>
+  }
+
+  export type UserUpsertWithoutMonthlyEvaluationsInput = {
+    update: XOR<UserUpdateWithoutMonthlyEvaluationsInput, UserUncheckedUpdateWithoutMonthlyEvaluationsInput>
+    create: XOR<UserCreateWithoutMonthlyEvaluationsInput, UserUncheckedCreateWithoutMonthlyEvaluationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutMonthlyEvaluationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutMonthlyEvaluationsInput, UserUncheckedUpdateWithoutMonthlyEvaluationsInput>
+  }
+
+  export type UserUpdateWithoutMonthlyEvaluationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUpdateOneWithoutUserNestedInput
+    verifications?: VerificationUpdateManyWithoutUserNestedInput
+    santriProfile?: SantriProfileUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutMonthlyEvaluationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    waliProfile?: WaliProfileUncheckedUpdateOneWithoutUserNestedInput
+    verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
+    santriProfile?: SantriProfileUncheckedUpdateOneWithoutUserNestedInput
+    mentorClasses?: ClassUncheckedUpdateManyWithoutMentorNestedInput
+    mentorAttendances?: AttendanceUncheckedUpdateManyWithoutMentorNestedInput
+    santriAttendances?: AttendanceUncheckedUpdateManyWithoutSantriNestedInput
+    mentorAssignments?: AssignmentUncheckedUpdateManyWithoutMentorNestedInput
+    santriSubmissions?: AssignmentContentUncheckedUpdateManyWithoutSantriNestedInput
+    waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
+    santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
+    mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+  }
+
+  export type ClassUpsertWithoutMonthlyEvaluationsInput = {
+    update: XOR<ClassUpdateWithoutMonthlyEvaluationsInput, ClassUncheckedUpdateWithoutMonthlyEvaluationsInput>
+    create: XOR<ClassCreateWithoutMonthlyEvaluationsInput, ClassUncheckedCreateWithoutMonthlyEvaluationsInput>
+    where?: ClassWhereInput
+  }
+
+  export type ClassUpdateToOneWithWhereWithoutMonthlyEvaluationsInput = {
+    where?: ClassWhereInput
+    data: XOR<ClassUpdateWithoutMonthlyEvaluationsInput, ClassUncheckedUpdateWithoutMonthlyEvaluationsInput>
+  }
+
+  export type ClassUpdateWithoutMonthlyEvaluationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    division?: DivisionUpdateOneRequiredWithoutClassesNestedInput
+    mentor?: UserUpdateOneRequiredWithoutMentorClassesNestedInput
+    attendances?: AttendanceUpdateManyWithoutClassNestedInput
+    assignments?: AssignmentUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUpdateManyWithoutClassNestedInput
+  }
+
+  export type ClassUncheckedUpdateWithoutMonthlyEvaluationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    divisiId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    mentorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
+    assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
+    santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
+    dailyJournals?: DailyJournalUncheckedUpdateManyWithoutClassNestedInput
+  }
+
   export type UserCreateWithoutSantriProfileInput = {
     id?: string
     nis?: string | null
@@ -20392,6 +22693,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutSantriInput
   }
 
   export type UserUncheckedCreateWithoutSantriProfileInput = {
@@ -20415,6 +22717,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput
   }
 
   export type UserCreateOrConnectWithoutSantriProfileInput = {
@@ -20431,6 +22734,7 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     assignments?: AssignmentCreateNestedManyWithoutClassInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutSantriProfilesInput = {
@@ -20442,6 +22746,7 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutSantriProfilesInput = {
@@ -20481,6 +22786,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSantriProfileInput = {
@@ -20504,6 +22810,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput
   }
 
   export type ClassUpsertWithoutSantriProfilesInput = {
@@ -20526,6 +22833,7 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutSantriProfilesInput = {
@@ -20537,6 +22845,7 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type WaliProfileCreateWithoutUserInput = {
@@ -20616,6 +22925,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileCreateNestedManyWithoutClassInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutMentorInput = {
@@ -20627,6 +22937,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
     santriProfiles?: SantriProfileUncheckedCreateNestedManyWithoutClassInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutClassInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutMentorInput = {
@@ -20889,6 +23200,52 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MonthlyEvaluationCreateWithoutSantriInput = {
+    id?: string
+    month: number
+    year: number
+    taskAvg?: number
+    attendancePoin?: number
+    maxAttendPoin?: number
+    attitudeAvg?: number
+    taskScore?: number
+    attendanceScore?: number
+    attitudeScore?: number
+    finalScore: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    class: ClassCreateNestedOneWithoutMonthlyEvaluationsInput
+  }
+
+  export type MonthlyEvaluationUncheckedCreateWithoutSantriInput = {
+    id?: string
+    classId: string
+    month: number
+    year: number
+    taskAvg?: number
+    attendancePoin?: number
+    maxAttendPoin?: number
+    attitudeAvg?: number
+    taskScore?: number
+    attendanceScore?: number
+    attitudeScore?: number
+    finalScore: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MonthlyEvaluationCreateOrConnectWithoutSantriInput = {
+    where: MonthlyEvaluationWhereUniqueInput
+    create: XOR<MonthlyEvaluationCreateWithoutSantriInput, MonthlyEvaluationUncheckedCreateWithoutSantriInput>
+  }
+
+  export type MonthlyEvaluationCreateManySantriInputEnvelope = {
+    data: MonthlyEvaluationCreateManySantriInput | MonthlyEvaluationCreateManySantriInput[]
+    skipDuplicates?: boolean
+  }
+
   export type WaliProfileUpsertWithoutUserInput = {
     update: XOR<WaliProfileUpdateWithoutUserInput, WaliProfileUncheckedUpdateWithoutUserInput>
     create: XOR<WaliProfileCreateWithoutUserInput, WaliProfileUncheckedCreateWithoutUserInput>
@@ -21128,6 +23485,22 @@ export namespace Prisma {
     data: XOR<DailyJournalUpdateManyMutationInput, DailyJournalUncheckedUpdateManyWithoutMentorInput>
   }
 
+  export type MonthlyEvaluationUpsertWithWhereUniqueWithoutSantriInput = {
+    where: MonthlyEvaluationWhereUniqueInput
+    update: XOR<MonthlyEvaluationUpdateWithoutSantriInput, MonthlyEvaluationUncheckedUpdateWithoutSantriInput>
+    create: XOR<MonthlyEvaluationCreateWithoutSantriInput, MonthlyEvaluationUncheckedCreateWithoutSantriInput>
+  }
+
+  export type MonthlyEvaluationUpdateWithWhereUniqueWithoutSantriInput = {
+    where: MonthlyEvaluationWhereUniqueInput
+    data: XOR<MonthlyEvaluationUpdateWithoutSantriInput, MonthlyEvaluationUncheckedUpdateWithoutSantriInput>
+  }
+
+  export type MonthlyEvaluationUpdateManyWithWhereWithoutSantriInput = {
+    where: MonthlyEvaluationScalarWhereInput
+    data: XOR<MonthlyEvaluationUpdateManyMutationInput, MonthlyEvaluationUncheckedUpdateManyWithoutSantriInput>
+  }
+
   export type UserCreateWithoutWaliProfileInput = {
     id?: string
     nis?: string | null
@@ -21149,6 +23522,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutSantriInput
   }
 
   export type UserUncheckedCreateWithoutWaliProfileInput = {
@@ -21172,6 +23546,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput
   }
 
   export type UserCreateOrConnectWithoutWaliProfileInput = {
@@ -21211,6 +23586,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWaliProfileInput = {
@@ -21234,6 +23610,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput
   }
 
   export type UserCreateWithoutWaliRelationsInput = {
@@ -21257,6 +23634,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutSantriInput
   }
 
   export type UserUncheckedCreateWithoutWaliRelationsInput = {
@@ -21280,6 +23658,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutSantriInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput
   }
 
   export type UserCreateOrConnectWithoutWaliRelationsInput = {
@@ -21308,6 +23687,7 @@ export namespace Prisma {
     waliRelations?: WaliSantriRelationCreateNestedManyWithoutWaliInput
     dailyJournals?: DailyJournalCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationCreateNestedManyWithoutSantriInput
   }
 
   export type UserUncheckedCreateWithoutSantriRelationsInput = {
@@ -21331,6 +23711,7 @@ export namespace Prisma {
     waliRelations?: WaliSantriRelationUncheckedCreateNestedManyWithoutWaliInput
     dailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutSantriInput
     mentorDailyJournals?: DailyJournalUncheckedCreateNestedManyWithoutMentorInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedCreateNestedManyWithoutSantriInput
   }
 
   export type UserCreateOrConnectWithoutSantriRelationsInput = {
@@ -21370,6 +23751,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWaliRelationsInput = {
@@ -21393,6 +23775,7 @@ export namespace Prisma {
     santriRelations?: WaliSantriRelationUncheckedUpdateManyWithoutSantriNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUpsertWithoutSantriRelationsInput = {
@@ -21427,6 +23810,7 @@ export namespace Prisma {
     waliRelations?: WaliSantriRelationUpdateManyWithoutWaliNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutSantriNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSantriRelationsInput = {
@@ -21450,6 +23834,7 @@ export namespace Prisma {
     waliRelations?: WaliSantriRelationUncheckedUpdateManyWithoutWaliNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutSantriNestedInput
     mentorDailyJournals?: DailyJournalUncheckedUpdateManyWithoutMentorNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutSantriNestedInput
   }
 
   export type AssignmentContentCreateManyAssignmentInput = {
@@ -21535,6 +23920,24 @@ export namespace Prisma {
     notes: string
     date: Date | string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MonthlyEvaluationCreateManyClassInput = {
+    id?: string
+    santriId: string
+    month: number
+    year: number
+    taskAvg?: number
+    attendancePoin?: number
+    maxAttendPoin?: number
+    attitudeAvg?: number
+    taskScore?: number
+    attendanceScore?: number
+    attitudeScore?: number
+    finalScore: number
+    notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -21670,6 +24073,60 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MonthlyEvaluationUpdateWithoutClassInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    month?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    taskAvg?: FloatFieldUpdateOperationsInput | number
+    attendancePoin?: IntFieldUpdateOperationsInput | number
+    maxAttendPoin?: IntFieldUpdateOperationsInput | number
+    attitudeAvg?: FloatFieldUpdateOperationsInput | number
+    taskScore?: FloatFieldUpdateOperationsInput | number
+    attendanceScore?: FloatFieldUpdateOperationsInput | number
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    finalScore?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    santri?: UserUpdateOneRequiredWithoutMonthlyEvaluationsNestedInput
+  }
+
+  export type MonthlyEvaluationUncheckedUpdateWithoutClassInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    month?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    taskAvg?: FloatFieldUpdateOperationsInput | number
+    attendancePoin?: IntFieldUpdateOperationsInput | number
+    maxAttendPoin?: IntFieldUpdateOperationsInput | number
+    attitudeAvg?: FloatFieldUpdateOperationsInput | number
+    taskScore?: FloatFieldUpdateOperationsInput | number
+    attendanceScore?: FloatFieldUpdateOperationsInput | number
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    finalScore?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MonthlyEvaluationUncheckedUpdateManyWithoutClassInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    santriId?: StringFieldUpdateOperationsInput | string
+    month?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    taskAvg?: FloatFieldUpdateOperationsInput | number
+    attendancePoin?: IntFieldUpdateOperationsInput | number
+    maxAttendPoin?: IntFieldUpdateOperationsInput | number
+    attitudeAvg?: FloatFieldUpdateOperationsInput | number
+    taskScore?: FloatFieldUpdateOperationsInput | number
+    attendanceScore?: FloatFieldUpdateOperationsInput | number
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    finalScore?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ClassCreateManyDivisionInput = {
     id?: string
     name: string
@@ -21686,6 +24143,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutDivisionInput = {
@@ -21697,6 +24155,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateManyWithoutDivisionInput = {
@@ -21804,6 +24263,24 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type MonthlyEvaluationCreateManySantriInput = {
+    id?: string
+    classId: string
+    month: number
+    year: number
+    taskAvg?: number
+    attendancePoin?: number
+    maxAttendPoin?: number
+    attitudeAvg?: number
+    taskScore?: number
+    attendanceScore?: number
+    attitudeScore?: number
+    finalScore: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type VerificationUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     otpCode?: StringFieldUpdateOperationsInput | string
@@ -21834,6 +24311,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUpdateManyWithoutClassNestedInput
     dailyJournals?: DailyJournalUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutMentorInput = {
@@ -21845,6 +24323,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
     santriProfiles?: SantriProfileUncheckedUpdateManyWithoutClassNestedInput
     dailyJournals?: DailyJournalUncheckedUpdateManyWithoutClassNestedInput
+    monthlyEvaluations?: MonthlyEvaluationUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateManyWithoutMentorInput = {
@@ -22104,6 +24583,60 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MonthlyEvaluationUpdateWithoutSantriInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    month?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    taskAvg?: FloatFieldUpdateOperationsInput | number
+    attendancePoin?: IntFieldUpdateOperationsInput | number
+    maxAttendPoin?: IntFieldUpdateOperationsInput | number
+    attitudeAvg?: FloatFieldUpdateOperationsInput | number
+    taskScore?: FloatFieldUpdateOperationsInput | number
+    attendanceScore?: FloatFieldUpdateOperationsInput | number
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    finalScore?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    class?: ClassUpdateOneRequiredWithoutMonthlyEvaluationsNestedInput
+  }
+
+  export type MonthlyEvaluationUncheckedUpdateWithoutSantriInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    month?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    taskAvg?: FloatFieldUpdateOperationsInput | number
+    attendancePoin?: IntFieldUpdateOperationsInput | number
+    maxAttendPoin?: IntFieldUpdateOperationsInput | number
+    attitudeAvg?: FloatFieldUpdateOperationsInput | number
+    taskScore?: FloatFieldUpdateOperationsInput | number
+    attendanceScore?: FloatFieldUpdateOperationsInput | number
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    finalScore?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MonthlyEvaluationUncheckedUpdateManyWithoutSantriInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    month?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    taskAvg?: FloatFieldUpdateOperationsInput | number
+    attendancePoin?: IntFieldUpdateOperationsInput | number
+    maxAttendPoin?: IntFieldUpdateOperationsInput | number
+    attitudeAvg?: FloatFieldUpdateOperationsInput | number
+    taskScore?: FloatFieldUpdateOperationsInput | number
+    attendanceScore?: FloatFieldUpdateOperationsInput | number
+    attitudeScore?: FloatFieldUpdateOperationsInput | number
+    finalScore?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

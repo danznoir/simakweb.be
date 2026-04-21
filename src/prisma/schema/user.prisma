@@ -27,6 +27,9 @@ model User {
   dailyJournals     DailyJournal[]      @relation("SantriDailyJournal")
   mentorDailyJournals DailyJournal[]     @relation("MentorDailyJournal")
 
+  // Relasi Daily Score
+  monthlyEvaluations       MonthlyEvaluation[]        @relation("SantriEvaluation")
+
   @@map("users")
 }
 

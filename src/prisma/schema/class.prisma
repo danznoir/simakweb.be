@@ -14,6 +14,7 @@ model Class {
   assignments Assignment[]
   santriProfiles SantriProfile[]
   dailyJournals DailyJournal[] @relation("ClassDailyJournal")
+  monthlyEvaluations MonthlyEvaluation[] @relation("ClassEvaluation")
 
   @@map("classes")
 }

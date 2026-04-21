@@ -90,10 +90,11 @@ model Class {
 
   createdAt DateTime @default(now())
 
-  attendances    Attendance[]
-  assignments    Assignment[]
-  santriProfiles SantriProfile[]
-  dailyJournals  DailyJournal[]  @relation("ClassDailyJournal")
+  attendances        Attendance[]
+  assignments        Assignment[]
+  santriProfiles     SantriProfile[]
+  dailyJournals      DailyJournal[]      @relation("ClassDailyJournal")
+  monthlyEvaluations MonthlyEvaluation[] @relation("ClassEvaluation")
 
   @@map("classes")
 }
@@ -126,6 +127,42 @@ model Division {
   classes Class[]
 
   @@map("divisions")
+}
+
+model MonthlyEvaluation {
+  id       String @id @default(uuid())
+  santriId String
+  classId  String
+
+  // Periode Evaluasi
+  month Int // Bulan (1 - 12)
+  year  Int // Tahun (Contoh: 2026)
+
+  // --- RAW DATA (Transparansi untuk ditampilkan di UI) ---
+  taskAvg        Float @default(0) // Rata-rata asli nilai tugas (0-100)
+  attendancePoin Int   @default(0) // Total poin kehadiran santri
+  maxAttendPoin  Int   @default(0) // Total maksimal poin kehadiran bulan itu
+  attitudeAvg    Float @default(0) // Rata-rata asli nilai sikap harian (0-100)
+
+  // --- WEIGHTED DATA (Hasil kalkulasi bobot persen) ---
+  taskScore       Float @default(0) // Maksimal 50
+  attendanceScore Float @default(0) // Maksimal 40
+  attitudeScore   Float @default(0) // Maksimal 10
+
+  // --- FINAL RESULT ---
+  finalScore Float // Hasil (taskScore + attendanceScore + attitudeScore)
+  notes      String? // Catatan mentor (opsional)
+
+  // Relasi
+  santri User  @relation("SantriEvaluation", fields: [santriId], references: [id], onDelete: Cascade)
+  class  Class @relation("ClassEvaluation", fields: [classId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Mencegah duplikasi: 1 Santri hanya punya 1 nilai di kelas yang sama pada bulan & tahun yang sama
+  @@unique([santriId, classId, month, year])
+  @@map("monthly_evaluations")
 }
 
 model SantriProfile {
@@ -172,6 +209,9 @@ model User {
   // Relasi Daily Journal
   dailyJournals       DailyJournal[] @relation("SantriDailyJournal")
   mentorDailyJournals DailyJournal[] @relation("MentorDailyJournal")
+
+  // Relasi Daily Score
+  monthlyEvaluations MonthlyEvaluation[] @relation("SantriEvaluation")
 
   @@map("users")
 }
