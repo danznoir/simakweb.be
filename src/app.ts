@@ -48,7 +48,6 @@ app.use(cors()) // Middleware biar bisa di akses dari frontend
 
 app.use(requestLogger)
 
-app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 app.get("/", (req: Request, res: Response) => {
     successResponse(res, "Welcome to the API", {

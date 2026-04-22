@@ -11,6 +11,8 @@ model DailyJournal {
     notes          String
     date           DateTime
     description    String
+
+    tugasType      TugasType @default(HARIAN)
     createdAt      DateTime @default(now())
     updatedAt      DateTime @updatedAt
 

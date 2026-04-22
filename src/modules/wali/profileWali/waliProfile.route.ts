@@ -30,6 +30,28 @@ const controller = new WaliProfileController(service);
  *         description: List of all wali profiles
  */
 router.get("/", adminMiddleware, controller.getAllProfiles);
+
+/**
+ * @swagger
+ * /api/v1/wali-santri/{id}:
+ *   get:
+ *     summary: Get wali profile by User ID
+ *     tags: [WaliProfiles]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "550e8400-e29b-41d4-a716-446655440003"
+ *     responses:
+ *       200:
+ *         description: Wali profile details
+ */
+router.get("/:id", controller.getProfileByUserId);
+
 /**
  * @swagger
  * /api/v1/wali-santri:
@@ -67,7 +89,6 @@ router.get("/", adminMiddleware, controller.getAllProfiles);
  *       201:
  *         description: Wali profile created successfully
  */
-router.get("/:id", controller.getProfileByUserId);
 router.post("/", upload.single("photoUrl"), controller.createProfile);
 /**
  * @swagger

@@ -54,6 +54,7 @@ export class DailyJournalService {
             attitudeScore: data.attitudeScore,
             notes: data.notes,
             description: data.description,
+            tugasType: data.tugasType,
             date: new Date(data.date),
             santri: { connect: { id: data.santriId } },
             class: { connect: { id: data.classId } },
@@ -70,6 +71,7 @@ export class DailyJournalService {
             ...(data.attitudeScore && { attitudeScore: data.attitudeScore }),
             ...(data.notes && { notes: data.notes }),
             ...(data.description && { description: data.description }),
+            ...(data.tugasType && { tugasType: data.tugasType }),
             ...(data.date && { date: new Date(data.date) }),
             // Relasi biasanya tidak diubah saat update jurnal harian, 
             // tapi jika perlu:

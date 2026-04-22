@@ -112,8 +112,10 @@ model DailyJournal {
   notes         String
   date          DateTime
   description   String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+
+  tugasType TugasType @default(HARIAN)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
   @@map("daily_journals")
 }
@@ -299,4 +301,10 @@ enum WaliSantriCategory {
   AYAH
   IBU
   OTHER
+}
+
+enum TugasType {
+  HARIAN
+  MINGGUAN
+  BULANAN
 }

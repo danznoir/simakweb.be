@@ -131,6 +131,15 @@ export const WaliSantriCategory: {
 
 export type WaliSantriCategory = (typeof WaliSantriCategory)[keyof typeof WaliSantriCategory]
 
+
+export const TugasType: {
+  HARIAN: 'HARIAN',
+  MINGGUAN: 'MINGGUAN',
+  BULANAN: 'BULANAN'
+};
+
+export type TugasType = (typeof TugasType)[keyof typeof TugasType]
+
 }
 
 export type Role = $Enums.Role
@@ -156,6 +165,10 @@ export const ContentType: typeof $Enums.ContentType
 export type WaliSantriCategory = $Enums.WaliSantriCategory
 
 export const WaliSantriCategory: typeof $Enums.WaliSantriCategory
+
+export type TugasType = $Enums.TugasType
+
+export const TugasType: typeof $Enums.TugasType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -7941,6 +7954,7 @@ export namespace Prisma {
     notes: string | null
     date: Date | null
     description: string | null
+    tugasType: $Enums.TugasType | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7954,6 +7968,7 @@ export namespace Prisma {
     notes: string | null
     date: Date | null
     description: string | null
+    tugasType: $Enums.TugasType | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7967,6 +7982,7 @@ export namespace Prisma {
     notes: number
     date: number
     description: number
+    tugasType: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -7990,6 +8006,7 @@ export namespace Prisma {
     notes?: true
     date?: true
     description?: true
+    tugasType?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -8003,6 +8020,7 @@ export namespace Prisma {
     notes?: true
     date?: true
     description?: true
+    tugasType?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -8016,6 +8034,7 @@ export namespace Prisma {
     notes?: true
     date?: true
     description?: true
+    tugasType?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -8116,6 +8135,7 @@ export namespace Prisma {
     notes: string
     date: Date
     description: string
+    tugasType: $Enums.TugasType
     createdAt: Date
     updatedAt: Date
     _count: DailyJournalCountAggregateOutputType | null
@@ -8148,6 +8168,7 @@ export namespace Prisma {
     notes?: boolean
     date?: boolean
     description?: boolean
+    tugasType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     class?: boolean | ClassDefaultArgs<ExtArgs>
@@ -8164,6 +8185,7 @@ export namespace Prisma {
     notes?: boolean
     date?: boolean
     description?: boolean
+    tugasType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     class?: boolean | ClassDefaultArgs<ExtArgs>
@@ -8180,6 +8202,7 @@ export namespace Prisma {
     notes?: boolean
     date?: boolean
     description?: boolean
+    tugasType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     class?: boolean | ClassDefaultArgs<ExtArgs>
@@ -8196,11 +8219,12 @@ export namespace Prisma {
     notes?: boolean
     date?: boolean
     description?: boolean
+    tugasType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type DailyJournalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "santriId" | "classId" | "mentorId" | "attitudeScore" | "notes" | "date" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["dailyJournal"]>
+  export type DailyJournalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "santriId" | "classId" | "mentorId" | "attitudeScore" | "notes" | "date" | "description" | "tugasType" | "createdAt" | "updatedAt", ExtArgs["result"]["dailyJournal"]>
   export type DailyJournalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     class?: boolean | ClassDefaultArgs<ExtArgs>
     santri?: boolean | UserDefaultArgs<ExtArgs>
@@ -8233,6 +8257,7 @@ export namespace Prisma {
       notes: string
       date: Date
       description: string
+      tugasType: $Enums.TugasType
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["dailyJournal"]>
@@ -8669,6 +8694,7 @@ export namespace Prisma {
     readonly notes: FieldRef<"DailyJournal", 'String'>
     readonly date: FieldRef<"DailyJournal", 'DateTime'>
     readonly description: FieldRef<"DailyJournal", 'String'>
+    readonly tugasType: FieldRef<"DailyJournal", 'TugasType'>
     readonly createdAt: FieldRef<"DailyJournal", 'DateTime'>
     readonly updatedAt: FieldRef<"DailyJournal", 'DateTime'>
   }
@@ -16255,6 +16281,7 @@ export namespace Prisma {
     notes: 'notes',
     date: 'date',
     description: 'description',
+    tugasType: 'tugasType',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -16484,6 +16511,20 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'TugasType'
+   */
+  export type EnumTugasTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TugasType'>
+    
+
+
+  /**
+   * Reference to a field of type 'TugasType[]'
+   */
+  export type ListEnumTugasTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TugasType[]'>
     
 
 
@@ -16910,6 +16951,7 @@ export namespace Prisma {
     notes?: StringFilter<"DailyJournal"> | string
     date?: DateTimeFilter<"DailyJournal"> | Date | string
     description?: StringFilter<"DailyJournal"> | string
+    tugasType?: EnumTugasTypeFilter<"DailyJournal"> | $Enums.TugasType
     createdAt?: DateTimeFilter<"DailyJournal"> | Date | string
     updatedAt?: DateTimeFilter<"DailyJournal"> | Date | string
     class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
@@ -16926,6 +16968,7 @@ export namespace Prisma {
     notes?: SortOrder
     date?: SortOrder
     description?: SortOrder
+    tugasType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     class?: ClassOrderByWithRelationInput
@@ -16945,6 +16988,7 @@ export namespace Prisma {
     notes?: StringFilter<"DailyJournal"> | string
     date?: DateTimeFilter<"DailyJournal"> | Date | string
     description?: StringFilter<"DailyJournal"> | string
+    tugasType?: EnumTugasTypeFilter<"DailyJournal"> | $Enums.TugasType
     createdAt?: DateTimeFilter<"DailyJournal"> | Date | string
     updatedAt?: DateTimeFilter<"DailyJournal"> | Date | string
     class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
@@ -16961,6 +17005,7 @@ export namespace Prisma {
     notes?: SortOrder
     date?: SortOrder
     description?: SortOrder
+    tugasType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: DailyJournalCountOrderByAggregateInput
@@ -16982,6 +17027,7 @@ export namespace Prisma {
     notes?: StringWithAggregatesFilter<"DailyJournal"> | string
     date?: DateTimeWithAggregatesFilter<"DailyJournal"> | Date | string
     description?: StringWithAggregatesFilter<"DailyJournal"> | string
+    tugasType?: EnumTugasTypeWithAggregatesFilter<"DailyJournal"> | $Enums.TugasType
     createdAt?: DateTimeWithAggregatesFilter<"DailyJournal"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"DailyJournal"> | Date | string
   }
@@ -17839,6 +17885,7 @@ export namespace Prisma {
     notes: string
     date: Date | string
     description: string
+    tugasType?: $Enums.TugasType
     createdAt?: Date | string
     updatedAt?: Date | string
     class: ClassCreateNestedOneWithoutDailyJournalsInput
@@ -17855,6 +17902,7 @@ export namespace Prisma {
     notes: string
     date: Date | string
     description: string
+    tugasType?: $Enums.TugasType
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17865,6 +17913,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    tugasType?: EnumTugasTypeFieldUpdateOperationsInput | $Enums.TugasType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutDailyJournalsNestedInput
@@ -17881,6 +17930,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    tugasType?: EnumTugasTypeFieldUpdateOperationsInput | $Enums.TugasType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17894,6 +17944,7 @@ export namespace Prisma {
     notes: string
     date: Date | string
     description: string
+    tugasType?: $Enums.TugasType
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17904,6 +17955,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    tugasType?: EnumTugasTypeFieldUpdateOperationsInput | $Enums.TugasType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17917,6 +17969,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    tugasType?: EnumTugasTypeFieldUpdateOperationsInput | $Enums.TugasType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18900,6 +18953,13 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type EnumTugasTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.TugasType | EnumTugasTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.TugasType[] | ListEnumTugasTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TugasType[] | ListEnumTugasTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumTugasTypeFilter<$PrismaModel> | $Enums.TugasType
+  }
+
   export type DailyJournalCountOrderByAggregateInput = {
     id?: SortOrder
     santriId?: SortOrder
@@ -18909,6 +18969,7 @@ export namespace Prisma {
     notes?: SortOrder
     date?: SortOrder
     description?: SortOrder
+    tugasType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -18926,6 +18987,7 @@ export namespace Prisma {
     notes?: SortOrder
     date?: SortOrder
     description?: SortOrder
+    tugasType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -18939,6 +19001,7 @@ export namespace Prisma {
     notes?: SortOrder
     date?: SortOrder
     description?: SortOrder
+    tugasType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -18961,6 +19024,16 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type EnumTugasTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TugasType | EnumTugasTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.TugasType[] | ListEnumTugasTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TugasType[] | ListEnumTugasTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumTugasTypeWithAggregatesFilter<$PrismaModel> | $Enums.TugasType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTugasTypeFilter<$PrismaModel>
+    _max?: NestedEnumTugasTypeFilter<$PrismaModel>
   }
 
   export type ClassListRelationFilter = {
@@ -19804,6 +19877,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type EnumTugasTypeFieldUpdateOperationsInput = {
+    set?: $Enums.TugasType
   }
 
   export type ClassUpdateOneRequiredWithoutDailyJournalsNestedInput = {
@@ -20737,6 +20814,13 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedEnumTugasTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.TugasType | EnumTugasTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.TugasType[] | ListEnumTugasTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TugasType[] | ListEnumTugasTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumTugasTypeFilter<$PrismaModel> | $Enums.TugasType
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -20751,6 +20835,16 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedEnumTugasTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TugasType | EnumTugasTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.TugasType[] | ListEnumTugasTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TugasType[] | ListEnumTugasTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumTugasTypeWithAggregatesFilter<$PrismaModel> | $Enums.TugasType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTugasTypeFilter<$PrismaModel>
+    _max?: NestedEnumTugasTypeFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -21828,6 +21922,7 @@ export namespace Prisma {
     notes: string
     date: Date | string
     description: string
+    tugasType?: $Enums.TugasType
     createdAt?: Date | string
     updatedAt?: Date | string
     santri: UserCreateNestedOneWithoutDailyJournalsInput
@@ -21842,6 +21937,7 @@ export namespace Prisma {
     notes: string
     date: Date | string
     description: string
+    tugasType?: $Enums.TugasType
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -22105,6 +22201,7 @@ export namespace Prisma {
     notes?: StringFilter<"DailyJournal"> | string
     date?: DateTimeFilter<"DailyJournal"> | Date | string
     description?: StringFilter<"DailyJournal"> | string
+    tugasType?: EnumTugasTypeFilter<"DailyJournal"> | $Enums.TugasType
     createdAt?: DateTimeFilter<"DailyJournal"> | Date | string
     updatedAt?: DateTimeFilter<"DailyJournal"> | Date | string
   }
@@ -23138,6 +23235,7 @@ export namespace Prisma {
     notes: string
     date: Date | string
     description: string
+    tugasType?: $Enums.TugasType
     createdAt?: Date | string
     updatedAt?: Date | string
     class: ClassCreateNestedOneWithoutDailyJournalsInput
@@ -23152,6 +23250,7 @@ export namespace Prisma {
     notes: string
     date: Date | string
     description: string
+    tugasType?: $Enums.TugasType
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -23172,6 +23271,7 @@ export namespace Prisma {
     notes: string
     date: Date | string
     description: string
+    tugasType?: $Enums.TugasType
     createdAt?: Date | string
     updatedAt?: Date | string
     class: ClassCreateNestedOneWithoutDailyJournalsInput
@@ -23186,6 +23286,7 @@ export namespace Prisma {
     notes: string
     date: Date | string
     description: string
+    tugasType?: $Enums.TugasType
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -23920,6 +24021,7 @@ export namespace Prisma {
     notes: string
     date: Date | string
     description: string
+    tugasType?: $Enums.TugasType
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -24043,6 +24145,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    tugasType?: EnumTugasTypeFieldUpdateOperationsInput | $Enums.TugasType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     santri?: UserUpdateOneRequiredWithoutDailyJournalsNestedInput
@@ -24057,6 +24160,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    tugasType?: EnumTugasTypeFieldUpdateOperationsInput | $Enums.TugasType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -24069,6 +24173,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    tugasType?: EnumTugasTypeFieldUpdateOperationsInput | $Enums.TugasType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -24247,6 +24352,7 @@ export namespace Prisma {
     notes: string
     date: Date | string
     description: string
+    tugasType?: $Enums.TugasType
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -24259,6 +24365,7 @@ export namespace Prisma {
     notes: string
     date: Date | string
     description: string
+    tugasType?: $Enums.TugasType
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -24521,6 +24628,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    tugasType?: EnumTugasTypeFieldUpdateOperationsInput | $Enums.TugasType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutDailyJournalsNestedInput
@@ -24535,6 +24643,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    tugasType?: EnumTugasTypeFieldUpdateOperationsInput | $Enums.TugasType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -24547,6 +24656,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    tugasType?: EnumTugasTypeFieldUpdateOperationsInput | $Enums.TugasType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -24557,6 +24667,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    tugasType?: EnumTugasTypeFieldUpdateOperationsInput | $Enums.TugasType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutDailyJournalsNestedInput
@@ -24571,6 +24682,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    tugasType?: EnumTugasTypeFieldUpdateOperationsInput | $Enums.TugasType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -24583,6 +24695,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: StringFieldUpdateOperationsInput | string
+    tugasType?: EnumTugasTypeFieldUpdateOperationsInput | $Enums.TugasType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
