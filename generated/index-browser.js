@@ -181,6 +181,7 @@ exports.Prisma.DailyJournalScalarFieldEnum = {
   notes: 'notes',
   date: 'date',
   description: 'description',
+  tugasType: 'tugasType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -286,6 +287,12 @@ exports.AttendanceStatus = exports.$Enums.AttendanceStatus = {
   SAKIT: 'SAKIT',
   IZIN: 'IZIN',
   ALFA: 'ALFA'
+};
+
+exports.TugasType = exports.$Enums.TugasType = {
+  HARIAN: 'HARIAN',
+  MINGGUAN: 'MINGGUAN',
+  BULANAN: 'BULANAN'
 };
 
 exports.Role = exports.$Enums.Role = {

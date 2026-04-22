@@ -47,3 +47,9 @@ enum WaliSantriCategory {
   IBU
   OTHER
 }
+
+enum TugasType {
+  HARIAN
+  MINGGUAN
+  BULANAN
+}
