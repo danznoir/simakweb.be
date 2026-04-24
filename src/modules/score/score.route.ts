@@ -17,8 +17,8 @@ const controller = new MonthlyEvaluationController(service);
 /**
  * @swagger
  * tags:
- *   name: MonthlyEvaluation
- *   description: Monthly evaluation and scoring management
+ *   - name: MonthlyEvaluation
+ *     description: Monthly evaluation and scoring management
  */
 
 // Routes
@@ -30,6 +30,29 @@ const controller = new MonthlyEvaluationController(service);
  *     tags: [MonthlyEvaluation]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: Nomor halaman
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *         description: Jumlah data per halaman
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Cari berdasarkan kata kunci
+ *       - in: query
+ *         name: filter
+ *         schema:
+ *           type: string
+ *         description: Filter data
  *     responses:
  *       200:
  *         description: List of all monthly evaluations

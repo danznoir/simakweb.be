@@ -3,9 +3,23 @@ import type { Prisma, PrismaClient } from "../../../generated/index.js";
 export class DivisionRepository {
   constructor(private prisma: PrismaClient) {}
 
-  async findAll() {
-    return await this.prisma.division.findMany({
-      include: {
+  async findAll(skip: number, take: number, search?: string, filter?: string) {
+    const where: Prisma.DivisionWhereInput = {};
+    if (search) {
+      where.OR = [
+        { name: { contains: search, mode: 'insensitive' } },
+        { description: { contains: search, mode: 'insensitive' } },
+      ];
+    }
+    if (filter) {
+      where.id = filter;
+    }
+    const [data, total] = await Promise.all([
+      this.prisma.division.findMany({
+        where,
+        skip,
+        take,
+        include: {
         _count: {
           select: {
             classes: true,
@@ -15,7 +29,10 @@ export class DivisionRepository {
       orderBy: {
         name: 'asc',
       },
-    });
+    }),
+    this.prisma.division.count({ where })
+    ]);
+    return { data, total };
   }
 
   async findById(id: string) {

@@ -3,9 +3,25 @@ import type { Prisma, PrismaClient } from "../../../generated/index.js";
 export class AssignmentRepository {
   constructor(private prisma: PrismaClient) {}
 
-  async findAll() {
-    return await this.prisma.assignment.findMany({
-      include: {
+  async findAll(skip: number, take: number, search?: string, filter?: string) {
+    const where: Prisma.AssignmentWhereInput = {};
+    if (search) {
+      where.OR = [
+        { title: { contains: search, mode: 'insensitive' } },
+        { description: { contains: search, mode: 'insensitive' } },
+        { class: { name: { contains: search, mode: 'insensitive' } } },
+        { mentor: { fullName: { contains: search, mode: 'insensitive' } } },
+      ];
+    }
+    if (filter) {
+      where.classId = filter;
+    }
+    const [data, total] = await Promise.all([
+      this.prisma.assignment.findMany({
+        where,
+        skip,
+        take,
+        include: {
         class: {
           select: {
             name: true,
@@ -25,7 +41,10 @@ export class AssignmentRepository {
       orderBy: {
         createdAt: 'desc',
       },
-    });
+    }),
+    this.prisma.assignment.count({ where })
+    ]);
+    return { data, total };
   }
 
   async findById(id: string) {

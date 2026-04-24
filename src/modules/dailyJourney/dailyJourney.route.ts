@@ -7,6 +7,13 @@ import { DailyJournalController } from "./dailyJorney.controller.js";
 import { authenticate } from "../../middleware/auth.middleware.js";
 import { requireRoles } from "../../middleware/role.middleware.js";
 
+/**
+ * @swagger
+ * tags:
+ *   - name: DailyJournal
+ *     description: Daily journal management
+ */
+
 const router = Router();
 const repo = new DailyJournalRepo(prisma);
 const service = new DailyJournalService(repo);
@@ -23,6 +30,29 @@ router.use(authenticate);
  *     tags: [DailyJournal]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: Nomor halaman
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *         description: Jumlah data per halaman
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Cari berdasarkan kata kunci
+ *       - in: query
+ *         name: filter
+ *         schema:
+ *           type: string
+ *         description: Filter data
  *     responses:
  *       200:
  *         description: List of daily journal entries

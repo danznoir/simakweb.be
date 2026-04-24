@@ -3,10 +3,24 @@ import type { Prisma, PrismaClient } from "../../../generated/index.js";
 export class AttendanceRepository {
   constructor(private prisma: PrismaClient) {}
 
-  async findAll(where: Prisma.AttendanceWhereInput) {
-    return await this.prisma.attendance.findMany({
-      where,
-      include: {
+  async findAll(skip: number, take: number, search?: string, filter?: string) {
+    const where: Prisma.AttendanceWhereInput = {};
+    if (search) {
+      where.OR = [
+        { santri: { fullName: { contains: search, mode: 'insensitive' } } },
+        { class: { name: { contains: search, mode: 'insensitive' } } },
+        { mentor: { fullName: { contains: search, mode: 'insensitive' } } },
+      ];
+    }
+    if (filter) {
+      where.classId = filter;
+    }
+    const [data, total] = await Promise.all([
+      this.prisma.attendance.findMany({
+        where,
+        skip,
+        take,
+        include: {
         class: {
           select: { name: true },
         },
@@ -20,7 +34,10 @@ export class AttendanceRepository {
       orderBy: {
         date: 'desc',
       },
-    });
+    }),
+    this.prisma.attendance.count({ where })
+    ]);
+    return { data, total };
   }
 
   async findById(id: string) {

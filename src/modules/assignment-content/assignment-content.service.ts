@@ -1,15 +1,26 @@
 import { AssignmentContentRepository } from "./assignment-content.repo.js";
 import type { ISubmitAssignmentData, IGradeSubmissionData } from "./assignment-content.schema.js";
 import type { ISubmissionQuery } from "./assignment-content.dto.js";
+import type { Prisma } from "../../../generated/index.js";
 
 export class AssignmentContentService {
   constructor(private submissionRepo: AssignmentContentRepository) {}
 
-  async getAllSubmissions(query: ISubmissionQuery) {
-    const where: any = {};
-    if (query.assignmentId) where.assignmentId = query.assignmentId;
+  async getAllSubmissions(params: { page: number; limit: number; search?: string; filter?: string }) {
+    const { page, limit, search, filter } = params;
+    const skip = (page - 1) * limit;
+    const take = limit;
 
-    return await this.submissionRepo.findAll(where);
+    const { data, total } = await this.submissionRepo.findAll(skip, take, search, filter);
+    return {
+      data,
+      meta: {
+        total,
+        page: skip / take + 1,
+        limit: take,
+        totalPages: Math.ceil(total / take),
+      },
+    };
   }
 
   async getSubmissionById(id: string) {
@@ -19,31 +30,25 @@ export class AssignmentContentService {
   }
 
   async submitAssignment(data: ISubmitAssignmentData) {
-    try {
-      return await this.submissionRepo.create({
+    const payload: Prisma.AssignmentContentCreateInput = {
         assignment: { connect: { id: data.assignmentId } },
         santri: { connect: { id: data.santriId } },
         contentType: data.contentType,
         fileUrl: data.fileUrl,
         status: "PENDING",
-      });
-    } catch (error: any) {
-      if (error.code === 'P2002') {
-        throw new Error("Anda sudah mengumpulkan tugas ini sebelumnya");
-      }
-      throw error;
-    }
+    };
+    return await this.submissionRepo.create(payload);
   }
 
   async gradeSubmission(id: string, data: IGradeSubmissionData) {
     const existing = await this.submissionRepo.findById(id);
     if (!existing) throw new Error("Pengumpulan tugas tidak ditemukan");
 
-    // Manually handle mapping for exactOptionalPropertyTypes
-    const payload: any = {};
-    if (data.score !== undefined) payload.score = data.score;
-    if (data.mentorFeedback !== undefined) payload.mentorFeedback = data.mentorFeedback;
-    if (data.status !== undefined) payload.status = data.status;
+    const payload: Prisma.AssignmentContentUpdateInput = {
+      ...(data.score !== undefined && { score: data.score }),
+      ...(data.mentorFeedback !== undefined && { mentorFeedback: data.mentorFeedback }),
+      ...(data.status !== undefined && { status: data.status }),
+    };
 
     return await this.submissionRepo.update(id, payload);
   }

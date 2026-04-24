@@ -9,8 +9,8 @@ import { WaliProfileController } from "./waliProfile.controller.js";
 /**
  * @swagger
  * tags:
- *   name: WaliProfiles
- *   description: Wali Santri profile management
+ *   - name: WaliProfiles
+ *     description: Wali Santri profile management
  */
 const router = Router();
 const repo = new WaliProfileRepository(prisma);
@@ -25,6 +25,39 @@ const controller = new WaliProfileController(service);
  *     tags: [WaliProfiles]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: Nomor halaman
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *         description: Jumlah data per halaman
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Cari berdasarkan kata kunci
+ *       - in: query
+ *         name: filter
+ *         schema:
+ *           type: string
+ *         description: Filter data
+ *       - in: query
+ *         name: role
+ *         schema:
+ *           type: string
+ *         description: Filter berdasarkan role
+ *       - in: query
+ *         name: isActive
+ *         schema:
+ *           type: boolean
+ *         description: Filter berdasarkan status aktif
  *     responses:
  *       200:
  *         description: List of all wali profiles
@@ -73,6 +106,12 @@ router.get("/:id", controller.getProfileByUserId);
  *                 type: string
  *                 format: uuid
  *                 example: "550e8400-e29b-41d4-a716-446655440003"
+ *               fullName:
+ *                 type: string
+ *                 example: "H. Ahmad Sodikun"
+ *               email:
+ *                 type: string
+ *                 example: "ahmad.sodikun@gmail.com"
  *               phone:
  *                 type: string
  *                 example: "081234567891"
@@ -112,6 +151,12 @@ router.post("/", upload.single("photoUrl"), controller.createProfile);
  *           schema:
  *             type: object
  *             properties:
+ *               fullName:
+ *                 type: string
+ *                 example: "H. Ahmad Sodikun Updated"
+ *               email:
+ *                 type: string
+ *                 example: "ahmad.updated@gmail.com"
  *               phone:
  *                 type: string
  *                 example: "081298765432"

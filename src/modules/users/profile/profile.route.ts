@@ -12,8 +12,8 @@ import { upload } from "../../../middleware/upload.middleware.js";
 /**
  * @swagger
  * tags:
- *   name: Profiles
- *   description: User profile management
+ *   - name: Profiles
+ *     description: User profile management
  */
 
 const router = Router();
@@ -34,6 +34,29 @@ const profileController = new ProfileController(profileService);
  *     tags: [Profiles]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: Nomor halaman
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *         description: Jumlah data per halaman
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Cari berdasarkan kata kunci
+ *       - in: query
+ *         name: filter
+ *         schema:
+ *           type: string
+ *         description: Filter data
  *     responses:
  *       200:
  *         description: List of all profiles
