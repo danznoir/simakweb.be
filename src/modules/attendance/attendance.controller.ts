@@ -1,14 +1,16 @@
 import type { Request, Response } from "express";
 import { AttendanceService } from "./attendance.service.js";
 import { successResponse } from "../../utils/response.js";
-import type { IAttendanceQuery } from "./attendance.dto.js";
 
 export class AttendanceController {
   constructor(private attendanceService: AttendanceService) {}
 
   getAllAttendances = async (req: Request, res: Response) => {
-    const query = req.query as unknown as IAttendanceQuery;
-    const result = await this.attendanceService.getAllAttendances(query);
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    const search = req.query.search as string;
+    const filter = req.query.filter as string;
+    const result = await this.attendanceService.getAllAttendances({ page, limit, search, filter });
     successResponse(res, "Daftar absensi berhasil diambil", result, null, 200);
   };
 

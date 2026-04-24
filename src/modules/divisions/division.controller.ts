@@ -6,7 +6,11 @@ export class DivisionController {
   constructor(private divisionService: DivisionService) {}
 
   getAllDivisions = async (req: Request, res: Response) => {
-    const result = await this.divisionService.getAllDivisions();
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    const search = req.query.search as string;
+    const filter = req.query.filter as string;
+    const result = await this.divisionService.getAllDivisions({ page, limit, search, filter });
     successResponse(res, "Daftar divisi berhasil diambil", result, null, 200);
   };
 

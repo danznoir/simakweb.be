@@ -4,8 +4,21 @@ import type { ICreateAssignmentData, IUpdateAssignmentData } from "./assignment.
 export class AssignmentService {
   constructor(private assignmentRepo: AssignmentRepository) {}
 
-  async getAllAssignments() {
-    return await this.assignmentRepo.findAll();
+  async getAllAssignments(params: { page: number; limit: number; search?: string; filter?: string }) {
+    const { page, limit, search, filter } = params;
+    const skip = (page - 1) * limit;
+    const take = limit;
+
+    const { data, total } = await this.assignmentRepo.findAll(skip, take, search, filter);
+    return {
+      data,
+      meta: {
+        total,
+        page: skip / take + 1,
+        limit: take,
+        totalPages: Math.ceil(total / take),
+      },
+    };
   }
 
   async getAssignmentById(id: string) {

@@ -13,8 +13,8 @@ import { markAttendanceSchema, updateAttendanceSchema } from "./attendance.schem
 /**
  * @swagger
  * tags:
- *   name: Attendances
- *   description: Attendance management
+ *   - name: Attendances
+ *     description: Attendance management
  */
 
 const router = Router();
@@ -34,6 +34,29 @@ const attendanceController = new AttendanceController(attendanceService);
  *     tags: [Attendances]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: Nomor halaman
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *         description: Jumlah data per halaman
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Cari berdasarkan kata kunci
+ *       - in: query
+ *         name: filter
+ *         schema:
+ *           type: string
+ *         description: Filter data
  *     responses:
  *       200:
  *         description: List of attendance records
@@ -146,6 +169,10 @@ router.post("/", authenticate, adminMiddleware, validate(markAttendanceSchema), 
  *               imageUrl:
  *                 type: string
  *                 example: "https://example.com/mc.jpg"
+ *               date:
+ *                 type: string
+ *                 format: date-time
+ *                 example: "2024-04-18T08:00:00Z"
  *     responses:
  *       200:
  *         description: Attendance record updated successfully

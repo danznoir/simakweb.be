@@ -39,9 +39,6 @@ const router = Router();
  *               email:
  *                 type: string
  *                 example: muhammad@gmail.com
- *               nis:
- *                 type: string
- *                 example: "12345678"
  *               password:
  *                 type: string
  *                 example: password123
@@ -126,12 +123,12 @@ router.post("/send-otp", resendOtpController);
  *           schema:
  *             type: object
  *             required:
- *               - email
+ *               - userId
  *               - otp
  *             properties:
- *               email:
+ *               userId:
  *                 type: string
- *                 example: muhammad@gmail.com
+ *                 example: "UUID user"
  *               otp:
  *                 type: string
  *                 example: "123456"

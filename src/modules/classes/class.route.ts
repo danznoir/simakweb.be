@@ -13,8 +13,8 @@ import { createClassSchema, updateClassSchema } from "./class.schema.js";
 /**
  * @swagger
  * tags:
- *   name: Classes
- *   description: Class management
+ *   - name: Classes
+ *     description: Class management
  */
 
 const router = Router();
@@ -34,6 +34,29 @@ const classController = new ClassController(classService);
  *     tags: [Classes]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: Nomor halaman
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *         description: Jumlah data per halaman
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Cari berdasarkan kata kunci
+ *       - in: query
+ *         name: filter
+ *         schema:
+ *           type: string
+ *         description: Filter data
  *     responses:
  *       200:
  *         description: List of all classes

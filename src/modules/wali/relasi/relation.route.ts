@@ -12,8 +12,8 @@ import { validate } from "../../../utils/validate.js";
 /**
  * @swagger
  * tags:
- *   name: WaliRelations
- *   description: Relationship management between Wali and Santri
+ *   - name: WaliRelations
+ *     description: Relationship management between Wali and Santri
  */
 
 const router = Router();
@@ -31,6 +31,29 @@ const controller = new WaliRelationController(service);
  *     tags: [WaliRelations]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: Nomor halaman
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *         description: Jumlah data per halaman
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Cari berdasarkan kata kunci
+ *       - in: query
+ *         name: filter
+ *         schema:
+ *           type: string
+ *         description: Filter data
  *     responses:
  *       200:
  *         description: List of all relations

@@ -4,9 +4,20 @@ export class WaliRelationRepository {
   constructor(private prisma: PrismaClient) {}
 
   // Get All dengan Pagination dan Include data dasar User
-  async findAll(skip: number, take: number) {
+  async findAll(skip: number, take: number, search?: string, filter?: string) {
+    const where: Prisma.WaliSantriRelationWhereInput = {};
+    if (search) {
+      where.OR = [
+        { wali: { fullName: { contains: search, mode: 'insensitive' } } },
+        { santri: { fullName: { contains: search, mode: 'insensitive' } } },
+      ];
+    }
+    if (filter) {
+      where.id = filter;
+    }
     const [data, total] = await this.prisma.$transaction([
       this.prisma.waliSantriRelation.findMany({
+        where,
         skip,
         take,
         include: {

@@ -3,10 +3,23 @@ import type { Prisma, PrismaClient } from "../../../generated/index.js";
 export class AssignmentContentRepository {
   constructor(private prisma: PrismaClient) {}
 
-  async findAll(where: Prisma.AssignmentContentWhereInput) {
-    return await this.prisma.assignmentContent.findMany({
-      where,
-      include: {
+  async findAll(skip: number, take: number, search?: string, filter?: string) {
+    const where: Prisma.AssignmentContentWhereInput = {};
+    if (search) {
+      where.OR = [
+        { assignment: { title: { contains: search, mode: 'insensitive' } } },
+        { santri: { fullName: { contains: search, mode: 'insensitive' } } },
+      ];
+    }
+    if (filter) {
+      where.assignmentId = filter;
+    }
+    const [data, total] = await Promise.all([
+      this.prisma.assignmentContent.findMany({
+        where,
+        skip,
+        take,
+        include: {
         assignment: {
           select: {
             title: true,
@@ -22,7 +35,10 @@ export class AssignmentContentRepository {
       orderBy: {
         submittedAt: "desc",
       },
-    });
+    }),
+    this.prisma.assignmentContent.count({ where })
+    ]);
+    return { data, total };
   }
 
   async findById(id: string) {

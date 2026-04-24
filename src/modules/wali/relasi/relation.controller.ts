@@ -8,8 +8,9 @@ export class WaliRelationController {
   getAllRelations = async (req: Request, res: Response) => {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
-
-    const result = await this.service.getAllRelations(page, limit);
+    const search = req.query.search as string;
+    const filter = req.query.filter as string;
+    const result = await this.service.getAllRelations({ page, limit, search, filter });
     
     // Asumsi: successResponse(res, message, data, meta, statusCode)
     return successResponse(res, "Berhasil mengambil data relasi", result.data, result.meta, 200);

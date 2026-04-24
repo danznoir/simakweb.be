@@ -13,8 +13,8 @@ import { createUserSchema, updateUserSchema } from "./user.schema.js";
 /**
  * @swagger
  * tags:
- *   name: Users
- *   description: User management
+ *   - name: Users
+ *     description: User management
  */
 
 const router = Router();
@@ -34,6 +34,29 @@ const userController = new UserController(userService);
  *     tags: [Users]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: Nomor halaman
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *         description: Jumlah data per halaman
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Cari berdasarkan kata kunci
+ *       - in: query
+ *         name: filter
+ *         schema:
+ *           type: string
+ *         description: Filter data
  *     responses:
  *       200:
  *         description: List of all users
@@ -128,9 +151,16 @@ router.get("/:id", authenticate, userController.getUserById);
  *               fullName:
  *                 type: string
  *                 example: Muhammad Rizki Updated
+ *               email:
+ *                 type: string
+ *                 example: muhammad_updated@gmail.com
  *               phone:
  *                 type: string
  *                 example: "08987654321"
+ *               role:
+ *                 type: string
+ *                 enum: [SANTRI, MENTOR, WALI_SANTRI]
+ *                 example: SANTRI
  *     responses:
  *       200:
  *         description: User updated successfully
