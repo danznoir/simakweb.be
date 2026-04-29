@@ -60,4 +60,33 @@ export class MonthlyEvaluationRepo {
       where: { id }
     });
   }
+
+  async stats() {
+    // 1. Hitung total semua evaluasi bulanan yang pernah dibuat
+    const total = await this.prisma.monthlyEvaluation.count();
+    
+    // 2. Hitung rata-rata dari masing-masing komponen nilai
+    const averages = await this.prisma.monthlyEvaluation.aggregate({
+      _avg: {
+        taskAvg: true,
+        attitudeAvg: true,
+        finalScore: true,
+      }
+    });
+
+    // 3. Kelompokkan jumlah evaluasi berdasarkan kombinasi Bulan dan Tahun
+    const byMonthYear = await this.prisma.monthlyEvaluation.groupBy({
+      by: ['month', 'year'],
+      _count: {
+        id: true
+      },
+      // Urutkan dari tahun dan bulan terbaru
+      orderBy: [
+        { year: 'desc' },
+        { month: 'desc' }
+      ]
+    });
+
+    return { total, averages, byMonthYear };
+  }
 }

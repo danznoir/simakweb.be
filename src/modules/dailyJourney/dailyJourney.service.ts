@@ -87,4 +87,33 @@ export class DailyJournalService {
         if (!existing) throw new AppError("Jurnal harian tidak ditemukan", 404);
         return await this.repo.delete(id);
     }
+
+    async getDailyJournalStats() {
+    const rawStats = await this.repo.stats();
+
+    // Merapikan format array dari Prisma menjadi object JSON
+    const formattedByTugasType = rawStats.byTugasType.reduce((acc, curr) => {
+      // curr.tugasType berisi 'HARIAN', 'MINGGUAN', atau 'BULANAN'
+      acc[curr.tugasType] = curr._count.id;
+      return acc;
+    }, {} as Record<string, number>);
+
+    // Memastikan semua tipe tugas muncul di response (mencegah error grafik di Frontend)
+    const defaultTugasType = {
+      HARIAN: 0,
+      MINGGUAN: 0,
+      BULANAN: 0,
+      ...formattedByTugasType
+    };
+
+    // Ambil nilai rata-rata, jika null (database kosong) jadikan 0
+    const avgScore = rawStats.averageAttitude._avg.attitudeScore;
+    const finalAverageScore = avgScore ? parseFloat(avgScore.toFixed(2)) : 0;
+
+    return {
+      total: rawStats.total,
+      byTugasType: defaultTugasType,
+      averageAttitudeScore: finalAverageScore
+    };
+  }
 }

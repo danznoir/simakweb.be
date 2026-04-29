@@ -36,4 +36,9 @@ export class DivisionController {
     await this.divisionService.deleteDivision(id as string);
     successResponse(res, "Divisi berhasil dihapus", null, null, 200);
   };
+
+  getDivisionStats = async (req: Request, res: Response) => {
+    const result = await this.divisionService.getDivisionStats();
+    successResponse(res, "Statistik divisi berhasil diambil", result, null, 200);
+  };
 }

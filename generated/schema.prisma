@@ -168,9 +168,10 @@ model MonthlyEvaluation {
 }
 
 model SantriProfile {
-  id     String @id @default(uuid())
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id     String  @id @default(uuid())
+  userId String  @unique
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gender Gender?
 
   phone     String?
   birthDate DateTime? @db.Date
@@ -179,6 +180,9 @@ model SantriProfile {
 
   classId String?
   class   Class?  @relation(fields: [classId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("santri_profiles")
 }
@@ -219,10 +223,10 @@ model User {
 }
 
 model WaliProfile {
-  id     String @id @default(uuid())
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  id       String  @id @default(uuid())
+  userId   String  @unique
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gender   Gender?
   phone    String?
   address  String? @db.Text
   photoUrl String?
@@ -307,4 +311,9 @@ enum TugasType {
   HARIAN
   MINGGUAN
   BULANAN
+}
+
+enum Gender {
+  LAKI_LAKI
+  PEREMPUAN
 }

@@ -45,4 +45,9 @@ export class DailyJournalController {
     await this.service.delete(id as string);
     successResponse(res, "Jurnal harian berhasil dihapus", null, null, 200);
   };
+
+  getDailyJournalStats = async (req: Request, res: Response) => {
+    const result = await this.service.getDailyJournalStats();
+    successResponse(res, "Statistik jurnal harian berhasil diambil", result, null, 200);
+  };
 }

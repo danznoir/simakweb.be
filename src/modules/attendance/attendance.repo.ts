@@ -93,4 +93,19 @@ export class AttendanceRepository {
       where: { id },
     });
   }
+
+  async stats() {
+    // Menghitung total semua record absensi
+    const total = await this.prisma.attendance.count();
+    
+    // Mengelompokkan berdasarkan status absensi
+    const byStatus = await this.prisma.attendance.groupBy({
+      by: ['status'],
+      _count: {
+        id: true
+      }
+    });
+
+    return { total, byStatus };
+  }
 }

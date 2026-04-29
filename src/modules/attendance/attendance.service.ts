@@ -62,4 +62,29 @@ export class AttendanceService {
 
     return await this.attendanceRepo.delete(id);
   }
+
+  async getAttendanceStats() {
+    const rawStats = await this.attendanceRepo.stats();
+
+    // Merapikan format array dari Prisma menjadi object JSON yang mudah dibaca
+    const formattedByStatus = rawStats.byStatus.reduce((acc, curr) => {
+      // curr.status akan berisi enum seperti 'HADIR', 'IZIN', 'SAKIT', 'ALPHA'
+      acc[curr.status] = curr._count.id;
+      return acc;
+    }, {} as Record<string, number>);
+
+    // Memastikan status yang mungkin belum ada datanya tetap bernilai 0 (Opsional, tapi bagus untuk Frontend)
+    const defaultStatus = {
+      HADIR: 0,
+      IZIN: 0,
+      SAKIT: 0,
+      ALPHA: 0,
+      ...formattedByStatus // Timpa nilai 0 dengan data asli dari database jika ada
+    };
+
+    return {
+      total: rawStats.total,
+      byStatus: defaultStatus
+    };
+  }
 }

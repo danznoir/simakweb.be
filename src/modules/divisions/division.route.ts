@@ -65,6 +65,20 @@ router.get("/", authenticate, divisionController.getAllDivisions);
 
 /**
  * @swagger
+ * /api/v1/divisions/stats:
+ *   get:
+ *     summary: Get division statistics
+ *     tags: [Divisions]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Division statistics
+ */
+router.get("/stats", authenticate, divisionController.getDivisionStats);
+
+/**
+ * @swagger
  * /api/v1/divisions/{id}:
  *   get:
  *     summary: Get division by ID

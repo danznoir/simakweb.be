@@ -65,6 +65,20 @@ router.get("/", authenticate, assignmentController.getAllAssignments);
 
 /**
  * @swagger
+ * /api/v1/assignments/stats:
+ *   get:
+ *     summary: Get assignment statistics
+ *     tags: [Assignments]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Assignment statistics
+ */
+router.get("/stats", authenticate, assignmentController.getAssignmentStats);
+
+/**
+ * @swagger
  * /api/v1/assignments/{id}:
  *   get:
  *     summary: Get assignment by ID

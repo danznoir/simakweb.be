@@ -60,4 +60,20 @@ export class AssignmentService {
 
     return await this.assignmentRepo.delete(id);
   }
+
+  async getAssignmentStats() {
+    const rawStats = await this.assignmentRepo.stats();
+
+    // Merapikan format array dari Prisma menjadi object JSON
+    const formattedByType = rawStats.bySubmissionType.reduce((acc, curr) => {
+      // curr.submissionType berisi 'TEXT' atau 'FILE'
+      acc[curr.submissionType] = curr._count.id;
+      return acc;
+    }, {} as Record<string, number>);
+
+    return {
+      total: rawStats.totalAssignments,
+      bySubmissionType: formattedByType
+    };
+  }
 }

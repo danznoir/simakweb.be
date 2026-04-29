@@ -68,4 +68,20 @@ export class WaliRelationRepository {
       where: { id },
     });
   }
+
+  async stats() {
+    // 1. Hitung total semua relasi yang terdaftar
+    const total = await this.prisma.waliSantriRelation.count();
+    
+    // 2. Kelompokkan berdasarkan tipe hubungan (misal: AYAH, IBU, WALI_LAIN)
+    // 💡 Ganti 'relationType' dengan nama kolom yang benar di database kamu
+    const byCategory = await this.prisma.waliSantriRelation.groupBy({
+      by: ['category'], 
+      _count: {
+        id: true
+      }
+    });
+
+    return { total, byCategory };
+  }
 }

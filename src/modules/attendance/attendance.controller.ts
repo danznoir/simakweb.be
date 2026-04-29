@@ -36,4 +36,9 @@ export class AttendanceController {
     await this.attendanceService.deleteAttendance(id as string);
     successResponse(res, "Data absensi berhasil dihapus", null, null, 200);
   };
+
+  getAttendanceStats = async (req: Request, res: Response) => {
+    const result = await this.attendanceService.getAttendanceStats();
+    successResponse(res, "Statistik absensi berhasil diambil", result, null, 200);
+  };
 }

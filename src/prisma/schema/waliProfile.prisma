@@ -2,7 +2,7 @@ model WaliProfile {
   id        String   @id @default(uuid())
   userId    String   @unique
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
+  gender    Gender?
   phone     String?
   address   String?  @db.Text
   photoUrl  String?

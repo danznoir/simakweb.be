@@ -54,4 +54,19 @@ export class DivisionService {
 
     return await this.divisionRepo.delete(id);
   }
+
+  async getDivisionStats() {
+    const rawStats = await this.divisionRepo.stats();
+
+    // Merapikan format array menjadi object JSON (Nama Divisi -> Jumlah Kelas)
+    const formattedClassCount = rawStats.divisionsWithClassCount.reduce((acc, curr) => {
+      acc[curr.name] = curr._count.classes;
+      return acc;
+    }, {} as Record<string, number>);
+
+    return {
+      totalDivisions: rawStats.total,
+      classesPerDivision: formattedClassCount
+    };
+  }
 }

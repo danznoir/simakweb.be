@@ -41,4 +41,9 @@ export class UserController {
       await this.userService.deleteUser(id as string);
       successResponse(res, "User berhasil dihapus", null, null, 200);
   };
+
+  getStats = async (req: Request, res: Response) => {
+    const result = await this.userService.getStats(); 
+    successResponse(res, "Statistik pengguna berhasil diambil", result, null, 200);
+  };
 }

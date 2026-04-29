@@ -36,4 +36,9 @@ export class ClassController {
     await this.classService.deleteClass(id as string);
     successResponse(res, "Kelas berhasil dihapus", null, null, 200);
   };
+
+  getClassStats = async (req: Request, res: Response) => {
+    const result = await this.classService.getClassStats();
+    successResponse(res, "Statistik kelas berhasil diambil", result, null, 200);
+  };
 }

@@ -1,7 +1,7 @@
 import type { Prisma, PrismaClient } from "../../../generated/index.js";
 
 export class AssignmentContentRepository {
-  constructor(private prisma: PrismaClient) {}
+  constructor(private prisma: PrismaClient) { }
 
   async findAll(skip: number, take: number, search?: string, filter?: string) {
     const where: Prisma.AssignmentContentWhereInput = {};
@@ -20,23 +20,23 @@ export class AssignmentContentRepository {
         skip,
         take,
         include: {
-        assignment: {
-          select: {
-            title: true,
+          assignment: {
+            select: {
+              title: true,
+            },
+          },
+          santri: {
+            select: {
+              fullName: true,
+              nis: true,
+            },
           },
         },
-        santri: {
-          select: {
-            fullName: true,
-            nis: true,
-          },
+        orderBy: {
+          submittedAt: "desc",
         },
-      },
-      orderBy: {
-        submittedAt: "desc",
-      },
-    }),
-    this.prisma.assignmentContent.count({ where })
+      }),
+      this.prisma.assignmentContent.count({ where })
     ]);
     return { data, total };
   }
@@ -98,6 +98,15 @@ export class AssignmentContentRepository {
   async delete(id: string) {
     return await this.prisma.assignmentContent.delete({
       where: { id },
+    });
+  }
+
+  async stats() {
+    return await this.prisma.assignmentContent.groupBy({
+      by: ['status'],
+      _count: {
+        id: true
+      }
     });
   }
 }

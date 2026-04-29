@@ -65,6 +65,20 @@ router.get("/", authenticate, attendanceController.getAllAttendances);
 
 /**
  * @swagger
+ * /api/v1/attendances/stats:
+ *   get:
+ *     summary: Get attendance statistics
+ *     tags: [Attendances]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Attendance statistics
+ */
+router.get("/stats", authenticate, attendanceController.getAttendanceStats);
+
+/**
+ * @swagger
  * /api/v1/attendances/{id}:
  *   get:
  *     summary: Get attendance record by ID

@@ -71,4 +71,26 @@ export class DailyJournalRepo {
             where: { id }
         })
     }
+
+    async stats() {
+    // 1. Hitung total semua jurnal harian
+    const total = await this.prisma.dailyJournal.count();
+    
+    // 2. Kelompokkan jumlah jurnal berdasarkan tipe tugas
+    const byTugasType = await this.prisma.dailyJournal.groupBy({
+      by: ['tugasType'],
+      _count: {
+        id: true
+      }
+    });
+
+    // 3. Hitung rata-rata nilai sikap (attitudeScore) dari seluruh data
+    const averageAttitude = await this.prisma.dailyJournal.aggregate({
+      _avg: {
+        attitudeScore: true
+      }
+    });
+
+    return { total, byTugasType, averageAttitude };
+  }
 }

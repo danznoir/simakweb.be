@@ -89,4 +89,18 @@ export class WaliProfileService {
 
     return await this.repo.delete(id);
   }
+
+  async getWaliProfileStats() {
+    const rawStats = await this.repo.stats();
+
+    return {
+      totalWali: rawStats.total,
+      profileCompleteness: {
+        withPhone: rawStats.total - rawStats.missingPhone,
+        missingPhone: rawStats.missingPhone,
+        withAddress: rawStats.total - rawStats.missingAddress,
+        missingAddress: rawStats.missingAddress
+      }
+    };
+  }
 }

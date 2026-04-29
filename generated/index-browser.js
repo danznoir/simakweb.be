@@ -215,11 +215,14 @@ exports.Prisma.MonthlyEvaluationScalarFieldEnum = {
 exports.Prisma.SantriProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  gender: 'gender',
   phone: 'phone',
   birthDate: 'birthDate',
   address: 'address',
   photoUrl: 'photoUrl',
-  classId: 'classId'
+  classId: 'classId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
@@ -237,6 +240,7 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.WaliProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  gender: 'gender',
   phone: 'phone',
   address: 'address',
   photoUrl: 'photoUrl',
@@ -293,6 +297,11 @@ exports.TugasType = exports.$Enums.TugasType = {
   HARIAN: 'HARIAN',
   MINGGUAN: 'MINGGUAN',
   BULANAN: 'BULANAN'
+};
+
+exports.Gender = exports.$Enums.Gender = {
+  LAKI_LAKI: 'LAKI_LAKI',
+  PEREMPUAN: 'PEREMPUAN'
 };
 
 exports.Role = exports.$Enums.Role = {

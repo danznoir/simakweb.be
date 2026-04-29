@@ -66,6 +66,20 @@ router.get("/", adminMiddleware, controller.getAllProfiles);
 
 /**
  * @swagger
+ * /api/v1/wali-santri/stats:
+ *   get:
+ *     summary: Get statistics of all wali profiles
+ *     tags: [WaliProfiles]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Statistics of all wali profiles
+ */
+router.get("/stats", adminMiddleware, controller.getWaliProfileStats);
+
+/**
+ * @swagger
  * /api/v1/wali-santri/{id}:
  *   get:
  *     summary: Get wali profile by User ID

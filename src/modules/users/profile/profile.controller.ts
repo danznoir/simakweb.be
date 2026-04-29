@@ -15,8 +15,9 @@ export class ProfileController {
       let isActive: boolean | undefined;
       if (req.query.isActive === "true") isActive = true;
       else if (req.query.isActive === "false") isActive = false;
+      const gender = req.query.gender as string;
 
-      const result = await this.profileService.getAllProfiles(page, limit, search, role, isActive);
+      const result = await this.profileService.getAllProfiles(page, limit, search, role, gender, isActive);
       successResponse(res, "Berhasil mengambil semua profile", result.data, result.meta, 200);
   };
 
@@ -57,5 +58,10 @@ export class ProfileController {
       const { id } = req.params;
       await this.profileService.deleteProfile(id as string);
       successResponse(res, "Profile berhasil dihapus", null, null, 200);
+  };
+
+  getProfileStats = async (req: Request, res: Response) => {
+    const result = await this.profileService.getProfileStats();
+    successResponse(res, "Statistik profil santri berhasil diambil", result, null, 200);
   };
 }

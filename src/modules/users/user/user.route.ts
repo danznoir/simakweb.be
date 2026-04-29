@@ -65,6 +65,20 @@ router.get("/", authenticate, adminMiddleware, userController.getAllUsers);
 
 /**
  * @swagger
+ * /api/v1/users/stats:
+ *   get:
+ *     summary: Get statistics of all users
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Statistics of all users
+ */
+router.get("/stats", authenticate, adminMiddleware, userController.getStats);
+
+/**
+ * @swagger
  * /api/v1/users:
  *   post:
  *     summary: Create a new user (Admin Only)
