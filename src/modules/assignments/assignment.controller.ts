@@ -36,4 +36,9 @@ export class AssignmentController {
     await this.assignmentService.deleteAssignment(id as string);
     successResponse(res, "Penugasan berhasil dihapus", null, null, 200);
   };
+
+  getAssignmentStats = async (req: Request, res: Response) => {
+    const result = await this.assignmentService.getAssignmentStats();
+    successResponse(res, "Statistik penugasan berhasil diambil", result, null, 200);
+  };
 }

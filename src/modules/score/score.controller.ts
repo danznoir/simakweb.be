@@ -40,4 +40,9 @@ export class MonthlyEvaluationController {
     await this.service.delete(id as string);
     successResponse(res, "Evaluasi bulanan berhasil dihapus", null, null, 200);
   };
+
+  getMonthlyEvaluationStats = async (req: Request, res: Response) => {
+    const result = await this.service.getMonthlyEvaluationStats();
+    successResponse(res, "Statistik evaluasi bulanan berhasil diambil", result, null, 200);
+  };
 }

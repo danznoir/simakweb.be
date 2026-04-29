@@ -106,4 +106,28 @@ export class MonthlyEvaluationService {
     await this.getById(id); // Pastikan data ada sebelum dihapus
     return await this.repo.delete(id);
   }
+
+  async getMonthlyEvaluationStats() {
+    const rawStats = await this.repo.stats();
+
+    // Merapikan nilai rata-rata (jika kosong/null, jadikan 0)
+    const averageScores = {
+      task: rawStats.averages._avg.taskAvg ? parseFloat(rawStats.averages._avg.taskAvg.toFixed(2)) : 0,
+      attitude: rawStats.averages._avg.attitudeAvg ? parseFloat(rawStats.averages._avg.attitudeAvg.toFixed(2)) : 0,
+      final: rawStats.averages._avg.finalScore ? parseFloat(rawStats.averages._avg.finalScore.toFixed(2)) : 0,
+    };
+
+    // Merapikan format grouping bulan-tahun menjadi object JSON (misal: "4-2026": 150)
+    const formattedByMonth = rawStats.byMonthYear.reduce((acc, curr) => {
+      const key = `${curr.month}-${curr.year}`; // Format: Bulan-Tahun
+      acc[key] = curr._count.id;
+      return acc;
+    }, {} as Record<string, number>);
+
+    return {
+      total: rawStats.total,
+      averageScores,
+      evaluationsPerMonth: formattedByMonth
+    };
+  }
 }

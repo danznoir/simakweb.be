@@ -61,6 +61,20 @@ router.get("/", authenticate, controller.getAll);
 
 /**
  * @swagger
+ * /api/v1/monthly-evaluation/stats:
+ *   get:
+ *     summary: Get monthly evaluation statistics
+ *     tags: [MonthlyEvaluation]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Monthly evaluation statistics
+ */
+router.get("/stats", authenticate, controller.getMonthlyEvaluationStats);
+
+/**
+ * @swagger
  * /api/v1/monthly-evaluation/{id}:
  *   get:
  *     summary: Get monthly evaluation by ID

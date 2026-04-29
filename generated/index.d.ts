@@ -140,6 +140,14 @@ export const TugasType: {
 
 export type TugasType = (typeof TugasType)[keyof typeof TugasType]
 
+
+export const Gender: {
+  LAKI_LAKI: 'LAKI_LAKI',
+  PEREMPUAN: 'PEREMPUAN'
+};
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
+
 }
 
 export type Role = $Enums.Role
@@ -169,6 +177,10 @@ export const WaliSantriCategory: typeof $Enums.WaliSantriCategory
 export type TugasType = $Enums.TugasType
 
 export const TugasType: typeof $Enums.TugasType
+
+export type Gender = $Enums.Gender
+
+export const Gender: typeof $Enums.Gender
 
 /**
  * ##  Prisma Client ʲˢ
@@ -11475,31 +11487,40 @@ export namespace Prisma {
   export type SantriProfileMinAggregateOutputType = {
     id: string | null
     userId: string | null
+    gender: $Enums.Gender | null
     phone: string | null
     birthDate: Date | null
     address: string | null
     photoUrl: string | null
     classId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SantriProfileMaxAggregateOutputType = {
     id: string | null
     userId: string | null
+    gender: $Enums.Gender | null
     phone: string | null
     birthDate: Date | null
     address: string | null
     photoUrl: string | null
     classId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SantriProfileCountAggregateOutputType = {
     id: number
     userId: number
+    gender: number
     phone: number
     birthDate: number
     address: number
     photoUrl: number
     classId: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -11507,31 +11528,40 @@ export namespace Prisma {
   export type SantriProfileMinAggregateInputType = {
     id?: true
     userId?: true
+    gender?: true
     phone?: true
     birthDate?: true
     address?: true
     photoUrl?: true
     classId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type SantriProfileMaxAggregateInputType = {
     id?: true
     userId?: true
+    gender?: true
     phone?: true
     birthDate?: true
     address?: true
     photoUrl?: true
     classId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type SantriProfileCountAggregateInputType = {
     id?: true
     userId?: true
+    gender?: true
     phone?: true
     birthDate?: true
     address?: true
     photoUrl?: true
     classId?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -11610,11 +11640,14 @@ export namespace Prisma {
   export type SantriProfileGroupByOutputType = {
     id: string
     userId: string
+    gender: $Enums.Gender | null
     phone: string | null
     birthDate: Date | null
     address: string | null
     photoUrl: string | null
     classId: string | null
+    createdAt: Date
+    updatedAt: Date
     _count: SantriProfileCountAggregateOutputType | null
     _min: SantriProfileMinAggregateOutputType | null
     _max: SantriProfileMaxAggregateOutputType | null
@@ -11637,11 +11670,14 @@ export namespace Prisma {
   export type SantriProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    gender?: boolean
     phone?: boolean
     birthDate?: boolean
     address?: boolean
     photoUrl?: boolean
     classId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }, ExtArgs["result"]["santriProfile"]>
@@ -11649,11 +11685,14 @@ export namespace Prisma {
   export type SantriProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    gender?: boolean
     phone?: boolean
     birthDate?: boolean
     address?: boolean
     photoUrl?: boolean
     classId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }, ExtArgs["result"]["santriProfile"]>
@@ -11661,11 +11700,14 @@ export namespace Prisma {
   export type SantriProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    gender?: boolean
     phone?: boolean
     birthDate?: boolean
     address?: boolean
     photoUrl?: boolean
     classId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
   }, ExtArgs["result"]["santriProfile"]>
@@ -11673,14 +11715,17 @@ export namespace Prisma {
   export type SantriProfileSelectScalar = {
     id?: boolean
     userId?: boolean
+    gender?: boolean
     phone?: boolean
     birthDate?: boolean
     address?: boolean
     photoUrl?: boolean
     classId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type SantriProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "phone" | "birthDate" | "address" | "photoUrl" | "classId", ExtArgs["result"]["santriProfile"]>
+  export type SantriProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "gender" | "phone" | "birthDate" | "address" | "photoUrl" | "classId" | "createdAt" | "updatedAt", ExtArgs["result"]["santriProfile"]>
   export type SantriProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | SantriProfile$classArgs<ExtArgs>
@@ -11703,11 +11748,14 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
+      gender: $Enums.Gender | null
       phone: string | null
       birthDate: Date | null
       address: string | null
       photoUrl: string | null
       classId: string | null
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["santriProfile"]>
     composites: {}
   }
@@ -12135,11 +12183,14 @@ export namespace Prisma {
   interface SantriProfileFieldRefs {
     readonly id: FieldRef<"SantriProfile", 'String'>
     readonly userId: FieldRef<"SantriProfile", 'String'>
+    readonly gender: FieldRef<"SantriProfile", 'Gender'>
     readonly phone: FieldRef<"SantriProfile", 'String'>
     readonly birthDate: FieldRef<"SantriProfile", 'DateTime'>
     readonly address: FieldRef<"SantriProfile", 'String'>
     readonly photoUrl: FieldRef<"SantriProfile", 'String'>
     readonly classId: FieldRef<"SantriProfile", 'String'>
+    readonly createdAt: FieldRef<"SantriProfile", 'DateTime'>
+    readonly updatedAt: FieldRef<"SantriProfile", 'DateTime'>
   }
     
 
@@ -14044,6 +14095,7 @@ export namespace Prisma {
   export type WaliProfileMinAggregateOutputType = {
     id: string | null
     userId: string | null
+    gender: $Enums.Gender | null
     phone: string | null
     address: string | null
     photoUrl: string | null
@@ -14053,6 +14105,7 @@ export namespace Prisma {
   export type WaliProfileMaxAggregateOutputType = {
     id: string | null
     userId: string | null
+    gender: $Enums.Gender | null
     phone: string | null
     address: string | null
     photoUrl: string | null
@@ -14062,6 +14115,7 @@ export namespace Prisma {
   export type WaliProfileCountAggregateOutputType = {
     id: number
     userId: number
+    gender: number
     phone: number
     address: number
     photoUrl: number
@@ -14073,6 +14127,7 @@ export namespace Prisma {
   export type WaliProfileMinAggregateInputType = {
     id?: true
     userId?: true
+    gender?: true
     phone?: true
     address?: true
     photoUrl?: true
@@ -14082,6 +14137,7 @@ export namespace Prisma {
   export type WaliProfileMaxAggregateInputType = {
     id?: true
     userId?: true
+    gender?: true
     phone?: true
     address?: true
     photoUrl?: true
@@ -14091,6 +14147,7 @@ export namespace Prisma {
   export type WaliProfileCountAggregateInputType = {
     id?: true
     userId?: true
+    gender?: true
     phone?: true
     address?: true
     photoUrl?: true
@@ -14173,6 +14230,7 @@ export namespace Prisma {
   export type WaliProfileGroupByOutputType = {
     id: string
     userId: string
+    gender: $Enums.Gender | null
     phone: string | null
     address: string | null
     photoUrl: string | null
@@ -14199,6 +14257,7 @@ export namespace Prisma {
   export type WaliProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    gender?: boolean
     phone?: boolean
     address?: boolean
     photoUrl?: boolean
@@ -14209,6 +14268,7 @@ export namespace Prisma {
   export type WaliProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    gender?: boolean
     phone?: boolean
     address?: boolean
     photoUrl?: boolean
@@ -14219,6 +14279,7 @@ export namespace Prisma {
   export type WaliProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    gender?: boolean
     phone?: boolean
     address?: boolean
     photoUrl?: boolean
@@ -14229,13 +14290,14 @@ export namespace Prisma {
   export type WaliProfileSelectScalar = {
     id?: boolean
     userId?: boolean
+    gender?: boolean
     phone?: boolean
     address?: boolean
     photoUrl?: boolean
     job?: boolean
   }
 
-  export type WaliProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "phone" | "address" | "photoUrl" | "job", ExtArgs["result"]["waliProfile"]>
+  export type WaliProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "gender" | "phone" | "address" | "photoUrl" | "job", ExtArgs["result"]["waliProfile"]>
   export type WaliProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -14254,6 +14316,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
+      gender: $Enums.Gender | null
       phone: string | null
       address: string | null
       photoUrl: string | null
@@ -14684,6 +14747,7 @@ export namespace Prisma {
   interface WaliProfileFieldRefs {
     readonly id: FieldRef<"WaliProfile", 'String'>
     readonly userId: FieldRef<"WaliProfile", 'String'>
+    readonly gender: FieldRef<"WaliProfile", 'Gender'>
     readonly phone: FieldRef<"WaliProfile", 'String'>
     readonly address: FieldRef<"WaliProfile", 'String'>
     readonly photoUrl: FieldRef<"WaliProfile", 'String'>
@@ -16324,11 +16388,14 @@ export namespace Prisma {
   export const SantriProfileScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    gender: 'gender',
     phone: 'phone',
     birthDate: 'birthDate',
     address: 'address',
     photoUrl: 'photoUrl',
-    classId: 'classId'
+    classId: 'classId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type SantriProfileScalarFieldEnum = (typeof SantriProfileScalarFieldEnum)[keyof typeof SantriProfileScalarFieldEnum]
@@ -16352,6 +16419,7 @@ export namespace Prisma {
   export const WaliProfileScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    gender: 'gender',
     phone: 'phone',
     address: 'address',
     photoUrl: 'photoUrl',
@@ -16525,6 +16593,20 @@ export namespace Prisma {
    * Reference to a field of type 'TugasType[]'
    */
   export type ListEnumTugasTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TugasType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Gender'
+   */
+  export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
+    
+
+
+  /**
+   * Reference to a field of type 'Gender[]'
+   */
+  export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
     
 
 
@@ -17204,11 +17286,14 @@ export namespace Prisma {
     NOT?: SantriProfileWhereInput | SantriProfileWhereInput[]
     id?: StringFilter<"SantriProfile"> | string
     userId?: StringFilter<"SantriProfile"> | string
+    gender?: EnumGenderNullableFilter<"SantriProfile"> | $Enums.Gender | null
     phone?: StringNullableFilter<"SantriProfile"> | string | null
     birthDate?: DateTimeNullableFilter<"SantriProfile"> | Date | string | null
     address?: StringNullableFilter<"SantriProfile"> | string | null
     photoUrl?: StringNullableFilter<"SantriProfile"> | string | null
     classId?: StringNullableFilter<"SantriProfile"> | string | null
+    createdAt?: DateTimeFilter<"SantriProfile"> | Date | string
+    updatedAt?: DateTimeFilter<"SantriProfile"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
   }
@@ -17216,11 +17301,14 @@ export namespace Prisma {
   export type SantriProfileOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    gender?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     birthDate?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     photoUrl?: SortOrderInput | SortOrder
     classId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     class?: ClassOrderByWithRelationInput
   }
@@ -17231,11 +17319,14 @@ export namespace Prisma {
     AND?: SantriProfileWhereInput | SantriProfileWhereInput[]
     OR?: SantriProfileWhereInput[]
     NOT?: SantriProfileWhereInput | SantriProfileWhereInput[]
+    gender?: EnumGenderNullableFilter<"SantriProfile"> | $Enums.Gender | null
     phone?: StringNullableFilter<"SantriProfile"> | string | null
     birthDate?: DateTimeNullableFilter<"SantriProfile"> | Date | string | null
     address?: StringNullableFilter<"SantriProfile"> | string | null
     photoUrl?: StringNullableFilter<"SantriProfile"> | string | null
     classId?: StringNullableFilter<"SantriProfile"> | string | null
+    createdAt?: DateTimeFilter<"SantriProfile"> | Date | string
+    updatedAt?: DateTimeFilter<"SantriProfile"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
   }, "id" | "userId">
@@ -17243,11 +17334,14 @@ export namespace Prisma {
   export type SantriProfileOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    gender?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     birthDate?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     photoUrl?: SortOrderInput | SortOrder
     classId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: SantriProfileCountOrderByAggregateInput
     _max?: SantriProfileMaxOrderByAggregateInput
     _min?: SantriProfileMinOrderByAggregateInput
@@ -17259,11 +17353,14 @@ export namespace Prisma {
     NOT?: SantriProfileScalarWhereWithAggregatesInput | SantriProfileScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"SantriProfile"> | string
     userId?: StringWithAggregatesFilter<"SantriProfile"> | string
+    gender?: EnumGenderNullableWithAggregatesFilter<"SantriProfile"> | $Enums.Gender | null
     phone?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
     birthDate?: DateTimeNullableWithAggregatesFilter<"SantriProfile"> | Date | string | null
     address?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
     photoUrl?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
     classId?: StringNullableWithAggregatesFilter<"SantriProfile"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"SantriProfile"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SantriProfile"> | Date | string
   }
 
   export type UserWhereInput = {
@@ -17383,6 +17480,7 @@ export namespace Prisma {
     NOT?: WaliProfileWhereInput | WaliProfileWhereInput[]
     id?: StringFilter<"WaliProfile"> | string
     userId?: StringFilter<"WaliProfile"> | string
+    gender?: EnumGenderNullableFilter<"WaliProfile"> | $Enums.Gender | null
     phone?: StringNullableFilter<"WaliProfile"> | string | null
     address?: StringNullableFilter<"WaliProfile"> | string | null
     photoUrl?: StringNullableFilter<"WaliProfile"> | string | null
@@ -17393,6 +17491,7 @@ export namespace Prisma {
   export type WaliProfileOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    gender?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     photoUrl?: SortOrderInput | SortOrder
@@ -17406,6 +17505,7 @@ export namespace Prisma {
     AND?: WaliProfileWhereInput | WaliProfileWhereInput[]
     OR?: WaliProfileWhereInput[]
     NOT?: WaliProfileWhereInput | WaliProfileWhereInput[]
+    gender?: EnumGenderNullableFilter<"WaliProfile"> | $Enums.Gender | null
     phone?: StringNullableFilter<"WaliProfile"> | string | null
     address?: StringNullableFilter<"WaliProfile"> | string | null
     photoUrl?: StringNullableFilter<"WaliProfile"> | string | null
@@ -17416,6 +17516,7 @@ export namespace Prisma {
   export type WaliProfileOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    gender?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     photoUrl?: SortOrderInput | SortOrder
@@ -17431,6 +17532,7 @@ export namespace Prisma {
     NOT?: WaliProfileScalarWhereWithAggregatesInput | WaliProfileScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"WaliProfile"> | string
     userId?: StringWithAggregatesFilter<"WaliProfile"> | string
+    gender?: EnumGenderNullableWithAggregatesFilter<"WaliProfile"> | $Enums.Gender | null
     phone?: StringNullableWithAggregatesFilter<"WaliProfile"> | string | null
     address?: StringNullableWithAggregatesFilter<"WaliProfile"> | string | null
     photoUrl?: StringNullableWithAggregatesFilter<"WaliProfile"> | string | null
@@ -18160,10 +18262,13 @@ export namespace Prisma {
 
   export type SantriProfileCreateInput = {
     id?: string
+    gender?: $Enums.Gender | null
     phone?: string | null
     birthDate?: Date | string | null
     address?: string | null
     photoUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutSantriProfileInput
     class?: ClassCreateNestedOneWithoutSantriProfilesInput
   }
@@ -18171,19 +18276,25 @@ export namespace Prisma {
   export type SantriProfileUncheckedCreateInput = {
     id?: string
     userId: string
+    gender?: $Enums.Gender | null
     phone?: string | null
     birthDate?: Date | string | null
     address?: string | null
     photoUrl?: string | null
     classId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SantriProfileUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutSantriProfileNestedInput
     class?: ClassUpdateOneWithoutSantriProfilesNestedInput
   }
@@ -18191,39 +18302,51 @@ export namespace Prisma {
   export type SantriProfileUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SantriProfileCreateManyInput = {
     id?: string
     userId: string
+    gender?: $Enums.Gender | null
     phone?: string | null
     birthDate?: Date | string | null
     address?: string | null
     photoUrl?: string | null
     classId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SantriProfileUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SantriProfileUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateInput = {
@@ -18364,6 +18487,7 @@ export namespace Prisma {
 
   export type WaliProfileCreateInput = {
     id?: string
+    gender?: $Enums.Gender | null
     phone?: string | null
     address?: string | null
     photoUrl?: string | null
@@ -18374,6 +18498,7 @@ export namespace Prisma {
   export type WaliProfileUncheckedCreateInput = {
     id?: string
     userId: string
+    gender?: $Enums.Gender | null
     phone?: string | null
     address?: string | null
     photoUrl?: string | null
@@ -18382,6 +18507,7 @@ export namespace Prisma {
 
   export type WaliProfileUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18392,6 +18518,7 @@ export namespace Prisma {
   export type WaliProfileUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18401,6 +18528,7 @@ export namespace Prisma {
   export type WaliProfileCreateManyInput = {
     id?: string
     userId: string
+    gender?: $Enums.Gender | null
     phone?: string | null
     address?: string | null
     photoUrl?: string | null
@@ -18409,6 +18537,7 @@ export namespace Prisma {
 
   export type WaliProfileUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18418,6 +18547,7 @@ export namespace Prisma {
   export type WaliProfileUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19184,6 +19314,13 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type EnumGenderNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumGenderNullableFilter<$PrismaModel> | $Enums.Gender | null
+  }
+
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -19203,31 +19340,50 @@ export namespace Prisma {
   export type SantriProfileCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    gender?: SortOrder
     phone?: SortOrder
     birthDate?: SortOrder
     address?: SortOrder
     photoUrl?: SortOrder
     classId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SantriProfileMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    gender?: SortOrder
     phone?: SortOrder
     birthDate?: SortOrder
     address?: SortOrder
     photoUrl?: SortOrder
     classId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SantriProfileMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    gender?: SortOrder
     phone?: SortOrder
     birthDate?: SortOrder
     address?: SortOrder
     photoUrl?: SortOrder
     classId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumGenderNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumGenderNullableWithAggregatesFilter<$PrismaModel> | $Enums.Gender | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumGenderNullableFilter<$PrismaModel>
+    _max?: NestedEnumGenderNullableFilter<$PrismaModel>
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -19343,6 +19499,7 @@ export namespace Prisma {
   export type WaliProfileCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    gender?: SortOrder
     phone?: SortOrder
     address?: SortOrder
     photoUrl?: SortOrder
@@ -19352,6 +19509,7 @@ export namespace Prisma {
   export type WaliProfileMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    gender?: SortOrder
     phone?: SortOrder
     address?: SortOrder
     photoUrl?: SortOrder
@@ -19361,6 +19519,7 @@ export namespace Prisma {
   export type WaliProfileMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    gender?: SortOrder
     phone?: SortOrder
     address?: SortOrder
     photoUrl?: SortOrder
@@ -19995,6 +20154,10 @@ export namespace Prisma {
     create?: XOR<ClassCreateWithoutSantriProfilesInput, ClassUncheckedCreateWithoutSantriProfilesInput>
     connectOrCreate?: ClassCreateOrConnectWithoutSantriProfilesInput
     connect?: ClassWhereUniqueInput
+  }
+
+  export type NullableEnumGenderFieldUpdateOperationsInput = {
+    set?: $Enums.Gender | null
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -20863,6 +21026,13 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type NestedEnumGenderNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumGenderNullableFilter<$PrismaModel> | $Enums.Gender | null
+  }
+
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -20872,6 +21042,16 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedEnumGenderNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumGenderNullableWithAggregatesFilter<$PrismaModel> | $Enums.Gender | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumGenderNullableFilter<$PrismaModel>
+    _max?: NestedEnumGenderNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -21890,20 +22070,26 @@ export namespace Prisma {
 
   export type SantriProfileCreateWithoutClassInput = {
     id?: string
+    gender?: $Enums.Gender | null
     phone?: string | null
     birthDate?: Date | string | null
     address?: string | null
     photoUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutSantriProfileInput
   }
 
   export type SantriProfileUncheckedCreateWithoutClassInput = {
     id?: string
     userId: string
+    gender?: $Enums.Gender | null
     phone?: string | null
     birthDate?: Date | string | null
     address?: string | null
     photoUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SantriProfileCreateOrConnectWithoutClassInput = {
@@ -22166,11 +22352,14 @@ export namespace Prisma {
     NOT?: SantriProfileScalarWhereInput | SantriProfileScalarWhereInput[]
     id?: StringFilter<"SantriProfile"> | string
     userId?: StringFilter<"SantriProfile"> | string
+    gender?: EnumGenderNullableFilter<"SantriProfile"> | $Enums.Gender | null
     phone?: StringNullableFilter<"SantriProfile"> | string | null
     birthDate?: DateTimeNullableFilter<"SantriProfile"> | Date | string | null
     address?: StringNullableFilter<"SantriProfile"> | string | null
     photoUrl?: StringNullableFilter<"SantriProfile"> | string | null
     classId?: StringNullableFilter<"SantriProfile"> | string | null
+    createdAt?: DateTimeFilter<"SantriProfile"> | Date | string
+    updatedAt?: DateTimeFilter<"SantriProfile"> | Date | string
   }
 
   export type DailyJournalUpsertWithWhereUniqueWithoutClassInput = {
@@ -22947,6 +23136,7 @@ export namespace Prisma {
 
   export type WaliProfileCreateWithoutUserInput = {
     id?: string
+    gender?: $Enums.Gender | null
     phone?: string | null
     address?: string | null
     photoUrl?: string | null
@@ -22955,6 +23145,7 @@ export namespace Prisma {
 
   export type WaliProfileUncheckedCreateWithoutUserInput = {
     id?: string
+    gender?: $Enums.Gender | null
     phone?: string | null
     address?: string | null
     photoUrl?: string | null
@@ -22992,20 +23183,26 @@ export namespace Prisma {
 
   export type SantriProfileCreateWithoutUserInput = {
     id?: string
+    gender?: $Enums.Gender | null
     phone?: string | null
     birthDate?: Date | string | null
     address?: string | null
     photoUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     class?: ClassCreateNestedOneWithoutSantriProfilesInput
   }
 
   export type SantriProfileUncheckedCreateWithoutUserInput = {
     id?: string
+    gender?: $Enums.Gender | null
     phone?: string | null
     birthDate?: Date | string | null
     address?: string | null
     photoUrl?: string | null
     classId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SantriProfileCreateOrConnectWithoutUserInput = {
@@ -23360,6 +23557,7 @@ export namespace Prisma {
 
   export type WaliProfileUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23368,6 +23566,7 @@ export namespace Prisma {
 
   export type WaliProfileUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23414,20 +23613,26 @@ export namespace Prisma {
 
   export type SantriProfileUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneWithoutSantriProfilesNestedInput
   }
 
   export type SantriProfileUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassUpsertWithWhereUniqueWithoutMentorInput = {
@@ -24007,10 +24212,13 @@ export namespace Prisma {
   export type SantriProfileCreateManyClassInput = {
     id?: string
     userId: string
+    gender?: $Enums.Gender | null
     phone?: string | null
     birthDate?: Date | string | null
     address?: string | null
     photoUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type DailyJournalCreateManyClassInput = {
@@ -24114,29 +24322,38 @@ export namespace Prisma {
 
   export type SantriProfileUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutSantriProfileNestedInput
   }
 
   export type SantriProfileUncheckedUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SantriProfileUncheckedUpdateManyWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DailyJournalUpdateWithoutClassInput = {

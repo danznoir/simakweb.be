@@ -65,6 +65,20 @@ router.get("/", authenticate, adminMiddleware, profileController.getAllProfiles)
 
 /**
  * @swagger
+ * /api/v1/user-profile/stats:
+ *   get:
+ *     summary: Get user profile statistics
+ *     tags: [Profiles]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: User profile statistics
+ */
+router.get("/stats", authenticate, adminMiddleware, profileController.getProfileStats);
+
+/**
+ * @swagger
  * /api/v1/user-profile/{id}:
  *   get:
  *     summary: Get profile by ID

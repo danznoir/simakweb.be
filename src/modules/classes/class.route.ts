@@ -65,6 +65,20 @@ router.get("/", authenticate, classController.getAllClasses);
 
 /**
  * @swagger
+ * /api/v1/classes/stats:
+ *   get:
+ *     summary: Get class statistics
+ *     tags: [Classes]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Class statistics
+ */
+router.get("/stats", authenticate, classController.getClassStats);
+
+/**
+ * @swagger
  * /api/v1/classes/{id}:
  *   get:
  *     summary: Get class by ID

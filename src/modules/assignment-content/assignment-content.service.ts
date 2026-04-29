@@ -59,4 +59,16 @@ export class AssignmentContentService {
 
     return await this.submissionRepo.delete(id);
   }
+
+  async getSubmissionsStats() {
+    const rawStats = await this.submissionRepo.stats();
+
+    // Merapikan format dari array Prisma menjadi object JSON yang mudah dibaca frontend
+    const formattedStats = rawStats.reduce((acc, curr) => {
+      acc[curr.status] = curr._count.id;
+      return acc;
+    }, {} as Record<string, number>);
+
+    return formattedStats;
+  }
 }

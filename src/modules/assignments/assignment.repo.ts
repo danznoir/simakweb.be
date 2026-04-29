@@ -120,4 +120,19 @@ export class AssignmentRepository {
       where: { id },
     });
   }
+
+  async stats() {
+    // Menghitung total semua penugasan
+    const totalAssignments = await this.prisma.assignment.count();
+    
+    // Mengelompokkan berdasarkan tipe pengumpulan (TEXT atau FILE)
+    const bySubmissionType = await this.prisma.assignment.groupBy({
+      by: ['submissionType'],
+      _count: {
+        id: true
+      }
+    });
+
+    return { totalAssignments, bySubmissionType };
+  }
 }

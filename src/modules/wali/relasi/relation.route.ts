@@ -60,6 +60,20 @@ const controller = new WaliRelationController(service);
  */
 router.get("/", adminMiddleware, controller.getAllRelations);
 
+/**
+ * @swagger
+ * /api/v1/relasi/stats:
+ *   get:
+ *     summary: Get statistics of all relations
+ *     tags: [WaliRelations]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Statistics of all relations
+ */
+router.get("/stats", adminMiddleware, controller.getRelationStats);
+
 // Tidak perlu multer, langsung validate JSON menggunakan Zod
 /**
  * @swagger

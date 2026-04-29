@@ -59,4 +59,21 @@ export class WaliRelationService {
 
     return await this.repo.delete(id);
   }
+
+  async getRelationStats() {
+    const rawStats = await this.repo.stats();
+
+    // Merapikan format array dari Prisma menjadi object JSON
+    const formattedByCategory = rawStats.byCategory.reduce((acc, curr) => {
+      // Jika relasi kosong/null, kita beri label default
+      const key = curr.category ? String(curr.category) : 'LAINNYA';
+      acc[key] = curr._count.id;
+      return acc;
+    }, {} as Record<string, number>);
+
+    return {
+      totalRelations: rawStats.total,
+      byCategory: formattedByCategory
+    };
+  }
 }

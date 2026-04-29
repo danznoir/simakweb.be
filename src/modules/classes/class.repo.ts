@@ -1,7 +1,7 @@
 import type { Prisma, PrismaClient } from "../../../generated/index.js";
 
 export class ClassRepository {
-  constructor(private prisma: PrismaClient) {}
+  constructor(private prisma: PrismaClient) { }
 
   async findAll(skip: number, take: number, search?: string, filter?: string) {
     const where: Prisma.ClassWhereInput = {};
@@ -21,27 +21,27 @@ export class ClassRepository {
         skip,
         take,
         include: {
-        division: {
-          select: {
-            name: true,
+          division: {
+            select: {
+              name: true,
+            },
+          },
+          mentor: {
+            select: {
+              fullName: true,
+            },
+          },
+          _count: {
+            select: {
+              santriProfiles: true,
+            },
           },
         },
-        mentor: {
-          select: {
-            fullName: true,
-          },
+        orderBy: {
+          name: 'asc',
         },
-        _count: {
-          select: {
-            santriProfiles: true,
-          },
-        },
-      },
-      orderBy: {
-        name: 'asc',
-      },
-    }),
-    this.prisma.class.count({ where })
+      }),
+      this.prisma.class.count({ where })
     ]);
     return { data, total };
   }
@@ -119,5 +119,25 @@ export class ClassRepository {
     return await this.prisma.class.delete({
       where: { id },
     });
+  }
+
+  async stats() {
+    // 1. Hitung total semua kelas
+    const total = await this.prisma.class.count();
+
+    // 2. Kelompokkan jumlah kelas berdasarkan divisiId
+    const byDivision = await this.prisma.class.groupBy({
+      by: ['divisiId'],
+      _count: {
+        id: true
+      }
+    });
+
+    // 3. Ambil daftar divisi untuk mendapatkan namanya (Mapping ID -> Name)
+    const divisions = await this.prisma.division.findMany({
+      select: { id: true, name: true }
+    });
+
+    return { total, byDivision, divisions };
   }
 }

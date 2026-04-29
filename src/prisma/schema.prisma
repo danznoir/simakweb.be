@@ -53,3 +53,8 @@ enum TugasType {
   MINGGUAN
   BULANAN
 }
+
+enum Gender {
+  LAKI_LAKI
+  PEREMPUAN
+}

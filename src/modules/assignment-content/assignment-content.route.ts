@@ -65,6 +65,20 @@ router.get("/", authenticate, submissionController.getSubmissions);
 
 /**
  * @swagger
+ * /api/v1/submissions/stats:
+ *   get:
+ *     summary: Get submission statistics
+ *     tags: [AssignmentSubmissions]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Submission statistics
+ */
+router.get("/stats", authenticate, submissionController.getSubmissionsStats);
+
+/**
+ * @swagger
  * /api/v1/submissions/{id}:
  *   get:
  *     summary: Get submission by ID

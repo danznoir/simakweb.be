@@ -61,6 +61,20 @@ router.get("/", controller.getAll);
 
 /**
  * @swagger
+ * /api/v1/daily-journal/stats:
+ *   get:
+ *     summary: Get daily journal statistics
+ *     tags: [DailyJournal]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Daily journal statistics
+ */
+router.get("/stats", controller.getDailyJournalStats);
+
+/**
+ * @swagger
  * /api/v1/daily-journal/{id}:
  *   get:
  *     summary: Get a daily journal entry by ID

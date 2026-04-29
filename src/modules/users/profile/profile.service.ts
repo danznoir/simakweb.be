@@ -7,10 +7,10 @@ import bcrypt from "bcrypt";
 export class ProfileService {
   constructor(private profileRepo: ProfileRepository) { }
 
-  async getAllProfiles(page: number, limit: number, search?: string | undefined, role?: string | undefined, isActive?: boolean | undefined) {
+  async getAllProfiles(page: number, limit: number, search?: string | undefined, role?: string | undefined, gender?: string | undefined, isActive?: boolean | undefined) {
     const skip = (page - 1) * limit;
 
-    const { data, total } = await this.profileRepo.findAll(skip, limit, search, role, isActive);
+    const { data, total } = await this.profileRepo.findAll(skip, limit, search, role, gender, isActive);
 
     return {
       data,
@@ -45,6 +45,7 @@ export class ProfileService {
             photoUrl: data.photoUrl,
             address: data.address ?? null,
             birthDate: data.birthDate ? new Date(data.birthDate) : null,
+            gender: data.gender ?? null,
           },
         },
       })
@@ -64,7 +65,7 @@ export class ProfileService {
       ...(data.fullName !== undefined && { fullName: data.fullName }),
       ...(data.email !== undefined && { email: data.email }),
       ...(data.phone !== undefined && { phone: data.phone }),
-      ...(data.role !== undefined && { role: data.role }),
+      ...(data.role !== undefined && { role: data.role }),  
       ...(data.photoUrl !== undefined && {
         santriProfile: {
           upsert: {
@@ -72,11 +73,13 @@ export class ProfileService {
               photoUrl: data.photoUrl ?? null,
               address: data.address ?? null,
               birthDate: data.birthDate ? new Date(data.birthDate) : null,
+              gender: data.gender ?? null,
             },
             update: {
               ...(data.photoUrl !== undefined && { photoUrl: data.photoUrl }),
               ...(data.address !== undefined && { address: data.address }),
               ...(data.birthDate !== undefined && { birthDate: new Date(data.birthDate!) }),
+              ...(data.gender !== undefined && { gender: data.gender }),
             },
           },
         },
@@ -91,5 +94,22 @@ export class ProfileService {
     if (!existing) throw new Error("Profile tidak ditemukan");
 
     return await this.profileRepo.delete(id);
+  }
+
+  async getProfileStats() {
+    const rawStats = await this.profileRepo.stats();
+
+    // Merapikan format array dari Prisma menjadi object JSON
+    const formattedByGender = rawStats.byGender.reduce((acc, curr) => {
+      // Jika ada data profil yang gendernya belum diisi (null), kita kelompokkan ke "TIDAK_DIKETAHUI"
+      const key = curr.gender ? String(curr.gender) : 'TIDAK_DIKETAHUI';
+      acc[key] = curr._count.id;
+      return acc;
+    }, {} as Record<string, number>);
+
+    return {
+      totalProfiles: rawStats.total,
+      byGender: formattedByGender
+    };
   }
 }

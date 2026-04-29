@@ -57,4 +57,26 @@ export class ClassService {
 
     return await this.classRepo.delete(id);
   }
+
+  async getClassStats() {
+    const rawStats = await this.classRepo.stats();
+
+    // Buat "Kamus" untuk mengubah divisiId menjadi Nama Divisi (misal: "SD", "SMP")
+    const divisionMap = rawStats.divisions.reduce((acc, curr) => {
+      acc[curr.id] = curr.name;
+      return acc;
+    }, {} as Record<string, string>);
+
+    // Format array hasil Prisma menjadi object JSON menggunakan nama divisi
+    const formattedByDivision = rawStats.byDivision.reduce((acc, curr) => {
+      const divisionName = divisionMap[curr.divisiId] || "Divisi Tidak Diketahui";
+      acc[divisionName] = curr._count.id;
+      return acc;
+    }, {} as Record<string, number>);
+
+    return {
+      total: rawStats.total,
+      byDivision: formattedByDivision
+    };
+  }
 }

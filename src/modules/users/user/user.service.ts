@@ -83,4 +83,28 @@ export class UserService {
 
     return await this.userRepo.delete(id);
   }
+
+  async getStats() {
+    const rawStats = await this.userRepo.stats();
+
+    // Merapikan format array dari Prisma menjadi object JSON
+    const formattedByRole = rawStats.byRole.reduce((acc, curr) => {
+      acc[curr.role] = curr._count.id;
+      return acc;
+    }, {} as Record<string, number>);
+
+    // Memastikan semua Role standar muncul di response, meskipun nilainya 0
+    const defaultRoles = {
+      ADMIN: 0,
+      MENTOR: 0,
+      SANTRI: 0,
+      WALI_SANTRI: 0, // Sesuai dengan pesan error kamu sebelumnya
+      ...formattedByRole
+    };
+
+    return {
+      totalUsers: rawStats.total,
+      byRole: defaultRoles
+    };
+  }
 }

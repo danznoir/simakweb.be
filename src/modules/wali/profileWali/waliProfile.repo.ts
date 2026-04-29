@@ -77,4 +77,21 @@ export class WaliProfileRepository {
       where: { id }
     });
   }
+
+  async stats() {
+    // 1. Hitung total semua profil wali santri
+    const total = await this.prisma.waliProfile.count();
+    
+    // 2. Hitung wali santri yang nomor HP-nya belum diisi (null)
+    const missingPhone = await this.prisma.waliProfile.count({
+      where: { phone: null }
+    });
+
+    // 3. (Opsional) Hitung wali santri yang alamatnya belum diisi
+    const missingAddress = await this.prisma.waliProfile.count({
+      where: { address: null }
+    });
+
+    return { total, missingPhone, missingAddress };
+  }
 }

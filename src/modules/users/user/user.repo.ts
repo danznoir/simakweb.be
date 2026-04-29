@@ -56,4 +56,19 @@ export class UserRepository {
       where: { id },
     });
   }
+
+  async stats() {
+    // 1. Hitung total semua user di dalam database
+    const total = await this.prisma.user.count();
+    
+    // 2. Kelompokkan jumlah user berdasarkan Role-nya
+    const byRole = await this.prisma.user.groupBy({
+      by: ['role'],
+      _count: {
+        id: true
+      }
+    });
+
+    return { total, byRole };
+  }
 }

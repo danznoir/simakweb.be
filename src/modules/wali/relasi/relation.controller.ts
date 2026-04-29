@@ -32,4 +32,9 @@ export class WaliRelationController {
     await this.service.deleteRelation(id as string);
     return successResponse(res, "Relasi berhasil dihapus", null, null, 200);
   };
+
+  getRelationStats = async (req: Request, res: Response) => {
+    const result = await this.service.getRelationStats(); 
+    successResponse(res, "Statistik relasi wali dan santri berhasil diambil", result, null, 200);
+  };
 }

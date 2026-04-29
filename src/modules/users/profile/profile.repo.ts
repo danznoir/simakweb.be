@@ -1,9 +1,9 @@
-import { PrismaClient, Prisma, Role } from "../../../../generated/index.js";
+import { PrismaClient, Prisma, Role, Gender } from "../../../../generated/index.js";
 
 export class ProfileRepository {
   constructor(private prisma: PrismaClient) {}
 
-  async findAll(skip: number, take: number, search?: string, role?: string, isActive?: boolean) {
+  async findAll(skip: number, take: number, search?: string, role?: string, gender?: string, isActive?: boolean) {
     const whereClause: Prisma.UserWhereInput = {
       ...(search && {
         OR: [
@@ -13,6 +13,7 @@ export class ProfileRepository {
         ],
       }),
       ...(role && { role: role as Role }),
+      ...(gender && { gender: gender as Gender }),
       ...(isActive !== undefined && { isActive }),
     };
     
@@ -56,5 +57,21 @@ export class ProfileRepository {
     return await this.prisma.user.delete({
       where: { id },
     });
+  }
+
+  async stats() {
+    // 1. Hitung total semua profil santri yang ada
+    const total = await this.prisma.santriProfile.count();
+    
+    // 2. Kelompokkan berdasarkan jenis kelamin (gender)
+    // 💡 Catatan: Sesuaikan kata 'gender' ini dengan nama kolom asli di file schema.prisma kamu
+    const byGender = await this.prisma.santriProfile.groupBy({
+      by: ['gender'], 
+      _count: {
+        id: true
+      }
+    });
+
+    return { total, byGender };
   }
 }

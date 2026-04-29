@@ -67,4 +67,21 @@ export class DivisionRepository {
       where: { id },
     });
   }
+
+  async stats() {
+    // 1. Hitung total semua divisi
+    const total = await this.prisma.division.count();
+    
+    // 2. Ambil semua divisi beserta jumlah kelas di dalamnya
+    const divisionsWithClassCount = await this.prisma.division.findMany({
+      select: {
+        name: true,
+        _count: {
+          select: { classes: true }
+        }
+      }
+    });
+
+    return { total, divisionsWithClassCount };
+  }
 }

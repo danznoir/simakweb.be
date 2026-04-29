@@ -87,4 +87,9 @@ export class WaliProfileController {
 
         await cloudinary.uploader.destroy(publicId);
     }
+
+    getWaliProfileStats = async (req: Request, res: Response) => {
+        const result = await this.service.getWaliProfileStats();
+        successResponse(res, "Statistik profil wali santri berhasil diambil", result, null, 200);
+    };
 }

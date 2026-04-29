@@ -16,6 +16,7 @@ export const createProfileSchema = z.object({
   photoUrl: z.string().nullish(),
   address: z.string().nullish(),
   birthDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Format tanggal lahir YYYY-MM-DD").nullish(),
+  gender: z.enum(["LAKI_LAKI", "PEREMPUAN"]).nullish(),
 });
 
 // Skema untuk Update (Semuanya opsional karena bisa jadi cuma update nama)
@@ -27,6 +28,7 @@ export const updateProfileSchema = z.object({
   photoUrl: z.string().nullish(),
   address: z.string().nullish(),
   birthDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Format tanggal lahir YYYY-MM-DD").nullish(),
+  gender: z.enum(["LAKI_LAKI", "PEREMPUAN"]).nullish(),
 });
 
 export type ICreateProfileData = z.infer<typeof createProfileSchema>;
